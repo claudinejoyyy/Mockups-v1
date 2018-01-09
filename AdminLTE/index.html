@@ -30,6 +30,11 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
+    <style>
+        .datepicker {
+          z-index: 1600 !important; /* has to be larger than 1050 */
+        }
+    </style>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -412,6 +417,25 @@
         <!-- ./col -->
       </div>
       <!-- /.row -->
+      <div class="row">
+        <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Application Buttons</h3>
+            </div>
+            <div class="box-body">
+              <a class="btn btn-app">
+                <i class="fa fa-plus" data-toggle="modal" data-target="#myModal"></i> New Prescription
+              </a>
+              <a class="btn btn-app">
+                <i class="fa fa-fax" data-toggle="modal" data-target="#myModal1"></i> Lab Request
+              </a>
+              <a class="btn btn-app">
+                <i class="fa fa-calendar" data-toggle="modal" data-target="#myModal2"></i> Set Appointment
+              </a>
+            </div>
+            <!-- /.box-body -->
+          </div>
+      </div>
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
@@ -637,6 +661,229 @@
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->
+        
+        <!---------------------------------------------------------------------------------------------- Modal of Adding new patient ----------->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">New Prescription</h4>
+              </div>
+              <div class="modal-body">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputName" value="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Age</label>
+
+                    <div class="col-sm-10">
+                      <input type="number" class="form-control" id="inputName" value="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Sex</label>
+                      <div class="col-sm-10">
+                        <select class="form-control">
+                            <option>Male</option>
+                            <option>Female</option>
+                          </select>
+                        </div>
+                  </div>
+                    <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">Rx</label>
+
+                    <div class="col-sm-10">
+                      <textarea class="form-control" rows="3" placeholder="Rx ..."></textarea>
+                    </div>
+                  </div>
+                    
+                  <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">PRC</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputSkills" value="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">PTR</label>
+
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputName" value="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">S2</label>
+
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputName" value="">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------------------------------------------------------------ /Modal-->
+        
+        <!---------------------------------------------------------------------------------------------- Modal of Adding new patient ----------->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel1">Laboratory Request</h4>
+              </div>
+              <div class="modal-body">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Patient Name</label>
+
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputName">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Rank</label>
+
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputName">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Age</label>
+
+                    <div class="col-sm-10">
+                      <input type="number" class="form-control" id="inputName">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Sex</label>
+                      <div class="col-sm-10">
+                        <select class="form-control">
+                            <option>Male</option>
+                            <option>Female</option>
+                          </select>
+                        </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">Physician</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputSkills">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">Diagnosis</label>
+
+                    <div class="col-sm-10">
+                      <textarea class="form-control" rows="3" placeholder="Diagnosis ..."></textarea>
+                    </div>
+                  </div>
+                    <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">Test Request</label>
+                  <div class="col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Blood Chemistry
+                        </label>
+                      </div>
+
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Hematology
+                        </label>
+                      </div>
+                        
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Microscopy
+                        </label>
+                      </div>
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Parasitology
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Serology
+                        </label>
+                   </div>
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Microbiology
+                        </label>
+                      </div>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputSkills" placeholder="Others please specify ...">
+                    </div>
+                    </div>  
+
+                        
+                    </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------------------------------------------------------------ /Modal-->
+
+        <!---------------------------------------------------------------------------------------------- Modal of Adding new patient ----------->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Set Appointment</h4>
+              </div>
+              <div class="modal-body">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Patient Name</label>
+
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputName" value="">
+                    </div>
+                  </div>
+                <div class="form-group">
+                <label for="inputName" class="col-sm-2 control-label">Date</label>
+
+                <div class="col-sm-10">
+                  <input type="text" class="form-control datepicker" id="datepicker">
+                </div>
+                <!-- /.input group -->
+                </div>
+
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------------------------------------------------------------ /Modal-->
 
     </section>
     <!-- /.content -->
@@ -882,5 +1129,12 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script>
+  $(function () {
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    });
+</script>
 </body>
 </html>
