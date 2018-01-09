@@ -295,14 +295,14 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Commander Pierce</p>
+          <p>Alexander Pierce</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
       <!-- search form -->
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <input type="text" name="q" class="form-control" placeholder="Search Patient...">
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
@@ -311,85 +311,22 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
-        <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
-          <a href="index.html">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-          </a>
-        </li>
+    <ul class="sidebar-menu">
+        <li class="header">Account Management</li>
+        <!-- Optionally, you can add icons to the links -->
+        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>User Management</span></a></li>
         <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>Charts</span>
+          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Monthly Expenditures</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Supplies Used</a></li>
-            <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Patients</a></li>
-            <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Survey</a></li>
+            <li><a href="#">Link in level 2</a></li>
+            <li><a href="#">Link in level 2</a></li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>Forms</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Discharge Form</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Absence Slip</a></li>
-            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Home Instruction</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Tables</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="pages/calendar.html">
-            <i class="fa fa-calendar"></i> <span>Calendar</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="pages/mailbox/mailbox.html">
-            <i class="fa fa-envelope"></i> <span>Messages</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-yellow">12</small>
-              <small class="label pull-right bg-green">16</small>
-              <small class="label pull-right bg-red">5</small>
-            </span>
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-folder"></i> <span>Others</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-            <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-            <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-            <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-          </ul>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -417,12 +354,12 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>0</h3>
+              <h3>40</h3>
 
-              <p>Recent Supllies</p>
+              <p>Total Registered Patients</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-person"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -432,9 +369,9 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>0</h3>
+              <h3>13</h3>
 
-              <p>Patients</p>
+              <p>Currently Admitted</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -447,12 +384,12 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>0</h3>
+              <h3>6</h3>
 
-              <p>Accounts Management</p>
+              <p>OPD</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="ion ion-pie-graph"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -462,9 +399,9 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>0</h3>
+              <h3>7</h3>
 
-              <p>Reports</p>
+              <p>Ward</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -479,91 +416,6 @@
       <div class="row">
         <!-- Left col -->
         <section class="col-lg-7 connectedSortable">
-          <!-- Custom tabs (Charts with tabs)-->
-          <div class="nav-tabs-custom">
-            <!-- Tabs within a box -->
-            <ul class="nav nav-tabs pull-right">
-              <li class="active"><a href="#revenue-chart" data-toggle="tab">Dot Plot</a></li>
-              <li><a href="#sales-chart" data-toggle="tab">Circle Graph</a></li>
-              <li class="pull-left header"><i class="fa fa-inbox"></i>Supplies</li>
-            </ul>
-            <div class="tab-content no-padding">
-              <!-- Morris chart - Sales -->
-              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-            </div>
-          </div>
-          <!-- /.nav-tabs-custom -->
-
-          <!-- Chat box -->
-          <div class="box box-success">
-            <div class="box-header">
-              <i class="fa fa-comments-o"></i>
-
-              <h3 class="box-title">Messages</h3>
-
-              <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
-                <div class="btn-group" data-toggle="btn-toggle">
-                  <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
-                  </button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="box-body chat" id="chat-box">
-              <!-- chat item -->
-              <div class="item">
-                <img src="dist/img/user2-160x160.jpg" alt="user image" class="online">
-
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                     Commander Pierce
-                  </a>
-                  I would like to meet you to discuss the latest news about
-                  the arrival of the new medical equipments.
-                </p>
-                <div class="attachment">
-                  <h4>Attachments:</h4>
-
-                  <p class="filename">
-                    2018-equipments.docx
-                  </p>
-
-                  <div class="pull-right">
-                    <button type="button" class="btn btn-primary btn-sm btn-flat">Open</button>
-                  </div>
-                </div>
-                <!-- /.attachment -->
-              </div>
-              <!-- /.item -->
-              <!-- chat item -->
-              <div class="item">
-                <img src="dist/img/user3-128x128.jpg" alt="user image" class="online">
-
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:20</small>
-                    Supply Sargeant Doe
-                  </a>
-                   Understood sir. Just send me the full details of the meeting.
-                </p>
-              </div>
-              <!-- /.item -->
-            </div>
-            <!-- /.chat -->
-            <div class="box-footer">
-              <div class="input-group">
-                <input class="form-control" placeholder="Type message...">
-
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- /.box (chat box) -->
-
           <!-- TO DO List -->
           <div class="box box-primary">
             <div class="box-header">
@@ -648,62 +500,6 @@
               <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
             </div>
           </div>
-          <!-- /.box -->
-        </section>
-        <!-- /.Left col -->
-        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-5 connectedSortable">
-            <div class="box-header">
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-              </div>
-              <!-- /. tools -->
-            </div>
-          <!-- solid sales graph -->
-          <div class="box box-solid bg-teal-gradient">
-            <div class="box-header">
-              <i class="fa fa-th"></i>
-
-              <h3 class="box-title">Total Number of Patients Served</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <div class="box-body border-radius-none">
-              <div class="chart" id="line-chart" style="height: 250px;"></div>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer no-border">
-              <div class="row">
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="70" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                  <div class="knob-label">Cadets/Military Officers</div>
-                </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="25" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                  <div class="knob-label">Military Dependents/Civilian Employees</div>
-                </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="5" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                  <div class="knob-label">Civilians</div>
-                </div>
-                <!-- ./col -->
-              </div>
-              <!-- /.row -->
-            </div>
-            <!-- /.box-footer -->
-          </div>
-          <!-- /.box -->
-
           <!-- Calendar -->
           <div class="box box-solid bg-green-gradient">
             <div class="box-header">
@@ -780,6 +576,62 @@
             </div>
           </div>
           <!-- /.box -->
+        </section>
+        <!-- /.Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <section class="col-lg-5 connectedSortable">
+            <div class="box-header">
+              <!-- tools box -->
+              <div class="pull-right box-tools">
+              </div>
+              <!-- /. tools -->
+            </div>
+          <!-- solid sales graph -->
+          <div class="box box-solid bg-teal-gradient">
+            <div class="box-header">
+              <i class="fa fa-th"></i>
+
+              <h3 class="box-title">Total Number of Patients Admitted</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body border-radius-none">
+              <div class="chart" id="line-chart" style="height: 250px;"></div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer no-border">
+              <div class="row">
+                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                  <input type="text" class="knob" data-readonly="true" value="70" data-width="60" data-height="60" data-fgColor="#39CCCC">
+
+                  <div class="knob-label">Cadets/Military Officers</div>
+                </div>
+                <!-- ./col -->
+                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                  <input type="text" class="knob" data-readonly="true" value="25" data-width="60" data-height="60" data-fgColor="#39CCCC">
+
+                  <div class="knob-label">Military Dependents/Civilian Employees</div>
+                </div>
+                <!-- ./col -->
+                <div class="col-xs-4 text-center">
+                  <input type="text" class="knob" data-readonly="true" value="5" data-width="60" data-height="60" data-fgColor="#39CCCC">
+
+                  <div class="knob-label">Civilians</div>
+                </div>
+                <!-- ./col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+
+
 
         </section>
         <!-- right col -->
