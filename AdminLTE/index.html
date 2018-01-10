@@ -300,14 +300,14 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>Commander Pierce</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
       <!-- search form -->
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search Patient...">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
@@ -322,13 +322,13 @@
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>User Management</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+          <a href="#"><i class="fa fa-link"></i> <span>Others</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
+            <li><a href="#">Organizational Chart</a></li>
             <li><a href="#">Link in level 2</a></li>
           </ul>
         </li>
@@ -420,7 +420,7 @@
       <div class="row">
         <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Application Buttons</h3>
+              <h3 class="box-title">Quick Access</h3>
             </div>
             <div class="box-body">
               <a class="btn btn-app">
@@ -625,14 +625,14 @@
               </div>
             </div>
             <div class="box-body border-radius-none">
-              <div class="chart" id="line-chart" style="height: 250px;"></div>
+                <div class="chart" id="line-chart" style="height: 100px;"><h1><center>69,690 Patients</center></h1></div>
             </div>
             <!-- /.box-body -->
             <div class="box-footer no-border">
               <div class="row">
                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
                   <input type="text" class="knob" data-readonly="true" value="70" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
+                        
                   <div class="knob-label">Cadets/Military Officers</div>
                 </div>
                 <!-- ./col -->
@@ -662,7 +662,7 @@
       </div>
       <!-- /.row (main row) -->
         
-        <!---------------------------------------------------------------------------------------------- Modal of Adding new patient ----------->
+        <!------------------------- Modal of Adding Prescription --------------------->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -687,7 +687,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Sex</label>
+                    <label for="inputExperience" class="col-sm-2 control-label">Gender</label>
                       <div class="col-sm-10">
                         <select class="form-control">
                             <option>Male</option>
@@ -733,9 +733,9 @@
             </div>
           </div>
         </div>
-        <!------------------------------------------------------------------------------------------ /Modal-->
+        <!----------------------------------- /Adding Prescription Modal-------------------------->
         
-        <!---------------------------------------------------------------------------------------------- Modal of Adding new patient ----------->
+        <!---------------------------------- Modal of Adding Laboratory Requests ------------------------->
         <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -767,7 +767,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Sex</label>
+                    <label for="inputExperience" class="col-sm-2 control-label">Gender</label>
                       <div class="col-sm-10">
                         <select class="form-control">
                             <option>Male</option>
@@ -846,9 +846,9 @@
             </div>
           </div>
         </div>
-        <!------------------------------------------------------------------------------------------ /Modal-->
+        <!------------------------------------------ /Laboratory Request Modal------------------>
 
-        <!---------------------------------------------------------------------------------------------- Modal of Adding new patient ----------->
+        <!---------------------------------------------- Modal of Adding Appointment ----------->
         <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -869,7 +869,7 @@
                 <label for="inputName" class="col-sm-2 control-label">Date</label>
 
                 <div class="col-sm-10">
-                  <input type="text" class="form-control datepicker" id="datepicker">
+                  <input type="text" class="form-control datepicker" id="datepicker" placeholder="MM/DD/YYYY">
                 </div>
                 <!-- /.input group -->
                 </div>
@@ -883,7 +883,7 @@
             </div>
           </div>
         </div>
-        <!------------------------------------------------------------------------------------------ /Modal-->
+        <!----------------------------------------------- / Appointment Modal-------------------->
 
     </section>
     <!-- /.content -->
