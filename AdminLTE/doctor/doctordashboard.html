@@ -312,14 +312,12 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
-        <li class="header">Account Management</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="doctordashboard.html" target="_self"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Appointment Management</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Prescription Management</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Bed Allotment</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Reports Management</span></a></li>
+        <li><a href="patientmanagement.html"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
+        <li><a href="appointmentmanagement.html"><i class="fa fa-link"></i> <span>Appointment Management</span></a></li>
+        <li><a href="prescriptionmanagement.html"><i class="fa fa-link"></i> <span>Prescription Management</span></a></li>
+        <li><a href="bedmanagement.html"><i class="fa fa-link"></i> <span>Bed Management</span></a></li>
         <li><a href="doctorprofile.html"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Others</span>
@@ -424,17 +422,17 @@
               <h3 class="box-title">Quick Access</h3>
             </div>
             <div class="box-body">
-              <a class="btn btn-app">
-                <i class="fa fa-plus" data-toggle="modal" data-target="#myModal"></i> New Prescription
+              <a class="btn btn-app" data-toggle="modal" data-target="#myModal">
+                <i class="fa fa-plus" data-target="#myModal"></i> New Prescription
               </a>
-              <a class="btn btn-app">
-                <i class="fa fa-fax" data-toggle="modal" data-target="#myModal1"></i> Lab Request
+              <a class="btn btn-app" data-toggle="modal" data-target="#myModal1">
+                <i class="fa fa-fax" data-target="#myModal1"></i> Lab Request
               </a>
-              <a class="btn btn-app">
-                <i class="fa fa-calendar" data-toggle="modal" data-target="#myModal2"></i> Set Appointment
+              <a class="btn btn-app" data-toggle="modal" data-target="#myModal2">
+                <i class="fa fa-calendar" data-target="#myModal2"></i> Set Appointment
               </a>
-              <a class="btn btn-app">
-                <i class="fa fa-plus" data-toggle="modal" data-target="#myModal3"></i> Home Instruction
+              <a class="btn btn-app" data-toggle="modal" data-target="#myModal3">
+                <i class="fa fa-plus" data-target="#myModal3"></i> Home Instruction
               </a>
             </div>
             </center>
@@ -656,7 +654,7 @@
       <!-- /.row (main row) -->
         
         <!------------------------- Modal of Adding Prescription --------------------->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -668,9 +666,16 @@
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" value="">
-                    </div>
+                  <div class="col-sm-10">
+                    <select class="form-control select2" style="width: 100%;">
+                      <option>Rufina Spiker</option>
+                      <option>Halina Seago</option>
+                      <option>Rene Chess</option>
+                      <option>Aide Stow</option>
+                      <option>Truman Lipe</option>
+                      <option>...</option>
+                    </select>
+                  </div>
                   </div>
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Age</label>
@@ -680,7 +685,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Gender</label>
+                    <label for="inputExperience" class="col-sm-2 control-label">Sex</label>
                       <div class="col-sm-10">
                         <select class="form-control">
                             <option>Male</option>
@@ -729,7 +734,7 @@
         <!----------------------------------- /Adding Prescription Modal-------------------------->
         
         <!---------------------------------- Modal of Adding Laboratory Requests ------------------------->
-        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+        <div class="modal fade" id="myModal1" role="dialog" aria-labelledby="myModalLabel1">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -741,9 +746,16 @@
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Patient Name</label>
 
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName">
-                    </div>
+                  <div class="col-sm-10">
+                    <select class="form-control select2" style="width: 100%;">
+                      <option>Rufina Spiker</option>
+                      <option>Halina Seago</option>
+                      <option>Rene Chess</option>
+                      <option>Aide Stow</option>
+                      <option>Truman Lipe</option>
+                      <option>...</option>
+                    </select>
+                  </div>
                   </div>
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Rank</label>
@@ -760,7 +772,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Gender</label>
+                    <label for="inputExperience" class="col-sm-2 control-label">Sex</label>
                       <div class="col-sm-10">
                         <select class="form-control">
                             <option>Male</option>
@@ -842,21 +854,27 @@
         <!------------------------------------------ /Laboratory Request Modal------------------>
 
         <!---------------------------------------------- Modal of Adding Appointment ----------->
-        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="myModal2" role="dialog" aria-labelledby="myModalLabel" style="overflow:hidden;">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Set Appointment</h4>
+                <h4 class="modal-title" id="myModalLabel6">Set Appointment</h4>
               </div>
               <div class="modal-body">
                 <form class="form-horizontal">
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Patient Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" value="">
-                    </div>
+                      <label for="inputName" class="col-sm-2 control-label">Patient Name</label>
+                      <div class="col-sm-10">
+                        <select class="form-control select2" style="width: 100%;">
+                          <option>Rufina Spiker</option>
+                          <option>Halina Seago</option>
+                          <option>Rene Chess</option>
+                          <option>Aide Stow</option>
+                          <option>Truman Lipe</option>
+                          <option>...</option>
+                        </select>
+                      </div>
                   </div>
                 <div class="form-group">
                 <label for="inputName" class="col-sm-2 control-label">Date</label>
