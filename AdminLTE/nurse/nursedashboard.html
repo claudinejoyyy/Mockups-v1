@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="../plugins/select2/select2.min.css">
+  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -458,8 +459,9 @@
       <!-- /.row -->
       <div class="row">
         <div class="box">
+          <center>
             <div class="box-header">
-              <h3 class="box-title">Application Buttons</h3>
+              <h3 class="box-title">Quick Access</h3>
             </div>
             <div class="box-body">
               <a class="btn btn-app">
@@ -468,12 +470,16 @@
               <a class="btn btn-app">
                 <i class="fa fa-plus" data-toggle="modal" data-target="#myModal"></i> Add New Patient
               </a>
+              <a class="btn btn-app">
+                <i class="fa fa-bed" data-toggle="modal" data-target="#myModal"></i> Bed Allotment
+              </a>
 <!--
               <a class="btn btn-app">
                 <i class="fa fa-calendar" data-toggle="modal" data-target="#myModal2"></i> Set Appointment
               </a>
 -->
             </div>
+          </center>
             <!-- /.box-body -->
           </div>
       </div>
@@ -714,28 +720,76 @@
               </div>
               <div class="modal-body">
                 <form class="form-horizontal">
+
+                  <div class="form-group">
+                    <label for="inputPatientType" class="col-sm-2 control-label">Patient Type</label>
+                      <div class="col-sm-10">
+                        <select class="form-control">
+                            <option>Cadet</option>
+                            <option>Military Officer</option>
+                            <option>Civilian Employee</option>
+                            <option>Authorized Civilian</option>
+                          </select>
+                        </div>
+                  </div>
+
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
-
                     <div class="col-sm-10">
                       <input type="email" class="form-control" id="inputName" value="">
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Age</label>
 
+                  <div class="form-group">
+                    <label for="inputBirthday" class="col-sm-2 control-label">Birthday</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputBirthday" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputAge" class="col-sm-2 control-label">Age</label>
                     <div class="col-sm-10">
                       <input type="number" class="form-control" id="inputName" value="">
                     </div>
                   </div>
+
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Sex</label>
+                    <label for="inputGender" class="col-sm-2 control-label">Gender</label>
                       <div class="col-sm-10">
                         <select class="form-control">
                             <option>Male</option>
                             <option>Female</option>
                           </select>
                         </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputBloodType" class="col-sm-2 control-label">Blood Type</label>
+                      <div class="col-sm-10">
+                        <select class="form-control">
+                            <option>A</option>
+                            <option>B</option>
+                            <option>AB</option>
+                            <option>O</option>
+                          </select>
+                        </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputNumber" class="col-sm-2 control-label">Contact Number</label>
+
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputNumber" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputAddress" class="col-sm-2 control-label">Address</label>
+
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputAddress" value="">
+                    </div>
                   </div>
                 </form>
               </div>
