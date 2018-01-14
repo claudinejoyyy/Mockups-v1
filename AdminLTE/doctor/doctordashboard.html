@@ -656,7 +656,7 @@
       <!-- /.row (main row) -->
         
         <!------------------------- Modal of Adding Prescription --------------------->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -668,9 +668,16 @@
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" value="">
-                    </div>
+                  <div class="col-sm-10">
+                    <select class="form-control select2" style="width: 100%;">
+                      <option>Rufina Spiker</option>
+                      <option>Halina Seago</option>
+                      <option>Rene Chess</option>
+                      <option>Aide Stow</option>
+                      <option>Truman Lipe</option>
+                      <option>...</option>
+                    </select>
+                  </div>
                   </div>
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Age</label>
@@ -680,7 +687,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Gender</label>
+                    <label for="inputExperience" class="col-sm-2 control-label">Sex</label>
                       <div class="col-sm-10">
                         <select class="form-control">
                             <option>Male</option>
@@ -729,7 +736,7 @@
         <!----------------------------------- /Adding Prescription Modal-------------------------->
         
         <!---------------------------------- Modal of Adding Laboratory Requests ------------------------->
-        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+        <div class="modal fade" id="myModal1" role="dialog" aria-labelledby="myModalLabel1">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -741,9 +748,16 @@
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Patient Name</label>
 
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName">
-                    </div>
+                  <div class="col-sm-10">
+                    <select class="form-control select2" style="width: 100%;">
+                      <option>Rufina Spiker</option>
+                      <option>Halina Seago</option>
+                      <option>Rene Chess</option>
+                      <option>Aide Stow</option>
+                      <option>Truman Lipe</option>
+                      <option>...</option>
+                    </select>
+                  </div>
                   </div>
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Rank</label>
@@ -760,7 +774,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Gender</label>
+                    <label for="inputExperience" class="col-sm-2 control-label">Sex</label>
                       <div class="col-sm-10">
                         <select class="form-control">
                             <option>Male</option>
@@ -842,21 +856,27 @@
         <!------------------------------------------ /Laboratory Request Modal------------------>
 
         <!---------------------------------------------- Modal of Adding Appointment ----------->
-        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="myModal2" role="dialog" aria-labelledby="myModalLabel" style="overflow:hidden;">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Set Appointment</h4>
+                <h4 class="modal-title" id="myModalLabel6">Set Appointment</h4>
               </div>
               <div class="modal-body">
                 <form class="form-horizontal">
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Patient Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" value="">
-                    </div>
+                      <label for="inputName" class="col-sm-2 control-label">Patient Name</label>
+                      <div class="col-sm-10">
+                        <select class="form-control select2" style="width: 100%;">
+                          <option>Rufina Spiker</option>
+                          <option>Halina Seago</option>
+                          <option>Rene Chess</option>
+                          <option>Aide Stow</option>
+                          <option>Truman Lipe</option>
+                          <option>...</option>
+                        </select>
+                      </div>
                   </div>
                 <div class="form-group">
                 <label for="inputName" class="col-sm-2 control-label">Date</label>

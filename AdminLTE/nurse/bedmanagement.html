@@ -25,7 +25,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
       <!-- DataTables -->
   <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
-
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../plugins/select2/select2.min.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -283,7 +284,7 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Patient Management
+        Bed Management
         <small>List of Beds</small>
       </h1>
 <!--
@@ -311,11 +312,11 @@ desired effect
                 <thead>
                 <tr>
                   <th>Bed Number</th>
-                  <th>Patient Name</th>
                   <th>Patient Type</th>
+                  <th>Patient Name</th>
                   <th>Status</th>
                   <th>Confinement Date</th>
-                  <th>Discharge Date</th>
+                  <th>Section</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -326,8 +327,8 @@ desired effect
                   <td>Johnna Bland</td>
                   <td>Occupied</td>
                   <td>09/23/2017</td>
-                  <td>09/25/2017</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-edit" title="Edit Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
+                  <td>--/--/----</td>
+                  <td align="center"><a href="" class="fa fa-fw fa-mail-reply-all " title="Discharge"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-edit" title="View Patient Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Remove Bed"></a></td>
                 </tr>
                 <tr>
                   <td>2</td>
@@ -335,8 +336,8 @@ desired effect
                   <td>Pat Reedy</td>
                   <td>Occupied</td>
                   <td>09/24/2017</td>
-                  <td>09/25/2017</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-edit" title="Edit Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
+                  <td>--/--/----</td>
+                  <td align="center"><a href="" class="fa fa-fw fa-mail-reply-all " title="Discharge"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-edit" title="View Patient Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Remove Bed"></a></td>
                 </tr>
                 <tr>
                   <td>3</td>
@@ -344,8 +345,8 @@ desired effect
                   <td>Dalia Tallant</td>
                   <td>Occupied</td>
                   <td>09/27/2017</td>
-                  <td>10/01/2017</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-edit" title="Edit Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
+                  <td>--/--/----</td>
+                  <td align="center"><a href="" class="fa fa-fw fa-mail-reply-all " title="Discharge"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-edit" title="View Patient Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Remove Bed"></a></td>
                 </tr>
                 <tr>
                   <td>4</td>
@@ -380,8 +381,8 @@ desired effect
                   <td>Leeanna Dunson</td>
                   <td>Occupied</td>
                   <td>10/05/2017</td>
-                  <td>10/06/2017</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-edit" title="Edit Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
+                  <td>--/--/----</td>
+                  <td align="center"><a href="" class="fa fa-fw fa-mail-reply-all " title="Discharge"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-edit" title="View Patient Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Remove Bed"></a></td>
                 </tr>
                 <tr>
                   <td>8</td>
@@ -398,8 +399,8 @@ desired effect
                   <td>Deloris Boes</td>
                   <td>Occupied</td>
                   <td>11/15/2017</td>
-                  <td>11/21/2017</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-edit" title="Edit Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
+                  <td>--/--/----</td>
+                  <td align="center"><a href="" class="fa fa-fw fa-mail-reply-all " title="Discharge"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-edit" title="View Patient Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Remove Bed"></a></td>
                 </tr>
                 <tr>
                   <td>10</td>
@@ -407,8 +408,8 @@ desired effect
                   <td>Minnie Deramus</td>
                   <td>Occupied</td>
                   <td>11/16/2017</td>
-                  <td>11/17/2017</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-edit" title="Edit Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
+                  <td>--/--/----</td>
+                  <td align="center"><a href="" class="fa fa-fw fa-mail-reply-all " title="Discharge"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-edit" title="View Patient Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Remove Bed"></a></td>
                 </tr>
                 <tr>
                   <td>11</td>
@@ -789,17 +790,18 @@ desired effect
         <!-- /.col -->
       </div>
         
-        <!---------------------------------------------------------------------------------------------- Modal of Adding new patient ----------->
+        <!---------------------------------------------------------------------------------------------- Modal of Allocating Bed ----------->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Add New Patient</h4>
+                <h4 class="modal-title" id="myModalLabel">Bed Allotment</h4>
               </div>
               <div class="modal-body">
                 <form class="form-horizontal">
-                  <div class="form-group">
+
+                <div class="form-group">
                   <label for="inputBedNumber" class="col-sm-2 control-label">Bed Number</label>
                   <div class="col-sm-10">
                     <select class="form-control select2" style="width: 100%;">
@@ -829,22 +831,26 @@ desired effect
 
                 <div class="form-group">
                   <label for="inputConfinementDate" class="col-sm-2 control-label">Confinement Date</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control datepicker" id="datepicker">
-                  </div>
+                    <div class="col-sm-10">
+                      <input type="date" class="form-control datepicker" id="datepicker" placeholder="MM/DD/YYYY">
+                    </div>
                 </div>
 
+<!-- sa bed management na table yung mga discharge na siguro-->
+<!--
                 <div class="form-group">
                   <label for="inputDischargeDate" class="col-sm-2 control-label">Discharge Date</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control datepicker" id="datepicker">
                   </div>
                 </div>
+-->
+
                 </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-primary">Confirm</button>
               </div>
             </div>
           </div>
@@ -960,7 +966,12 @@ desired effect
 <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="../plugins/fastclick/fastclick.js"></script>
-
+<!-- Select2 -->
+<script src="../plugins/select2/select2.full.min.js"></script>
+<!-- Slimscroll -->
+<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../plugins/fastclick/fastclick.js"></script>
 <script>
   $(function () {
     $("#example1").DataTable();
@@ -973,6 +984,10 @@ desired effect
       "autoWidth": true
     });
   });
+    
+    $(document).ready(function() {
+        $(".select2").select2();
+    });
 </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
