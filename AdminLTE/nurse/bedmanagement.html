@@ -258,8 +258,8 @@ desired effect
         <li class="header">Account Management</li>
         <!-- Optionally, you can add icons to the links -->
         <li><a href="nursedashboard.html"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-        <li class="active"><a href="patientmanagement.html"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
-        <li><a href="bedmanagement.html"><i class="fa fa-link"></i> <span>Bed Management</span></a></li>
+        <li><a href="patientmanagement.html"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
+        <li class="active"><a href="bedmanagement.html"><i class="fa fa-link"></i> <span>Bed Management</span></a></li>
         <li><a href="nurseprofile.html"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -303,7 +303,7 @@ desired effect
 
           <div class="box">
             <div class="box-header">
-              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add New Patient</button>
+              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> New Bed Allocation</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -710,48 +710,46 @@ desired effect
               <div class="modal-body">
                 <form class="form-horizontal">
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+                  <label for="inputBedNumber" class="col-sm-2 control-label">Bed Number</label>
+                  <div class="col-sm-10">
+                    <select class="form-control select2" style="width: 100%;">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>...</option>
+                    </select>
+                  </div>
+                </div>
 
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" value="Delson Markis A. Wooden">
-                    </div>
+                <div class="form-group">
+                  <label for="inputName" class="col-sm-2 control-label">Name</label>
+                  <div class="col-sm-10">
+                    <select class="form-control select2" style="width: 100%;">
+                      <option>Rufina Spiker</option>
+                      <option>Halina Seago</option>
+                      <option>Rene Chess</option>
+                      <option>Aide Stow</option>
+                      <option>Truman Lipe</option>
+                      <option>...</option>
+                    </select>
                   </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Age</label>
+                </div>
 
-                    <div class="col-sm-10">
-                      <input type="number" class="form-control" id="inputName" value="28">
-                    </div>
+                <div class="form-group">
+                  <label for="inputConfinementDate" class="col-sm-2 control-label">Confinement Date</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control datepicker" id="datepicker">
                   </div>
-                  <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Sex</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                            <option>Male</option>
-                            <option>Female</option>
-                          </select>
-                        </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Blood Type</label>
+                </div>
 
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" value="AB">
-                    </div>
+                <div class="form-group">
+                  <label for="inputDischargeDate" class="col-sm-2 control-label">Discharge Date</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control datepicker" id="datepicker">
                   </div>
-                    <div class="form-group">
-                      <label for="inputSkillssd" class="col-sm-2 control-label">Bed No. </label>
-                        <div class="col-sm-10">
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>...</option>
-                          </select>
-                        </div>
-                    </div>
+                </div>
                 </form>
               </div>
               <div class="modal-footer">
