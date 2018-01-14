@@ -241,7 +241,6 @@ desired effect
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
-        <li class="header">Account Management</li>
         <!-- Optionally, you can add icons to the links -->
         <li><a href="doctordashboard.html"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
         <li><a href="patientmanagement.html"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
@@ -293,107 +292,59 @@ desired effect
             <div class="box-header">
               <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add New Prescription</button>
             </div>
+              <br>
             <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Date</th>
-                  <th>Name</th>
-                  <th>Patient Type</th>
-                  <th>Age</th>
-                  <th>Gender</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>January 14, 2016</td>
-                  <td>Greg Chicoine</td>
-                  <td>Military Officer</td>
-                  <td>28</td>
-                  <td>Male</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>January 14, 2016</td>
-                  <td>Shad Gaulding</td>
-                  <td>Military Cadet</td>
-                  <td>29</td>
-                  <td>Male</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>January 15, 2016</td>
-                  <td>Booker Ludlum</td>
-                  <td>Military Dependent</td>
-                  <td>27</td>
-                  <td>Male</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>January 15, 2016</td>
-                  <td>Loyd Isett</td>                    
-                  <td>Civilian Employee</td>
-                  <td>28</td>
-                  <td>Male</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>January 17, 2016</td>                    
-                  <td>Anastacia Haithcock</td>
-                  <td>Authorized Civilian</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>January 20, 2016</td>
-                  <td>Pat Reedy</td>
-                  <td>Military Officer</td>
-                  <td>28</td>
-                  <td>Male</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>January 20, 2016</td>
-                  <td>Janice Kouba</td>                
-                  <td>Military Cadet</td>
-                  <td>29</td>
-                  <td>Female</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>January 20, 2016</td>
-                  <td>Dalia Tallant</td>
-                  <td>Military Dependent</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td>
-                </tr>
-                <!-- <tfoot>
-                <tr>
-                  <th>#</th>
-                  <th>Patient Type</th>
-                  <th>Name</th>
-                  <th>Age</th>
-                  <th>Gender</th>
-                  <th>Blood Type</th>
-                </tr>
-                </tfoot> -->
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
+              <div class="tab-pane" id="medicalhistory">
+                <div class="body-body">
+                  <table id="medhist" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th><center>Date</center></th>
+                        <th><center>Name</center></th>
+                        <th><center>Patient Type</center></th>
+                        <th><center>Medications</center></th>
+                        <th><center>Units</center></th>
+                        <th><center>Gender</center></th>
+                        <th><center>Age</center></th>
+                        <th><center>Action</center></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><center>10-16-2016</center></td>
+                        <td><center>Pat Reedy</center></td>
+                        <td><center>Military Officer</center></td>
+                        <td><center><p>Metoprolol</p><p>Amoxicillin</p></center></td>
+                        <td><center><p>12 pills</p><p>5 capsules</p></center></td>
+                        <td><center>Female</center></td>
+                        <td><center>23</center></td>
+                        <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td>
+                      </tr>
+                      <tr>
+                        <td><center>01-10-2017</center></td>
+                        <td><center>Chris Tiu</center></td>
+                        <td><center>Cadet</center></td>
+                        <td><center><p>Zoloft</p><p>Prednisone</p></center></td>
+                        <td><center><p>3 capsules</p><p>350 mL</p></center></td>
+                        <td><center>Male</center></td>
+                        <td><center>26</center></td>
+                        <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td>
+                      </tr>
+                      <tr>
+                        <td><center>12-30-2017</center></td>
+                        <td><center>Alexander Pierce</center></td>
+                        <td><center>Military Officer</center></td>
+                        <td><center><p>Amitriptyline</p><p>Ibuprofen</p></center></td>
+                        <td><center><p>500 mL</p><p>10 pills</p></center></td>
+                        <td><center>Male</center></td>
+                        <td><center>29</center></td>
+                        <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
           <!-- /.box -->
         </div>
         <!-- /.col -->
