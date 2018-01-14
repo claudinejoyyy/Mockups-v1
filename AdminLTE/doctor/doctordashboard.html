@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin | Dashboard</title>
+  <title>Doctor | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -40,9 +40,9 @@
     <!-- Logo -->
     <a href="index.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">Admin</span>
+      <span class="logo-mini">DOC</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b></span>
+      <span class="logo-lg"><b>Doctor</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -253,7 +253,7 @@
               <!-- The user image in the navbar-->
               <img src="../dist/img/user4-128x128.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Ligaya Liwanagin</span>
+              <span class="hidden-xs">Doctor Quick Quick</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -261,25 +261,11 @@
                 <img src="../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Ligaya Liwanagin - Nurse
-                  <small>Member since Nov. 2012</small>
+                  Doctor Quick Quick - Doctor In-Charge
+                  <small>Orthopedist</small>
                 </p>
               </li>
               <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
@@ -309,14 +295,14 @@
           <img src="../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Ligaya Liwanagin</p>
+          <p>Doctor Quick Quick</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
       <!-- search form -->
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search Patient...">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
@@ -328,11 +314,15 @@
     <ul class="sidebar-menu">
         <li class="header">Account Management</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="nursedashboard.html"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-        <li><a href="patientmanagement.html"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
-        <li><a href="nurseprofile.html"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
+        <li class="active"><a href="doctordashboard.html" target="_self"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Appointment Management</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Prescription Management</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Bed Allotment</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Reports Management</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+          <a href="#"><i class="fa fa-link"></i> <span>Others</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -425,54 +415,29 @@
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-blue">
-            <div class="inner">
-              <h3>50</h3>
-
-              <p>Total Beds</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>9</h3>
-
-              <p>Allocated Beds</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
       </div>
       <!-- /.row -->
       <div class="row">
         <div class="box">
+            <center>
             <div class="box-header">
-              <h3 class="box-title">Application Buttons</h3>
+              <h3 class="box-title">Quick Access</h3>
             </div>
             <div class="box-body">
               <a class="btn btn-app">
-                <i class="fa fa-edit" data-toggle="modal" data-target="#myModal1"></i> Admit Patient
+                <i class="fa fa-plus" data-toggle="modal" data-target="#myModal"></i> New Prescription
               </a>
               <a class="btn btn-app">
-                <i class="fa fa-plus" data-toggle="modal" data-target="#myModal"></i> Add New Patient
+                <i class="fa fa-fax" data-toggle="modal" data-target="#myModal1"></i> Lab Request
               </a>
-<!--
               <a class="btn btn-app">
                 <i class="fa fa-calendar" data-toggle="modal" data-target="#myModal2"></i> Set Appointment
               </a>
--->
+              <a class="btn btn-app">
+                <i class="fa fa-plus" data-toggle="modal" data-target="#myModal3"></i> Home Instruction
+              </a>
             </div>
+            </center>
             <!-- /.box-body -->
           </div>
       </div>
@@ -486,7 +451,7 @@
             <div class="box-header">
               <i class="ion ion-clipboard"></i>
 
-              <h3 class="box-title">To Do List</h3>
+              <h3 class="box-title">Noticeboard</h3>
 
               <div class="box-tools pull-right">
                 <ul class="pagination pagination-sm inline">
@@ -514,19 +479,6 @@
                   <!-- Emphasis label -->
                   <small class="label label-danger"><i class="fa fa-clock-o"></i>today @ 1400 hours</small>
                   <!-- General tools such as edit or delete-->
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="">
-                  <span class="text">Meeting with Supply Sargeant Doe</span>
-                  <small class="label label-info"><i class="fa fa-clock-o"></i>tomorrow @ 900 hours</small>
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
@@ -666,14 +618,14 @@
               </div>
             </div>
             <div class="box-body border-radius-none">
-              <div class="chart" id="line-chart" style="height: 250px;"></div>
+              <div class="chart" id="line-chart" style="height: 100px;"><h1><center>69,690 Patients</center></h1></div></div>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer no-border">
+           <div class="box-footer no-border">
               <div class="row">
                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
                   <input type="text" class="knob" data-readonly="true" value="70" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
+                        
                   <div class="knob-label">Cadets/Military Officers</div>
                 </div>
                 <!-- ./col -->
@@ -703,13 +655,13 @@
       </div>
       <!-- /.row (main row) -->
         
-        <!---------------------------------------------------------------------------------------------- Modal of Adding new patient ----------->
+        <!------------------------- Modal of Adding Prescription --------------------->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">New Patient</h4>
+                <h4 class="modal-title" id="myModalLabel">New Prescription</h4>
               </div>
               <div class="modal-body">
                 <form class="form-horizontal">
@@ -728,7 +680,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Sex</label>
+                    <label for="inputExperience" class="col-sm-2 control-label">Gender</label>
                       <div class="col-sm-10">
                         <select class="form-control">
                             <option>Male</option>
@@ -736,6 +688,35 @@
                           </select>
                         </div>
                   </div>
+                    <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">Rx</label>
+
+                    <div class="col-sm-10">
+                      <textarea class="form-control" rows="3" placeholder="Rx ..."></textarea>
+                    </div>
+                  </div>
+                    
+                  <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">PRC</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputSkills" value="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">PTR</label>
+
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputName" value="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">S2</label>
+
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputName" value="">
+                    </div>
+                  </div>
                 </form>
               </div>
               <div class="modal-footer">
@@ -745,41 +726,48 @@
             </div>
           </div>
         </div>
-        <!------------------------------------------------------------------------------------------ /Modal-->
+        <!----------------------------------- /Adding Prescription Modal-------------------------->
         
-        <!---------------------------------------------------------------------------------------------- Modal of Adding new patient ----------->
-        <div class="modal fade" id="myModal1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+        <!---------------------------------- Modal of Adding Laboratory Requests ------------------------->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel1">Admit Patient</h4>
+                <h4 class="modal-title" id="myModalLabel1">Laboratory Request</h4>
               </div>
               <div class="modal-body">
-                <form class="form-horizontal">             
+                <form class="form-horizontal">
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+                    <label for="inputName" class="col-sm-2 control-label">Patient Name</label>
+
                     <div class="col-sm-10">
-                        <select class="form-control select2" style="width: 100%;">
-                            <option>Rufina Spiker</option>
-                            <option>Halina Seago</option>
-                            <option>Rene Chess</option>
-                            <option>Aide Stow</option>
-                            <option>Truman Lipe</option>
-                            <option>...</option>
-                        </select>
+                      <input type="email" class="form-control" id="inputName">
                     </div>
                   </div>
                   <div class="form-group">
-                      <label for="inputExperience" class="col-sm-2 control-label">Type</label>
+                    <label for="inputName" class="col-sm-2 control-label">Rank</label>
+
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputName">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Age</label>
+
+                    <div class="col-sm-10">
+                      <input type="number" class="form-control" id="inputName">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Gender</label>
                       <div class="col-sm-10">
                         <select class="form-control">
-                            <option>OPD</option>
-                            <option>ER</option>
+                            <option>Male</option>
+                            <option>Female</option>
                           </select>
                         </div>
                   </div>
-<!--
                   <div class="form-group">
                     <label for="inputSkills" class="col-sm-2 control-label">Physician</label>
 
@@ -787,8 +775,6 @@
                       <input type="text" class="form-control" id="inputSkills">
                     </div>
                   </div>
--->
-<!--
                   <div class="form-group">
                     <label for="inputSkills" class="col-sm-2 control-label">Diagnosis</label>
 
@@ -796,7 +782,54 @@
                       <textarea class="form-control" rows="3" placeholder="Diagnosis ..."></textarea>
                     </div>
                   </div>
--->
+                    <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">Test Request</label>
+                  <div class="col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Blood Chemistry
+                        </label>
+                      </div>
+
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Hematology
+                        </label>
+                      </div>
+                        
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Microscopy
+                        </label>
+                      </div>
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Parasitology
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Serology
+                        </label>
+                   </div>
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Microbiology
+                        </label>
+                      </div>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputSkills" placeholder="Others please specify ...">
+                    </div>
+                    </div>  
+
+                        
+                    </div>
                 </form>
               </div>
               <div class="modal-footer">
@@ -806,9 +839,9 @@
             </div>
           </div>
         </div>
-        <!------------------------------------------------------------------------------------------ /Modal-->
+        <!------------------------------------------ /Laboratory Request Modal------------------>
 
-        <!---------------------------------------------------------------------------------------------- Modal of Adding new patient ----------->
+        <!---------------------------------------------- Modal of Adding Appointment ----------->
         <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -829,7 +862,7 @@
                 <label for="inputName" class="col-sm-2 control-label">Date</label>
 
                 <div class="col-sm-10">
-                  <input type="text" class="form-control datepicker" id="datepicker">
+                  <input type="date" class="form-control datepicker" id="datepicker" placeholder="MM/DD/YYYY">
                 </div>
                 <!-- /.input group -->
                 </div>
@@ -843,7 +876,103 @@
             </div>
           </div>
         </div>
-        <!------------------------------------------------------------------------------------------ /Modal-->
+        <!----------------------------------------------- / Appointment Modal-------------------->
+      
+      <!------------------------- Modal of Home Instruction --------------------->
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Home Instruction</h4>
+              </div>
+              <div class="modal-body">
+                <form class="form-horizontal">
+                  <div class="box-body">
+              <table id="medicine" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th><center>Medicine<br>(Gamot)</center></th>
+                  <th><center>Indication<br>(Para saan ito)</center></th>
+                  <th><center>Drink every...<br>(Inumin makatapos ang....)</center></th>
+                </tr>
+                </thead>
+                    <th>
+                        <center>
+                    <div class="col-sm-10">
+                      <textarea class="text" placeholder="Type here..."></textarea>
+                    </div>
+                        </center>
+                    </th>
+                  <th>
+                      <center>
+                    <div class="col-sm-10">
+                      <textarea class="text" placeholder="Type here..."></textarea>
+                    </div>
+                      </center>
+                    </th>
+                  <th>
+                      <center>
+                    <div class="col-sm-10">
+                      <textarea class="text" placeholder="Type here..."></textarea>
+                    </div>
+                      </center>
+                    </th>
+              </table>
+              
+              <table id="diet" class="table table-bordered table-striped">
+                <thead><br><br>DIET:
+                <tr>
+                  <th><center>Dapat Kainin</center></th>
+                  <th><center>Bawal Kainin</center></th>
+                </tr>
+                </thead>
+                    <th>
+                        <center>
+                    <div class="col-sm-10">
+                      <textarea class="text" placeholder="Type here..."></textarea>
+                    </div>
+                        </center>
+                    </th>
+                  <th>
+                      <center>
+                    <div class="col-sm-10">
+                      <textarea class="text" placeholder="Type here..."></textarea>
+                    </div>
+                      </center>
+                  </th>
+              </table>
+              
+              <table id="exer" class="table table-bordered table-striped">
+                <thead><br><br>ACTIVITY/EXERCISE:
+                </thead>
+                    <th>
+                    <div class="col-sm-10">
+                      <textarea class="text" rows="3" placeholder="Type here..."></textarea>
+                    </div>
+                    </th>
+              </table>
+                      
+              <table id="for" class="table table-bordered table-striped">
+                <thead><br><br>FOLLOW-UP/REFERRAL:
+                </thead>
+                    <th>
+                    <div class="col-sm-10">
+                      <textarea class="text" rows="3" placeholder="Type here..."></textarea>
+                    </div>
+                    </th>
+              </table>
+            </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!----------------------------------- /Home Instruction Modal-------------------------->
 
     </section>
     <!-- /.content -->
