@@ -314,10 +314,10 @@
     <ul class="sidebar-menu">
         <li class="header">Account Management</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="pharmdashboard.html" target="_self"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>      
+        <li><a href="pharmdashboard.html"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>      
         <li><a href=medcat.html><i class="fa fa-link"></i> <span> Medicine Category </span></a></li>
         <li><a href=medmng.html><i class="fa fa-link"></i> <span> Manage Medicine </span></a></li>
-        <li><a href=medprov.html><i class="fa fa-link"></i> <span> Provide Medicine </span></a></li>
+        <li class="active"><a href="medprov.html" target="_self"><i class="fa fa-link"></i> <span> Provide Medicine</span></a></li>
         <li><a href="calendar.html"><i class="fa fa-link"></i> <span> Calendar </span></a></li>
         <li><a href="pharmprofile.html"><i class="fa fa-link"></i> <span> Profile </span></a></li>
         <li class="treeview">
@@ -370,79 +370,70 @@
             </center>
             <!-- /.box-body -->
           </div>
-</div>
+      </div>
 
-<div class="box box-primary">
+
+<div class="row">
+        <div class="col-xs-12">
+          <div class="box">
             <div class="box-header">
-              <i class="ion ion-clipboard"></i>
+              <h3 class="box-title">Responsive Hover Table</h3>
 
-              <h3 class="box-title">Noticeboard</h3>
+              <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
-              <div class="box-tools pull-right">
-                <ul class="pagination pagination-sm inline">
-                  <li><a href="#">&laquo;</a></li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">&raquo;</a></li>
-                </ul>
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
               </div>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
-              <ul class="todo-list">
-                <li>
-                  <!-- drag handle -->
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <!-- checkbox -->
-                  <input type="checkbox" value="">
-                  <!-- todo text -->
-                  <span class="text">General Meeting at Lim Hall</span>
-                  <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i>today @ 1400 hours</small>
-                  <!-- General tools such as edit or delete-->
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="">
-                  <span class="text">Departmental Meeting</span>
-                  <small class="label label-warning"><i class="fa fa-clock-o"></i>Wednesday @ 800 hours</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="">
-                  <span class="text">Athletics</span>
-                  <small class="label label-success"><i class="fa fa-clock-o"></i>Thursday @ 1300 hours</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-              </ul>
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>ID</th>
+                  <th>User</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Reason</th>
+                </tr>
+                <tr>
+                  <td>183</td>
+                  <td>John Doe</td>
+                  <td>11-7-2014</td>
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                </tr>
+                <tr>
+                  <td>219</td>
+                  <td>Alexander Pierce</td>
+                  <td>11-7-2014</td>
+                  <td><span class="label label-warning">Pending</span></td>
+                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                </tr>
+                <tr>
+                  <td>657</td>
+                  <td>Bob Doe</td>
+                  <td>11-7-2014</td>
+                  <td><span class="label label-primary">Approved</span></td>
+                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                </tr>
+                <tr>
+                  <td>175</td>
+                  <td>Mike Doe</td>
+                  <td>11-7-2014</td>
+                  <td><span class="label label-danger">Denied</span></td>
+                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                </tr>
+              </table>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer clearfix no-border">
-              <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-            </div>
-</div>
-
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
     
         <!------------------------- Modal of Adding Prescription --------------------->
         <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
