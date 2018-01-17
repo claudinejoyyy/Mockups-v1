@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Patient Management | Information Desk</title>
+  <title>Information Desk | User Management</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -64,7 +64,7 @@ desired effect
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Information Desk</b></span>
+      <span class="logo-lg"><b>Admin</b></span>
     </a>
 
     <!-- Header Navbar -->
@@ -257,26 +257,14 @@ desired effect
       <ul class="sidebar-menu">
         <li class="header">Account Management</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="iddashboard.html" target="_self"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>      
-        <li><a href="patientmanagement.html"><i class="fa fa-link"></i> 
-            <span>Patients</span></a></li>
+        <li class="active"><a href="iddashboard.html" target="_self"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+        <li><a href="patientmanagement.html"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
         <li class="treeview">
-          <a href="idnurse.html"><i class="fa fa-link"></i>
-        <span>Nurse</span></a></li>
-        <li class="treeview">
-          <a href="iddoctors.html"><i class="fa fa-link"></i>
-        <span>Doctors</span></a></li>
-        <li class="treeview">
-        <a href="idlaboratorist.html"><i class="fa fa-link"></i>
-        <span>Laboratorists</span></a></li>
-        <li class="treeview">
-        <a href="idpharmacist.html"><i class="fa fa-link"></i>
-        <span>Pharmacists</span></a></li>
-        <li class="treeview">
-              <span>Others</span>
+          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
+          </a>
           <ul class="treeview-menu">
             <li><a href="#">Link in level 2</a></li>
             <li><a href="#">Link in level 2</a></li>
@@ -323,7 +311,8 @@ desired effect
                   <th>Name</th>
                   <th>Age</th>
                   <th>Gender</th>
-                  <th>Blood Type</th>  
+                  <th>Blood Type</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -334,7 +323,7 @@ desired effect
                   <td>28</td>
                   <td>Male</td>
                   <td>AB</td>
-                  <td align="center"></td>
+                  <td align="center"><a href="patient1.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>2</td>
@@ -343,7 +332,7 @@ desired effect
                   <td>29</td>
                   <td>Male</td>
                   <td>A</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patient2.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>3</td>
@@ -352,7 +341,7 @@ desired effect
                   <td>27</td>
                   <td>Male</td>
                   <td>O</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patient3.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>4</td>
@@ -361,7 +350,7 @@ desired effect
                   <td>28</td>
                   <td>Male</td>
                   <td>B</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patient4.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>5</td>
@@ -370,7 +359,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patient5.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>6</td>
@@ -379,7 +368,7 @@ desired effect
                   <td>28</td>
                   <td>Male</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>7</td>
@@ -388,7 +377,7 @@ desired effect
                   <td>29</td>
                   <td>Female</td>
                   <td>A</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>8</td>
@@ -397,7 +386,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>O</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>9</td>
@@ -406,7 +395,7 @@ desired effect
                   <td>28</td>
                   <td>Female</td>
                   <td>B</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>10</td>
@@ -415,7 +404,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>11</td>
@@ -424,7 +413,7 @@ desired effect
                   <td>28</td>
                   <td>Female</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patient1" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>12</td>
@@ -433,7 +422,7 @@ desired effect
                   <td>29</td>
                   <td>Female</td>
                   <td>A</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>13</td>
@@ -442,7 +431,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>O</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>14</td>
@@ -451,7 +440,7 @@ desired effect
                   <td>28</td>
                   <td>Female</td>
                   <td>B</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>15</td>
@@ -460,7 +449,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>16</td>
@@ -469,7 +458,7 @@ desired effect
                   <td>28</td>
                   <td>Female</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>17</td>
@@ -478,7 +467,7 @@ desired effect
                   <td>29</td>
                   <td>Female</td>
                   <td>A</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>18</td>
@@ -487,7 +476,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>O</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>19</td>
@@ -496,7 +485,7 @@ desired effect
                   <td>28</td>
                   <td>Male</td>
                   <td>B</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>20</td>
@@ -505,7 +494,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>21</td>
@@ -514,7 +503,7 @@ desired effect
                   <td>28</td>
                   <td>Male</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>22</td>
@@ -523,7 +512,7 @@ desired effect
                   <td>29</td>
                   <td>Male</td>
                   <td>A</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>23</td>
@@ -532,7 +521,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>O</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>24</td>
@@ -541,7 +530,7 @@ desired effect
                   <td>28</td>
                   <td>Female</td>
                   <td>B</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>25</td>
@@ -550,7 +539,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>26</td>
@@ -559,7 +548,7 @@ desired effect
                   <td>28</td>
                   <td>Female</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>27</td>
@@ -568,7 +557,7 @@ desired effect
                   <td>29</td>
                   <td>Female</td>
                   <td>A</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>28</td>
@@ -577,7 +566,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>O</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>29</td>
@@ -586,7 +575,7 @@ desired effect
                   <td>28</td>
                   <td>Male</td>
                   <td>B</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>30</td>
@@ -595,7 +584,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>31</td>
@@ -604,7 +593,7 @@ desired effect
                   <td>28</td>
                   <td>Male</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>32</td>
@@ -613,7 +602,7 @@ desired effect
                   <td>29</td>
                   <td>Male</td>
                   <td>A</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>33</td>
@@ -622,7 +611,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>O</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>34</td>
@@ -631,7 +620,7 @@ desired effect
                   <td>28</td>
                   <td>Male</td>
                   <td>B</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>35</td>
@@ -640,7 +629,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>36</td>
@@ -649,7 +638,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>O</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>37</td>
@@ -658,7 +647,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>38</td>
@@ -667,7 +656,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>O</td>
-                  <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>39</td>
@@ -676,7 +665,7 @@ desired effect
                   <td>27</td>
                   <td>Female</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
                 </tr>
                 <tr>
                   <td>40</td>
@@ -685,7 +674,7 @@ desired effect
                   <td>27</td>
                   <td>Male</td>
                   <td>AB</td>
-                   <td align="center"></td>
+                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td> 
                 </tr>
                 <!-- <tfoot>
                 <tr>
@@ -711,6 +700,8 @@ desired effect
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add New Patient</h4>
               </div>
               <div class="modal-body">
                 <form class="form-horizontal">
