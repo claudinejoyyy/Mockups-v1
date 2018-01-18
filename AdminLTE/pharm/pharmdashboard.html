@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Pharmacist | Dashboard</title>
+  <title>Admin | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="../plugins/select2/select2.min.css">
+  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,12 +41,12 @@
     <!-- Logo -->
     <a href="index.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">PH</span>
+      <span class="logo-mini">Admin</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Pharmacist</b></span>
+      <span class="logo-lg"><b>Admin</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
+    <nav class="navbar navbar-static-top" role="navigation">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
@@ -253,7 +254,7 @@
               <!-- The user image in the navbar-->
               <img src="../dist/img/user4-128x128.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Juliet Howard</span>
+              <span class="hidden-xs">Malou Beth</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -261,11 +262,12 @@
                 <img src="../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Juliet Howard - Laboratorist In-Charge
-                  <small>Orthopedist</small>
+                  Malou Beth - Pharmacist
+                  <small</small>
                 </p>
               </li>
               <!-- Menu Body -->
+             
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
@@ -295,14 +297,14 @@
           <img src="../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Juliet Howard</p>
+          <p>Malou Beth</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
       <!-- search form -->
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <input type="text" name="q" class="form-control" placeholder="Search Patient...">
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
@@ -314,23 +316,10 @@
     <ul class="sidebar-menu">
         <li class="header">Account Management</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="pharmdashboard.html" target="_self"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>      
-        <li><a href=medcat.html><i class="fa fa-link"></i> <span> Medicine Category </span></a></li>
+        <li class="active"><a href="pharmdashboard.html" target="_self"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
         <li><a href=medmng.html><i class="fa fa-link"></i> <span> Manage Medicine </span></a></li>
-        <li><a href=medprov.html><i class="fa fa-link"></i> <span> Provide Medicine </span></a></li>
-        <li><a href="calendar.html"><i class="fa fa-link"></i> <span> Calendar </span></a></li>
         <li><a href="pharmprofile.html"><i class="fa fa-link"></i> <span> Profile </span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Others</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
+
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -349,34 +338,113 @@
         <li class="active">Dashboard</li>
       </ol>
     </section>
-   
-<div class="row">
-        <div class="box">
-            <center>
-            <div class="box-header">
-              <h3 class="box-title">Quick Access</h3>
-            </div>
-            <div class="box-body">
-              <a class="btn btn-app" data-toggle="modal" data-target="#myModal">
-                <i class="fa fa-edit" data-target="#myModal"></i> Medicine Category
-              </a>
-              <a class="btn btn-app" data-toggle="modal" data-target="#myModal1">
-                <i class="fa fa-medkit" data-target="#myModal1"></i> Manage Medicine
-              </a>
-              <a class="btn btn-app" data-toggle="modal" data-target="#myModal2">
-                <i class="fa fa-plus-square" data-target="#myModal2"></i> Provide Medicine
-              </a>
-            </div>
-            </center>
-            <!-- /.box-body -->
-          </div>
-</div>
 
-<div class="box box-primary">
+    <!-- Main content -->
+    <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>40</h3>
+
+              <p>Total Registered Patients</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>13</h3>
+
+              <p>Currently Admitted</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>6</h3>
+
+              <p>OPD</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>7</h3>
+
+              <p>Ward</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>50</h3>
+
+              <p>Total Beds</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>9</h3>
+
+              <p>Allocated Beds</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+
+      <!-- /.box -->
+      <!-- Main row -->
+      <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-7 connectedSortable">
+          <!-- TO DO List -->
+          <div class="box box-primary">
             <div class="box-header">
               <i class="ion ion-clipboard"></i>
 
-              <h3 class="box-title">Noticeboard</h3>
+              <h3 class="box-title">To Do List</h3>
 
               <div class="box-tools pull-right">
                 <ul class="pagination pagination-sm inline">
@@ -415,6 +483,19 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
                   <input type="checkbox" value="">
+                  <span class="text">Meeting with Supply Sargeant Doe</span>
+                  <small class="label label-info"><i class="fa fa-clock-o"></i>tomorrow @ 900 hours</small>
+                  <div class="tools">
+                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-trash-o"></i>
+                  </div>
+                </li>
+                <li>
+                      <span class="handle">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                      </span>
+                  <input type="checkbox" value="">
                   <span class="text">Departmental Meeting</span>
                   <small class="label label-warning"><i class="fa fa-clock-o"></i>Wednesday @ 800 hours</small>
                   <div class="tools">
@@ -441,42 +522,191 @@
             <div class="box-footer clearfix no-border">
               <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
             </div>
-</div>
+          </div>
+          <!-- Calendar -->
+          <div class="box box-solid bg-green-gradient">
+            <div class="box-header">
+              <i class="fa fa-calendar"></i>
 
-    
-        <!------------------------- Modal of Adding Prescription --------------------->
-        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
+              <h3 class="box-title">Calendar</h3>
+              <!-- tools box -->
+              <div class="pull-right box-tools">
+                <!-- button with a dropdown -->
+                <div class="btn-group">
+                  <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bars"></i></button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#">Add new event</a></li>
+                    <li><a href="#">Clear events</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">View calendar</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                </button>
+              </div>
+              <!-- /. tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <!--The calendar -->
+              <div id="calendar" style="width: 100%"></div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer text-black">
+              <div class="row">
+                <div class="col-sm-6">
+                  <!-- Progress bars -->
+                  <div class="clearfix">
+                    <span class="pull-left">Task #1</span>
+                    <small class="pull-right">90%</small>
+                  </div>
+                  <div class="progress xs">
+                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+                  </div>
+
+                  <div class="clearfix">
+                    <span class="pull-left">Task #2</span>
+                    <small class="pull-right">70%</small>
+                  </div>
+                  <div class="progress xs">
+                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
+                  </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                  <div class="clearfix">
+                    <span class="pull-left">Task #3</span>
+                    <small class="pull-right">60%</small>
+                  </div>
+                  <div class="progress xs">
+                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
+                  </div>
+
+                  <div class="clearfix">
+                    <span class="pull-left">Task #4</span>
+                    <small class="pull-right">40%</small>
+                  </div>
+                  <div class="progress xs">
+                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
+                  </div>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.box -->
+        </section>
+        <!-- /.Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <section class="col-lg-5 connectedSortable">
+            <div class="box-header">
+              <!-- tools box -->
+              <div class="pull-right box-tools">
+              </div>
+              <!-- /. tools -->
+            </div>
+          <!-- solid sales graph -->
+          <div class="box box-solid bg-teal-gradient">
+            <div class="box-header">
+              <i class="fa fa-th"></i>
+
+              <h3 class="box-title">Total Number of Patients Admitted</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body border-radius-none">
+              <div class="chart" id="line-chart" style="height: 250px;"></div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer no-border">
+              <div class="row">
+                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                  <input type="text" class="knob" data-readonly="true" value="70" data-width="60" data-height="60" data-fgColor="#39CCCC">
+
+                  <div class="knob-label">Cadets/Military Officers</div>
+                </div>
+                <!-- ./col -->
+                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                  <input type="text" class="knob" data-readonly="true" value="25" data-width="60" data-height="60" data-fgColor="#39CCCC">
+
+                  <div class="knob-label">Military Dependents/Civilian Employees</div>
+                </div>
+                <!-- ./col -->
+                <div class="col-xs-4 text-center">
+                  <input type="text" class="knob" data-readonly="true" value="5" data-width="60" data-height="60" data-fgColor="#39CCCC">
+
+                  <div class="knob-label">Civilians</div>
+                </div>
+                <!-- ./col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+
+
+
+        </section>
+        <!-- right col -->
+      </div>
+      <!-- /.row (main row) -->
+        
+        <!---------------------------------------------------------------------------------------------- Modal of Adding new patient ----------->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow:hidden;">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">New Prescription</h4>
+                <h4 class="modal-title" id="myModalLabel">New Patient</h4>
               </div>
               <div class="modal-body">
                 <form class="form-horizontal">
+
+                  <div class="form-group">
+                    <label for="inputPatientType" class="col-sm-2 control-label">Patient Type</label>
+                      <div class="col-sm-10">
+                        <select class="form-control">
+                            <option>Cadet</option>
+                            <option>Military Officer</option>
+                            <option>Civilian Employee</option>
+                            <option>Authorized Civilian</option>
+                          </select>
+                        </div>
+                  </div>
+
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputName" value="">
+                    </div>
+                  </div>
 
-                  <div class="col-sm-10">
-                    <select class="form-control select2" style="width: 100%;">
-                      <option>Rufina Spiker</option>
-                      <option>Halina Seago</option>
-                      <option>Rene Chess</option>
-                      <option>Aide Stow</option>
-                      <option>Truman Lipe</option>
-                      <option>...</option>
-                    </select>
-                  </div>
-                  </div>
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Age</label>
+                    <label for="inputBirthdate" class="col-sm-2 control-label">Birthdate</label>
+                    <div class="col-sm-10">
+                      <input type="date" class="form-control datepicker" id="datepicker">
+                    </div>
+                  </div>
 
+                  <div class="form-group">
+                    <label for="inputAge" class="col-sm-2 control-label">Age</label>
                     <div class="col-sm-10">
                       <input type="number" class="form-control" id="inputName" value="">
                     </div>
                   </div>
+
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Sex</label>
+                    <label for="inputGender" class="col-sm-2 control-label">Sex</label>
                       <div class="col-sm-10">
                         <select class="form-control">
                             <option>Male</option>
@@ -484,35 +714,33 @@
                           </select>
                         </div>
                   </div>
-                    <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Rx</label>
 
-                    <div class="col-sm-10">
-                      <textarea class="form-control" rows="3" placeholder="Rx ..."></textarea>
-                    </div>
-                  </div>
-                    
                   <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">PRC</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" value="">
-                    </div>
+                    <label for="inputBloodType" class="col-sm-2 control-label">Blood Type</label>
+                      <div class="col-sm-10">
+                        <select class="form-control">
+                            <option>A</option>
+                            <option>B</option>
+                            <option>AB</option>
+                            <option>O</option>
+                          </select>
+                        </div>
                   </div>
+
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">PTR</label>
-
+                    <label for="inputNumber" class="col-sm-2 control-label">Contact Number</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" value="">
+                      <input type="text" class="form-control" id="inputNumber" value="">
                     </div>
                   </div>
+
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">S2</label>
-
+                    <label for="inputAddress" class="col-sm-2 control-label">Address</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" value="">
+                      <input type="text" class="form-control" id="addresspatient">
                     </div>
                   </div>
+
                 </form>
               </div>
               <div class="modal-footer">
@@ -522,55 +750,47 @@
             </div>
           </div>
         </div>
-        <!----------------------------------- /Adding Prescription Modal-------------------------->
+        <!------------------------------------------------------------------------------------------ /Modal-->
         
-        <!---------------------------------- Modal of Adding Laboratory Requests ------------------------->
-        <div class="modal fade" id="myModal1" role="dialog" aria-labelledby="myModalLabel1">
+        <!---------------------------------------------------------------------------------------------- Modal of Admitting patient ----------->
+        <div class="modal fade" id="myModal1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel1">Laboratory Request</h4>
+                <h4 class="modal-title" id="myModalLabel1">Admit Patient</h4>
               </div>
               <div class="modal-body">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Patient Name</label>
+                <form class="form-horizontal">      
 
-                  <div class="col-sm-10">
-                    <select class="form-control select2" style="width: 100%;">
-                      <option>Rufina Spiker</option>
-                      <option>Halina Seago</option>
-                      <option>Rene Chess</option>
-                      <option>Aide Stow</option>
-                      <option>Truman Lipe</option>
-                      <option>...</option>
-                    </select>
-                  </div>
-                  </div>
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Rank</label>
-
+                    <label for="inputName" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName">
+                        <select class="form-control select2" style="width: 100%;">
+                            <option>Rufina Spiker</option>
+                            <option>Halina Seago</option>
+                            <option>Rene Chess</option>
+                            <option>Aide Stow</option>
+                            <option>Truman Lipe</option>
+                            <option>...</option>
+                        </select>
                     </div>
                   </div>
+                    
+<!--Mag-aadmit lang nakaregister na sa database-->
+<!--
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Age</label>
-
-                    <div class="col-sm-10">
-                      <input type="number" class="form-control" id="inputName">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Sex</label>
+                      <label for="inputExperience" class="col-sm-2 control-label">Type</label>
                       <div class="col-sm-10">
                         <select class="form-control">
-                            <option>Male</option>
-                            <option>Female</option>
+                            <option>Cadet</option>
+                            <option>Officer</option>
+                            <option>Civilian</option>
                           </select>
                         </div>
                   </div>
+-->
+<!--
                   <div class="form-group">
                     <label for="inputSkills" class="col-sm-2 control-label">Physician</label>
 
@@ -578,6 +798,8 @@
                       <input type="text" class="form-control" id="inputSkills">
                     </div>
                   </div>
+-->
+<!--
                   <div class="form-group">
                     <label for="inputSkills" class="col-sm-2 control-label">Diagnosis</label>
 
@@ -585,54 +807,7 @@
                       <textarea class="form-control" rows="3" placeholder="Diagnosis ..."></textarea>
                     </div>
                   </div>
-                    <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Test Request</label>
-                  <div class="col-sm-10">
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox">
-                          Blood Chemistry
-                        </label>
-                      </div>
-
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox">
-                          Hematology
-                        </label>
-                      </div>
-                        
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox">
-                          Microscopy
-                        </label>
-                      </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox">
-                          Parasitology
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox">
-                          Serology
-                        </label>
-                   </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox">
-                          Microbiology
-                        </label>
-                      </div>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Others please specify ...">
-                    </div>
-                    </div>  
-
-                        
-                    </div>
+-->
                 </form>
               </div>
               <div class="modal-footer">
@@ -642,39 +817,63 @@
             </div>
           </div>
         </div>
-        <!------------------------------------------ /Laboratory Request Modal------------------>
+        <!------------------------------------------------------------------------------------------ /Modal-->
 
-        <!---------------------------------------------- Modal of Adding Appointment ----------->
+        <!---------------------------------------------------------------------------------------------- Modal for Bed Allotment ----------->
         <div class="modal fade" id="myModal2" role="dialog" aria-labelledby="myModalLabel" style="overflow:hidden;">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel6">Set Appointment</h4>
+                <h4 class="modal-title" id="myModalLabel">Bed Allotment</h4>
               </div>
               <div class="modal-body">
                 <form class="form-horizontal">
-                  <div class="form-group">
-                      <label for="inputName" class="col-sm-2 control-label">Patient Name</label>
-                      <div class="col-sm-10">
-                        <select class="form-control select2" style="width: 100%;">
-                          <option>Rufina Spiker</option>
-                          <option>Halina Seago</option>
-                          <option>Rene Chess</option>
-                          <option>Aide Stow</option>
-                          <option>Truman Lipe</option>
-                          <option>...</option>
-                        </select>
-                      </div>
-                  </div>
+
                 <div class="form-group">
-                <label for="inputName" class="col-sm-2 control-label">Date</label>
+                  <label for="inputBedNumber" class="col-sm-2 control-label">Bed Number</label>
+                  <div class="col-sm-10">
+                    <select class="form-control select2" style="width: 100%;">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>...</option>
+                    </select>
+                  </div>
+                </div>
 
-                <div class="col-sm-10">
-                  <input type="date" class="form-control datepicker" id="datepicker" placeholder="MM/DD/YYYY">
+                <div class="form-group">
+                  <label for="inputName" class="col-sm-2 control-label">Name</label>
+                  <div class="col-sm-10">
+                    <select class="form-control select2" style="width: 100%;">
+                      <option>Rufina Spiker</option>
+                      <option>Halina Seago</option>
+                      <option>Rene Chess</option>
+                      <option>Aide Stow</option>
+                      <option>Truman Lipe</option>
+                      <option>...</option>
+                    </select>
+                  </div>
                 </div>
-                <!-- /.input group -->
+
+                <div class="form-group">
+                  <label for="inputConfinementDate" class="col-sm-2 control-label">Confinement Date</label>
+                    <div class="col-sm-10">
+                      <input type="date" class="form-control datepicker" id="datepicker" placeholder="MM/DD/YYYY">
+                    </div>
                 </div>
+
+<!-- sa bed management na table yung mga discharge na siguro-->
+<!--
+                <div class="form-group">
+                  <label for="inputDischargeDate" class="col-sm-2 control-label">Discharge Date</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control datepicker" id="datepicker">
+                  </div>
+                </div>
+-->
 
                 </form>
               </div>
@@ -685,103 +884,7 @@
             </div>
           </div>
         </div>
-        <!----------------------------------------------- / Appointment Modal-------------------->
-      
-      <!------------------------- Modal of Home Instruction --------------------->
-        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Home Instruction</h4>
-              </div>
-              <div class="modal-body">
-                <form class="form-horizontal">
-                  <div class="box-body">
-              <table id="medicine" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th><center>Medicine<br>(Gamot)</center></th>
-                  <th><center>Indication<br>(Para saan ito)</center></th>
-                  <th><center>Drink every...<br>(Inumin makatapos ang....)</center></th>
-                </tr>
-                </thead>
-                    <th>
-                        <center>
-                    <div class="col-sm-10">
-                      <textarea class="text" placeholder="Type here..."></textarea>
-                    </div>
-                        </center>
-                    </th>
-                  <th>
-                      <center>
-                    <div class="col-sm-10">
-                      <textarea class="text" placeholder="Type here..."></textarea>
-                    </div>
-                      </center>
-                    </th>
-                  <th>
-                      <center>
-                    <div class="col-sm-10">
-                      <textarea class="text" placeholder="Type here..."></textarea>
-                    </div>
-                      </center>
-                    </th>
-              </table>
-              
-              <table id="diet" class="table table-bordered table-striped">
-                <thead><br><br>DIET:
-                <tr>
-                  <th><center>Dapat Kainin</center></th>
-                  <th><center>Bawal Kainin</center></th>
-                </tr>
-                </thead>
-                    <th>
-                        <center>
-                    <div class="col-sm-10">
-                      <textarea class="text" placeholder="Type here..."></textarea>
-                    </div>
-                        </center>
-                    </th>
-                  <th>
-                      <center>
-                    <div class="col-sm-10">
-                      <textarea class="text" placeholder="Type here..."></textarea>
-                    </div>
-                      </center>
-                  </th>
-              </table>
-              
-              <table id="exer" class="table table-bordered table-striped">
-                <thead><br><br>ACTIVITY/EXERCISE:
-                </thead>
-                    <th>
-                    <div class="col-sm-10">
-                      <textarea class="text" rows="3" placeholder="Type here..."></textarea>
-                    </div>
-                    </th>
-              </table>
-                      
-              <table id="for" class="table table-bordered table-striped">
-                <thead><br><br>FOLLOW-UP/REFERRAL:
-                </thead>
-                    <th>
-                    <div class="col-sm-10">
-                      <textarea class="text" rows="3" placeholder="Type here..."></textarea>
-                    </div>
-                    </th>
-              </table>
-            </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!----------------------------------- /Home Instruction Modal-------------------------->
+        <!------------------------------------------------------------------------------------------ /Modal-->
 
     </section>
     <!-- /.content -->
