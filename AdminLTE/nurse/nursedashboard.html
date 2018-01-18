@@ -41,9 +41,9 @@
     <!-- Logo -->
     <a href="index.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">Admin</span>
+      <span class="logo-mini">Nurse</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b></span>
+      <span class="logo-lg"><b>Nurse</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
@@ -252,17 +252,17 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="../dist/img/user4-128x128.jpg" class="user-image" alt="User Image">
+              <img src="../dist/img/avatar2.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Ligaya Liwanagin</span>
+              <span class="hidden-xs">Lou Dy</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                <img src="../dist/img/avatar2.png" class="img-circle" alt="User Image">
 
                 <p>
-                  Ligaya Liwanagin - Nurse
+                  Lou Dy - Nurse
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -307,10 +307,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+          <img src="../dist/img/avatar2.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Ligaya Liwanagin</p>
+          <p>Lou Dy</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -355,7 +355,7 @@
     <section class="content-header">
       <h1>
         Dashboard
-        <small>Control panel</small>
+        <!-- <small>Control panel</small> -->
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -532,8 +532,8 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
                   <input type="checkbox" value="">
-                  <span class="text">Meeting with Supply Sargeant Doe</span>
-                  <small class="label label-info"><i class="fa fa-clock-o"></i>tomorrow @ 900 hours</small>
+                  <span class="text">Meeting with Operations Officer</span>
+                  <small class="label label-info"><i class="fa fa-clock-o"></i>tomorrow @ 0800 hours</small>
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
@@ -545,8 +545,8 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
                   <input type="checkbox" value="">
-                  <span class="text">Departmental Meeting</span>
-                  <small class="label label-warning"><i class="fa fa-clock-o"></i>Wednesday @ 800 hours</small>
+                  <span class="text">Meeting with Information Systems Officer</span>
+                  <small class="label label-warning"><i class="fa fa-clock-o"></i>Wednesday @ 1100 hours</small>
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
@@ -558,7 +558,7 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
                   <input type="checkbox" value="">
-                  <span class="text">Athletics</span>
+                  <span class="text">Sportsfest</span>
                   <small class="label label-success"><i class="fa fa-clock-o"></i>Thursday @ 1300 hours</small>
                   <div class="tools">
                     <i class="fa fa-edit"></i>
@@ -736,57 +736,99 @@
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" value="">
+                      <input type="text" class="form-control" id="inputName" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputRankOrAfpsn" class="col-sm-2 control-label">Rank/Serial Number</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputRankOrAfpsn" value="">
+                    </div>
+                    <label for="inputUnit" class="col-sm-2 control-label">Unit</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputUnit" value="">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="inputBirthdate" class="col-sm-2 control-label">Birthdate</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                       <input type="date" class="form-control datepicker" id="datepicker">
                     </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="inputAge" class="col-sm-2 control-label">Age</label>
-                    <div class="col-sm-10">
-                      <input type="number" class="form-control" id="inputName" value="">
+                    <label for="inputGender" class="col-sm-2 control-label">Sex</label>
+                    <div class="col-sm-4">
+                      <select class="form-control">
+                          <option>Male</option>
+                          <option>Female</option>
+                      </select>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label for="inputGender" class="col-sm-2 control-label">Sex</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                            <option>Male</option>
-                            <option>Female</option>
-                          </select>
-                        </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="inputBloodType" class="col-sm-2 control-label">Blood Type</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                            <option>A</option>
-                            <option>B</option>
-                            <option>AB</option>
-                            <option>O</option>
-                          </select>
-                        </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="inputNumber" class="col-sm-2 control-label">Contact Number</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputNumber" value="">
+                    <label for="inputStatus" class="col-sm-2 control-label">Status</label> 
+                    <div class="col-sm-4">
+                      <select class="form-control">
+                          <option>Single</option>
+                          <option>Married</option>
+                          <option>Widowed</option>
+                      </select>
+                    </div>
+                    <label for="inputRelihion" class="col-sm-2 control-label">Religion</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputReligion" value="">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="inputAddress" class="col-sm-2 control-label">Address</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="addresspatient">
+                      <input type="text" class="form-control" id="inputAddress" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputFather" class="col-sm-2 control-label">Name of Father</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputFather" value="">
+                    </div>
+                    <label for="inputFOccupation" class="col-sm-2 control-label">Occupation</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputFOccupation" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputMother" class="col-sm-2 control-label">Name of Mother</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputMother" value="">
+                    </div>
+                    <label for="inputMOccupation" class="col-sm-2 control-label">Occupation</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputMOccupation" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputBloodType" class="col-sm-2 control-label">Blood Type</label>
+                    <div class="col-sm-4">
+                      <select class="form-control">
+                        <option>A</option>
+                        <option>B</option>
+                        <option>AB</option>
+                        <option>O</option>
+                      </select>
+                    </div>
+                    <label for="inputAllergies" class="col-sm-2 control-label">Allergies</label>
+                    <div class="col-sm-4">
+                      <input type="email" class="form-control" id="inputAllergies" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputBirthHist" class="col-sm-2 control-label">Birth History</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputBirthHist" value="">
                     </div>
                   </div>
 
@@ -941,7 +983,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 6.9.69
+      <b>Version</b> 1
     </div>
     <strong>Copyright &copy; 2018.</strong> Philippine Military Academy | Fort Del Pilar Station Hospital | All rights reserved.
   </footer>
