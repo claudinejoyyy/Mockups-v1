@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Laboratorist | Appoinment Management</title>
+  <title>Medical Staff | Appoinment Management</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -62,9 +62,9 @@ desired effect
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>DOC</b></span>
+      <span class="logo-mini"><b>Med</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Doctor</b></span>
+      <span class="logo-lg"><b>Medical Staff</b></span>
     </a>
 
     <!-- Header Navbar -->
@@ -186,7 +186,7 @@ desired effect
                 <img src="../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Juliet Howard - Doctor In-Charge
+                  Juliet Howard - Medical Staff In-Charge
                   <small>Orthopedist</small>
                 </p>
               </li>
@@ -242,7 +242,7 @@ desired effect
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li><a href="labdashboard.html"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-        <li><a href="diagnosismanagement.html"><i class="fa fa-link"></i> <span>Diagnosis Management</span></a></li>
+        <li class="active"><a href="diagnosismanagement.html"><i class="fa fa-link"></i> <span>Diagnosis Management</span></a></li>
         <li><a href="labprofile.html"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Others</span>
@@ -265,8 +265,8 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Prescriptions Management
-        <small>List of Prescriptions provided</small>
+        Diagnosis Management
+        <small>List of Pending Diagnosis Tests</small>
       </h1>
 <!--
       <ol class="breadcrumb">
@@ -284,9 +284,6 @@ desired effect
           <!-- /.box -->
 
           <div class="box">
-            <div class="box-header">
-              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add New Appointment</button>
-            </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
@@ -297,6 +294,7 @@ desired effect
                   <th>Name</th>
                   <th>Date</th>
                   <th>Time</th>
+                  <th>Tests</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -307,7 +305,8 @@ desired effect
                   <td>Shantell Tyndall</td>
                   <td>01-02-2018</td>
                   <td>2:00 PM</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td>
+                  <td>Hermatology</td>
+                  <td align="center"><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> Confirm </button></td>
                 </tr>
                 <tr>
                   <td>2</td>
@@ -315,7 +314,8 @@ desired effect
                   <td>Shad Gaulding</td>
                   <td>01-02-2018</td>
                   <td>3:00 PM</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td> 
+                  <td>Hermatology</td>
+                  <td align="center"><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> Confirm </button></td> 
                 </tr>
                 <tr>
                   <td>3</td>
@@ -323,7 +323,8 @@ desired effect
                   <td>Eliza Clingman</td>
                   <td>01-02-2018</td>
                   <td>5:00 PM</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td> 
+                  <td>Blood Chemistry</td>
+                  <td align="center"><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> Confirm </button></td> 
                 </tr>
                 <tr>
                   <td>4</td>
@@ -331,7 +332,8 @@ desired effect
                   <td>Aide Stow</td>
                   <td>01-03-2018</td>
                   <td>9:00 AM</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td> 
+                  <td>Serology</td>
+                  <td align="center"><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> Confirm </button></td> 
                 </tr>
                 <tr>
                   <td>5</td>
@@ -339,7 +341,8 @@ desired effect
                   <td>Huey Tomko</td>
                   <td>01-03-2018</td>
                   <td>10:00 AM</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td> 
+                  <td>Hermatology</td>
+                  <td align="center"><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> Confirm </button></a></td> 
                 </tr>
                 <tr>
                   <td>6</td>
@@ -347,7 +350,8 @@ desired effect
                   <td>Gordon Lager</td>
                   <td>01-03-2018</td>
                   <td>4:00 PM</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td> 
+                  <td>Microscopy</td>
+                  <td align="center"><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> Confirm </button></a></td> 
                 </tr>
                 <tr>
                   <td>7</td>
@@ -355,7 +359,8 @@ desired effect
                   <td>Carolina Lamarre</td>
                   <td>01-03-2018</td>
                   <td>6:00 PM</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td> 
+                  <td>Serology</td>
+                  <td align="center"><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> Confirm </button></a></td> 
                 </tr>
                 <tr>
                   <td>8</td>
@@ -363,7 +368,8 @@ desired effect
                   <td>Helen Zaremba</td>
                   <td>01-05-2018</td>
                   <td>9:00 AM</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td> 
+                  <td>Blood Chemistry</td>
+                  <td align="center"><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> Confirm </button></a></td> 
                 </tr>
                 <tr>
                   <td>9</td>
@@ -371,7 +377,8 @@ desired effect
                   <td>Shad Gaulding</td>
                   <td>01-02-2018</td>
                   <td>3:00 PM</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td> 
+                  <td>Microscopy</td>
+                  <td align="center"><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> Confirm </button></a></td> 
                 </tr>
                 <tr>
                   <td>10</td>
@@ -379,7 +386,8 @@ desired effect
                   <td>Leeanna Dunsong</td>
                   <td>01-04-2018</td>
                   <td>1:00 PM</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td> 
+                  <td>Microbiology</td>
+                  <td align="center"><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> Confirm </button></a></td> 
                 </tr>
                 <tr>
                   <td>11</td>
@@ -387,7 +395,8 @@ desired effect
                   <td>Deloris Boes</td>
                   <td>01-04-2018</td>
                   <td>2:00 PM</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td> 
+                  <td>Parasitology</td>
+                  <td align="center"><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> Confirm </button></a></td> 
                 </tr>
                 <tr>
                   <td>12</td>
@@ -395,7 +404,8 @@ desired effect
                   <td>Evelina Mcray</td>
                   <td>01-05-2018</td>
                   <td>2:00 PM</td>
-                  <td align="center"><a href="" class="fa fa-fw fa-edit" title="Edit"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Delete"></a></td> 
+                  <td>Microbiology</td>
+                  <td align="center"><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> Confirm </button></a></td> 
                 </tr>
               </table>
             </div>
@@ -406,47 +416,21 @@ desired effect
         <!-- /.col -->
       </div>
         
-        <!------------------------- Modal of Adding Prescription --------------------->
+        <!------------------------- Modal of Confirming Diagnosis Tests --------------------->
         <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">New Prescription</h4>
+                <h4 class="modal-title" id="myModalLabel">Diagnosis Results</h4>
               </div>
               <div class="modal-body">
                 <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">Diagnosis</label>
 
-                  <div class="form-group">
-                    <label for="inputPatientType" class="col-sm-2 control-label">Patient Type</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                            <option>Cadet</option>
-                            <option>Military Officer</option>
-                            <option>Civilian Employee</option>
-                            <option>Authorized Civilian</option>
-                          </select>
-                        </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" value="">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="inputDate" class="col-sm-2 control-label">Date</label>
-                    <div class="col-sm-10">
-                      <input type="date" class="form-control" id="inputDate" value="">
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="inputTime" class="col-sm-2 control-label">Time</label>
-                    <div class="col-sm-10">
-                      <input type="time" class="form-control" id="inputTime" value="">
+                      <textarea class="form-control" rows="3" placeholder="..."></textarea>
                     </div>
                   </div>
 
