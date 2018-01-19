@@ -8,10 +8,13 @@
     <% include partials/header.ejs %>
     <h1>Hello I'm the <%= data %> !! <button><a href='logout'>logout</a></button></h1>
     <button onclick="showModal()">add patient</button>
-    <form id='modal' style="display:none;">
+    <form id='modal' method='POST' style="display:none;">
       <input type="text" name="name"> enter name<br>
-      <input type="address" name="address"> enter address<br>
-      <input type="phone" name="phone"> enter phone number<br>
+      <input type="text" name="address"> address<br>
+      <input type="text" name="sex"> gender<br>
+      <input type="text" name="birth"> birth date<br>
+      <input type="text" name="age"> age<br>
+      <input type="text" name="blood"> blood type<br>
       <button type="submit">save</button>
     </form>
   </body>
