@@ -62,9 +62,9 @@ desired effect
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>N</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b></span>
+      <span class="logo-lg"><b>Nurse</b></span>
     </a>
 
     <!-- Header Navbar -->
@@ -709,6 +709,7 @@ desired effect
               </div>
               <div class="modal-body">
                 <form class="form-horizontal">
+                  
                   <div class="form-group">
                     <label for="inputPatientType" class="col-sm-2 control-label">Patient Type</label>
                       <div class="col-sm-10">
@@ -724,63 +725,102 @@ desired effect
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" value="">
+                      <input type="text" class="form-control" id="inputName" value="">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label for="inputBirthday" class="col-sm-2 control-label">Birthday</label>
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputBirthday" value="">
+                    <label for="inputRankOrAfpsn" class="col-sm-2 control-label">Rank/Serial Number</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputRankOrAfpsn" value="">
+                    </div>
+                    <label for="inputUnit" class="col-sm-2 control-label">Unit</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputUnit" value="">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label for="inputAge" class="col-sm-2 control-label">Age</label>
-                    <div class="col-sm-10">
-                      <input type="number" class="form-control" id="inputName" value="">
+                    <label for="inputBirthdate" class="col-sm-2 control-label">Birthdate</label>
+                    <div class="col-sm-4">
+                      <input type="date" class="form-control datepicker" id="datepicker">
+                    </div>
+                    <label for="inputGender" class="col-sm-2 control-label">Sex</label>
+                    <div class="col-sm-4">
+                      <select class="form-control">
+                          <option>Male</option>
+                          <option>Female</option>
+                      </select>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label for="inputGender" class="col-sm-2 control-label">Gender</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                            <option>Male</option>
-                            <option>Female</option>
-                          </select>
-                        </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="inputBloodType" class="col-sm-2 control-label">Blood Type</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                            <option>A</option>
-                            <option>B</option>
-                            <option>AB</option>
-                            <option>O</option>
-                          </select>
-                        </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="inputNumber" class="col-sm-2 control-label">Contact Number</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputNumber" value="">
+                    <label for="inputStatus" class="col-sm-2 control-label">Status</label> 
+                    <div class="col-sm-4">
+                      <select class="form-control">
+                          <option>Single</option>
+                          <option>Married</option>
+                          <option>Widowed</option>
+                      </select>
+                    </div>
+                    <label for="inputRelihion" class="col-sm-2 control-label">Religion</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputReligion" value="">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="inputAddress" class="col-sm-2 control-label">Address</label>
-
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputAddress" value="">
+                      <input type="text" class="form-control" id="inputAddress" value="">
                     </div>
                   </div>
-                </form>
-              </div>
+
+                  <div class="form-group">
+                    <label for="inputFather" class="col-sm-2 control-label">Name of Father</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputFather" value="">
+                    </div>
+                    <label for="inputFOccupation" class="col-sm-2 control-label">Occupation</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputFOccupation" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputMother" class="col-sm-2 control-label">Name of Mother</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputMother" value="">
+                    </div>
+                    <label for="inputMOccupation" class="col-sm-2 control-label">Occupation</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="inputMOccupation" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputBloodType" class="col-sm-2 control-label">Blood Type</label>
+                    <div class="col-sm-4">
+                      <select class="form-control">
+                        <option>A</option>
+                        <option>B</option>
+                        <option>AB</option>
+                        <option>O</option>
+                      </select>
+                    </div>
+                    <label for="inputBirthHist" class="col-sm-2 control-label">Birth History</label>
+                    <div class="col-sm-4">
+                      <input type="email" class="form-control" id="inputBirthHist" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputAllergies" class="col-sm-2 control-label">Allergies</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputAllergies" value="">
+                    </div>
+                  </div>
+
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary">Add</button>
