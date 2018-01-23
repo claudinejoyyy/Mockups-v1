@@ -6,15 +6,61 @@
   </head>
   <body>
     <% include partials/header.ejs %>
-    <h1>Hello I'm the <%= data %> !! <button><a href='logout'>logout</a></button></h1>
+    <h1>Hello I'm the <%= username[0].name %> !! <button><a href='logout'>logout</a></button></h1>
     <button onclick="showModal()">add patient</button>
-    <form id='modal' method='POST' style="display:none;">
-      <input type="text" name="name"> enter name<br>
-      <input type="text" name="address"> address<br>
-      <input type="text" name="sex"> gender<br>
-      <input type="text" name="birth"> birth date<br>
-      <input type="text" name="age"> age<br>
-      <input type="text" name="blood"> blood type<br>
+    <form id='modal' method='POST' style="display:block;">
+      <input type="text" name="name" required>enter name<br>
+      <input type="text" name="unit">unit<br>
+      <input type="text" name="address" required>address<br>
+      <input type="text" name="age" required>age<br>
+      <input type="text" name="religion">religion<br>
+      <input type="text" name="father">name of father
+      <input type="text" name="fatherO">occupation <br>
+      <input type="text" name="mother">name of mother
+      <input type="text" name="motherO">occupation <br>
+      <textarea name="allergies" rows="4" cols="40" placeholder="Allergies"></textarea> <br>
+      <textarea name="bh" rows="4" cols="40" placeholder="Birth History"></textarea> <br>
+      <input type="date" name="birth" required>birth date<br>
+      <select name="gender" required>
+        <option disabled selected value style="display:none;" required>Gender</option>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select><br>
+      <select name="type" required>
+        <option disabled selected value style="display:none">Patient Type</option>
+        <option value="cadet">Cadet</option>
+        <option value="Officer">Miltary Officer</option>
+      </select><br>
+      <select name="status" required>
+        <option disabled selected value style="display:none">Status</option>
+        <option value="M">Maried</option>
+        <option value="S">Single</option>
+      </select><br>
+      <select name="blood">
+        <option disabled selected value style="display:none;">blood type</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="AB">AB</option>
+        <option value="O">O</option>
+      </select><br>
+      <select name="rank">
+        <option disabled selected value style="display:none;">Rank</option>
+        <%for(var i=1; i <rank.length; i++){%>
+        <option value="<%=i%>"><%= rank[i].name%></option>
+        <%}%>
+      </select><br>
+      <select name="immu">
+        <option selected style="display:none;">Immunization</option>
+        <%for(var i=1; i <immu.length; i++){%>
+        <option value="<%=i%>"><%= immu[i].name%></option>
+        <%}%>
+      </select><br>
+      <select name="fh">
+        <option selected style="display:none;">Family History</option>
+        <%for(var i=1; i <fh.length; i++){%>
+        <option value="<%=i%>"><%= fh[i].name%></option>
+        <%}%>
+      </select><br>
       <button type="submit">save</button>
     </form>
   </body>

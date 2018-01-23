@@ -1,4 +1,4 @@
-var connection = require("../database/db.js");
+var db = require("../database/db.js");
 
 module.exports = function(app){
 
@@ -22,8 +22,9 @@ module.exports = function(app){
       // res.end(req.body.email);
       var user = req.body.username;
       var pass = req.body.pass;
+      var sql  = "SELECT * FROM user_accounts WHERE username = ? and password = ?" ;
 
-      connection.query("SELECT * FROM user_accounts WHERE username = '"+user+"' and password = '"+pass+"';", function(err, rows, fields){
+      db.query(sql, [user, pass], function(err, rows, fields){
         if(err){
           console.log(err);
         }
@@ -32,7 +33,7 @@ module.exports = function(app){
           //Dapat meron ccheck din kung may laman ung username or password dapat di mag redirect dapat mag reload lang(with the error message)
         }
         else{
-            connection.query("SELECT account_type, account_id FROM user_accounts where username = '"+user+"';", function(err, rows, fields){
+            db.query("SELECT account_type, account_id FROM user_accounts where username = '"+user+"';", function(err, rows, fields){
             var sino = rows[0].account_type;
             var id = rows[0].account_id;
             req.session.sino = sino;
