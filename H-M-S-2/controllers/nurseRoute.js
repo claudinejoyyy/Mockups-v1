@@ -1,8 +1,6 @@
-var bodyParser = require('body-parser');
 var db = require("../database/db.js");
-var urlencodedParser = bodyParser.urlencoded({ extended: true});
 module.exports = function(app){
-var user;
+var user, immu, rank, fh;
 
   app.get('/nurse', function(req, res){
     if(req.session.email){
@@ -24,19 +22,24 @@ var user;
     }
   });
 
-  app.post('/nurse', urlencodedParser, function(req, res){
+  app.post('/nurse', function(req, res){
     var data = req.body;
-    var eval  = [data.name, data.unit,data.address, data.age, data.religion, data.father,data.mother,
-                data.allergies, data.bh, data.birth, data.gender, data.type, data.status, data.blood,
-                data.rank, data.immu, data.fh];
     if(req.session.email){
       if(req.session.sino == 'nurse'){
-        db.query("INSERT INTO patient (name, unit, address, age, religion, father, mother, allergies, birth_history,"
-                   +" birth_date, sex, patient_type, status, blood_type, rank_id, immu_id, fh_id) VALUES ?", [val], function(err, rows, fields){
+        var bdParse = data.birth.split('-');
+        var birthDate = bdParse[0] + bdParse[1] + bdParse[2];
+        var father = data.father + '\n' + data.fatherO;
+        var mother = data.mother + '\n' + data.motherO;
+        db.query("INSERT INTO patient (name, unit, address, age, religion, father, mother, allergies, birth_history,birth_date, sex, patient_type, status, blood_type, rank_id, immu_id, fh_id)"
+                   +" VALUES ("+JSON.stringify(data.name)+", "+JSON.stringify(data.unit)+","+JSON.stringify(data.address)+","
+                   +" "+data.age+", "+JSON.stringify(data.religion)+", "+JSON.stringify(father)+","+JSON.stringify(mother)+","
+                   +" "+JSON.stringify(data.allergies)+", "+JSON.stringify(data.bh)+", "+birthDate+", "+JSON.stringify(data.gender)+","
+                   +" "+JSON.stringify(data.type)+", "+JSON.stringify(data.status)+", "+JSON.stringify(data.blood)+","
+                   +" "+data.rank+", "+data.immu+", "+data.fh+");", function(err, rows, fields){
           if(err){
             console.log(err);
           } else {
-            res.render('nurse', {username: user});
+            res.redirect(req.get('referer'));
           }
         });
       } else {

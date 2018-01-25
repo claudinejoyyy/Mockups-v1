@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Nurse</title>
+  </head>
+  <body>
+    <% include partials/header.ejs %>
+    <h1>Hello I'm the <%= username[0].name %> !! <button><a href='logout'>logout</a></button></h1>
+    <button onclick="showModal()">add patient</button>
+    <form id='modal' method='POST' style="display:block;" onsubmit="showSuccess()">
+      <input type="text" name="name" required>enter name<br>
+      <input type="text" name="unit" >unit<br>
+      <input type="text" name="address" required>address<br>
+      <input type="number" name="age" required>age<br>
+      <input type="text" name="religion">religion<br>
+      <input type="text" name="father">name of father
+      <input type="text" name="fatherO">occupation <br>
+      <input type="text" name="mother">name of mother
+      <input type="text" name="motherO">occupation <br>
+      <textarea name="allergies" rows="4" cols="40" placeholder="Allergies"></textarea> <br>
+      <textarea name="bh" rows="4" cols="40" placeholder="Birth History"></textarea> <br>
+      <select name="gender" required>
+        <option disabled selected value>Gender</option>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select><br>
+      <select name="type" required>
+        <option disabled selected value>Patient Type</option>
+        <option value="cadet">Cadet</option>
+        <option value="Officer">Miltary Officer</option>
+      </select><br>
+      <select name="status" required>
+        <option selected value>Status</option>
+        <option value="Maried">Maried</option>
+        <option value="Single">Single</option>
+      </select><br>
+      <select name="blood">
+        <option selected value="">blood type</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="AB">AB</option>
+        <option value="O">O</option>
+      </select><br>
+      <select name="rank">
+        <option selected value="0">Rank</option>
+        <%for(var i=1; i <rank.length; i++){%>
+        <option value="<%=i%>"><%= rank[i].name%></option>
+        <%}%>
+      </select><br>
+      <select name="immu">
+        <option selected value="0">Immunization</option>
+        <%for(var i=1; i <immu.length; i++){%>
+        <option value="<%=i%>"><%= immu[i].name%></option>
+        <%}%>
+      </select><br>
+      <select name="fh">
+        <option selected value="0" style="display:none;" value="">Family History</option>
+        <%for(var i=1; i <fh.length; i++){%>
+        <option value="<%=i%>"><%= fh[i].name%></option>
+        <%}%>
+      </select><br>
+      <input type="date" name="birth" required>birth date<br>
+      <button type="submit" value="submit">save</button>
+    </form>
+  </body>
+</html>
+<script>
+  function showModal() {
+    document.getElementById("modal").style.display = "block";
+  }
+ function showSuccess() {
+    alert("Success !!");
+  }
+</script>
