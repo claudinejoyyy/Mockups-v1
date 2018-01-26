@@ -5,8 +5,8 @@
     <title>Nurse</title>
   </head>
   <body>
-    <% include partials/header.ejs %>
-    <h1>Hello I'm the <%= username[0].name %> !! <button><a href='logout'>logout</a></button></h1>
+    <% include ../partials/header.ejs %>
+    <h1>Hello I'm the <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h1>
     <button onclick="showModal()">add patient</button>
     <form id='modal' method='POST' style="display:block;" onsubmit="showSuccess()">
       <input type="text" name="name" required>enter name<br>

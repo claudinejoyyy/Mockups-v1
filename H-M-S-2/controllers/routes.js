@@ -4,7 +4,7 @@ module.exports = function(app){
 
   app.get('/', function(req, res){
     if(req.session.email){
-        res.redirect(req.session.password);
+        res.redirect(req.session.sino+'/dashboard');
     } else {
         res.redirect('login');
     }
@@ -12,7 +12,7 @@ module.exports = function(app){
 
   app.get('/login', function(req, res){
     if(req.session.email){
-        res.redirect(req.session.password);
+        res.redirect(req.session.sino+'/dashboard');
     } else {
         res.render('login');
     }
@@ -41,7 +41,7 @@ module.exports = function(app){
             req.session.email = req.body.username;
             req.session.password = req.body.pass;
             // + "/who=" + encodeURIComponent(sino)
-            res.redirect(sino);
+            res.redirect(sino+'/dashboard');
           });
         }
       });
