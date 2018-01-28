@@ -7,8 +7,29 @@
   <body>
     <% include ../partials/header.ejs %>
     <h1>Hello I'm the <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h1>
-    <button onclick="showModal()">add patient</button>
-    <form id='modal' method='POST' style="display:block;" onsubmit="showSuccess()">
+    <h1>Total Registered Patients = <%= pCount[0].pCount%></h1>
+    <h1>Currently Admitted = <%= admitted[0].admitted%></h1>
+    <h1>ER COUNT = <%= er[0].er%></h1>
+    <h1>OPD COUNT = <%= opd[0].opd%></h1>
+    <h1>WARD COUNT = <%= ward[0].ward%></h1>
+    <button onclick="showAdmit()">Admit patient</button>
+    <form method="POST" id="modal" style="display:none;" onsubmit="showSuccess()">
+      <select name="patient" required>
+        <option selected value disabled>name</option>
+        <%for(var i=0; i < p.length; i++){%>
+          <option value="<%= p[i].name%>"><%= p[i].name%></option>
+        <%}%>
+      </select>
+      <select name="department" required>
+        <option selected value disabled>department</option>
+        <option value="ward">ward</option>
+        <option value="ER">ER</option>
+        <option value="OPD">OPD</option>
+      </select>
+      <button type="submit" name="sub" value="admit">submit</button>
+    </form>
+    <button onclick="showAdd()">add patient</button>
+    <form id='modal2' method='POST' style="display:none;" onsubmit="showSuccess()">
       <input type="text" name="name" required>enter name<br>
       <input type="text" name="unit" >unit<br>
       <input type="text" name="address" required>address<br>
@@ -43,31 +64,34 @@
         <option value="O">O</option>
       </select><br>
       <select name="rank">
-        <option selected value="0">Rank</option>
+        <option selected value="1">Rank</option>
         <%for(var i=1; i <rank.length; i++){%>
         <option value="<%=i%>"><%= rank[i].name%></option>
         <%}%>
       </select><br>
       <select name="immu">
-        <option selected value="0">Immunization</option>
+        <option selected value="1">Immunization</option>
         <%for(var i=1; i <immu.length; i++){%>
         <option value="<%=i%>"><%= immu[i].name%></option>
         <%}%>
       </select><br>
       <select name="fh">
-        <option selected value="0" style="display:none;" value="">Family History</option>
+        <option selected value="1" style="display:none;" value="">Family History</option>
         <%for(var i=1; i <fh.length; i++){%>
         <option value="<%=i%>"><%= fh[i].name%></option>
         <%}%>
       </select><br>
       <input type="date" name="birth" required>birth date<br>
-      <button type="submit" value="submit">save</button>
+      <button type="submit" name="sub" value="add">save</button>
     </form>
   </body>
 </html>
 <script>
-  function showModal() {
+  function showAdmit() {
     document.getElementById("modal").style.display = "block";
+  }
+  function showAdd() {
+    document.getElementById("modal2").style.display = "block";
   }
  function showSuccess() {
     alert("Success !!");
