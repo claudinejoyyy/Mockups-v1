@@ -14,13 +14,13 @@
     <h1>WARD COUNT = <%= ward[0].ward%></h1>
     <button onclick="showAdmit()">Admit patient</button>
     <form method="POST" id="modal" style="display:none;" onsubmit="showSuccess()">
-      <select name="patient" required>
+      <select name="patient" >
         <option selected value disabled>name</option>
         <%for(var i=0; i < p.length; i++){%>
-          <option value="<%= p[i].name%>"><%= p[i].name%></option>
+          <option value="<%= p[i].patient_id%>"><%= p[i].name%></option>
         <%}%>
       </select>
-      <select name="department" required>
+      <select name="department" >
         <option selected value disabled>department</option>
         <option value="ward">ward</option>
         <option value="ER">ER</option>
@@ -29,11 +29,12 @@
       <button type="submit" name="sub" value="admit">submit</button>
     </form>
     <button onclick="showAdd()">add patient</button>
-    <form id='modal2' method='POST' style="display:none;" onsubmit="showSuccess()">
-      <input type="text" name="name" required>enter name<br>
+    <form method='POST' id='modal2'  style="display:none;" onsubmit="showSuccess()">
+      <input type="text" name="name" placeholder="eg:Juan M. Dela Cruz">enter name<br>
+      <input type="text" name="rankSN" >rank/serial number<br>
       <input type="text" name="unit" >unit<br>
-      <input type="text" name="address" required>address<br>
-      <input type="number" name="age" required>age<br>
+      <input type="text" name="address" >address<br>
+      <input type="number" name="age" >age<br>
       <input type="text" name="religion">religion<br>
       <input type="text" name="father">name of father
       <input type="text" name="fatherO">occupation <br>
@@ -41,17 +42,17 @@
       <input type="text" name="motherO">occupation <br>
       <textarea name="allergies" rows="4" cols="40" placeholder="Allergies"></textarea> <br>
       <textarea name="bh" rows="4" cols="40" placeholder="Birth History"></textarea> <br>
-      <select name="gender" required>
+      <select name="gender" >
         <option disabled selected value>Gender</option>
         <option value="M">Male</option>
         <option value="F">Female</option>
       </select><br>
-      <select name="type" required>
+      <select name="type" >
         <option disabled selected value>Patient Type</option>
         <option value="cadet">Cadet</option>
         <option value="Officer">Miltary Officer</option>
       </select><br>
-      <select name="status" required>
+      <select name="status" >
         <option selected value>Status</option>
         <option value="Maried">Maried</option>
         <option value="Single">Single</option>
@@ -63,26 +64,41 @@
         <option value="AB">AB</option>
         <option value="O">O</option>
       </select><br>
-      <select name="rank">
-        <option selected value="1">Rank</option>
-        <%for(var i=1; i <rank.length; i++){%>
-        <option value="<%=i%>"><%= rank[i].name%></option>
-        <%}%>
-      </select><br>
-      <select name="immu">
-        <option selected value="1">Immunization</option>
-        <%for(var i=1; i <immu.length; i++){%>
-        <option value="<%=i%>"><%= immu[i].name%></option>
-        <%}%>
-      </select><br>
-      <select name="fh">
-        <option selected value="1" style="display:none;" value="">Family History</option>
+      <input type="date" name="birth" >birth date<br>
+
+
+      <h3>Family History</h3>
+      <select id="fhName">
+        <option value="" selected></option>
         <%for(var i=1; i <fh.length; i++){%>
-        <option value="<%=i%>"><%= fh[i].name%></option>
+          <option value="<%= fh[i].name%>"><%= fh[i].name%></option>
         <%}%>
-      </select><br>
-      <input type="date" name="birth" required>birth date<br>
+      </select>
+      <button type="button"  onclick="fhResult()">add</button>
+      <h5 style="opacity:0.7;" id="fhRes" name="family_history"></h5>
+      <!-- To fetch the data from the list of Family Histo -->
+      <input type="text" id="family_history" name="family_history" style="display:none;">
+      <br>
+
+
+
+      <h3>Immunization</h3>
+      <select id="immuName" onchange="showDate()">
+        <option value="" selected></option>
+        <%for(var i=1; i <immu.length; i++){%>
+          <option value="<%= immu[i].name%>"><%= immu[i].name%></option>
+        <%}%>
+        <input type="month" id="immuDate" style="display:none;">
+        <button type="button" id="addMore" style="display:none;" onclick="immuResult()">add</button>
+        <h5 style="opacity:0.7;" id="immuRes"></h5>
+        <!-- To fetch the data from the list of Immunization -->
+        <input type="text" id="immunization" name="immunization" style="display:none;">
+      </select>
+      <br>
+
+
       <button type="submit" name="sub" value="add">save</button>
+      <button type="button" onclick="resetForm()">reset</button>
     </form>
   </body>
 </html>
@@ -95,5 +111,26 @@
   }
  function showSuccess() {
     alert("Success !!");
+  }
+  function showDate() {
+    document.getElementById("immuDate").style.display = "inline-block";
+    document.getElementById("addMore").style.display = "inline-block";
+  }
+  function immuResult() {
+    var e = document.getElementById("immuName");
+    var immu = e.options[e.selectedIndex].value;
+    var immuDate = document.getElementById("immuDate").value;
+    document.getElementById("immuRes").innerHTML += immu + immuDate + "<br>";
+    document.getElementById("immunization").value += immu +":"+ immuDate + ",";
+  }
+  function fhResult() {
+    var e = document.getElementById("fhName");
+    var fh = e.options[e.selectedIndex].value;
+    document.getElementById("fhRes").innerHTML += fh + "<br>";
+    document.getElementById("family_history").value += fh + ",";
+  }
+  function resetForm() {
+    document.getElementById("modal2").reset();
+    document.getElementById("immuRes").innerHTML = "";
   }
 </script>

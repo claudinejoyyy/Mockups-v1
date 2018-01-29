@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 28, 2018 at 08:50 AM
+-- Generation Time: Jan 29, 2018 at 01:59 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -51,19 +51,21 @@ INSERT INTO `admin` (`admin_id`, `name`, `phone`) VALUES
 
 DROP TABLE IF EXISTS `admit`;
 CREATE TABLE IF NOT EXISTS `admit` (
-  `patient_name` varchar(50) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `department` varchar(12) NOT NULL,
-  UNIQUE KEY `patient_id` (`patient_name`)
+  UNIQUE KEY `patient_id` (`patient_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admit`
 --
 
-INSERT INTO `admit` (`patient_name`, `department`) VALUES
-('asqweqw', 'ER'),
-('Mon Joel Dela Rosa', 'ER'),
-('yui', 'ward');
+INSERT INTO `admit` (`patient_id`, `department`) VALUES
+(1, 'ER'),
+(29, 'OPD'),
+(30, 'ward'),
+(33, 'ER'),
+(34, 'ER');
 
 -- --------------------------------------------------------
 
@@ -476,9 +478,6 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `name` varchar(50) NOT NULL,
   `age` int(3) NOT NULL,
   `unit` text NOT NULL,
-  `rank_id` int(11) DEFAULT NULL,
-  `immu_id` int(11) DEFAULT NULL,
-  `fh_id` int(11) DEFAULT NULL,
   `sex` varchar(1) NOT NULL,
   `status` varchar(7) NOT NULL,
   `birth_date` date NOT NULL,
@@ -489,19 +488,18 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `father` text NOT NULL,
   `mother` text NOT NULL,
   `birth_history` text NOT NULL,
+  `rankORsn` varchar(20) NOT NULL,
+  `immunization` text NOT NULL,
+  `family_history` text NOT NULL,
   PRIMARY KEY (`patient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `patient`
 --
 
-INSERT INTO `patient` (`patient_id`, `patient_type`, `name`, `age`, `unit`, `rank_id`, `immu_id`, `fh_id`, `sex`, `status`, `birth_date`, `address`, `religion`, `blood_type`, `allergies`, `father`, `mother`, `birth_history`) VALUES
-(1, 'Civilian Employee', 'asqweqw', 15, '5rd Force Reconnaissance Company', 3, 8, 2, 'M', 'single', '1997-12-19', 'zxcqwe', 'christian', 'A', 'eggs', '', '', ''),
-(29, 'Officer', 'Mon Joel Dela Rosa', 19, 'IDK', 2, 6, 3, 'M', 'Maried', '2018-01-03', 'lower liwanag', 'christian', 'A', 'None', 'filimon dela rosa\nengineer', 'julie dela rosa\nHouse Wife', 'IDK'),
-(30, 'cadet', 'asd', 16, '', 1, 1, 1, 'M', 'Maried', '2018-01-04', 'qwe', '', '', '', 'qwe\nasd', 'asd\nqwe', ''),
-(32, 'Officer', 'yui', 100, 'hjk', 1, 1, 1, 'M', 'Single', '2018-01-03', 'yui', '', '', '', '\n', '\n', ''),
-(33, 'cadet', 'qwe', 14, '', 1, 1, 1, 'M', 'Single', '2018-01-04', 'asd', '', '', '', '\n', '\n', '');
+INSERT INTO `patient` (`patient_id`, `patient_type`, `name`, `age`, `unit`, `sex`, `status`, `birth_date`, `address`, `religion`, `blood_type`, `allergies`, `father`, `mother`, `birth_history`, `rankORsn`, `immunization`, `family_history`) VALUES
+(1, 'Civilian Employee', 'asqweqw', 15, '5rd Force Reconnaissance Company', 'M', 'single', '1997-12-19', 'zxcqwe', 'christian', 'A', 'eggs', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
