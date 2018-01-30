@@ -30,11 +30,11 @@
     </form>
     <button onclick="showAdd()">add patient</button>
     <form method='POST' id='modal2'  style="display:none;" onsubmit="showSuccess()">
-      <input type="text" name="name" placeholder="eg:Juan M. Dela Cruz">enter name<br>
-      <input type="text" name="rankSN" >rank/serial number<br>
+      <input type="text" name="name" placeholder="eg:Juan M. Dela Cruz" required>enter name<br>
+      <input type="text" name="rankSN" required>rank/serial number<br>
       <input type="text" name="unit" >unit<br>
-      <input type="text" name="address" >address<br>
-      <input type="number" name="age" >age<br>
+      <input type="text" name="address" required>address<br>
+      <input type="number" name="age" required>age<br>
       <input type="text" name="religion">religion<br>
       <input type="text" name="father">name of father
       <input type="text" name="fatherO">occupation <br>
@@ -42,17 +42,17 @@
       <input type="text" name="motherO">occupation <br>
       <textarea name="allergies" rows="4" cols="40" placeholder="Allergies"></textarea> <br>
       <textarea name="bh" rows="4" cols="40" placeholder="Birth History"></textarea> <br>
-      <select name="gender" >
+      <select name="gender" required>
         <option disabled selected value>Gender</option>
         <option value="M">Male</option>
         <option value="F">Female</option>
       </select><br>
-      <select name="type" >
+      <select name="type" required>
         <option disabled selected value>Patient Type</option>
         <option value="cadet">Cadet</option>
         <option value="Officer">Miltary Officer</option>
       </select><br>
-      <select name="status" >
+      <select name="status" required>
         <option selected value>Status</option>
         <option value="Maried">Maried</option>
         <option value="Single">Single</option>
@@ -64,7 +64,7 @@
         <option value="AB">AB</option>
         <option value="O">O</option>
       </select><br>
-      <input type="date" name="birth" >birth date<br>
+      <input type="date" name="birth" required>birth date<br>
 
 
       <h3>Family History</h3>
