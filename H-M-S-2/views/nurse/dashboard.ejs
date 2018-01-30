@@ -14,13 +14,13 @@
     <h1>WARD COUNT = <%= ward[0].ward%></h1>
     <button onclick="showAdmit()">Admit patient</button>
     <form method="POST" id="modal" style="display:none;" onsubmit="showSuccess()">
-      <select name="patient" >
+      <select name="patient" required>
         <option selected value disabled>name</option>
         <%for(var i=0; i < p.length; i++){%>
           <option value="<%= p[i].patient_id%>"><%= p[i].name%></option>
         <%}%>
       </select>
-      <select name="department" >
+      <select name="department" required>
         <option selected value disabled>department</option>
         <option value="ward">ward</option>
         <option value="ER">ER</option>
