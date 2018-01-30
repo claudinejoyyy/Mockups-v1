@@ -6,12 +6,21 @@
   </head>
   <body>
     <% include ../partials/header.ejs %>
-    <h1>Hello I'm the <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h1>
-    <h1>Total Registered Patients = <%= pCount[0].pCount%></h1>
-    <h1>Currently Admitted = <%= admitted[0].admitted%></h1>
-    <h1>ER COUNT = <%= er[0].er%></h1>
-    <h1>OPD COUNT = <%= opd[0].opd%></h1>
-    <h1>WARD COUNT = <%= ward[0].ward%></h1>
+    <h2>Hello I'm the <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h2>
+    <h2>Total Registered Patients = <%= pCount[0].pCount%></h2>
+    <h2>Currently Admitted = <%= admitted[0].admitted%></h2>
+    <h2>ER COUNT = <%= er[0].er%></h2>
+    <h2>OPD COUNT = <%= opd[0].opd%></h2>
+    <h2>WARD COUNT = <%= ward[0].ward%></h2>
+    <h1>Patient Chart</h1>
+    <h2>patients = <%= pCount[0].pCount%></h2>
+    <h2>cadet = <%= pChart[0].cadet%></h2>
+    <h2>military officer = <%= pChart[0].military_officer%></h2>
+    <h2>military dependent = <%= pChart[0].military_dependent%></h2>
+    <h2>civilian = <%= pChart[0].civilian%></h2>
+    <h2>authorized civilian <%= pChart[0].authorized_civilian%></h2>
+    <br>
+    <!-- FOR ADMIT -->
     <button onclick="showAdmit()">Admit patient</button>
     <form method="POST" id="modal" style="display:none;" onsubmit="showSuccess()">
       <select name="patient" required>
@@ -28,6 +37,8 @@
       </select>
       <button type="submit" name="sub" value="admit">submit</button>
     </form>
+    <!-- FOR ADDING -->
+    <br>
     <button onclick="showAdd()">add patient</button>
     <form method='POST' id='modal2'  style="display:none;" onsubmit="showSuccess()">
       <input type="text" name="name" placeholder="eg:Juan M. Dela Cruz" required>enter name<br>
@@ -50,7 +61,10 @@
       <select name="type" required>
         <option disabled selected value>Patient Type</option>
         <option value="cadet">Cadet</option>
-        <option value="Officer">Miltary Officer</option>
+        <option value="military officer">Miltary Officer</option>
+        <option value="military dependent">Miltary Dependent</option>
+        <option value="civilian">Civilian</option>
+        <option value="authorized civilian">Authorized Civilian</option>
       </select><br>
       <select name="status" required>
         <option selected value>Status</option>
@@ -65,8 +79,6 @@
         <option value="O">O</option>
       </select><br>
       <input type="date" name="birth" required>birth date<br>
-
-
       <h3>Family History</h3>
       <select id="fhName">
         <option value="" selected></option>
@@ -79,9 +91,6 @@
       <!-- To fetch the data from the list of Family Histo -->
       <input type="text" id="family_history" name="family_history" style="display:none;">
       <br>
-
-
-
       <h3>Immunization</h3>
       <select id="immuName" onchange="showDate()">
         <option value="" selected></option>
@@ -95,10 +104,24 @@
       <!-- To fetch the data from the list of Immunization -->
       <input type="text" id="immunization" name="immunization" style="display:none;">
       <br>
-
-
       <button type="submit" name="sub" value="add">save</button>
       <button type="button" onclick="resetForm()">reset</button>
+    </form>
+    <!-- FOR BED Allotment -->
+    <br>
+    <button onclick="showBeds()">Bed Allotment</button>
+    <form method="post" id="bed" style="display:none;">
+      <select name="bedPatientName" required>
+        <%for(var i=0; i < p.length; i++){%>
+          <option value="<%= p[i].patient_id%>"><%= p[i].name%></option>
+        <%}%>
+      </select>
+      <select name="bedView" required>
+        <%for(var i=0; i < bed.length; i++){%>
+          <option value="<%= bed[i].bed_id%>"><%= bed[i].bed_id%></option>
+        <%}%>
+      </select>
+      <button type="button" name="button">save</button>
     </form>
   </body>
 </html>
@@ -108,6 +131,9 @@
   }
   function showAdd() {
     document.getElementById("modal2").style.display = "block";
+  }
+  function showBeds() {
+    document.getElementById("bed").style.display = "block";
   }
  function showSuccess() {
     alert("Success !!");

@@ -9,15 +9,22 @@ var user, fh, Aid;
         var name    = "SELECT name FROM nurse where account_id = ?;";
         var immuSQL = "SELECT name FROM immunization;";
         var fhSQL   = "SELECT name FROM family_history;";
+        var bedSQL  = "SELECT * from bed where status = 'Unoccupied';";
         var patient = "SELECT p.name, p.patient_id FROM patient p WHERE  NOT EXISTS (SELECT a.patient_id FROM admit a WHERE  a.patient_id = p.patient_id);";
         var admitCount = "SELECT count(patient_id) er FROM admit WHERE department = 'ER'; "
                         +"SELECT count(patient_id) opd FROM admit WHERE department = 'OPD';"
                         +"SELECT count(patient_id) ward FROM admit WHERE department = 'ward';"
                         +"SELECT count(name) pCount FROM patient;"
                         +"SELECT count(patient_id) admitted FROM admit;";
-        db.query(name + immuSQL + fhSQL + patient + admitCount, Aid, function(err, rows, fields){
+        var chartSQL   = "SELECT  (SELECT count(patient_id) from patient where patient_type = 'cadet') as cadet,"
+                		    +"(SELECT count(patient_id) from patient where patient_type = 'military officer') as military_officer,"
+                        +"(SELECT count(patient_id) from patient where patient_type = 'military dependent') as military_dependent,"
+                		    +"(SELECT count(patient_id) from patient where patient_type = 'civilian') as civilian,"
+                        +"(SELECT count(patient_id) from patient where patient_type = 'authorized civilian') as authorized_civilian;";
+
+        db.query(name + immuSQL + fhSQL + patient + admitCount + chartSQL + bedSQL, Aid, function(err, rows, fields){
           user = rows[0];
-          res.render('nurse/dashboard', {immu:rows[1], fh:rows[2], p:rows[3], er:rows[4], opd:rows[5], ward:rows[6], pCount:rows[7], admitted:rows[8], username: user});
+          res.render('nurse/dashboard', {immu:rows[1], fh:rows[2], p:rows[3], er:rows[4], opd:rows[5], ward:rows[6], pCount:rows[7], admitted:rows[8], pChart:rows[9], bed:rows[10], username: user});
         });
 
       } else {
