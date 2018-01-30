@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 29, 2018 at 01:59 PM
+-- Generation Time: Jan 30, 2018 at 07:26 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -55,17 +55,6 @@ CREATE TABLE IF NOT EXISTS `admit` (
   `department` varchar(12) NOT NULL,
   UNIQUE KEY `patient_id` (`patient_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admit`
---
-
-INSERT INTO `admit` (`patient_id`, `department`) VALUES
-(1, 'ER'),
-(29, 'OPD'),
-(30, 'ward'),
-(33, 'ER'),
-(34, 'ER');
 
 -- --------------------------------------------------------
 
@@ -492,14 +481,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `immunization` text NOT NULL,
   `family_history` text NOT NULL,
   PRIMARY KEY (`patient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `patient`
---
-
-INSERT INTO `patient` (`patient_id`, `patient_type`, `name`, `age`, `unit`, `sex`, `status`, `birth_date`, `address`, `religion`, `blood_type`, `allergies`, `father`, `mother`, `birth_history`, `rankORsn`, `immunization`, `family_history`) VALUES
-(1, 'Civilian Employee', 'asqweqw', 15, '5rd Force Reconnaissance Company', 'M', 'single', '1997-12-19', 'zxcqwe', 'christian', 'A', 'eggs', '', '', '', '', '', '');
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 

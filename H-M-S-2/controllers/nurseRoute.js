@@ -1,6 +1,6 @@
 var db = require("../database/db.js");
 module.exports = function(app){
-var user, immu, fh, Aid;
+var user, fh, Aid;
 
   app.get('/nurse/dashboard', function(req, res){
     if(req.session.email){
@@ -43,17 +43,25 @@ var user, immu, fh, Aid;
           });
         } else if(data.sub == "add") {
           var bdParse = data.birth.split('-');
+          var fhParse = data.family_history.split(',');
+          var immuParse = data.immunization.split(',');
           var birthDate = bdParse[0] + bdParse[1] + bdParse[2];
           var father = data.father + '\n:' + data.fatherO;
           var mother = data.mother + '\n:' + data.motherO;
-          console.log(JSON.stringify(data.family_history));
-          console.log(JSON.stringify(data.immunization));
-          var addSQL = "INSERT INTO patient (name, unit, address, age, religion, father, mother, allergies, birth_history,birth_date, sex, patient_type, status, blood_type, rankORsn, immu_id, fh_id)"
+          var immunization = "";
+          var family_history = "";
+          for (var i = 0; i < fhParse.length; i++) {
+            family_history += fhParse[i] + '\n';
+          }
+          for (var i = 0; i < immuParse.length; i++) {
+            immunization += immuParse[i] + '\n';
+          }
+          var addSQL = "INSERT INTO patient (name, unit, address, age, religion, father, mother, allergies, birth_history,birth_date, sex, patient_type, status, blood_type, rankORsn, immunization, family_history)"
                      +" VALUES ("+JSON.stringify(data.name)+", "+JSON.stringify(data.unit)+","+JSON.stringify(data.address)+","
                      +" "+data.age+", "+JSON.stringify(data.religion)+", "+JSON.stringify(father)+","+JSON.stringify(mother)+","
                      +" "+JSON.stringify(data.allergies)+", "+JSON.stringify(data.bh)+", "+birthDate+", "+JSON.stringify(data.gender)+","
                      +" "+JSON.stringify(data.type)+", "+JSON.stringify(data.status)+", "+JSON.stringify(data.blood)+","
-                     +" "+JSON.stringify(data.rankSN)+", "+"immunization"+", "+"fh"+")";
+                     +" "+JSON.stringify(data.rankSN)+", "+JSON.stringify(immunization)+", "+JSON.stringify(family_history)+")";
           db.query(addSQL, function(err, rows, fields){
             if(err){
               console.log(err);
@@ -75,12 +83,8 @@ var user, immu, fh, Aid;
     if(req.session.email){
       if(req.session.sino == 'nurse'){
         var name  = "SELECT name FROM nurse where account_id = ?";
-        var sql  = "SELECT i.name immu_id, f.name fh_id, "
-                    +"p.name, p.age, p.unit, p.sex, p.status, p.birth_date, patient_type, "
-                    +"p.address, p.religion, p.blood_type, p.allergies, p.father, p.mother "
-                    +"FROM patient p "
-                    +"INNER JOIN immunization i USING(immu_id) "
-                    +"INNER JOIN family_history f USING(fh_id)"
+        var sql  = "SELECT * FROM patient";
+
         db.query(name + ";" + sql, Aid, function(err, rows, fields){
           user = rows[0];
           res.render('nurse/patientManagement', {p:rows[1], username: user});
