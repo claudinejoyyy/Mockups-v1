@@ -110,18 +110,21 @@
     <!-- FOR BED Allotment -->
     <br>
     <button onclick="showBeds()">Bed Allotment</button>
-    <form method="post" id="bed" style="display:none;">
+    <form method='POST' id="bed" style="display:none;">
       <select name="bedPatientName" required>
-        <%for(var i=0; i < p.length; i++){%>
-          <option value="<%= p[i].patient_id%>"><%= p[i].name%></option>
+        <option selected value disabled>Name</option>
+        <%for(var i=0; i < unassignedPatient.length; i++){%>
+          <option value="<%= unassignedPatient[i].patient_id%>"><%= unassignedPatient[i].name%></option>
         <%}%>
       </select>
-      <select name="bedView" required>
+      <select name="bedNumber" required>
+        <option selected value disabled>Available Beds</option>
         <%for(var i=0; i < bed.length; i++){%>
           <option value="<%= bed[i].bed_id%>"><%= bed[i].bed_id%></option>
         <%}%>
       </select>
-      <button type="button" name="button">save</button>
+      <!-- To get the current date -->
+      <button type="submit"  name="dateNtime" value="<%= moment().format('YYYY-MM-DD HH:mm:ss'); %>" onclick="showSuccess()">save</button>
     </form>
   </body>
 </html>
@@ -129,18 +132,18 @@
   function showAdmit() {
     document.getElementById("modal").style.display = "block";
   }
-  function showAdd() {
-    document.getElementById("modal2").style.display = "block";
-  }
   function showBeds() {
     document.getElementById("bed").style.display = "block";
   }
- function showSuccess() {
-    alert("Success !!");
+  function showAdd() {
+    document.getElementById("modal2").style.display = "block";
   }
   function showDate() {
     document.getElementById("immuDate").style.display = "inline-block";
     document.getElementById("addMore").style.display = "inline-block";
+  }
+ function showSuccess() {
+    alert("Success !!");
   }
   function immuResult() {
     var e = document.getElementById("immuName");

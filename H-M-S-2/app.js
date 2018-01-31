@@ -5,8 +5,10 @@ var pharmacist = require('./controllers/pharmacistRoute');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var express = require('express');
+var moment = require('moment');
 var app = express();
 
+app.locals.moment = require('moment');
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));

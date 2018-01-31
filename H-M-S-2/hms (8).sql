@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 30, 2018 at 07:26 AM
+-- Generation Time: Jan 31, 2018 at 05:52 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -55,6 +55,16 @@ CREATE TABLE IF NOT EXISTS `admit` (
   `department` varchar(12) NOT NULL,
   UNIQUE KEY `patient_id` (`patient_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admit`
+--
+
+INSERT INTO `admit` (`patient_id`, `department`) VALUES
+(41, 'ER'),
+(42, 'ER'),
+(43, 'ER'),
+(44, 'ward');
 
 -- --------------------------------------------------------
 
@@ -109,12 +119,68 @@ INSERT INTO `appointment` (`appointment_id`, `appointment_timestamp`, `doctor_id
 DROP TABLE IF EXISTS `bed`;
 CREATE TABLE IF NOT EXISTS `bed` (
   `bed_id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` varchar(10) NOT NULL,
-  `allotment_timestamp` datetime NOT NULL,
-  `description` text NOT NULL,
-  `patient_id` int(11) NOT NULL,
+  `status` varchar(11) NOT NULL,
+  `allotment_timestamp` datetime DEFAULT NULL,
+  `description` text,
+  `patient_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`bed_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bed`
+--
+
+INSERT INTO `bed` (`bed_id`, `status`, `allotment_timestamp`, `description`, `patient_id`) VALUES
+(1, 'occupied', '2018-01-31 17:19:48', NULL, 44),
+(2, 'occupied', '2018-01-31 17:19:52', NULL, 45),
+(3, 'occupied', '2018-01-31 17:50:51', NULL, 41),
+(4, 'occupied', '2018-01-31 17:50:57', NULL, 42),
+(5, 'Unoccupied', NULL, NULL, NULL),
+(6, 'Unoccupied', NULL, NULL, NULL),
+(7, 'Unoccupied', NULL, NULL, NULL),
+(8, 'Unoccupied', NULL, NULL, NULL),
+(9, 'Unoccupied', NULL, NULL, NULL),
+(10, 'Unoccupied', NULL, NULL, NULL),
+(11, 'occupied', '2018-01-02 00:00:00', NULL, 2),
+(12, 'Unoccupied', NULL, NULL, NULL),
+(13, 'Unoccupied', NULL, NULL, NULL),
+(14, 'Unoccupied', NULL, NULL, NULL),
+(15, 'Unoccupied', NULL, NULL, NULL),
+(16, 'Unoccupied', NULL, NULL, NULL),
+(17, 'Unoccupied', NULL, NULL, NULL),
+(18, 'Unoccupied', NULL, NULL, NULL),
+(19, 'Unoccupied', NULL, NULL, NULL),
+(20, 'Unoccupied', NULL, NULL, NULL),
+(21, 'Unoccupied', NULL, NULL, NULL),
+(22, 'Unoccupied', NULL, NULL, NULL),
+(23, 'Unoccupied', NULL, NULL, NULL),
+(24, 'Unoccupied', NULL, NULL, NULL),
+(25, 'Unoccupied', NULL, NULL, NULL),
+(26, 'Unoccupied', NULL, NULL, NULL),
+(27, 'Unoccupied', NULL, NULL, NULL),
+(28, 'Unoccupied', NULL, NULL, NULL),
+(29, 'Unoccupied', NULL, NULL, NULL),
+(30, 'Unoccupied', NULL, NULL, NULL),
+(31, 'Unoccupied', NULL, NULL, NULL),
+(32, 'Unoccupied', NULL, NULL, NULL),
+(33, 'Unoccupied', NULL, NULL, NULL),
+(34, 'Unoccupied', NULL, NULL, NULL),
+(35, 'Unoccupied', NULL, NULL, NULL),
+(36, 'Unoccupied', NULL, NULL, NULL),
+(37, 'Unoccupied', NULL, NULL, NULL),
+(38, 'Unoccupied', NULL, NULL, NULL),
+(39, 'Unoccupied', NULL, NULL, NULL),
+(40, 'Unoccupied', NULL, NULL, NULL),
+(41, 'Unoccupied', NULL, NULL, NULL),
+(42, 'Unoccupied', NULL, NULL, NULL),
+(43, 'Unoccupied', NULL, NULL, NULL),
+(44, 'Unoccupied', NULL, NULL, NULL),
+(45, 'Unoccupied', NULL, NULL, NULL),
+(46, 'Unoccupied', NULL, NULL, NULL),
+(47, 'Unoccupied', NULL, NULL, NULL),
+(48, 'Unoccupied', NULL, NULL, NULL),
+(49, 'Unoccupied', NULL, NULL, NULL),
+(50, 'Unoccupied', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -481,7 +547,19 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `immunization` text NOT NULL,
   `family_history` text NOT NULL,
   PRIMARY KEY (`patient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `patient`
+--
+
+INSERT INTO `patient` (`patient_id`, `patient_type`, `name`, `age`, `unit`, `sex`, `status`, `birth_date`, `address`, `religion`, `blood_type`, `allergies`, `father`, `mother`, `birth_history`, `rankORsn`, `immunization`, `family_history`) VALUES
+(41, 'Officer', 'Mon Joel Dela Rosa', 20, '', 'M', 'Maried', '2018-01-02', '123', '', '', '', '\n:', '\n:', '', 'General', '\n', '\n'),
+(42, 'cadet', 'ma mon', 20, '', 'M', 'Maried', '2018-01-04', '#123 asd', '', '', '', '\n:', '\n:', '', '456', '\n', '\n'),
+(43, 'military officer', 'sampul sam', 20, '', 'M', 'Maried', '2018-01-04', '#789 qwe', '', '', '', '\n:', '\n:', '', '123', '\n', '\n'),
+(44, 'military dependent', 'Pul sam', 20, '', 'F', 'Maried', '2018-01-05', 'asd', '', '', '', '\n:', '\n:', '', '678', '\n', '\n'),
+(45, 'civilian', 'Ikaw Na Nga', 20, '', 'F', 'Maried', '2018-01-06', 'asdqwe', '', '', '', '\n:', '\n:', '', '657', '\n', '\n'),
+(46, 'authorized civilian', 'Paul Je', 20, '', 'F', 'Single', '2018-01-20', 'zxc', '', '', '', '\n:', '\n:', '', '678', '\n', '\n');
 
 -- --------------------------------------------------------
 

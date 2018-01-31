@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bed Management</title>
+  </head>
+  <body>
+    <% include ../partials/header.ejs %>
+    <table>
+      <tr>
+        <th>Bed Number</th>
+        <th>patient Type</th>
+        <th>Patient Name</th>
+        <th>Status</th>
+        <th>Confinement Date</th>
+        <th>Actions</th>
+      </tr>
+      <%for(var i=0; i < bedDetails.length; i++){%>
+      <tralign="center">
+        <td><%= bedDetails[i].bed_id%></td>
+        <td><%= bedDetails[i].patient_type%></td>
+        <td><%= bedDetails[i].name%></td>
+        <td><%= bedDetails[i].status%></td>
+        <td><%= moment(bedDetails[i].allotment_timestamp).format('YYYY-MM-DD HH:mm:ss')%></td>
+        <td><button id="dis" onclick="discharge()" value="<%= bedDetails[i].bed_id%>">discharge<%=[i+1]%></button></td>
+      </tr>
+      <%}%>
+
+    </table>
+  </body>
+</html>
+<script>
+  function discharge(){
+    var dis = document.getElementById('dis').value;
+    console.log(dis);
+  }
+</script>
