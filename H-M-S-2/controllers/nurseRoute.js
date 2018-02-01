@@ -131,4 +131,22 @@ var user, fh, Aid;
     }
   });
 
+  app.post('/nurse/bedManagement', function(req, res){
+    if(req.session.email){
+      if(req.session.sino == 'nurse') {
+        var dischargeSQL = "UPDATE bed SET status = 'Unoccupied', allotment_timestamp = NULL, patient_id = NULL where bed_id = "+req.body.bed[0]+";";
+        var sql = db.query(dischargeSQL, function(err, rows, fields){
+          if(err){
+            console.log(err);
+          } else {
+            res.redirect(req.get('referer'));
+          }
+        });
+        console.log(sql.sql);
+      }
+    } else {
+      res.redirect('../login');
+    }
+  });
+
 }
