@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 31, 2018 at 05:52 PM
+-- Generation Time: Feb 04, 2018 at 01:04 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -21,6 +21,59 @@ SET time_zone = "+00:00";
 --
 -- Database: `hms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_logs`
+--
+
+DROP TABLE IF EXISTS `activity_logs`;
+CREATE TABLE IF NOT EXISTS `activity_logs` (
+  `logs_id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_id` int(11) NOT NULL,
+  `time` datetime NOT NULL,
+  `remarks` text NOT NULL,
+  PRIMARY KEY (`logs_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `activity_logs`
+--
+
+INSERT INTO `activity_logs` (`logs_id`, `account_id`, `time`, `remarks`) VALUES
+(48, 3, '2018-02-04 18:51:36', 'Logged in'),
+(49, 3, '2018-02-04 18:51:36', 'Added: civilian - rweewasqews'),
+(50, 3, '2018-02-04 18:55:20', 'Logged in'),
+(51, 3, '2018-02-04 18:55:20', 'Assigned: 42 to bed number 2'),
+(52, 3, '2018-02-04 18:58:53', 'Logged in'),
+(53, 3, '2018-02-04 18:58:53', 'Assigned: [object Object] to bed number 9'),
+(54, 3, '2018-02-04 18:59:13', 'Logged in'),
+(55, 3, '2018-02-04 18:59:13', 'Assigned: Paul Je to bed number 22'),
+(56, 3, '2018-02-04 19:18:10', 'Logged in'),
+(57, 3, '2018-02-04 19:18:30', 'Logged in'),
+(58, 3, '2018-02-04 19:20:03', 'Logged in'),
+(59, 3, '2018-02-04 19:20:36', 'Logged in'),
+(60, 3, '2018-02-04 19:21:00', 'Logged in'),
+(61, 3, '2018-02-04 19:23:25', 'Logged in'),
+(62, 3, '2018-02-04 19:25:41', 'Logged in'),
+(63, 3, '2018-02-04 19:26:33', 'Logged in'),
+(64, 3, '2018-02-04 19:26:53', 'Logged in'),
+(65, 3, '2018-02-04 19:26:53', 'Admitted ma mon to ER'),
+(66, 3, '2018-02-04 19:26:53', 'Admitted Pul sam to ward'),
+(67, 3, '2018-02-04 19:29:13', 'Logged in'),
+(68, 3, '2018-02-04 19:29:38', 'Logged in'),
+(69, 3, '2018-02-04 19:29:38', 'Admitted sampul sam to ER'),
+(70, 3, '2018-02-04 19:29:38', 'Assigned: rweewasqews to bed number 23'),
+(71, 3, '2018-02-04 20:01:00', 'Logged in'),
+(72, 3, '2018-02-04 20:21:56', 'Logged in'),
+(73, 3, '2018-02-04 20:34:00', 'Logged in'),
+(74, 3, '2018-02-04 20:48:06', 'Logged in'),
+(75, 3, '2018-02-04 20:52:54', 'Logged in'),
+(76, 3, '2018-02-04 20:54:12', 'Logged in'),
+(77, 3, '2018-02-04 20:55:17', 'Logged in'),
+(78, 3, '2018-02-04 20:57:22', 'Logged in'),
+(79, 3, '2018-02-04 21:01:49', 'Logged in');
 
 -- --------------------------------------------------------
 
@@ -61,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `admit` (
 --
 
 INSERT INTO `admit` (`patient_id`, `department`) VALUES
-(41, 'ER'),
+(41, 'ward'),
 (42, 'ER'),
 (43, 'ER'),
 (44, 'ward');
@@ -124,24 +177,24 @@ CREATE TABLE IF NOT EXISTS `bed` (
   `description` text,
   `patient_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`bed_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bed`
 --
 
 INSERT INTO `bed` (`bed_id`, `status`, `allotment_timestamp`, `description`, `patient_id`) VALUES
-(1, 'occupied', '2018-01-31 17:19:48', NULL, 44),
-(2, 'occupied', '2018-01-31 17:19:52', NULL, 45),
-(3, 'occupied', '2018-01-31 17:50:51', NULL, 41),
-(4, 'occupied', '2018-01-31 17:50:57', NULL, 42),
+(1, 'Unoccupied', NULL, NULL, NULL),
+(2, 'occupied', '2018-02-04 18:55:23', NULL, 42),
+(3, 'Unoccupied', NULL, NULL, NULL),
+(4, 'occupied', '2018-02-01 21:13:35', NULL, 44),
 (5, 'Unoccupied', NULL, NULL, NULL),
 (6, 'Unoccupied', NULL, NULL, NULL),
-(7, 'Unoccupied', NULL, NULL, NULL),
+(7, 'occupied', '2018-02-01 21:13:41', NULL, 45),
 (8, 'Unoccupied', NULL, NULL, NULL),
-(9, 'Unoccupied', NULL, NULL, NULL),
+(9, 'occupied', '2018-02-04 18:58:56', NULL, 43),
 (10, 'Unoccupied', NULL, NULL, NULL),
-(11, 'occupied', '2018-01-02 00:00:00', NULL, 2),
+(11, 'Unoccupied', NULL, NULL, NULL),
 (12, 'Unoccupied', NULL, NULL, NULL),
 (13, 'Unoccupied', NULL, NULL, NULL),
 (14, 'Unoccupied', NULL, NULL, NULL),
@@ -152,8 +205,8 @@ INSERT INTO `bed` (`bed_id`, `status`, `allotment_timestamp`, `description`, `pa
 (19, 'Unoccupied', NULL, NULL, NULL),
 (20, 'Unoccupied', NULL, NULL, NULL),
 (21, 'Unoccupied', NULL, NULL, NULL),
-(22, 'Unoccupied', NULL, NULL, NULL),
-(23, 'Unoccupied', NULL, NULL, NULL),
+(22, 'occupied', '2018-02-04 18:59:16', NULL, 46),
+(23, 'occupied', '2018-02-04 19:29:57', NULL, 47),
 (24, 'Unoccupied', NULL, NULL, NULL),
 (25, 'Unoccupied', NULL, NULL, NULL),
 (26, 'Unoccupied', NULL, NULL, NULL),
@@ -509,6 +562,8 @@ CREATE TABLE IF NOT EXISTS `nurse` (
   `address` varchar(30) NOT NULL,
   `phone` varchar(10) NOT NULL,
   `account_id` int(11) NOT NULL,
+  `sex` varchar(6) NOT NULL,
+  `age` int(11) NOT NULL,
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -516,9 +571,9 @@ CREATE TABLE IF NOT EXISTS `nurse` (
 -- Dumping data for table `nurse`
 --
 
-INSERT INTO `nurse` (`name`, `address`, `phone`, `account_id`) VALUES
-('Mamon Dela Rosa', '#123 middle baguiocity', '9238469111', 3),
-('Raphael Valdez', '#69 Nani Street', '9178403452', 6);
+INSERT INTO `nurse` (`name`, `address`, `phone`, `account_id`, `sex`, `age`) VALUES
+('da wae', 'sa bahay mo', '9238469111', 3, 'male', 20),
+('Raphael Valdez', '#69 Nani Street', '9178403452', 6, 'female', 25);
 
 -- --------------------------------------------------------
 
@@ -547,19 +602,19 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `immunization` text NOT NULL,
   `family_history` text NOT NULL,
   PRIMARY KEY (`patient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `patient`
 --
 
 INSERT INTO `patient` (`patient_id`, `patient_type`, `name`, `age`, `unit`, `sex`, `status`, `birth_date`, `address`, `religion`, `blood_type`, `allergies`, `father`, `mother`, `birth_history`, `rankORsn`, `immunization`, `family_history`) VALUES
-(41, 'Officer', 'Mon Joel Dela Rosa', 20, '', 'M', 'Maried', '2018-01-02', '123', '', '', '', '\n:', '\n:', '', 'General', '\n', '\n'),
 (42, 'cadet', 'ma mon', 20, '', 'M', 'Maried', '2018-01-04', '#123 asd', '', '', '', '\n:', '\n:', '', '456', '\n', '\n'),
 (43, 'military officer', 'sampul sam', 20, '', 'M', 'Maried', '2018-01-04', '#789 qwe', '', '', '', '\n:', '\n:', '', '123', '\n', '\n'),
 (44, 'military dependent', 'Pul sam', 20, '', 'F', 'Maried', '2018-01-05', 'asd', '', '', '', '\n:', '\n:', '', '678', '\n', '\n'),
 (45, 'civilian', 'Ikaw Na Nga', 20, '', 'F', 'Maried', '2018-01-06', 'asdqwe', '', '', '', '\n:', '\n:', '', '657', '\n', '\n'),
-(46, 'authorized civilian', 'Paul Je', 20, '', 'F', 'Single', '2018-01-20', 'zxc', '', '', '', '\n:', '\n:', '', '678', '\n', '\n');
+(46, 'authorized civilian', 'Paul Je', 20, '', 'F', 'Single', '2018-01-20', 'zxc', '', '', '', '\n:', '\n:', '', '678', '\n', '\n'),
+(47, 'civilian', 'rweewasqews', 19, '', 'M', 'Single', '2018-02-01', 'asdasda', '', '', '', '\n:', '\n:', '', 'wqedasd', 'Phenomia:\n\n', 'DM\n\n');
 
 -- --------------------------------------------------------
 

@@ -1,6 +1,6 @@
-var db = require("../database/db.js");
-module.exports = function(app){
+module.exports = function(app, db, moment){
 var user, fh, Aid;
+var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
   app.get('/nurse/dashboard', function(req, res){
     if(req.session.email){
@@ -40,14 +40,20 @@ var user, fh, Aid;
     var data = req.body;
     if(req.session.email){
       if(req.session.sino == 'nurse'){
-        var admitSQL = "INSERT INTO admit VALUES ("+data.patient+", "+JSON.stringify(data.department)+")";
-        var bedSQL = 'UPDATE bed set allotment_timestamp = "'+data.dateNtime+'", patient_id = '+data.bedPatientName+',status = "occupied" where bed_id = '+data.bedNumber+';';
-
+        var admitSQL = "INSERT INTO admit VALUES ("+data.patient+", "+JSON.stringify(data.department)+");";
+        var bedSQL   = 'UPDATE bed set allotment_timestamp = "'+data.dateNtime+'", patient_id = '+data.bedPatientName+',status = "occupied" where bed_id = '+data.bedNumber+';';
+        var pNameSQL = "SELECT name from patient where patient_id = "+data.patient+";";
         if(data.sub == "admit"){
-          db.query(admitSQL, function(err, rows, fields){
+          db.query(admitSQL + pNameSQL, function(err, rows, fields){
             if(err){
               console.log(err);
             } else {
+              var patientName = JSON.parse(JSON.stringify(rows[1]));
+              db.query('INSERT into activity_logs(account_id, time, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "Admitted '+patientName[0].name+' to '+data.department+'");', function(err){
+                if (err) {
+                  console.log(err);
+                }
+              });
               res.redirect(req.get('referer'));
             }
           });
@@ -77,19 +83,30 @@ var user, fh, Aid;
             if(err){
               console.log(err);
             } else {
+              db.query('INSERT into activity_logs(account_id, time, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "Added: '+data.type+' - '+data.name+'");', function(err){
+                if (err) {
+                  console.log(err);
+                }
+                });
               res.redirect(req.get('referer'));
             }
           });
-        } else {
-          db.query(bedSQL, function(err, rows, fields){
+        } else { //FOR THE BED !!
+          var pNameSQL = "SELECT name from patient where patient_id = "+data.bedPatientName+";";
+          db.query(bedSQL + pNameSQL, function(err, rows, fields){
             if(err){
               console.log(err);
             } else {
+              var patientName = JSON.parse(JSON.stringify(rows[1]));
+              db.query('INSERT into activity_logs(account_id, time, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "Assigned: '+patientName[0].name+' to bed number '+data.bedNumber+'");', function(err){
+              if (err) {
+                console.log(err);
+              }
+              });
               res.redirect(req.get('referer'));
             }
           });
         }
-
       } else {
         res.redirect(req.session.sino+'/dashboard');
       }
@@ -142,7 +159,48 @@ var user, fh, Aid;
             res.redirect(req.get('referer'));
           }
         });
-        console.log(sql.sql);
+      } else {
+        res.redirect(req.session.sino+'/dashboard');
+      }
+    } else {
+      res.redirect('../login');
+    }
+  });
+
+  app.get('/nurse/profileManagement', function(req, res){
+    if(req.session.email){
+      if (req.session.sino == 'nurse') {
+        var profileInfoSQL  = 'SELECT * from nurse where account_id = '+req.session.Aid+';';
+        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc;';
+        db.query(profileInfoSQL + activityLogsSQL, function(err, rows){
+          if (err) {
+            console.log(err);
+          } else {
+            res.render('nurse/profileManagement', {pInfo:rows[0], activityInfo: rows[1]});
+          }
+        });
+      } else {
+        res.redirect(req.session.sino+'/dashboard');
+      }
+    } else {
+      res.redirect('../login')
+    }
+  });
+
+  app.post('/nurse/profileManagement', function(req, res){
+    var data = req.body;
+    if (req.session.email) {
+      if (req.session.sino == 'nurse') {
+        var updateProfileSQL = 'UPDATE nurse SET name = "'+data.name+'", age = '+data.age+', address = "'+data.address+'", phone = '+data.phone+' WHERE account_id = '+req.session.Aid+';';
+        db.query(updateProfileSQL, function(err, rows){
+          if (err) {
+            console.log(err);
+          } else {
+            res.redirect(req.get('referer'));
+          }
+        });
+      } else {
+        res.redirect(req.session.sino+'/dashboard');
       }
     } else {
       res.redirect('../login');

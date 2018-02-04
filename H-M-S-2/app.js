@@ -1,3 +1,4 @@
+var db = require("./database/db.js");
 var todo = require('./controllers/routes');
 var nurse = require('./controllers/nurseRoute');
 var admin = require('./controllers/adminRoute');
@@ -16,10 +17,10 @@ app.use(express.static('./public'));
 app.use(session({secret: 'shhhhh', cookie: { maxAge: 3600000 }}));
 
 
-todo(app);
-nurse(app);
-admin(app);
-pharmacist(app);
+todo(app,db,moment);
+nurse(app,db,moment);
+admin(app,db,moment);
+pharmacist(app,db,moment);
 
 //port
 app.listen(3000);
