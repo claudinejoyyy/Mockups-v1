@@ -8,10 +8,19 @@
     <% include ../partials/header.ejs %>
     <h2>Hello I'm the <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h2>
     <h2>Total Registered Patients = <%= pCount[0].pCount%></h2>
-    <h2>Currently Admitted = <%= admitted[0].admitted%></h2>
-    <h2>ER COUNT = <%= er[0].er%></h2>
-    <h2>OPD COUNT = <%= opd[0].opd%></h2>
-    <h2>WARD COUNT = <%= ward[0].ward%></h2>
+    <h2><button onclick="currentAdmitted()">more Info</button>Currently Admitted = <%= admitted[0].admitted%></h2>
+    <div id='showAdmitted' style="display:none; border:solid;" >
+      <%for (var i = 0; i <admitLIST.length; i++){%>
+        <form method="post" action="/nurse/dashboard?id=<%= admitLIST[i].patient_id%>">
+          <h4 name="dischargeWHO" value="<%= admitLIST[i].name%>"><%= admitLIST[i].name%>
+            <button name="sub" value="discharge">discharge</button>
+          </h4>
+        </form>
+      <%}%>
+    </div>
+    <h2><button onclick="ER()">more Info</button>ER COUNT = <%= er[0].er%></h2>
+    <h2><button onclick="OPD()">more Info</button>OPD COUNT = <%= opd[0].opd%></h2>
+    <h2><button onclick="Ward()">more Info</button>WARD COUNT = <%= ward[0].ward%></h2>
     <h1>Patient Chart</h1>
     <h2>patients = <%= pCount[0].pCount%></h2>
     <h2>cadet = <%= pChart[0].cadet%></h2>
@@ -162,4 +171,8 @@
     document.getElementById("modal2").reset();
     document.getElementById("immuRes").innerHTML = "";
   }
+  function currentAdmitted() {
+    document.getElementById("showAdmitted").style.display = "block";
+  }
+
 </script>

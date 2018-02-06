@@ -6,10 +6,14 @@ var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
     if(req.session.email){
       if(req.session.sino == 'nurse'){
         Aid = req.session.Aid;
-        var name    = "SELECT name FROM nurse where account_id = ?;";
-        var immuSQL = "SELECT name FROM immunization;";
-        var fhSQL   = "SELECT name FROM family_history;";
-        var bedSQL  = "SELECT * from bed where status = 'Unoccupied';";
+        var name      = "SELECT name FROM nurse where account_id = ?;";
+        var immuSQL   = "SELECT name FROM immunization;";
+        var fhSQL     = "SELECT name FROM family_history;";
+        var bedSQL    = "SELECT * from bed where status = 'Unoccupied';";
+        var admitSQL  = "SELECT p.name, a.patient_id FROM admit a INNER JOIN patient p USING(patient_id);";
+        var admitWARD = "SELECT p.name FROM admit INNER JOIN patient p USING(patient_id) WHERE department = 'ward';";
+        var admitER   = "SELECT p.name FROM admit INNER JOIN patient p USING(patient_id) WHERE department = 'er';";
+        var admitOPD  = "SELECT p.name FROM admit INNER JOIN patient p USING(patient_id) WHERE department = 'opd';";
         var bedPatientSQL = "SELECT name,patient_id from patient where name NOT IN (SELECT name from bed b INNER JOIN patient p USING(patient_id) where b.status = 'occupied');";
         var patient = "SELECT p.name, p.patient_id FROM patient p WHERE  NOT EXISTS (SELECT a.patient_id FROM admit a WHERE  a.patient_id = p.patient_id);";
         var admitCount = "SELECT count(patient_id) er FROM admit WHERE department = 'ER'; "
@@ -23,9 +27,10 @@ var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
                 		    +"(SELECT count(patient_id) from patient where patient_type = 'civilian') as civilian,"
                         +"(SELECT count(patient_id) from patient where patient_type = 'authorized civilian') as authorized_civilian;";
 
-        db.query(name + immuSQL + fhSQL + patient + admitCount + chartSQL + bedSQL + bedPatientSQL, Aid, function(err, rows, fields){
+        db.query(name + immuSQL + fhSQL + patient + admitCount + chartSQL + bedSQL + bedPatientSQL + admitSQL + admitWARD + admitER + admitOPD, Aid, function(err, rows, fields){
           user = rows[0];
-          res.render('nurse/dashboard', {immu:rows[1], fh:rows[2], p:rows[3], er:rows[4], opd:rows[5], ward:rows[6], pCount:rows[7], admitted:rows[8], pChart:rows[9], bed:rows[10], unassignedPatient:rows[11], username: user});
+          res.render('nurse/dashboard', {immu:rows[1], fh:rows[2], p:rows[3], er:rows[4], opd:rows[5], ward:rows[6], pCount:rows[7], admitted:rows[8], pChart:rows[9], bed:rows[10],
+                                         unassignedPatient:rows[11], admitLIST:rows[12], listWARD:rows[13], listER:rows[14], listOPD:rows[15], username: user});
         });
 
       } else {
@@ -79,7 +84,7 @@ var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
                      +" "+JSON.stringify(data.type)+", "+JSON.stringify(data.status)+", "+JSON.stringify(data.blood)+","
                      +" "+JSON.stringify(data.rankSN)+", "+JSON.stringify(immunization)+", "+JSON.stringify(family_history)+");";
 
-          db.query(addSQL, function(err, rows, fields){
+          db.query(addSQL, function(err, rows){
             if(err){
               console.log(err);
             } else {
@@ -88,6 +93,21 @@ var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
                   console.log(err);
                 }
                 });
+              res.redirect(req.get('referer'));
+            }
+          });
+        } else if (data.sub == 'discharge'){
+          var admitDischarge = "DELETE FROM admit WHERE patient_id = "+req.query.id+";";
+          console.log(req.query.id);
+          db.query(admitDischarge, function(err, rows){
+            if(err){
+              console.log(err);
+            } else {
+              db.query('INSERT into activity_logs(account_id, time, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "Discharged : '+JSON.stringify(req.query.name)+' From  Department");', function(err){
+              if (err) {
+                console.log(err);
+              }
+              });
               res.redirect(req.get('referer'));
             }
           });
