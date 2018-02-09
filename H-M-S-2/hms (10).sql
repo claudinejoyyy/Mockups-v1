@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 04, 2018 at 01:04 PM
+-- Generation Time: Feb 09, 2018 at 06:06 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `activity_logs` (
   `time` datetime NOT NULL,
   `remarks` text NOT NULL,
   PRIMARY KEY (`logs_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `activity_logs`
@@ -73,28 +73,100 @@ INSERT INTO `activity_logs` (`logs_id`, `account_id`, `time`, `remarks`) VALUES
 (76, 3, '2018-02-04 20:54:12', 'Logged in'),
 (77, 3, '2018-02-04 20:55:17', 'Logged in'),
 (78, 3, '2018-02-04 20:57:22', 'Logged in'),
-(79, 3, '2018-02-04 21:01:49', 'Logged in');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin`
---
-
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
-  `admin_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `phone` varchar(10) NOT NULL,
-  PRIMARY KEY (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`admin_id`, `name`, `phone`) VALUES
-(1, 'admin', '917840499');
+(79, 3, '2018-02-04 21:01:49', 'Logged in'),
+(80, 3, '2018-02-06 19:48:12', 'Logged in'),
+(81, 3, '2018-02-06 20:36:42', 'Logged in'),
+(82, 3, '2018-02-06 20:40:51', 'Logged in'),
+(83, 3, '2018-02-06 20:58:32', 'Logged in'),
+(84, 3, '2018-02-06 20:58:32', 'Logged in'),
+(85, 3, '2018-02-07 01:45:15', 'Logged in'),
+(86, 3, '2018-02-07 01:48:43', 'Logged in'),
+(87, 3, '2018-02-07 01:50:05', 'Logged in'),
+(88, 3, '2018-02-07 01:50:27', 'Logged in'),
+(89, 3, '2018-02-07 01:53:11', 'Logged in'),
+(90, 3, '2018-02-07 01:53:42', 'Logged in'),
+(91, 3, '2018-02-07 02:06:41', 'Logged in'),
+(92, 3, '2018-02-07 02:11:10', 'Logged in'),
+(93, 3, '2018-02-07 02:16:14', 'Logged in'),
+(94, 3, '2018-02-07 02:16:47', 'Logged in'),
+(95, 3, '2018-02-07 02:17:14', 'Logged in'),
+(96, 3, '2018-02-07 02:20:20', 'Logged in'),
+(97, 3, '2018-02-07 02:21:40', 'Logged in'),
+(98, 3, '2018-02-07 02:22:14', 'Logged in'),
+(99, 3, '2018-02-07 02:27:32', 'Logged in'),
+(100, 3, '2018-02-07 02:27:32', 'Discharged : undefined From  Department'),
+(101, 3, '2018-02-07 02:28:15', 'Logged in'),
+(102, 3, '2018-02-07 02:29:15', 'Logged in'),
+(103, 3, '2018-02-07 02:29:15', 'Discharged : undefined From  Department'),
+(104, 3, '2018-02-07 02:29:15', 'Discharged : undefined From  Department'),
+(105, 3, '2018-02-07 02:29:15', 'Discharged : undefined From  Department'),
+(106, 3, '2018-02-07 02:29:15', 'Admitted Pul sam to ER'),
+(107, 3, '2018-02-07 02:29:15', 'Discharged : undefined From  Department'),
+(108, 3, '2018-02-07 02:29:15', 'Admitted ma mon to ward'),
+(109, 3, '2018-02-07 02:29:15', 'Admitted Pul sam to ward'),
+(110, 3, '2018-02-07 02:29:15', 'Discharged : undefined From  Department'),
+(111, 3, '2018-02-07 02:29:15', 'Discharged : undefined From  Department'),
+(112, 3, '2018-02-07 19:01:43', 'Logged in'),
+(113, 3, '2018-02-07 19:02:16', 'Logged in'),
+(114, 3, '2018-02-07 19:02:16', 'Admitted ma mon to ER'),
+(115, 3, '2018-02-07 19:02:16', 'Admitted sampul sam to OPD'),
+(116, 3, '2018-02-07 19:02:16', 'Admitted Paul Je to ward'),
+(117, 3, '2018-02-07 19:02:16', 'Discharged : undefined From  Department'),
+(118, 3, '2018-02-07 19:02:16', 'Discharged : undefined From  Department'),
+(119, 3, '2018-02-07 19:02:16', 'Discharged : undefined From  Department'),
+(120, 3, '2018-02-07 19:58:53', 'Logged in'),
+(121, 3, '2018-02-07 19:58:53', 'Admitted ma mon to ward'),
+(122, 3, '2018-02-07 19:58:53', 'Discharged : undefined From undefined Department'),
+(123, 3, '2018-02-07 20:02:28', 'Logged in'),
+(124, 3, '2018-02-07 20:02:28', 'Admitted ma mon to ER'),
+(125, 3, '2018-02-07 20:03:26', 'Logged in'),
+(126, 3, '2018-02-07 20:03:26', 'Admitted ma mon to ward'),
+(127, 3, '2018-02-07 20:06:19', 'Logged in'),
+(128, 3, '2018-02-07 20:06:19', 'Admitted ma mon to ward'),
+(129, 3, '2018-02-07 20:06:47', 'Logged in'),
+(130, 3, '2018-02-07 20:06:47', 'Admitted ma mon to ER'),
+(131, 3, '2018-02-07 20:07:42', 'Logged in'),
+(132, 3, '2018-02-07 20:07:42', 'Admitted ma mon to ER'),
+(133, 3, '2018-02-07 20:08:18', 'Logged in'),
+(134, 3, '2018-02-07 20:08:18', 'Admitted ma mon to ward'),
+(135, 3, '2018-02-07 20:11:12', 'Logged in'),
+(136, 3, '2018-02-07 20:11:12', 'Admitted ma mon to OPD'),
+(137, 3, '2018-02-07 20:12:26', 'Logged in'),
+(138, 3, '2018-02-07 20:12:26', 'Admitted ma mon to ER'),
+(139, 3, '2018-02-07 20:13:38', 'Logged in'),
+(140, 3, '2018-02-07 20:13:38', 'Admitted ma mon to ER'),
+(141, 3, '2018-02-07 20:15:10', 'Logged in'),
+(142, 3, '2018-02-07 20:18:11', 'Logged in'),
+(143, 3, '2018-02-07 20:18:11', 'Admitted sampul sam to ward'),
+(144, 3, '2018-02-07 20:19:26', 'Logged in'),
+(145, 3, '2018-02-07 20:19:26', 'Admitted sampul sam to ER'),
+(146, 3, '2018-02-07 20:19:26', 'Discharged : sampul sam From ER Department'),
+(147, 3, '2018-02-07 20:20:12', 'Logged in'),
+(148, 3, '2018-02-07 20:20:12', 'Discharged : sampul sam From ER Department'),
+(149, 3, '2018-02-07 20:20:12', 'Admitted sampul sam to ward'),
+(150, 3, '2018-02-07 20:20:12', 'Discharged : sampul sam From ward Department'),
+(151, 3, '2018-02-09 20:01:45', 'Logged in'),
+(152, 3, '2018-02-09 20:01:45', 'Added: cadet - Mon Joel Dela Rosa'),
+(153, 3, '2018-02-09 20:31:53', 'Logged in'),
+(154, 3, '2018-02-09 20:32:48', 'Logged in'),
+(155, 3, '2018-02-09 20:32:57', 'Logged in'),
+(156, 3, '2018-02-10 00:29:39', 'Logged in'),
+(157, 3, '2018-02-10 00:29:39', 'Added: military officer - asd'),
+(158, 3, '2018-02-10 00:29:39', 'Logged in'),
+(159, 3, '2018-02-10 01:34:34', 'Logged in'),
+(160, 3, '2018-02-10 01:35:04', 'Logged in'),
+(161, 3, '2018-02-10 01:36:38', 'Logged in'),
+(162, 3, '2018-02-10 01:38:53', 'Logged in'),
+(163, 3, '2018-02-10 01:39:43', 'Logged in'),
+(164, 3, '2018-02-10 01:40:54', 'Logged in'),
+(165, 3, '2018-02-10 01:41:20', 'Logged in'),
+(166, 3, '2018-02-10 01:42:59', 'Logged in'),
+(167, 3, '2018-02-10 01:43:44', 'Logged in'),
+(168, 3, '2018-02-10 01:44:08', 'Logged in'),
+(169, 3, '2018-02-10 01:45:05', 'Logged in'),
+(170, 3, '2018-02-10 01:46:04', 'Logged in'),
+(171, 3, '2018-02-10 01:47:14', 'Logged in'),
+(172, 3, '2018-02-10 01:51:21', 'Logged in');
 
 -- --------------------------------------------------------
 
@@ -108,16 +180,6 @@ CREATE TABLE IF NOT EXISTS `admit` (
   `department` varchar(12) NOT NULL,
   UNIQUE KEY `patient_id` (`patient_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admit`
---
-
-INSERT INTO `admit` (`patient_id`, `department`) VALUES
-(41, 'ward'),
-(42, 'ER'),
-(43, 'ER'),
-(44, 'ward');
 
 -- --------------------------------------------------------
 
@@ -352,28 +414,6 @@ INSERT INTO `diagnosis_request` (`request_id`, `creation_stamp`, `test_requested
 -- --------------------------------------------------------
 
 --
--- Table structure for table `doctor`
---
-
-DROP TABLE IF EXISTS `doctor`;
-CREATE TABLE IF NOT EXISTS `doctor` (
-  `doctor_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `address` text NOT NULL,
-  `phone` varchar(10) NOT NULL,
-  PRIMARY KEY (`doctor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `doctor`
---
-
-INSERT INTO `doctor` (`doctor_id`, `name`, `address`, `phone`) VALUES
-(1, 'Dr. Quack ', '#76-b lower baguio city', '9165469111');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `family_history`
 --
 
@@ -482,30 +522,6 @@ INSERT INTO `immunization` (`name`, `immu_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laboratorist`
---
-
-DROP TABLE IF EXISTS `laboratorist`;
-CREATE TABLE IF NOT EXISTS `laboratorist` (
-  `laboratorist_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
-  `address` varchar(30) NOT NULL,
-  `phone` varchar(10) NOT NULL,
-  PRIMARY KEY (`laboratorist_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `laboratorist`
---
-
-INSERT INTO `laboratorist` (`laboratorist_id`, `name`, `username`, `password`, `address`, `phone`) VALUES
-(1, 'Laboratories', 'labortories123', 'laboratories', '#1 upper baguio city', '9166729111');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `medicine`
 --
 
@@ -553,31 +569,6 @@ INSERT INTO `medicine_category` (`medicine_category_id`, `name`, `description`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nurse`
---
-
-DROP TABLE IF EXISTS `nurse`;
-CREATE TABLE IF NOT EXISTS `nurse` (
-  `name` varchar(50) NOT NULL,
-  `address` varchar(30) NOT NULL,
-  `phone` varchar(10) NOT NULL,
-  `account_id` int(11) NOT NULL,
-  `sex` varchar(6) NOT NULL,
-  `age` int(11) NOT NULL,
-  UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `nurse`
---
-
-INSERT INTO `nurse` (`name`, `address`, `phone`, `account_id`, `sex`, `age`) VALUES
-('da wae', 'sa bahay mo', '9238469111', 3, 'male', 20),
-('Raphael Valdez', '#69 Nani Street', '9178403452', 6, 'female', 25);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `patient`
 --
 
@@ -602,7 +593,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `immunization` text NOT NULL,
   `family_history` text NOT NULL,
   PRIMARY KEY (`patient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `patient`
@@ -614,7 +605,9 @@ INSERT INTO `patient` (`patient_id`, `patient_type`, `name`, `age`, `unit`, `sex
 (44, 'military dependent', 'Pul sam', 20, '', 'F', 'Maried', '2018-01-05', 'asd', '', '', '', '\n:', '\n:', '', '678', '\n', '\n'),
 (45, 'civilian', 'Ikaw Na Nga', 20, '', 'F', 'Maried', '2018-01-06', 'asdqwe', '', '', '', '\n:', '\n:', '', '657', '\n', '\n'),
 (46, 'authorized civilian', 'Paul Je', 20, '', 'F', 'Single', '2018-01-20', 'zxc', '', '', '', '\n:', '\n:', '', '678', '\n', '\n'),
-(47, 'civilian', 'rweewasqews', 19, '', 'M', 'Single', '2018-02-01', 'asdasda', '', '', '', '\n:', '\n:', '', 'wqedasd', 'Phenomia:\n\n', 'DM\n\n');
+(47, 'civilian', 'rweewasqews', 19, '', 'M', 'Single', '2018-02-01', 'asdasda', '', '', '', '\n:', '\n:', '', 'wqedasd', 'Phenomia:\n\n', 'DM\n\n'),
+(48, 'cadet', 'Mon Joel Dela Rosa', 20, '', 'M', 'Maried', '2018-01-31', 'asd', '', '', '', '\n:', '\n:', '', 'qwe', 'Meningcoccemia:2018-02\nPhenomia:\n\n', 'DM\nCVD\n\n'),
+(49, 'military officer', 'asd', 14, '', 'M', 'Maried', '2018-01-30', 'asd', '', '', '', '\n:', '\n:', '', 'asd', 'Influenza:\n\n', 'CVD\n\n');
 
 -- --------------------------------------------------------
 
@@ -768,6 +761,11 @@ CREATE TABLE IF NOT EXISTS `user_accounts` (
   `username` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
   `account_type` varchar(12) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `age` int(11) NOT NULL,
+  `sex` varchar(1) NOT NULL,
+  `address` text NOT NULL,
+  `phone` varchar(10) NOT NULL,
   PRIMARY KEY (`account_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
@@ -775,13 +773,13 @@ CREATE TABLE IF NOT EXISTS `user_accounts` (
 -- Dumping data for table `user_accounts`
 --
 
-INSERT INTO `user_accounts` (`account_id`, `username`, `password`, `account_type`) VALUES
-(1, 'pharmacist@pharmacist.com', 'pharmacist', 'pharmacist'),
-(2, 'admin@admin.com', 'admin', 'admin'),
-(3, 'nurse@nurse.com', 'nurse', 'nurse'),
-(4, 'doctor@doctor.com', 'doctor', 'doctor'),
-(5, 'laboratorist@laboratorist.com', 'laboratorist', 'laboratorist'),
-(6, 'nurse2@nurse.com', 'nurse', 'nurse');
+INSERT INTO `user_accounts` (`account_id`, `username`, `password`, `account_type`, `name`, `age`, `sex`, `address`, `phone`) VALUES
+(1, 'pharmacist@pharmacist.com', 'pharmacist', 'pharmacist', 'Bill Gamot', 19, 'F', '#23 Somewhere', '9123746523'),
+(2, 'admin@admin.com', 'admin', 'admin', 'Ma Master', 20, 'M', '#12 upper bonifacio', '9178403451'),
+(3, 'nurse@nurse.com', 'nurse', 'nurse', 'Lou Die', 22, 'F', '#90 dyan lang', '9123746123'),
+(4, 'doctor@doctor.com', 'doctor', 'doctor', 'Quacky Docky', 40, 'M', '#123 Di Malaman', '9123787231'),
+(5, 'laboratorist@laboratorist.com', 'laboratorist', 'laboratorist', '', 0, '', '', ''),
+(6, 'nurse2@nurse.com', 'nurse', 'nurse', '', 0, '', '', '');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

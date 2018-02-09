@@ -31,10 +31,8 @@ module.exports = function(app, db, moment){
           //Dapat meron ccheck din kung may laman ung username or password dapat di mag redirect dapat mag reload lang(with the error message)
         } else {
           //JUST GET THE ACCOUNT ID FROM THE QUERY ABOVE MEN WATCHA DOIN !!!
-            var sino = rows[0].account_type;
-            var id = rows[0].account_id;
-            req.session.sino = sino;
-            req.session.Aid = id;
+            req.session.sino = rows[0].account_type;
+            req.session.Aid = rows[0].account_id;
             req.session.email = req.body.username;
             req.session.password = req.body.pass;
             db.query('INSERT into activity_logs(account_id, time, remarks) VALUES ('+id+',"'+currentTime+'", "Logged in");', function(err){

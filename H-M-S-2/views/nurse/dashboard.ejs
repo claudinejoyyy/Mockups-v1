@@ -7,45 +7,29 @@
   <body>
     <% include ../partials/header.ejs %>
     <h2>Hello I'm the <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h2>
-    <h2>Total Registered Patients = <%= pCount[0].pCount%></h2>
-    <h2><button onclick="currentAdmitted()">more Info</button>Currently Admitted = <%= admitted[0].admitted%></h2>
-    <div id='showAdmitted' style="display:none; border:solid;" >
-      <%for (var i = 0; i <admitLIST.length; i++){%>
-        <form method="post" action="/nurse/dashboard?id=<%= admitLIST[i].patient_id%>">
-          <h4 name="dischargeWHO" value="<%= admitLIST[i].name%>"><%= admitLIST[i].name%>
-            <button name="sub" value="discharge">discharge</button>
-          </h4>
-        </form>
+    <h2>Total Registered Patients = <%= counts[0].totalRegisteredPatients%></h2>
+    <h2><button onclick="currentAdmitted()">more Info</button>Currently Admitted = <%= counts[0].currentlyAdmitted%></h2>
+
+    <h2><button onclick="OPD()">more Info</button>OPD COUNT = <%= counts[0].OPD%>
+      <%for (var i = 0; i < whoOPD.length; i++) { %>
+        <h4 style="border-style:solid;"><%= whoOPD[i].name%></h4>
       <%}%>
-    </div>
-    <h2><button onclick="ER()">more Info</button>ER COUNT = <%= er[0].er%></h2>
-    <h2><button onclick="OPD()">more Info</button>OPD COUNT = <%= opd[0].opd%></h2>
-    <h2><button onclick="Ward()">more Info</button>WARD COUNT = <%= ward[0].ward%></h2>
+    </h2>
+    <h2><button onclick="WARD()">more Info</button>WARD COUNT = <%= counts[0].WARD%>
+      <%for (var i = 0; i < whoWARD.length; i++) { %>
+        <h4 style="border-style:solid;"><%= whoWARD[i].name%></h4>
+      <%}%>
+    </h2>
+
     <h1>Patient Chart</h1>
-    <h2>patients = <%= pCount[0].pCount%></h2>
-    <h2>cadet = <%= pChart[0].cadet%></h2>
-    <h2>military officer = <%= pChart[0].military_officer%></h2>
-    <h2>military dependent = <%= pChart[0].military_dependent%></h2>
-    <h2>civilian = <%= pChart[0].civilian%></h2>
-    <h2>authorized civilian <%= pChart[0].authorized_civilian%></h2>
+    <h2>patients = <%= counts[0].totalRegisteredPatients%></h2>
+    <h2>cadet = <%= chart[0].cadet%></h2>
+    <h2>military officer = <%= chart[0].military_officer%></h2>
+    <h2>military dependent = <%= chart[0].military_dependent%></h2>
+    <h2>civilian = <%= chart[0].civilian%></h2>
+    <h2>authorized civilian <%= chart[0].authorized_civilian%></h2>
     <br>
-    <!-- FOR ADMIT -->
-    <button onclick="showAdmit()">Admit patient</button>
-    <form method="POST" id="modal" style="display:none;" onsubmit="showSuccess()">
-      <select name="patient" required>
-        <option selected value disabled>name</option>
-        <%for(var i=0; i < p.length; i++){%>
-          <option value="<%= p[i].patient_id%>"><%= p[i].name%></option>
-        <%}%>
-      </select>
-      <select name="department" required>
-        <option selected value disabled>department</option>
-        <option value="ward">ward</option>
-        <option value="ER">ER</option>
-        <option value="OPD">OPD</option>
-      </select>
-      <button type="submit" name="sub" value="admit">submit</button>
-    </form>
+
     <!-- FOR ADDING -->
     <br>
     <button onclick="showAdd()">add patient</button>
@@ -116,34 +100,31 @@
       <button type="submit" name="sub" value="add">save</button>
       <button type="button" onclick="resetForm()">reset</button>
     </form>
-    <!-- FOR BED Allotment -->
     <br>
-    <button onclick="showBeds()">Bed Allotment</button>
-    <form method='POST' id="bed" style="display:none;">
-      <select name="bedPatientName" required>
-        <option selected value disabled>Name</option>
-        <%for(var i=0; i < unassignedPatient.length; i++){%>
-          <option value="<%= unassignedPatient[i].patient_id%>"><%= unassignedPatient[i].name%></option>
+    <!-- FOR NURSE INITIAL ACCESSMENT -->
+    <button onclick="showAccessment()">Accessment</button>
+    <form id="accessment" method="post" style="display:none;">
+      <!-- PATIENT !! -->
+      <h4 style="display:inline-block;">select a patient</h4>
+      <select style="display:inline-block;">
+        <%for(var i = 0; i < patientList.length; i++){%>
+          <option value="<%= patientList[i].account_id%>"><%= patientList[i].name%></option>
         <%}%>
       </select>
-      <select name="bedNumber" required>
-        <option selected value disabled>Available Beds</option>
-        <%for(var i=0; i < bed.length; i++){%>
-          <option value="<%= bed[i].bed_id%>"><%= bed[i].bed_id%></option>
+      <br>
+      <!-- OTHERS!!! -->
+      <textarea name="name" rows="8" cols="80"></textarea>
+      <select name="">
+        <%for(var i = 0; i < doctorList.length; i++){%>
+          <option value="<%= doctorList[i].account_id%>"><%= doctorList[i].name%></option>
         <%}%>
       </select>
-      <!-- To get the current date -->
-      <button type="submit"  name="dateNtime" value="<%= moment().format('YYYY-MM-DD HH:mm:ss'); %>" onclick="showSuccess()">save</button>
+      <button type="button" name="button">send</button>
     </form>
+
   </body>
 </html>
 <script>
-  function showAdmit() {
-    document.getElementById("modal").style.display = "block";
-  }
-  function showBeds() {
-    document.getElementById("bed").style.display = "block";
-  }
   function showAdd() {
     document.getElementById("modal2").style.display = "block";
   }
@@ -173,6 +154,9 @@
   }
   function currentAdmitted() {
     document.getElementById("showAdmitted").style.display = "block";
+  }
+  function showAccessment() {
+    document.getElementById("accessment").style.display = "block";
   }
 
 </script>

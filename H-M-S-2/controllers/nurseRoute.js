@@ -1,38 +1,20 @@
-module.exports = function(app, db, moment){
-var user, fh, Aid;
+module.exports = function(app,db,moment,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD){
 var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
+var user, fh, Aid;
 
   app.get('/nurse/dashboard', function(req, res){
     if(req.session.email){
       if(req.session.sino == 'nurse'){
         Aid = req.session.Aid;
-        var name      = "SELECT name FROM nurse where account_id = ?;";
-        var immuSQL   = "SELECT name FROM immunization;";
-        var fhSQL     = "SELECT name FROM family_history;";
-        var bedSQL    = "SELECT * from bed where status = 'Unoccupied';";
-        var admitSQL  = "SELECT p.name, a.patient_id FROM admit a INNER JOIN patient p USING(patient_id);";
-        var admitWARD = "SELECT p.name FROM admit INNER JOIN patient p USING(patient_id) WHERE department = 'ward';";
-        var admitER   = "SELECT p.name FROM admit INNER JOIN patient p USING(patient_id) WHERE department = 'er';";
-        var admitOPD  = "SELECT p.name FROM admit INNER JOIN patient p USING(patient_id) WHERE department = 'opd';";
-        var bedPatientSQL = "SELECT name,patient_id from patient where name NOT IN (SELECT name from bed b INNER JOIN patient p USING(patient_id) where b.status = 'occupied');";
-        var patient = "SELECT p.name, p.patient_id FROM patient p WHERE  NOT EXISTS (SELECT a.patient_id FROM admit a WHERE  a.patient_id = p.patient_id);";
-        var admitCount = "SELECT count(patient_id) er FROM admit WHERE department = 'ER'; "
-                        +"SELECT count(patient_id) opd FROM admit WHERE department = 'OPD';"
-                        +"SELECT count(patient_id) ward FROM admit WHERE department = 'ward';"
-                        +"SELECT count(name) pCount FROM patient;"
-                        +"SELECT count(patient_id) admitted FROM admit;";
-        var chartSQL   = "SELECT  (SELECT count(patient_id) from patient where patient_type = 'cadet') as cadet,"
-                		    +"(SELECT count(patient_id) from patient where patient_type = 'military officer') as military_officer,"
-                        +"(SELECT count(patient_id) from patient where patient_type = 'military dependent') as military_dependent,"
-                		    +"(SELECT count(patient_id) from patient where patient_type = 'civilian') as civilian,"
-                        +"(SELECT count(patient_id) from patient where patient_type = 'authorized civilian') as authorized_civilian;";
-
-        db.query(name + immuSQL + fhSQL + patient + admitCount + chartSQL + bedSQL + bedPatientSQL + admitSQL + admitWARD + admitER + admitOPD, Aid, function(err, rows, fields){
+        var immuSQL     = "SELECT name FROM immunization;";
+        var fhSQL       = "SELECT name FROM family_history;";
+        var doctorList  = "SELECT * FROM user_accounts WHERE account_type = 'doctor';";
+        var patientList = "SELECT * from patient;";
+        db.query(name + counts + chart + whoCurrentlyAdmitted + whoOPD + whoWARD + immuSQL + fhSQL + doctorList + patientList, Aid, function(err, rows, fields){
           user = rows[0];
-          res.render('nurse/dashboard', {immu:rows[1], fh:rows[2], p:rows[3], er:rows[4], opd:rows[5], ward:rows[6], pCount:rows[7], admitted:rows[8], pChart:rows[9], bed:rows[10],
-                                         unassignedPatient:rows[11], admitLIST:rows[12], listWARD:rows[13], listER:rows[14], listOPD:rows[15], username: user});
+          res.render('nurse/dashboard', {counts:rows[1], chart:rows[2], whoCurrentlyAdmitted:rows[3], whoOPD:rows[4],
+                                         whoWARD:rows[5], immu:rows[6], fh:rows[7], doctorList:rows[8], patientList:rows[9], username: user});
         });
-
       } else {
         res.redirect(req.session.sino+'/dashboard');
       }
@@ -45,23 +27,9 @@ var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
     var data = req.body;
     if(req.session.email){
       if(req.session.sino == 'nurse'){
-        var admitSQL = "INSERT INTO admit VALUES ("+data.patient+", "+JSON.stringify(data.department)+");";
-        var bedSQL   = 'UPDATE bed set allotment_timestamp = "'+data.dateNtime+'", patient_id = '+data.bedPatientName+',status = "occupied" where bed_id = '+data.bedNumber+';';
         var pNameSQL = "SELECT name from patient where patient_id = "+data.patient+";";
-        if(data.sub == "admit"){
-          db.query(admitSQL + pNameSQL, function(err, rows, fields){
-            if(err){
-              console.log(err);
-            } else {
-              var patientName = JSON.parse(JSON.stringify(rows[1]));
-              db.query('INSERT into activity_logs(account_id, time, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "Admitted '+patientName[0].name+' to '+data.department+'");', function(err){
-                if (err) {
-                  console.log(err);
-                }
-              });
-              res.redirect(req.get('referer'));
-            }
-          });
+        if(data.sub == ""){
+          console.log("DITO UNG SA ACCESSMENT FOR NURSE");
         } else if(data.sub == "add") {
           var bdParse       = data.birth.split('-');
           var birthDate     = bdParse[0] + bdParse[1] + bdParse[2];
@@ -97,28 +65,16 @@ var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
             }
           });
         } else if (data.sub == 'discharge'){
-          var admitDischarge = "DELETE FROM admit WHERE patient_id = "+req.query.id+";";
-          console.log(req.query.id);
-          db.query(admitDischarge, function(err, rows){
+          var admitDischarge           = "DELETE FROM admit WHERE patient_id = "+req.query.id+";";
+          var patientNameSQL           = "SELECT name from patient WHERE patient_id = "+req.query.id+";";
+          var admitDischargeDepartment = "SELECT department FROM admit WHERE patient_id = "+req.query.id+";";
+          db.query(patientNameSQL + admitDischargeDepartment, function(err, rows){
             if(err){
               console.log(err);
             } else {
-              db.query('INSERT into activity_logs(account_id, time, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "Discharged : '+JSON.stringify(req.query.name)+' From  Department");', function(err){
-              if (err) {
-                console.log(err);
-              }
-              });
-              res.redirect(req.get('referer'));
-            }
-          });
-        } else { //FOR THE BED !!
-          var pNameSQL = "SELECT name from patient where patient_id = "+data.bedPatientName+";";
-          db.query(bedSQL + pNameSQL, function(err, rows, fields){
-            if(err){
-              console.log(err);
-            } else {
-              var patientName = JSON.parse(JSON.stringify(rows[1]));
-              db.query('INSERT into activity_logs(account_id, time, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "Assigned: '+patientName[0].name+' to bed number '+data.bedNumber+'");', function(err){
+              var patientName = JSON.parse(JSON.stringify(rows[0]));
+              var patientDepartment = JSON.parse(JSON.stringify(rows[1]));
+              db.query(admitDischarge + 'INSERT into activity_logs(account_id, time, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "Discharged : '+patientName[0].name+' From '+patientDepartment[0].department+' Department");', function(err){
               if (err) {
                 console.log(err);
               }
@@ -138,7 +94,7 @@ var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
   app.get('/nurse/patientManagement', function(req, res){
     if(req.session.email){
       if(req.session.sino == 'nurse'){
-        var name  = "SELECT name FROM nurse where account_id = ?";
+        var name  = "SELECT name FROM user_accounts where account_id = ?";
         var sql  = "SELECT * FROM patient";
 
         db.query(name + ";" + sql, Aid, function(err, rows, fields){
@@ -190,7 +146,7 @@ var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
   app.get('/nurse/profileManagement', function(req, res){
     if(req.session.email){
       if (req.session.sino == 'nurse') {
-        var profileInfoSQL  = 'SELECT * from nurse where account_id = '+req.session.Aid+';';
+        var profileInfoSQL  = 'SELECT * from user_accounts where account_id = '+req.session.Aid+';';
         var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc;';
         db.query(profileInfoSQL + activityLogsSQL, function(err, rows){
           if (err) {
@@ -211,7 +167,7 @@ var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
     var data = req.body;
     if (req.session.email) {
       if (req.session.sino == 'nurse') {
-        var updateProfileSQL = 'UPDATE nurse SET name = "'+data.name+'", age = '+data.age+', address = "'+data.address+'", phone = '+data.phone+' WHERE account_id = '+req.session.Aid+';';
+        var updateProfileSQL = 'UPDATE user_accounts SET name = "'+data.name+'", age = '+data.age+', address = "'+data.address+'", phone = '+data.phone+' WHERE account_id = '+req.session.Aid+';';
         db.query(updateProfileSQL, function(err, rows){
           if (err) {
             console.log(err);
