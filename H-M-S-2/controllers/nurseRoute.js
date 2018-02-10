@@ -1,6 +1,5 @@
-module.exports = function(app,db,moment,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD){
-var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
-var user, fh, Aid;
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList){
+var user, Aid;
 
   app.get('/nurse/dashboard', function(req, res){
     if(req.session.email){
@@ -8,9 +7,10 @@ var user, fh, Aid;
         Aid = req.session.Aid;
         var immuSQL     = "SELECT name FROM immunization;";
         var fhSQL       = "SELECT name FROM family_history;";
-        var doctorList  = "SELECT * FROM user_accounts WHERE account_type = 'doctor';";
-        var patientList = "SELECT * from patient;";
         db.query(name + counts + chart + whoCurrentlyAdmitted + whoOPD + whoWARD + immuSQL + fhSQL + doctorList + patientList, Aid, function(err, rows, fields){
+          if (err) {
+            console.log(err);
+          }
           user = rows[0];
           res.render('nurse/dashboard', {counts:rows[1], chart:rows[2], whoCurrentlyAdmitted:rows[3], whoOPD:rows[4],
                                          whoWARD:rows[5], immu:rows[6], fh:rows[7], doctorList:rows[8], patientList:rows[9], username: user});
@@ -56,7 +56,7 @@ var user, fh, Aid;
             if(err){
               console.log(err);
             } else {
-              db.query('INSERT into activity_logs(account_id, time, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "Added: '+data.type+' - '+data.name+'");', function(err){
+              db.query('INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "add", "Added: '+data.type+' - '+data.name+'");', function(err){
                 if (err) {
                   console.log(err);
                 }

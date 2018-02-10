@@ -35,7 +35,7 @@
     <button onclick="showAdd()">add patient</button>
     <form method='POST' id='modal2'  style="display:none;" onsubmit="showSuccess()">
       <input type="text" name="name" placeholder="eg:Juan M. Dela Cruz" required>enter name<br>
-      <input type="text" name="rankSN" required>rank/serial number<br>
+      <input type="text" name="rankSN">rank/serial number<br>
       <input type="text" name="unit" >unit<br>
       <input type="text" name="address" required>address<br>
       <input type="number" name="age" required>age<br>
@@ -106,7 +106,7 @@
     <form id="accessment" method="post" style="display:none;">
       <!-- PATIENT !! -->
       <h4 style="display:inline-block;">select a patient</h4>
-      <select style="display:inline-block;">
+      <select id="accessmentPatient" style="display:inline-block;">
         <%for(var i = 0; i < patientList.length; i++){%>
           <option value="<%= patientList[i].account_id%>"><%= patientList[i].name%></option>
         <%}%>

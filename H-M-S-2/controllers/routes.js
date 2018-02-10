@@ -1,5 +1,4 @@
-module.exports = function(app, db, moment){
-  var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
+module.exports = function(app, db, currentTime){
   app.get('/', function(req, res){
     if(req.session.email){
         res.redirect(req.session.sino+'/dashboard');
@@ -35,18 +34,18 @@ module.exports = function(app, db, moment){
             req.session.Aid = rows[0].account_id;
             req.session.email = req.body.username;
             req.session.password = req.body.pass;
-            db.query('INSERT into activity_logs(account_id, time, remarks) VALUES ('+id+',"'+currentTime+'", "Logged in");', function(err){
+            db.query('INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "log", "Logged in");', function(err){
               if (err) {
                 console.log(err);
               }
             });
-            res.redirect(sino+'/dashboard');
+            res.redirect(req.session.sino +'/dashboard');
         }
       });
   });
 
   app.get('/logout', function(req, res){
-      db.query('INSERT into activity_logs(account_id, time, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "Logged out");', function(err){
+      db.query('INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "log","Logged out");', function(err){
         if (err) {
           console.log(err);
         } else {
