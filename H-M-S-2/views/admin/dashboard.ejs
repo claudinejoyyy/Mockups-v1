@@ -9,7 +9,6 @@
     <h2>Hello I'm the <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h2>
     <h2>Total Registered Patients = <%= counts[0].totalRegisteredPatients%></h2>
     <h2><button onclick="currentAdmitted()">more Info</button>Currently Admitted = <%= counts[0].currentlyAdmitted%></h2>
-
     <h2><button onclick="OPD()">more Info</button>OPD COUNT = <%= counts[0].OPD%>
       <%for (var i = 0; i < whoOPD.length; i++) { %>
         <h4 style="border-style:solid;"><%= whoOPD[i].name%></h4>
@@ -20,7 +19,7 @@
         <h4 style="border-style:solid;"><%= whoWARD[i].name%></h4>
       <%}%>
     </h2>
-
+    <!-- COUNT PIE CHART -->
     <h1>Patient Chart</h1>
     <h2>patients = <%= counts[0].totalRegisteredPatients%></h2>
     <h2>cadet = <%= chart[0].cadet%></h2>
@@ -29,17 +28,24 @@
     <h2>civilian = <%= chart[0].civilian%></h2>
     <h2>authorized civilian <%= chart[0].authorized_civilian%></h2>
     <br>
-
+    <!-- COUNT MONTHLY -->
     <h1>Patient Count</h1>
-    <!-- CREATE SOMETHING THAT CAN DETERMINE THE MONTH NOW -->
-    <!-- JUST USE IF STATEMENT TO CHECK  -->
-    <%for (var i=0; i< monthlyPatientCount.length;i++){%>
-        <%console.log(monthlyPatientCount[i]);%>
-    <%}%>
-    <h2>january <%= monthlyPatientCount[0].JAN%></h2>
-    <h2>Feb <%= monthlyPatientCount[0].FEB%></h2>
+    <%if(monthlyPatientCount[0].JAN) {%><h2>january <%= monthlyPatientCount[0].JAN%></h2><%}%>
+    <%if(monthlyPatientCount[0].FEB) {%><h2>february <%= monthlyPatientCount[0].FEB%></h2><%}%>
+    <%if(monthlyPatientCount[0].MARCH) {%><h2>february <%= monthlyPatientCount[0].MARCH%></h2><%}%>
+    <%if(monthlyPatientCount[0].APRIL) {%><h2>february <%= monthlyPatientCount[0].APRIL%></h2><%}%>
+    <%if(monthlyPatientCount[0].MAY) {%><h2>february <%= monthlyPatientCount[0].MAY%></h2><%}%>
+    <%if(monthlyPatientCount[0].JUNE) {%><h2>february <%= monthlyPatientCount[0].JUNE%></h2><%}%>
+    <%if(monthlyPatientCount[0].JULY) {%><h2>february <%= monthlyPatientCount[0].JULY%></h2><%}%>
+    <%if(monthlyPatientCount[0].AUGUST) {%><h2>february <%= monthlyPatientCount[0].AUGUST%></h2><%}%>
+    <%if(monthlyPatientCount[0].SEPTEMBER) {%><h2>february <%= monthlyPatientCount[0].SEPTEMBER%></h2><%}%>
+    <%if(monthlyPatientCount[0].OCTOBER) {%><h2>february <%= monthlyPatientCount[0].OCTOBER%></h2><%}%>
+    <%if(monthlyPatientCount[0].NOVEMBER) {%><h2>february <%= monthlyPatientCount[0].NOVEMBER%></h2><%}%>
+    <%if(monthlyPatientCount[0].DECEMBER) {%><h2>february <%= monthlyPatientCount[0].DECEMBER%></h2><%}%>
     <br>
     <!-- END OF DASHBOARD -->
+
+
     <button type="button">Admit patient</button>
     <form action="index.html" method="post">
       <select>

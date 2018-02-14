@@ -2,7 +2,7 @@ module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmit
 var user, Aid;
 
   app.get('/admin/dashboard', function(req, res){
-    if(req.session.email){
+    if(req.session.email && req.session.sino == 'admin'){
       Aid = req.session.Aid;
       if(req.session.sino == 'admin'){
         db.query(name + counts + chart + whoCurrentlyAdmitted + whoOPD + whoWARD + patientList + availableBeds + monthlyPatientCount, Aid, function(err, rows, fields){

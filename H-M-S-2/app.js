@@ -7,14 +7,18 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var express = require('express');
 var moment = require('moment');
+var helmet = require('helmet');
 var app = express();
 
 app.locals.moment = require('moment');
 app.set('view engine', 'ejs');
+app.use(helmet.noCache());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static('./public'));
 app.use(session({secret: 'shhhhh', cookie: { maxAge: 3600000 }}));
+
+
 
 //PARA sa DASHBOARD of all MODULES!!!
 var name   = "SELECT name FROM user_accounts where account_id = ?;";
@@ -27,7 +31,7 @@ var chart  = "SELECT  (SELECT count(patient_id) from patient where patient_type 
             +"(SELECT count(patient_id) from patient where patient_type = 'military dependent') as military_dependent,"
             +"(SELECT count(patient_id) from patient where patient_type = 'civilian') as civilian,"
             +"(SELECT count(patient_id) from patient where patient_type = 'authorized civilian') as authorized_civilian;";
-
+//COUNT
 var whoOPD               = "SELECT p.name FROM admit INNER JOIN patient p USING(patient_id) WHERE department = 'opd';";
 var whoWARD              = "SELECT p.name FROM admit INNER JOIN patient p USING(patient_id) WHERE department = 'ward';";
 var whoCurrentlyAdmitted = "SELECT p.name, a.patient_id FROM admit a INNER JOIN patient p USING(patient_id);";
@@ -42,8 +46,10 @@ var monthlyPatientCount  = 'SELECT (SELECT count(logs_id) from activity_logs WHE
                           +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-07-01 00:00:00" and "'+currentTime+'-08-01 00:00:00" and type = "add") as JULY,'
                           +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-08-01 00:00:00" and "'+currentTime+'-09-01 00:00:00" and type = "add") as AUGUST,'
                           +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-09-01 00:00:00" and "'+currentTime+'-010-01 00:00:00" and type = "add") as SEPTEMBER,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-010-01 00:00:00" and "'+currentTime+'-011-01 00:00:00" and type = "add") as NOVEMBER,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-011-01 00:00:00" and "'+currentTime+'-012-01 00:00:00" and type = "add") as DECEMBER;';
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-010-01 00:00:00" and "'+currentTime+'-011-01 00:00:00" and type = "add") as OCTOBER,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-011-01 00:00:00" and "'+currentTime+'-012-01 00:00:00" and type = "add") as NOVEMBER;';
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-012-01 00:00:00" and "'+currentTime+'-001-01 00:00:00" and type = "add") as DECEMBER;';
+//TO DO LIST
 //OTHERS
 var patientList          = "SELECT * from patient;";
 var doctorList           = "SELECT * FROM user_accounts WHERE account_type = 'doctor';";

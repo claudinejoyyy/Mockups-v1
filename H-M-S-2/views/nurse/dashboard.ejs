@@ -8,8 +8,8 @@
     <% include ../partials/header.ejs %>
     <h2>Hello I'm the <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h2>
     <h2>Total Registered Patients = <%= counts[0].totalRegisteredPatients%></h2>
+    <h2><button> <a href="/nurse/patientManagement">more info</a></button>Total Registered Patient = <%= counts[0].totalRegisteredPatients%>
     <h2><button onclick="currentAdmitted()">more Info</button>Currently Admitted = <%= counts[0].currentlyAdmitted%></h2>
-
     <h2><button onclick="OPD()">more Info</button>OPD COUNT = <%= counts[0].OPD%>
       <%for (var i = 0; i < whoOPD.length; i++) { %>
         <h4 style="border-style:solid;"><%= whoOPD[i].name%></h4>
@@ -20,7 +20,7 @@
         <h4 style="border-style:solid;"><%= whoWARD[i].name%></h4>
       <%}%>
     </h2>
-
+    <!-- COUNT PIE CHART -->
     <h1>Patient Chart</h1>
     <h2>patients = <%= counts[0].totalRegisteredPatients%></h2>
     <h2>cadet = <%= chart[0].cadet%></h2>
@@ -29,7 +29,39 @@
     <h2>civilian = <%= chart[0].civilian%></h2>
     <h2>authorized civilian <%= chart[0].authorized_civilian%></h2>
     <br>
+    <!-- COUNT MONTHLY -->
+    <h1>Patient Count</h1>
+    <%if(monthlyPatientCount[0].JAN) {%><h2>january <%= monthlyPatientCount[0].JAN%></h2><%}%>
+    <%if(monthlyPatientCount[0].FEB) {%><h2>february <%= monthlyPatientCount[0].FEB%></h2><%}%>
+    <%if(monthlyPatientCount[0].MARCH) {%><h2>february <%= monthlyPatientCount[0].MARCH%></h2><%}%>
+    <%if(monthlyPatientCount[0].APRIL) {%><h2>february <%= monthlyPatientCount[0].APRIL%></h2><%}%>
+    <%if(monthlyPatientCount[0].MAY) {%><h2>february <%= monthlyPatientCount[0].MAY%></h2><%}%>
+    <%if(monthlyPatientCount[0].JUNE) {%><h2>february <%= monthlyPatientCount[0].JUNE%></h2><%}%>
+    <%if(monthlyPatientCount[0].JULY) {%><h2>february <%= monthlyPatientCount[0].JULY%></h2><%}%>
+    <%if(monthlyPatientCount[0].AUGUST) {%><h2>february <%= monthlyPatientCount[0].AUGUST%></h2><%}%>
+    <%if(monthlyPatientCount[0].SEPTEMBER) {%><h2>february <%= monthlyPatientCount[0].SEPTEMBER%></h2><%}%>
+    <%if(monthlyPatientCount[0].OCTOBER) {%><h2>february <%= monthlyPatientCount[0].OCTOBER%></h2><%}%>
+    <%if(monthlyPatientCount[0].NOVEMBER) {%><h2>february <%= monthlyPatientCount[0].NOVEMBER%></h2><%}%>
+    <%if(monthlyPatientCount[0].DECEMBER) {%><h2>february <%= monthlyPatientCount[0].DECEMBER%></h2><%}%>
+    <br>
+    <!-- TO DO LIST -->
+    <h1>TO DO LIST</h1>
 
+    <button type="button" name="button" onclick="showTodo()">add item</button>
+    <br>
+    <%for(var i=0; i < todoList.length; i++){%>
+        <h3 style="display:inline-block;"><%= todoList[i].description%>:</h3> <h5 style="display:inline-block; font-style:italic;"><%= todoList[i].date%></h5>
+        <br>
+    <%}%>
+    <form method="POST" onsubmit="parseDateNTime()">
+      <div id="showTodo" style="display:none;">
+        <textarea name="description" rows="8" cols="80"></textarea>
+        <br>
+        <input type="datetime-local" name="dateNtime">
+        <button type="submit" name="sub" value="addTodo">save</button>
+      </div>
+    </form>
+    <!-- END OF DASHBOARD -->
     <!-- FOR ADDING -->
     <br>
     <button onclick="showAdd()">add patient</button>
@@ -106,20 +138,20 @@
     <form id="accessment" method="post" style="display:none;">
       <!-- PATIENT !! -->
       <h4 style="display:inline-block;">select a patient</h4>
-      <select id="accessmentPatient" style="display:inline-block;">
+      <select name="assessmentPatient" style="display:inline-block;">
         <%for(var i = 0; i < patientList.length; i++){%>
-          <option value="<%= patientList[i].account_id%>"><%= patientList[i].name%></option>
+          <option  value="<%= patientList[i].patient_id%>"><%= patientList[i].name%></option>
         <%}%>
       </select>
       <br>
       <!-- OTHERS!!! -->
-      <textarea name="name" rows="8" cols="80"></textarea>
-      <select name="">
+      <textarea name="assessment" rows="8" cols="80"></textarea>
+      <select name="assessmentDoctor">
         <%for(var i = 0; i < doctorList.length; i++){%>
           <option value="<%= doctorList[i].account_id%>"><%= doctorList[i].name%></option>
         <%}%>
       </select>
-      <button type="button" name="button">send</button>
+      <button type="smubmit" name="sub" value="assessment">send</button>
     </form>
 
   </body>
@@ -157,6 +189,9 @@
   }
   function showAccessment() {
     document.getElementById("accessment").style.display = "block";
+  }
+  function showTodo() {
+    document.getElementById("showTodo").style.display = "block";
   }
 
 </script>

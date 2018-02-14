@@ -50,6 +50,7 @@ module.exports = function(app, db, currentTime){
           console.log(err);
         } else {
           req.session.destroy();
+          res.header('Cache-Control', 'no-cache');
           res.redirect('login');
         }
       });
