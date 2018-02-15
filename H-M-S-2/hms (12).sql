@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 14, 2018 at 04:20 PM
+-- Generation Time: Feb 15, 2018 at 03:01 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `activity_logs` (
   `type` text NOT NULL,
   `remarks` text NOT NULL,
   PRIMARY KEY (`logs_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=293 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=341 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `activity_logs`
@@ -102,7 +102,55 @@ INSERT INTO `activity_logs` (`logs_id`, `account_id`, `time`, `type`, `remarks`)
 (289, 3, '2018-02-14 23:52:52', 'log', 'Logged in'),
 (290, 3, '2018-02-14 23:53:56', 'log', 'Logged in'),
 (291, 3, '2018-02-14 23:55:05', 'log', 'Logged in'),
-(292, 3, '2018-02-15 00:16:04', 'log', 'Logged in');
+(292, 3, '2018-02-15 00:16:04', 'log', 'Logged in'),
+(293, 3, '2018-02-15 21:37:10', 'log', 'Logged in'),
+(294, 3, '2018-02-15 21:37:10', 'log', 'Logged out'),
+(295, 2, '2018-02-15 21:37:10', 'log', 'Logged in'),
+(296, 2, '2018-02-15 21:41:28', 'log', 'Logged in'),
+(297, 2, '2018-02-15 21:42:29', 'log', 'Logged in'),
+(298, 2, '2018-02-15 21:43:02', 'log', 'Logged in'),
+(299, 4, '2018-02-15 21:45:12', 'log', 'Logged in'),
+(300, 4, '2018-02-15 21:46:14', 'log', 'Logged in'),
+(301, 4, '2018-02-15 21:46:46', 'log', 'Logged in'),
+(302, 4, '2018-02-15 21:48:25', 'log', 'Logged in'),
+(303, 4, '2018-02-15 21:48:58', 'log', 'Logged in'),
+(304, 2, '2018-02-15 21:50:06', 'log', 'Logged in'),
+(305, 2, '2018-02-15 21:50:06', 'log', 'Logged out'),
+(306, 3, '2018-02-15 21:50:06', 'log', 'Logged in'),
+(307, 3, '2018-02-15 21:50:06', 'log', 'Logged out'),
+(308, 4, '2018-02-15 21:50:06', 'log', 'Logged in'),
+(309, 4, '2018-02-15 21:52:40', 'log', 'Logged in'),
+(310, 2, '2018-02-15 21:55:56', 'log', 'Logged in'),
+(311, 2, '2018-02-15 21:55:56', 'log', 'Logged out'),
+(312, 4, '2018-02-15 21:55:56', 'log', 'Logged in'),
+(313, 4, '2018-02-15 21:59:43', 'log', 'Logged in'),
+(314, 4, '2018-02-15 21:59:43', 'log', 'Logged out'),
+(315, 2, '2018-02-15 21:59:43', 'log', 'Logged in'),
+(316, 2, '2018-02-15 21:59:43', 'log', 'Logged out'),
+(317, 3, '2018-02-15 21:59:43', 'log', 'Logged in'),
+(318, 3, '2018-02-15 21:59:43', 'log', 'Logged out'),
+(319, 4, '2018-02-15 21:59:43', 'log', 'Logged in'),
+(320, 4, '2018-02-15 21:59:43', 'log', 'Logged out'),
+(321, 4, '2018-02-15 22:01:26', 'log', 'Logged in'),
+(322, 4, '2018-02-15 22:01:50', 'log', 'Logged in'),
+(323, 4, '2018-02-15 22:03:04', 'log', 'Logged in'),
+(324, 3, '2018-02-15 22:12:55', 'log', 'Logged in'),
+(325, 3, '2018-02-15 22:12:55', 'todo', 'Added : asdwasda to To Do List'),
+(326, 4, '2018-02-15 22:26:01', 'log', 'Logged in'),
+(327, 4, '2018-02-15 22:26:30', 'log', 'Logged in'),
+(328, 4, '2018-02-15 22:27:03', 'log', 'Logged in'),
+(329, 4, '2018-02-15 22:27:03', 'todo', 'Added to To Do List the following: zxcasdqweasd'),
+(330, 4, '2018-02-15 22:27:03', 'log', 'Logged out'),
+(331, 3, '2018-02-15 22:27:03', 'log', 'Logged in'),
+(332, 3, '2018-02-15 22:32:46', 'log', 'Logged in'),
+(333, 3, '2018-02-15 22:34:54', 'log', 'Logged in'),
+(334, 3, '2018-02-15 22:34:54', 'log', 'Logged out'),
+(335, 4, '2018-02-15 22:35:26', 'log', 'Logged in'),
+(336, 4, '2018-02-15 22:54:16', 'log', 'Logged in'),
+(337, 4, '2018-02-15 22:55:49', 'log', 'Logged in'),
+(338, 4, '2018-02-15 22:56:23', 'log', 'Logged in'),
+(339, 4, '2018-02-15 22:58:05', 'log', 'Logged in'),
+(340, 4, '2018-02-15 22:58:05', 'appointment', 'Set Appointment with undefined on 2018-02-19 04:04:00');
 
 -- --------------------------------------------------------
 
@@ -151,15 +199,17 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   `appointment_timestamp` timestamp NOT NULL,
   `doctor_id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
+  `remarks` text,
   PRIMARY KEY (`appointment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointment` (`appointment_id`, `appointment_timestamp`, `doctor_id`, `patient_id`) VALUES
-(1, '2017-11-29 22:23:39', 1, 1);
+INSERT INTO `appointment` (`appointment_id`, `appointment_timestamp`, `doctor_id`, `patient_id`, `remarks`) VALUES
+(1, '2017-11-29 22:23:39', 1, 1, NULL),
+(2, '2018-02-18 20:04:00', 4, 51, 'zxcasdqweasd');
 
 -- --------------------------------------------------------
 
@@ -640,7 +690,7 @@ CREATE TABLE IF NOT EXISTS `todo_list` (
   `account_id` int(11) NOT NULL,
   PRIMARY KEY (`todo_id`),
   KEY `account_id` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `todo_list`
@@ -648,7 +698,9 @@ CREATE TABLE IF NOT EXISTS `todo_list` (
 
 INSERT INTO `todo_list` (`todo_id`, `description`, `date`, `account_id`) VALUES
 (1, 'asdqwe', '2018-02-01 03:30:00', 3),
-(2, 'wasd', '2018-02-01 01:20:00', 3);
+(2, 'wasd', '2018-02-01 01:20:00', 3),
+(3, 'asdwasda', '2018-02-14 01:00:00', 3),
+(4, 'zxcasdqweasd', '2018-02-07 03:03:00', 4);
 
 -- --------------------------------------------------------
 

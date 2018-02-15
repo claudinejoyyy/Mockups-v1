@@ -1,6 +1,7 @@
 var db = require("./database/db.js");
 var login = require('./controllers/routes');
 var nurse = require('./controllers/nurseRoute');
+var doctor = require('./controllers/doctorRoute');
 var admin = require('./controllers/adminRoute');
 var pharmacist = require('./controllers/pharmacistRoute');
 var bodyParser = require('body-parser');
@@ -47,7 +48,7 @@ var monthlyPatientCount  = 'SELECT (SELECT count(logs_id) from activity_logs WHE
                           +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-08-01 00:00:00" and "'+currentTime+'-09-01 00:00:00" and type = "add") as AUGUST,'
                           +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-09-01 00:00:00" and "'+currentTime+'-010-01 00:00:00" and type = "add") as SEPTEMBER,'
                           +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-010-01 00:00:00" and "'+currentTime+'-011-01 00:00:00" and type = "add") as OCTOBER,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-011-01 00:00:00" and "'+currentTime+'-012-01 00:00:00" and type = "add") as NOVEMBER;';
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-011-01 00:00:00" and "'+currentTime+'-012-01 00:00:00" and type = "add") as NOVEMBER,'
                           +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-012-01 00:00:00" and "'+currentTime+'-001-01 00:00:00" and type = "add") as DECEMBER;';
 //TO DO LIST
 //OTHERS
@@ -56,9 +57,10 @@ var doctorList           = "SELECT * FROM user_accounts WHERE account_type = 'do
 var availableBeds        = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id) where b.status = 'Unoccupied';";
 
 var currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
-login(app,db,currentTime);
-nurse(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList);
-admin(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds);
+login (app,db,currentTime);
+nurse (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList);
+doctor(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds);
+admin (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds);
 pharmacist(app,db,currentTime);
 
 //port
