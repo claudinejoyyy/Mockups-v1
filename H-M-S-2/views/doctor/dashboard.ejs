@@ -5,7 +5,13 @@
     <title>Doctor Dashboard</title>
   </head>
   <body>
-    <% include ../partials/header.ejs %>
+    <nav>
+      <a href="../doctor/dashboard">dashboard</a><br>
+      <a href="../doctor/bedManagement">bedManagement</a><br>
+      <a href="../doctor/patientManagement">patientManagement</a><br>
+      <a href="../doctor/outpatientManagement">outpatientManagement</a><br>
+      <a href="../doctor/profileManagement">profile</a>
+    </nav>
     <h2>Hello I'm the <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h2>
     <h2>Total Registered Patients = <%= counts[0].totalRegisteredPatients%></h2>
     <h2><button onclick="currentAdmitted()">more Info</button>Currently Admitted = <%= counts[0].currentlyAdmitted%></h2>

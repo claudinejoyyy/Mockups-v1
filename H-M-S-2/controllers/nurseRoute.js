@@ -30,14 +30,15 @@ var user, Aid;
       if(req.session.sino == 'nurse'){
         var pNameSQL = "SELECT name from patient where patient_id = "+data.patient+";";
 
-        if(data.sub == "assessment"){
-            var addAssessment = 'INSERT into assessment_nurse (assessment, date, patient_id, account_id) VALUES ("'+data.assessment+'", "'+currentTime+'", "'+data.assessmentPatient+'", "'+data.assessmentDoctor+'");';
-            db.query(addAssessment, function(err){
-              if (err) {
-                console.log(err);
-              }
-            });
-            res.redirect(req.get('referer'));
+        if(data.sub == 'assessment') {
+          var vitalSigns = data.BP +'\n'+ data.CR +'\n'+ data.PR +'\n'+ data.RR +'\n'+ data.temperature +'\n'+ data.Wt +'\n'+ data.age;
+          var initialAssessment = 'INSERT into assessment_nurse (assessment, date, patient_id, account_id, vital_signs) VALUES("'+data.assessment+'", "'+currentTime+'",'+data.assessmentPatient+','+Aid+',"'+vitalSigns+'");';
+          db.query(initialAssessment + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "initialAssessment", "assessment for '+data.assessmentPatient+'");', function(err){
+            if (err) {
+              console.log(err);
+            }
+          });
+          res.redirect(req.get('referer'));
         } else if(data.sub == "add") {
             var bdParse       = data.birth.split('-');
             var birthDate     = bdParse[0] + bdParse[1] + bdParse[2];
