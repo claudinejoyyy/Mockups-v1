@@ -1,5 +1,5 @@
 module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds){
-var user, Aid, availableBeds;
+var user, Aid, availableBedss;
 
   app.get('/doctor/dashboard', function(req, res){
     if(req.session.email && req.session.sino == 'doctor'){
@@ -11,8 +11,7 @@ var user, Aid, availableBeds;
             console.log(err);
           }
           user = rows[0];
-          patientList = rows[6];
-          availableBeds = rows[7];
+          availableBedss = rows[7];
           res.render('doctor/dashboard', {counts:rows[1], chart:rows[2], whoCurrentlyAdmitted:rows[3], whoOPD:rows[4], whoWARD:rows[5], patientList:rows[6],
                                          availableBeds:rows[7], monthlyPatientCount:rows[8], todoList:rows[9], username: user});
        });
@@ -23,6 +22,7 @@ var user, Aid, availableBeds;
       res.redirect('../login');
     }
   });
+
   app.post('/doctor/dashboard', function(req, res){
     var data = req.body;
     if(req.session.email && req.session.sino == 'doctor'){
@@ -69,7 +69,7 @@ var user, Aid, availableBeds;
           if (err) {
             console.log(err);
           } else {
-                res.render('doctor/outpatientManagement', {opdInfo:row, admitAvailableBeds:availableBeds});
+                res.render('doctor/outpatientManagement', {opdInfo:row, admitAvailableBeds:availableBedss});
             //var patientInfoSQL = 'SELECT * from patient where patient_id = '+rows[0].patient_id+';';
           }
         });

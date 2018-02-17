@@ -5,7 +5,10 @@
     <title>Patient Management</title>
   </head>
   <body>
-    <%include ../partials/header.ejs%>
+    <a href="../nurse/dashboard">dashboard</a><br>
+    <a href="../nurse/bedManagement">bedManagement</a><br>
+    <a href="../nurse/patientManagement">patientManagement</a><br>
+    <a href="../nurse/profileManagement">profile</a>
     <h1><%=pInfo[0].name%></h1>
     <h2>nurse</h2>
     <h3>User Account: <%= pInfo[0].account_id%></h3>
