@@ -32,7 +32,7 @@ var user, Aid;
 
         if(data.sub == 'assessment') {
           var vitalSigns = data.BP +'\n'+ data.CR +'\n'+ data.PR +'\n'+ data.RR +'\n'+ data.temperature +'\n'+ data.Wt +'\n'+ data.age;
-          var initialAssessment = 'INSERT into initial_assessment (assessment, date, patient_id, account_id, vital_signs) VALUES("'+data.assessment+'", "'+currentTime+'",'+data.assessmentPatient+','+Aid+',"'+vitalSigns+'");';
+          var initialAssessment = 'INSERT into initial_assessment (assessment, date, patient_id, account_id, vital_signs) VALUES("'+data.assessment+'", "'+currentTime+'",'+data.assessmentPatient+','+data.assessmentDoctor+',"'+vitalSigns+'");';
           db.query(initialAssessment + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "initialAssessment", "assessment for '+data.assessmentPatient+'");', function(err){
             if (err) {
               console.log(err);
