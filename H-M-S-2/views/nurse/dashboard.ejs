@@ -140,26 +140,26 @@
     <br>
     <!-- FOR NURSE INITIAL ACCESSMENT -->
     <button onclick="showAccessment()">Accessment</button>
-    <form id="accessment" method="post" style="display:none;">
+    <form id="assessment" method="post" style="display:none;">
       <!-- PATIENT !! -->
       <h4 style="display:inline-block;">select a patient</h4>
-      <select name="assessmentPatient" style="display:inline-block;">
-        <%for(var i = 0; i < patientList.length; i++){%>
-          <option  value="<%= patientList[i].patient_id%>"><%= patientList[i].name%></option>
+      <select name="assessmentPatient" style="display:inline-block;" required>
+        <%for(var i = 0; i < availablePatientOPD.length; i++){%>
+          <option  value="<%= availablePatientOPD[i].patient_id%>"><%= availablePatientOPD[i].name%></option>
         <%}%>
       </select>
       <br>
-      <input type="text" name="BP">BP <br>
-      <input type="text" name="CR">CR <br>
-      <input type="text" name="PR">PR <br>
-      <input type="text" name="RR">RR <br>
-      <input type="text" name="temperature">Temperature <br>
-      <input type="text" name="Wt">Wt <br>
-      <input type="text" name="age">age
+      <input type="text" name="BP" required>BP <br>
+      <input type="text" name="CR" required>CR <br>
+      <input type="text" name="PR" required>PR <br>
+      <input type="text" name="RR" required>RR <br>
+      <input type="text" name="temperature" required>Temperature <br>
+      <input type="text" name="Wt" required>Wt <br>
+      <input type="text" name="age" required>age
       <!-- OTHERS!!! -->
       <h4>Chief Complaints</h4>
-      <textarea name="assessment" rows="8" cols="80"></textarea>
-      <select name="assessmentDoctor">
+      <textarea name="assessment" rows="8" cols="80" required></textarea>
+      <select name="assessmentDoctor" required>
         <%for(var i = 0; i < doctorList.length; i++){%>
           <option value="<%= doctorList[i].account_id%>"><%= doctorList[i].name%></option>
         <%}%>
@@ -195,13 +195,14 @@
   }
   function resetForm() {
     document.getElementById("modal2").reset();
+    document.getElementById("assessment").reset();
     document.getElementById("immuRes").innerHTML = "";
   }
   function currentAdmitted() {
     document.getElementById("showAdmitted").style.display = "block";
   }
   function showAccessment() {
-    document.getElementById("accessment").style.display = "block";
+    document.getElementById("assessment").style.display = "block";
   }
   function showTodo() {
     document.getElementById("showTodo").style.display = "block";
