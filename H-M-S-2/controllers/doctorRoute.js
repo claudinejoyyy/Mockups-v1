@@ -1,5 +1,5 @@
 module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds){
-var user, Aid;
+var user, Aid, availableBeds;
 
   app.get('/doctor/dashboard', function(req, res){
     if(req.session.email && req.session.sino == 'doctor'){
@@ -11,8 +11,10 @@ var user, Aid;
             console.log(err);
           }
           user = rows[0];
+          patientList = rows[6];
+          availableBeds = rows[7];
           res.render('doctor/dashboard', {counts:rows[1], chart:rows[2], whoCurrentlyAdmitted:rows[3], whoOPD:rows[4], whoWARD:rows[5], patientList:rows[6],
-                                         availableBeds:rows[7], monthlyPatientCount:rows[8], todoList:rows[9], username: user, account_type: req.session.sino});
+                                         availableBeds:rows[7], monthlyPatientCount:rows[8], todoList:rows[9], username: user});
        });
       } else {
         res.redirect(req.session.sino + '/dashboard');
@@ -56,6 +58,26 @@ var user, Aid;
         }
     } else {
       res.redirect('../login');
+    }
+  });
+
+  app.get('/doctor/outpatientManagement', function(req, res){
+    if(req.session.email && req.session.sino == 'doctor'){
+      if (req.session.sino == 'doctor') {
+          var outpatientDepartmentSQL = 'SELECT * FROM patient inner join initial_assessment i using(patient_id) where i.account_id = '+Aid+';';
+          db.query(outpatientDepartmentSQL, function(err, row){
+          if (err) {
+            console.log(err);
+          } else {
+                res.render('doctor/outpatientManagement', {opdInfo:row, admitAvailableBeds:availableBeds});
+            //var patientInfoSQL = 'SELECT * from patient where patient_id = '+rows[0].patient_id+';';
+          }
+        });
+      } else {
+        res.redirect(req.session.sino+'/dashboard');
+      }
+    } else {
+      res.redirect('../login')
     }
   });
 

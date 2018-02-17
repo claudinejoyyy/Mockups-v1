@@ -5,7 +5,12 @@
     <title>Nurse</title>
   </head>
   <body>
-    <% include ../partials/header.ejs %>
+    <nav>
+      <a href="../nurse/dashboard">dashboard</a><br>
+      <a href="../nurse/bedManagement">bedManagement</a><br>
+      <a href="../nurse/patientManagement">patientManagement</a><br>
+      <a href="../nurse/profileManagement">profile</a>
+    </nav>
     <h2>Hello I'm the <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h2>
     <h2>Total Registered Patients = <%= counts[0].totalRegisteredPatients%></h2>
     <h2><button> <a href="/nurse/patientManagement">more info</a></button>Total Registered Patient = <%= counts[0].totalRegisteredPatients%>

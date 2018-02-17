@@ -14,7 +14,7 @@ var user, Aid;
           }
           user = rows[0];
           res.render('nurse/dashboard', {counts:rows[1], chart:rows[2], whoCurrentlyAdmitted:rows[3], whoOPD:rows[4],whoWARD:rows[5], immu:rows[6],
-                                         fh:rows[7], doctorList:rows[8], patientList:rows[9], monthlyPatientCount:rows[10], todoList:rows[11], username: user, account_type: req.session.sino});
+                                         fh:rows[7], doctorList:rows[8], patientList:rows[9], monthlyPatientCount:rows[10], todoList:rows[11], username: user});
         });
       } else {
         res.redirect(req.session.sino+'/dashboard');
@@ -115,7 +115,7 @@ var user, Aid;
 
         db.query(name + ";" + sql, Aid, function(err, rows, fields){
           user = rows[0];
-          res.render('nurse/patientManagement', {p:rows[1], username: user, account_type: req.session.sino});
+          res.render('nurse/patientManagement', {p:rows[1], username: user});
         });
       } else {
         res.redirect(req.session.sino+'/dashboard');
@@ -130,7 +130,7 @@ var user, Aid;
       if (req.session.sino == 'nurse') {
         var bedSQL = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id); ";
         db.query(bedSQL, function(err, rows, fields){
-          res.render('nurse/bedManagement', {bedDetails:rows, account_type: req.session.sino});
+          res.render('nurse/bedManagement', {bedDetails:rows});
         });
       } else {
         res.redirect(req.session.sino+'/dashboard');
@@ -168,7 +168,7 @@ var user, Aid;
           if (err) {
             console.log(err);
           } else {
-            res.render('nurse/profileManagement', {pInfo:rows[0], activityInfo: rows[1], account_type: req.session.sino});
+            res.render('nurse/profileManagement', {pInfo:rows[0], activityInfo: rows[1]});
           }
         });
       } else {

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Outpatient Department</title>
+    <style media="screen">
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../doctor/dashboard">dashboard</a><br>
+      <a href="../doctor/bedManagement">bedManagement</a><br>
+      <a href="../doctor/patientManagement">patientManagement</a><br>
+      <a href="../doctor/outpatientManagement">outpatientManagement</a><br>
+      <a href="../doctor/profileManagement">profile</a>
+    </nav>
+
+    <table>
+      <tr>
+        <th>patient type</th>
+        <th>name</th>
+        <th>age</th>
+        <th>gender</th>
+        <th>blood type</th>
+        <th>initial Assessment</th>
+        <th>action</th>
+      </tr>
+      <%for (var i = 0; i < opdInfo.length; i++) {%>
+        <tr>
+            <td><%=opdInfo[i].patient_type%></td>
+            <td><%=opdInfo[i].name%></td>
+            <td><%=opdInfo[i].age%></td>
+            <td><%=opdInfo[i].sex%></td>
+            <td><%=opdInfo[i].blood_type%></td>
+            <td><%=opdInfo[i].assessment%></td>
+            <td>
+              <button name="view">view</button>
+              <button name="lab_request" onclick="ShowLabRequest(<%=opdInfo[i].patient_id%>)">Lab Request</button>
+              <button name="prescribe" onclick="ShowPrescribe(<%=opdInfo[i].patient_id%>)">Prescribe</button>
+              <button name="admit" onclick="ShowAdmit(<%=opdInfo[i].patient_id%>)">admit</button>
+              <button name="button">diagnosis</button>
+            </td>
+        </tr>
+      <%}%>
+    </table>
+    <div id="ShowLabRequest" style="display:none;">
+      <form method="post">
+        <select name="testRequest">
+          <option value="bloodChemistry">bloodChemistry</option>
+          <option value="hematology">Hematology</option>
+          <option value="microscopy">Microscopy</option>
+          <option value="parasitology">parasitology</option>
+          <option value="serotology">serotology</option>
+          <option value="microbiology">microbiology</option>
+        </select>
+        <button type="submit" name="sub" value="labRequest">send</button>
+      </form>
+    </div>
+    <div id="ShowAdmit" style="display:none;">
+      <form method="post">
+        available Beds:
+        <select name="">
+          <%for (var i = 0; i < admitAvailableBeds.length; i++) { %>
+            <option value=""><%= admitAvailableBeds[i].bed_id%></option>
+          <%}%>
+        </select>
+        <button type="submit" name="sub" value="admit">alot</button>
+      </form>
+    </div>
+    <div id="ShowPrescribe" style="display:none;">
+      <form method="post">
+        <input type="text" name="" value="">medicine <br>
+        <input type="number" name="" value="">quantity <br>
+        <input type="text" name="" value="">dosage <br>
+        <input type="text" name="" value="">timeframe <br>
+        <button type="submit" name="sub" value="prescribe">send</button>
+      </form>
+    </div>
+    <div id="ShowView" style="display:none;">
+
+      <form method="post">
+
+      </form>
+    </div>
+  </body>
+</html>
+<script>
+  function ShowLabRequest(i){
+    console.log(i);
+    document.getElementById('ShowLabRequest').style.display = 'block';
+  }
+  function ShowAdmit(i){
+    console.log(i);
+    document.getElementById('ShowAdmit').style.display = 'block';
+  }
+  function ShowPrescribe(i){
+    console.log(i);
+    document.getElementById('ShowPrescribe').style.display = 'block';
+  }
+</script>

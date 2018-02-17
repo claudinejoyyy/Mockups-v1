@@ -82,20 +82,6 @@
     </form>
     <!-- END OF DASHBOARD -->
 
-    <button type="button">Admit patient</button>
-    <form action="index.html" method="post">
-      <select>
-        <%for (var i = 0; i < patientList.length; i++) { %>
-          <option value=""><%= patientList[i].name%></option>
-        <%}%>
-      </select>
-      <select name="">
-        <%for (var i = 0; i < availableBeds.length; i++) { %>
-          <option value=""><%= availableBeds[i].bed_id%></option>
-        <%}%>
-      </select>
-    </form>
-
   </body>
 </html>
 <script>
