@@ -27,6 +27,9 @@
       <a href="../doctor/bedManagement">bedManagement</a><br>
       <a href="../doctor/patientManagement">patientManagement</a><br>
       <a href="../doctor/outpatientManagement">outpatientManagement</a><br>
+      <a href="../doctor/appointmentManagement">appointmentManagement</a><br>
+      <a href="../doctor/prescriptionManagement">prescriptionManagement</a><br>
+      <a href="../doctor/labRequestManagement">labRequestManagement</a><br>
       <a href="../doctor/profileManagement">profile</a>
     </nav>
 
@@ -49,7 +52,7 @@
             <td><%=opdInfo[i].blood_type%></td>
             <td><%=opdInfo[i].assessment%></td>
             <td>
-              <button name="view">view</button>
+              <button name="view"><a href="../doctor/patientManagement">view</a></button>
               <button name="lab_request" onclick="ShowLabRequest(<%=opdInfo[i].patient_id%>)">Lab Request</button>
               <button name="prescribe" onclick="ShowPrescribe(<%=opdInfo[i].patient_id%>)">Prescribe</button>
               <button name="admit" onclick="ShowAdmit(<%=opdInfo[i].patient_id%>)">admit</button>
@@ -58,8 +61,9 @@
         </tr>
       <%}%>
     </table>
+    <!-- LAB REQUEST -->
     <div id="ShowLabRequest" style="display:none;">
-      <form method="post">
+      <form id="dynamicPatientIdForLab" method="post">
         <select name="testRequest">
           <option value="bloodChemistry">bloodChemistry</option>
           <option value="hematology">Hematology</option>
@@ -69,47 +73,47 @@
           <option value="microbiology">microbiology</option>
         </select>
         <button type="submit" name="sub" value="labRequest">send</button>
+        <br>
+        <textarea name="labRequestremarks" rows="8" cols="80"></textarea>
       </form>
     </div>
+    <!-- ADMIT  -->
     <div id="ShowAdmit" style="display:none;">
-      <form method="post">
+      <form id="dynamicPatientIdForAdmit" method="post">
         available Beds:
-        <select name="">
+        <select name="bedNumber">
           <%for (var i = 0; i < admitAvailableBeds.length; i++) { %>
-            <option value=""><%= admitAvailableBeds[i].bed_id%></option>
+            <option value="<%= admitAvailableBeds[i].bed_id%>"><%= admitAvailableBeds[i].bed_id%></option>
           <%}%>
         </select>
         <button type="submit" name="sub" value="admit">alot</button>
       </form>
     </div>
+    <!-- PRESCRIBE -->
     <div id="ShowPrescribe" style="display:none;">
-      <form method="post">
-        <input type="text" name="" value="">medicine <br>
-        <input type="number" name="" value="">quantity <br>
-        <input type="text" name="" value="">dosage <br>
-        <input type="text" name="" value="">timeframe <br>
+      <form id="dynamicPatientIdForPrescribe" method="post">
+        <input type="text" name="medicine">medicine <br>
+        <input type="number" name="quantity">quantity <br>
+        <input type="text" name="dosage">dosage <br>
+        <input type="text" name="timeframe">timeframe <br>
         <button type="submit" name="sub" value="prescribe">send</button>
       </form>
     </div>
-    <div id="ShowView" style="display:none;">
-
-      <form method="post">
-
-      </form>
-    </div>
   </body>
+
 </html>
+
 <script>
   function ShowLabRequest(i){
-    console.log(i);
+    document.getElementById('dynamicPatientIdForLab').action = '/doctor/outpatientManagement?patient_id='+i+'';
     document.getElementById('ShowLabRequest').style.display = 'block';
   }
   function ShowAdmit(i){
-    console.log(i);
+    document.getElementById('dynamicPatientIdForAdmit').action = '/doctor/outpatientManagement?patient_id='+i+'';
     document.getElementById('ShowAdmit').style.display = 'block';
   }
   function ShowPrescribe(i){
-    console.log(i);
+    document.getElementById('dynamicPatientIdForPrescribe').action = '/doctor/outpatientManagement?patient_id='+i+'';
     document.getElementById('ShowPrescribe').style.display = 'block';
   }
 </script>

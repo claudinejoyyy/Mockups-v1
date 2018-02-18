@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 15, 2018 at 03:01 PM
+-- Generation Time: Feb 18, 2018 at 11:51 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `activity_logs` (
   `type` text NOT NULL,
   `remarks` text NOT NULL,
   PRIMARY KEY (`logs_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=341 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=498 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `activity_logs`
@@ -150,7 +150,164 @@ INSERT INTO `activity_logs` (`logs_id`, `account_id`, `time`, `type`, `remarks`)
 (337, 4, '2018-02-15 22:55:49', 'log', 'Logged in'),
 (338, 4, '2018-02-15 22:56:23', 'log', 'Logged in'),
 (339, 4, '2018-02-15 22:58:05', 'log', 'Logged in'),
-(340, 4, '2018-02-15 22:58:05', 'appointment', 'Set Appointment with undefined on 2018-02-19 04:04:00');
+(340, 4, '2018-02-15 22:58:05', 'appointment', 'Set Appointment with undefined on 2018-02-19 04:04:00'),
+(341, 3, '2018-02-16 21:05:05', 'log', 'Logged in'),
+(342, 3, '2018-02-16 21:08:50', 'log', 'Logged in'),
+(343, 3, '2018-02-16 21:08:50', 'initialAssessment', 'assessment for 44'),
+(344, 3, '2018-02-16 21:08:50', 'log', 'Logged out'),
+(345, 4, '2018-02-16 21:08:50', 'log', 'Logged in'),
+(346, 4, '2018-02-16 21:08:50', 'log', 'Logged out'),
+(347, 3, '2018-02-16 21:08:50', 'log', 'Logged in'),
+(348, 3, '2018-02-16 22:09:47', 'log', 'Logged in'),
+(349, 3, '2018-02-16 22:09:47', 'log', 'Logged out'),
+(350, 4, '2018-02-16 22:09:47', 'log', 'Logged in'),
+(351, 4, '2018-02-16 22:10:26', 'log', 'Logged in'),
+(352, 4, '2018-02-16 22:11:24', 'log', 'Logged in'),
+(353, 4, '2018-02-16 22:11:46', 'log', 'Logged in'),
+(354, 4, '2018-02-16 22:12:18', 'log', 'Logged in'),
+(355, 4, '2018-02-16 22:20:16', 'log', 'Logged in'),
+(356, 4, '2018-02-16 22:21:29', 'log', 'Logged in'),
+(357, 4, '2018-02-16 22:25:05', 'log', 'Logged in'),
+(358, 4, '2018-02-16 22:30:59', 'log', 'Logged in'),
+(359, 4, '2018-02-16 22:32:05', 'log', 'Logged in'),
+(360, 4, '2018-02-16 22:33:03', 'log', 'Logged in'),
+(361, 4, '2018-02-16 22:33:36', 'log', 'Logged in'),
+(362, 4, '2018-02-16 22:35:54', 'log', 'Logged in'),
+(363, 4, '2018-02-16 22:36:36', 'log', 'Logged in'),
+(364, 4, '2018-02-16 22:37:00', 'log', 'Logged in'),
+(365, 4, '2018-02-16 22:37:24', 'log', 'Logged in'),
+(366, 4, '2018-02-16 22:38:39', 'log', 'Logged in'),
+(367, 4, '2018-02-16 22:39:37', 'log', 'Logged in'),
+(368, 4, '2018-02-16 22:40:17', 'log', 'Logged in'),
+(369, 4, '2018-02-16 22:42:59', 'log', 'Logged in'),
+(370, 4, '2018-02-16 22:43:43', 'log', 'Logged in'),
+(371, 4, '2018-02-16 22:44:20', 'log', 'Logged in'),
+(372, 4, '2018-02-16 22:44:55', 'log', 'Logged in'),
+(373, 4, '2018-02-16 22:45:33', 'log', 'Logged in'),
+(374, 4, '2018-02-16 22:46:37', 'log', 'Logged in'),
+(375, 4, '2018-02-16 22:47:04', 'log', 'Logged in'),
+(376, 4, '2018-02-16 22:48:03', 'log', 'Logged in'),
+(377, 4, '2018-02-16 22:49:07', 'log', 'Logged in'),
+(378, 4, '2018-02-16 22:50:42', 'log', 'Logged in'),
+(379, 4, '2018-02-16 22:51:08', 'log', 'Logged in'),
+(380, 4, '2018-02-16 22:51:27', 'log', 'Logged in'),
+(381, 4, '2018-02-16 22:51:58', 'log', 'Logged in'),
+(382, 4, '2018-02-16 22:52:43', 'log', 'Logged in'),
+(383, 4, '2018-02-16 22:53:43', 'log', 'Logged in'),
+(384, 4, '2018-02-16 22:54:21', 'log', 'Logged in'),
+(385, 4, '2018-02-16 22:54:48', 'log', 'Logged in'),
+(386, 4, '2018-02-16 22:57:53', 'log', 'Logged in'),
+(387, 4, '2018-02-16 23:00:07', 'log', 'Logged in'),
+(388, 4, '2018-02-16 23:00:42', 'log', 'Logged in'),
+(389, 4, '2018-02-16 23:01:01', 'log', 'Logged in'),
+(390, 4, '2018-02-16 23:05:28', 'log', 'Logged in'),
+(391, 4, '2018-02-16 23:06:23', 'log', 'Logged in'),
+(392, 4, '2018-02-16 23:06:55', 'log', 'Logged in'),
+(393, 4, '2018-02-16 23:07:55', 'log', 'Logged in'),
+(394, 4, '2018-02-16 23:11:39', 'log', 'Logged in'),
+(395, 4, '2018-02-16 23:12:45', 'log', 'Logged in'),
+(396, 4, '2018-02-16 23:25:56', 'log', 'Logged in'),
+(397, 4, '2018-02-16 23:27:16', 'log', 'Logged in'),
+(398, 4, '2018-02-16 23:28:59', 'log', 'Logged in'),
+(399, 4, '2018-02-16 23:29:18', 'log', 'Logged in'),
+(400, 4, '2018-02-17 17:53:16', 'log', 'Logged in'),
+(401, 4, '2018-02-17 18:09:14', 'log', 'Logged in'),
+(402, 4, '2018-02-17 18:33:05', 'log', 'Logged in'),
+(403, 4, '2018-02-17 19:32:46', 'log', 'Logged in'),
+(404, 4, '2018-02-17 19:33:54', 'log', 'Logged in'),
+(405, 4, '2018-02-17 19:38:45', 'log', 'Logged in'),
+(406, 4, '2018-02-17 19:40:52', 'log', 'Logged in'),
+(407, 3, '2018-02-17 19:41:42', 'log', 'Logged in'),
+(408, 4, '2018-02-17 19:45:19', 'log', 'Logged in'),
+(409, 4, '2018-02-17 19:45:19', 'log', 'Logged out'),
+(410, 4, '2018-02-17 19:45:19', 'log', 'Logged in'),
+(411, 3, '2018-02-17 19:46:34', 'log', 'Logged in'),
+(412, 4, '2018-02-17 19:50:17', 'log', 'Logged in'),
+(413, 3, '2018-02-17 19:50:29', 'log', 'Logged in'),
+(414, 3, '2018-02-17 19:50:29', 'log', 'Logged out'),
+(415, 4, '2018-02-17 19:54:42', 'log', 'Logged in'),
+(416, 4, '2018-02-17 19:56:44', 'log', 'Logged in'),
+(417, 4, '2018-02-17 20:00:04', 'log', 'Logged in'),
+(418, 4, '2018-02-17 20:01:58', 'log', 'Logged in'),
+(419, 4, '2018-02-17 20:03:48', 'log', 'Logged in'),
+(420, 4, '2018-02-17 20:04:06', 'log', 'Logged in'),
+(421, 4, '2018-02-17 20:04:06', 'log', 'Logged out'),
+(422, 3, '2018-02-17 20:04:06', 'log', 'Logged in'),
+(423, 3, '2018-02-17 20:04:06', 'log', 'Logged out'),
+(424, 4, '2018-02-17 20:04:06', 'log', 'Logged in'),
+(425, 4, '2018-02-17 20:04:06', 'log', 'Logged out'),
+(426, 3, '2018-02-17 20:04:06', 'log', 'Logged in'),
+(427, 3, '2018-02-17 20:11:35', 'log', 'Logged in'),
+(428, 3, '2018-02-17 20:26:07', 'log', 'Logged in'),
+(429, 3, '2018-02-17 20:29:49', 'log', 'Logged in'),
+(430, 3, '2018-02-17 20:30:10', 'log', 'Logged in'),
+(431, 3, '2018-02-17 20:37:28', 'log', 'Logged in'),
+(432, 3, '2018-02-17 20:39:05', 'log', 'Logged in'),
+(433, 3, '2018-02-17 20:49:02', 'log', 'Logged in'),
+(434, 3, '2018-02-17 20:50:20', 'log', 'Logged in'),
+(435, 4, '2018-02-17 20:56:42', 'log', 'Logged in'),
+(436, 4, '2018-02-17 20:56:42', 'appointment', 'Set Appointment with undefined on 2018-02-13 02:00:00'),
+(437, 4, '2018-02-17 21:00:33', 'log', 'Logged in'),
+(438, 4, '2018-02-17 21:03:43', 'log', 'Logged in'),
+(439, 4, '2018-02-17 21:04:26', 'log', 'Logged in'),
+(440, 4, '2018-02-17 21:04:26', 'log', 'Logged out'),
+(441, 3, '2018-02-17 21:04:26', 'log', 'Logged in'),
+(442, 3, '2018-02-17 21:04:26', 'log', 'Logged out'),
+(443, 4, '2018-02-17 21:04:26', 'log', 'Logged in'),
+(444, 4, '2018-02-17 21:04:26', 'log', 'Logged out'),
+(445, 3, '2018-02-17 21:04:26', 'log', 'Logged in'),
+(446, 3, '2018-02-17 21:04:26', 'log', 'Logged out'),
+(447, 4, '2018-02-17 21:04:26', 'log', 'Logged in'),
+(448, 4, '2018-02-17 21:04:26', 'log', 'Logged out'),
+(449, 3, '2018-02-17 21:04:26', 'log', 'Logged in'),
+(450, 3, '2018-02-17 21:04:26', 'log', 'Logged out'),
+(451, 4, '2018-02-17 21:04:26', 'log', 'Logged in'),
+(452, 4, '2018-02-17 21:17:44', 'log', 'Logged in'),
+(453, 4, '2018-02-17 21:17:44', 'log', 'Logged out'),
+(454, 3, '2018-02-17 21:17:44', 'log', 'Logged in'),
+(455, 3, '2018-02-17 21:22:25', 'log', 'Logged in'),
+(456, 3, '2018-02-17 21:22:25', 'log', 'Logged out'),
+(457, 4, '2018-02-17 21:22:25', 'log', 'Logged in'),
+(458, 3, '2018-02-17 21:35:30', 'log', 'Logged in'),
+(459, 3, '2018-02-17 21:35:42', 'log', 'Logged in'),
+(460, 3, '2018-02-17 21:35:42', 'initialAssessment', 'assessment for 43'),
+(461, 3, '2018-02-17 21:35:42', 'log', 'Logged out'),
+(462, 4, '2018-02-17 21:35:42', 'log', 'Logged in'),
+(463, 3, '2018-02-17 21:48:50', 'log', 'Logged in'),
+(464, 3, '2018-02-17 21:48:50', 'initialAssessment', 'assessment for 45'),
+(465, 3, '2018-02-17 21:54:03', 'log', 'Logged in'),
+(466, 3, '2018-02-17 21:54:03', 'log', 'Logged out'),
+(467, 4, '2018-02-18 13:16:28', 'log', 'Logged in'),
+(468, 4, '2018-02-18 13:47:52', 'log', 'Logged in'),
+(469, 4, '2018-02-18 13:48:46', 'log', 'Logged in'),
+(470, 4, '2018-02-18 13:49:35', 'log', 'Logged in'),
+(471, 4, '2018-02-18 14:03:31', 'log', 'Logged in'),
+(472, 4, '2018-02-18 14:03:51', 'log', 'Logged in'),
+(473, 4, '2018-02-18 14:04:06', 'log', 'Logged in'),
+(474, 4, '2018-02-18 14:05:51', 'log', 'Logged in'),
+(475, 4, '2018-02-18 14:06:03', 'log', 'Logged in'),
+(476, 4, '2018-02-18 14:06:41', 'log', 'Logged in'),
+(477, 4, '2018-02-18 14:28:50', 'log', 'Logged in'),
+(478, 4, '2018-02-18 14:30:13', 'log', 'Logged in'),
+(479, 4, '2018-02-18 14:31:03', 'log', 'Logged in'),
+(480, 4, '2018-02-18 14:32:34', 'log', 'Logged in'),
+(481, 4, '2018-02-18 14:43:23', 'log', 'Logged in'),
+(482, 4, '2018-02-18 14:44:58', 'log', 'Logged in'),
+(483, 4, '2018-02-18 14:47:08', 'log', 'Logged in'),
+(484, 4, '2018-02-18 17:43:00', 'log', 'Logged in'),
+(485, 4, '2018-02-18 17:43:00', 'log', 'Logged out'),
+(486, 3, '2018-02-18 17:43:00', 'log', 'Logged in'),
+(487, 3, '2018-02-18 17:43:00', 'add', 'Added: cadet - asdqwe'),
+(488, 3, '2018-02-18 17:43:00', 'log', 'Logged out'),
+(489, 4, '2018-02-18 17:43:00', 'log', 'Logged in'),
+(490, 4, '2018-02-18 18:05:16', 'log', 'Logged in'),
+(491, 4, '2018-02-18 18:12:15', 'log', 'Logged in'),
+(492, 4, '2018-02-18 18:15:06', 'log', 'Logged in'),
+(493, 4, '2018-02-18 18:16:27', 'log', 'Logged in'),
+(494, 4, '2018-02-18 18:25:39', 'log', 'Logged in'),
+(495, 4, '2018-02-18 18:37:17', 'log', 'Logged in'),
+(496, 4, '2018-02-18 19:17:06', 'log', 'Logged in'),
+(497, 3, '2018-02-18 19:44:05', 'log', 'Logged in');
 
 -- --------------------------------------------------------
 
@@ -201,42 +358,15 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   `patient_id` int(11) NOT NULL,
   `remarks` text,
   PRIMARY KEY (`appointment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `appointment`
 --
 
 INSERT INTO `appointment` (`appointment_id`, `appointment_timestamp`, `doctor_id`, `patient_id`, `remarks`) VALUES
-(1, '2017-11-29 22:23:39', 1, 1, NULL),
-(2, '2018-02-18 20:04:00', 4, 51, 'zxcasdqweasd');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `assessment_nurse`
---
-
-DROP TABLE IF EXISTS `assessment_nurse`;
-CREATE TABLE IF NOT EXISTS `assessment_nurse` (
-  `assessment_id` int(11) NOT NULL AUTO_INCREMENT,
-  `assessment` text NOT NULL,
-  `date` datetime NOT NULL,
-  `patient_id` int(11) NOT NULL,
-  `account_id` int(11) NOT NULL,
-  PRIMARY KEY (`assessment_id`),
-  KEY `patient_id` (`patient_id`),
-  KEY `account_id` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `assessment_nurse`
---
-
-INSERT INTO `assessment_nurse` (`assessment_id`, `assessment`, `date`, `patient_id`, `account_id`) VALUES
-(1, 'qweasd', '2018-02-14 23:52:52', 42, 4),
-(2, 'asdqwe', '2018-02-14 23:53:56', 48, 4),
-(3, 'wasD', '2018-02-14 23:55:05', 42, 4);
+(2, '2018-02-18 20:04:00', 4, 51, 'zxcasdqweasd'),
+(3, '2018-02-12 18:00:00', 4, 42, 'ngayon may appoint ako');
 
 -- --------------------------------------------------------
 
@@ -259,12 +389,12 @@ CREATE TABLE IF NOT EXISTS `bed` (
 --
 
 INSERT INTO `bed` (`bed_id`, `status`, `allotment_timestamp`, `description`, `patient_id`) VALUES
-(1, 'Unoccupied', NULL, NULL, NULL),
+(1, 'occupied', '2018-02-18 13:49:35', NULL, 48),
 (2, 'occupied', '2018-02-04 18:55:23', NULL, 42),
-(3, 'Unoccupied', NULL, NULL, NULL),
+(3, 'occupied', '2018-02-18 14:04:06', NULL, 45),
 (4, 'occupied', '2018-02-01 21:13:35', NULL, 44),
-(5, 'Unoccupied', NULL, NULL, NULL),
-(6, 'Unoccupied', NULL, NULL, NULL),
+(5, 'occupied', '2018-02-18 14:06:41', NULL, 42),
+(6, 'occupied', '2018-02-18 14:06:41', NULL, 42),
 (7, 'occupied', '2018-02-01 21:13:41', NULL, 45),
 (8, 'Unoccupied', NULL, NULL, NULL),
 (9, 'occupied', '2018-02-04 18:58:56', NULL, 43),
@@ -512,6 +642,65 @@ INSERT INTO `immunization` (`name`, `immu_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `initial_assessment`
+--
+
+DROP TABLE IF EXISTS `initial_assessment`;
+CREATE TABLE IF NOT EXISTS `initial_assessment` (
+  `assessment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `assessment` text NOT NULL,
+  `date` datetime NOT NULL,
+  `patient_id` int(11) NOT NULL,
+  `account_id` int(11) NOT NULL,
+  `vital_signs` text NOT NULL,
+  PRIMARY KEY (`assessment_id`),
+  KEY `patient_id` (`patient_id`),
+  KEY `account_id` (`account_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `initial_assessment`
+--
+
+INSERT INTO `initial_assessment` (`assessment_id`, `assessment`, `date`, `patient_id`, `account_id`, `vital_signs`) VALUES
+(1, 'qweasd', '2018-02-14 23:52:52', 42, 4, ''),
+(2, 'asdqwe', '2018-02-14 23:53:56', 48, 4, ''),
+(4, 'may sakit ', '2018-02-16 21:08:50', 44, 3, 'a\nq\nw\ne\nr\nt\ny'),
+(5, 'ito ano', '2018-02-17 21:35:42', 43, 3, 'ito ano\nito ano\nito ano\nito ano\nito ano\nito ano\nito ano'),
+(6, 'assessmentDoctor', '2018-02-17 21:48:50', 45, 4, 'assessmentDoctor\nassessmentDoctor\nassessmentDoctor\nassessmentDoctor\nassessmentDoctor\nassessmentDoctor\nassessmentDoctor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lab_request`
+--
+
+DROP TABLE IF EXISTS `lab_request`;
+CREATE TABLE IF NOT EXISTS `lab_request` (
+  `request_id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(20) NOT NULL,
+  `timestamp` timestamp NOT NULL,
+  `remarks` text NOT NULL,
+  `doctor_id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
+  `lab_status` varchar(20) NOT NULL,
+  PRIMARY KEY (`request_id`),
+  KEY `patient_id` (`patient_id`),
+  KEY `doctor_id` (`doctor_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `lab_request`
+--
+
+INSERT INTO `lab_request` (`request_id`, `type`, `timestamp`, `remarks`, `doctor_id`, `patient_id`, `lab_status`) VALUES
+(1, 'bloodChemistry', '2018-02-18 06:43:23', 'undefined', 4, 42, 'pending'),
+(2, 'hematology', '2018-02-18 06:44:58', 'undefined', 4, 48, 'pending'),
+(3, 'microbiology', '2018-02-18 06:47:08', 'I dont know !!', 4, 45, 'pending');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `medicine`
 --
 
@@ -583,7 +772,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `immunization` text,
   `family_history` text,
   PRIMARY KEY (`patient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `patient`
@@ -600,7 +789,8 @@ INSERT INTO `patient` (`patient_id`, `patient_type`, `name`, `age`, `unit`, `sex
 (49, 'military officer', 'asd', 14, '', 'M', 'Maried', '2018-01-30', 'asd', '', '', '', '\n:', '\n:', '', 'asd', 'Influenza:\n\n', 'CVD\n\n'),
 (50, 'military officer', 'qwe', 20, '', 'M', 'Maried', '2018-02-09', 'asd', '', '', '', '\n:', '\n:', '', '', 'Influenza:\n\n', 'DM\n\n'),
 (51, 'military officer', 'asdqweq', 25, '', 'M', 'Maried', '2018-02-13', 'asdasdqwe', '', '', '', '\n:', '\n:', '', '', 'Tetanus Toxoid:\n\n', 'DM\n\n'),
-(52, 'military officer', 'zxcweqe', 29, '', 'M', 'Maried', '2018-02-01', 'asdazxc', '', '', '', '\n:', '\n:', '', '', 'Tyroid:\n\n', '\n\nCVD\n\n');
+(52, 'military officer', 'zxcweqe', 29, '', 'M', 'Maried', '2018-02-01', 'asdazxc', '', '', '', '\n:', '\n:', '', '', 'Tyroid:\n\n', '\n\nCVD\n\n'),
+(53, 'cadet', 'asdqwe', 15, '', 'M', 'Maried', '2018-02-08', 'asdqwe', '', '', '', '\n:', '\n:', '', '', '\n', '\n');
 
 -- --------------------------------------------------------
 
@@ -612,21 +802,25 @@ DROP TABLE IF EXISTS `prescription`;
 CREATE TABLE IF NOT EXISTS `prescription` (
   `prescription_id` int(11) NOT NULL AUTO_INCREMENT,
   `creation_stamp` timestamp NOT NULL,
-  `case_history` text NOT NULL,
-  `medication` text NOT NULL,
-  `medication_from_pharmacist` text NOT NULL,
-  `description` text NOT NULL,
+  `medicine` text NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `dosage` text NOT NULL,
+  `timeframe` text NOT NULL,
   `doctor_id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  PRIMARY KEY (`prescription_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `status` varchar(12) NOT NULL,
+  PRIMARY KEY (`prescription_id`),
+  KEY `patient_id` (`patient_id`),
+  KEY `doctor_id` (`doctor_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `prescription`
 --
 
-INSERT INTO `prescription` (`prescription_id`, `creation_stamp`, `case_history`, `medication`, `medication_from_pharmacist`, `description`, `doctor_id`, `patient_id`) VALUES
-(1, '2017-11-21 16:00:00', 'Case history details here of patient Anurag Basu<b...', 'Medication details here of patient Anurag Basu<br>', 'Medication from pharmacist details here of patient...', 'Additional description here of patient Anurag Basu...', 1, 1);
+INSERT INTO `prescription` (`prescription_id`, `creation_stamp`, `medicine`, `quantity`, `dosage`, `timeframe`, `doctor_id`, `patient_id`, `status`) VALUES
+(2, '2018-02-18 06:31:03', 'solmux', 4, '3 times a day', 'for 2 weeks', 4, 42, 'pending'),
+(3, '2018-02-18 06:32:34', 'gamot', 2, '5 every 3 hours', 'for 1 week', 4, 48, 'pending');
 
 -- --------------------------------------------------------
 
@@ -760,11 +954,25 @@ INSERT INTO `user_accounts` (`account_id`, `username`, `password`, `account_type
 --
 
 --
--- Constraints for table `assessment_nurse`
+-- Constraints for table `initial_assessment`
 --
-ALTER TABLE `assessment_nurse`
-  ADD CONSTRAINT `assessment_nurse_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`),
-  ADD CONSTRAINT `assessment_nurse_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `user_accounts` (`account_id`);
+ALTER TABLE `initial_assessment`
+  ADD CONSTRAINT `initial_assessment_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`),
+  ADD CONSTRAINT `initial_assessment_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `user_accounts` (`account_id`);
+
+--
+-- Constraints for table `lab_request`
+--
+ALTER TABLE `lab_request`
+  ADD CONSTRAINT `lab_request_ibfk_1` FOREIGN KEY (`doctor_id`) REFERENCES `user_accounts` (`account_id`),
+  ADD CONSTRAINT `lab_request_ibfk_2` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`);
+
+--
+-- Constraints for table `prescription`
+--
+ALTER TABLE `prescription`
+  ADD CONSTRAINT `prescription_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`),
+  ADD CONSTRAINT `prescription_ibfk_2` FOREIGN KEY (`doctor_id`) REFERENCES `user_accounts` (`account_id`);
 
 --
 -- Constraints for table `todo_list`
