@@ -38,7 +38,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="doctordashboard.html" class="logo">
+    <a href=../doctor/dashboard"" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>D</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -59,7 +59,7 @@
               <!-- The user image in the navbar-->
               <img src="../dist/img/avatar04.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Doctor Joe King</span>
+              <span class="hidden-xs"><%= username[0].name %></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -67,8 +67,8 @@
                 <img src="../dist/img/avatar04.png" class="img-circle" alt="User Image">
 
                 <p>
-                  Doctor Joe King
-                  <small>Hematology/Oncology</small>
+                  <%= username[0].name %>
+                  <small>Hello there Doctor!</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -78,7 +78,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href='../logout' class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -97,7 +97,7 @@
           <img src="../dist/img/avatar04.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Doctor Joe King</p>
+          <p><%= username[0].name %></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -115,13 +115,12 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="doctordashboard.html" target="_self"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-        <li><a href="patientmanagement.html"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
-        <li><a href="appointmentmanagement.html"><i class="fa fa-link"></i> <span>Appointment Management</span></a></li>
-        <li><a href="prescriptionmanagement.html"><i class="fa fa-link"></i> <span>Prescription Management</span></a></li>
-        <li><a href="diagnosismanagement.html"><i class="fa fa-link"></i> <span>Diagnosis Management</span></a></li>
-        <li><a href="bedmanagement.html"><i class="fa fa-link"></i> <span>Bed Management</span></a></li>
-        <li><a href="doctorprofile.html"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
+        <li class="active"><a href="../doctor/dashboard" target="_self"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+        <li><a href="../doctor/bedManagement"><i class="fa fa-link"></i> <span>Bed Management</span></a></li>
+        <li><a href="../doctor/patientManagement"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
+        <li><a href="../doctor/outpatientManagement"><i class="fa fa-link"></i> <span>Outpatient Management</span></a></li>
+        <li><a href="../doctor/profileManagement"><i class="fa fa-link"></i> <span>Patient Profile Management</span></a></li>
+
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -145,7 +144,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>40</h3>
+              <h3><%= counts[0].totalRegisteredPatients%></h3>
 
               <p>Total Registered Patients</p>
             </div>
@@ -160,7 +159,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>13</h3>
+              <h3><%= counts[0].currentlyAdmitted%></h3>
 
               <p>Currently Admitted</p>
             </div>
@@ -175,8 +174,10 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>6</h3>
-
+              <h3><%= counts[0].OPD%></h3>
+                <%for (var i = 0; i < whoOPD.length; i++) { %>
+                  <h4 style="border-style:solid;"><%= whoOPD[i].name%></h4>
+                <%}%>
               <p>OPD</p>
             </div>
             <div class="icon">
@@ -190,8 +191,10 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>7</h3>
-
+              <h3><%= counts[0].WARD%></h3>
+                <%for (var i = 0; i < whoWARD.length; i++) { %>
+                  <h4 style="border-style:solid;"><%= whoWARD[i].name%></h4>
+                <%}%>
               <p>Ward</p>
             </div>
             <div class="icon">
@@ -355,11 +358,11 @@
               <div id="donut-chart1" style="height: 350px;"></div>
                 <br>
                 <ul class="chart-legend clearfix">
-                    <li><i class="fa fa-circle-o text-gray"></i> Cadet</li>
-                    <li><i class="fa fa-circle-o text-light-blue"></i> Military Officer</li>
-                    <li><i class="fa fa-circle-o text-red"></i> Military Dependent</li>
-                    <li><i class="fa fa-circle-o text-yellow"></i> Civilian Employees</li>
-                    <li><i class="fa fa-circle-o text-aqua"></i> Authorized Civilian</li>
+                  <li><i class="fa fa-circle-o text-red"></i>Military Dependent</li>
+                  <li><i class="fa fa-circle-o text-graye"></i>Cadet</li>
+                  <li><i class="fa fa-circle-o text-aqua"></i>Military Officer</li>
+                  <li><i class="fa fa-circle-o text-yellow"></i> Civilian</li>
+                  <li><i class="fa fa-circle-o text-light-blue"></i> Authorized Civilian</li>
                   </ul>
 
             </div>
@@ -375,6 +378,18 @@
 
         </section>
         <!-- right col -->
+        <%if(monthlyPatientCount[0].JAN) {%><h2>january <%= monthlyPatientCount[0].JAN%></h2><%}%>
+        <%if(monthlyPatientCount[0].FEB) {%><h2>february <%= monthlyPatientCount[0].FEB%></h2><%}%>
+        <%if(monthlyPatientCount[0].MARCH) {%><h2>february <%= monthlyPatientCount[0].MARCH%></h2><%}%>
+        <%if(monthlyPatientCount[0].APRIL) {%><h2>february <%= monthlyPatientCount[0].APRIL%></h2><%}%>
+        <%if(monthlyPatientCount[0].MAY) {%><h2>february <%= monthlyPatientCount[0].MAY%></h2><%}%>
+        <%if(monthlyPatientCount[0].JUNE) {%><h2>february <%= monthlyPatientCount[0].JUNE%></h2><%}%>
+        <%if(monthlyPatientCount[0].JULY) {%><h2>february <%= monthlyPatientCount[0].JULY%></h2><%}%>
+        <%if(monthlyPatientCount[0].AUGUST) {%><h2>february <%= monthlyPatientCount[0].AUGUST%></h2><%}%>
+        <%if(monthlyPatientCount[0].SEPTEMBER) {%><h2>february <%= monthlyPatientCount[0].SEPTEMBER%></h2><%}%>
+        <%if(monthlyPatientCount[0].OCTOBER) {%><h2>february <%= monthlyPatientCount[0].OCTOBER%></h2><%}%>
+        <%if(monthlyPatientCount[0].NOVEMBER) {%><h2>february <%= monthlyPatientCount[0].NOVEMBER%></h2><%}%>
+        <%if(monthlyPatientCount[0].DECEMBER) {%><h2>february <%= monthlyPatientCount[0].DECEMBER%></h2><%}%>
       </div>
       <!-- /.row (main row) -->
 
@@ -631,111 +646,13 @@
             </div>
           </div>
         </div>
-        <!----------------------------------- /Adding Appointment Modal-------------------------->
-
-      <!------------------------- Modal of Home Instruction --------------------->
-<!--
-        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Home Instruction</h4>
-              </div>
-              <div class="modal-body">
-                <form class="form-horizontal">
-                  <div class="box-body">
-              <table id="medicine">
-                <thead>
-                <tr>
-                  <th><center>Medicine<br>(Gamot)</center></th>
-                  <th><center>Indication<br>(Para saan ito)</center></th>
-                  <th><center>Drink every...<br>(Inumin makatapos ang....)</center></th>
-                </tr>
-                </thead>
-                    <th>
-                        <center>
-                    <div class="col-sm-10">
-                      <textarea class="text" placeholder="Type here..."></textarea>
-                    </div>
-                        </center>
-                    </th>
-                  <th>
-                      <center>
-                    <div class="col-sm-10">
-                      <textarea class="text" placeholder="Type here..."></textarea>
-                    </div>
-                      </center>
-                    </th>
-                  <th>
-                      <center>
-                    <div class="col-sm-10">
-                      <textarea class="text" placeholder="Type here..."></textarea>
-                    </div>
-                      </center>
-                    </th>
-              </table>
-
-              <table id="diet" class="table table-bordered table-striped">
-                <thead><br><br>DIET:
-                <tr>
-                  <th><center>Dapat Kainin</center></th>
-                  <th><center>Bawal Kainin</center></th>
-                </tr>
-                </thead>
-                    <th>
-                        <center>
-                    <div class="col-sm-10">
-                      <textarea class="text" placeholder="Type here..."></textarea>
-                    </div>
-                        </center>
-                    </th>
-                  <th>
-                      <center>
-                    <div class="col-sm-10">
-                      <textarea class="text" placeholder="Type here..."></textarea>
-                    </div>
-                      </center>
-                  </th>
-              </table>
-
-              <table id="exer" class="table table-bordered table-striped">
-                <thead><br><br>ACTIVITY/EXERCISE:
-                </thead>
-                    <th>
-                    <div class="col-sm-10">
-                      <textarea class="text" rows="3" placeholder="Type here..."></textarea>
-                    </div>
-                    </th>
-              </table>
-
-              <table id="for" class="table table-bordered table-striped">
-                <thead><br><br>FOLLOW-UP/REFERRAL:
-                </thead>
-                    <th>
-                    <div class="col-sm-10">
-                      <textarea class="text" rows="3" placeholder="Type here..."></textarea>
-                    </div>
-                    </th>
-              </table>
-            </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
-              </div>
-            </div>
-          </div>
-        </div>
--->
-        <!----------------------------------- /Home Instruction Modal-------------------------->
 
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
+
     <div class="pull-right hidden-xs">
       <b>Version</b> 1
     </div>
@@ -808,13 +725,15 @@
      * DONUT CHART
      * -----------
      */
-    var data = [], totalPoints = 100;
+
+    var list = <%-JSON.stringify(counts[0].totalRegisteredPatients)%>;
+    var data = [], totalPoints = list;
     var donutData = [
-      {label: "MD", data: 15, color: "red"},
-      {label: "CE", data: 10, color: "yellow"},
-      {label: "MO", data: 25, color: "aqua"},
-      {label: "C", data: 40, color: "gray"},
-      {label: "AC", data: 10, color: "blue"}
+      {label: "MD", data: <%-JSON.stringify(chart[0].military_dependent)%>, color: "red"},
+      {label: "CE", data: <%-JSON.stringify(chart[0].cadet)%>, color: "gray"},
+      {label: "MO", data: <%-JSON.stringify(chart[0].military_officer)%>, color: "aqua"},
+      {label: "CI", data: <%-JSON.stringify(chart[0].civilian)%>, color: "orange"},
+      {label: "AC", data: <%-JSON.stringify(chart[0].authorized_civilian)%>, color: "blue"}
     ];
     $.plot("#donut-chart1", donutData, {
       series: {
@@ -844,7 +763,7 @@
     var areaChart = new Chart(areaChartCanvas);
 
     var areaChartData = {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","Novermber","December"],
       datasets: [
         {
           label: "Patient",
@@ -854,7 +773,7 @@
           pointStrokeColor: "rgba(60,141,188,1)",
           pointHighlightFill: "#fff",
           pointHighlightStroke: "rgba(60,141,188,1)",
-          data: [28, 48, 40, 19, 86, 27, 90]
+          data: [<%-JSON.stringify()%>, 48, 40, 19, 86, 27, 90]
         }
       ]
     };
@@ -891,7 +810,6 @@
       //Boolean - Whether to fill the dataset with a color
       datasetFill: true,
       //String - A legend template
-      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
       //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
       maintainAspectRatio: true,
       //Boolean - whether to make the chart responsive to window resizing
