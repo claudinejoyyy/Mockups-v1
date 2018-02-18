@@ -295,7 +295,7 @@
                   <input type="datetime-local" name="dateNtime">
                   <button type="submit" name="sub" value="addTodo">save</button>
                 </div>
-              </form>              
+              </form>
             </div>
 
             <div class="box box-primary">
@@ -580,47 +580,25 @@
                 <h4 class="modal-title" id="myModalLabel">New Appointment</h4>
               </div>
               <div class="modal-body">
-                <form class="form-horizontal">
-
-                  <div class="form-group">
-                    <label for="inputPatientType" class="col-sm-2 control-label">Patient Type</label>
-                    <div class="col-sm-10">
-                      <select class="form-control">
-                            <option>Cadet</option>
-                            <option>Military Officer</option>
-                            <option>Civilian Employee</option>
-                            <option>Authorized Civilian</option>
-                          </select>
+                <form class="horizontal" method="post">
+                  <button type="button" onclick="showAppointmentForm()">set appointment</button>
+                  <div id="showAppointmentForm" style='display:none;'>
+                    <select name="appointmentPatientID"class="" name="">
+                      <%for(var i = 0; i < patientList.length; i++){%>
+                        <option value="<%= patientList[i].patient_id%>"><%= patientList[i].name%></option>
+                      <%}%>
+                    </select>
+                    <input type="datetime-local" name="dateNtime">
+                    <br>
+                    <textarea name="appointmentRemarks" rows="12" cols="80"></textarea>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                      <button type="submit" name="sub" value="appointment" class="btn btn-primary">Confirm</button>
                     </div>
                   </div>
-
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" value="">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="inputDate" class="col-sm-2 control-label">Date</label>
-                    <div class="col-sm-10">
-                      <input type="date" class="form-control" id="inputDate" value="">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="inputTime" class="col-sm-2 control-label">Time</label>
-                    <div class="col-sm-10">
-                      <input type="time" class="form-control" id="inputTime" value="">
-                    </div>
-                  </div>
-
                 </form>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
-              </div>
+
             </div>
           </div>
         </div>
