@@ -3,6 +3,7 @@ var login = require('./controllers/routes');
 var nurse = require('./controllers/nurseRoute');
 var doctor = require('./controllers/doctorRoute');
 var admin = require('./controllers/adminRoute');
+var laboratorist = require('./controllers/laboratoristRoute');
 var pharmacist = require('./controllers/pharmacistRoute');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -61,8 +62,9 @@ login (app,db,currentTime);
 nurse (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList);
 doctor(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds);
 admin (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds);
-pharmacist(app,db,currentTime);
+pharmacist(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList);
+laboratorist(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList);
 
 //port
-app.listen(3001);
+app.listen(3000);
 console.log('hello !!');
