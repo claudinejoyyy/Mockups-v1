@@ -143,7 +143,7 @@ var user, Aid;
   app.post('/nurse/bedManagement', function(req, res){
     if(req.session.email && req.session.sino == 'nurse'){
       if(req.session.sino == 'nurse') {
-        var dischargeSQL = "UPDATE bed SET status = 'Unoccupied', allotment_timestamp = NULL, patient_id = NULL where bed_id = "+req.body.bed[0]+";";
+        var dischargeSQL = "UPDATE bed SET status = 'Unoccupied', allotment_timestamp = NULL, patient_id = NULL where bed_id = "+req.query.bed+";";
         var sql = db.query(dischargeSQL, function(err, rows, fields){
           if(err){
             console.log(err);
