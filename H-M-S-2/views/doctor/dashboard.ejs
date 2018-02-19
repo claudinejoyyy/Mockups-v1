@@ -69,7 +69,7 @@
         <button type="submit" name="sub" value="addTodo">save</button>
       </div>
     </form>
-    <form method="post">
+    <form action="/doctor/dashboard?appointmentPatientName=<%= patientList[i].name%>" method="post">
       <button type="button" onclick="showAppointmentForm()">set appointment</button>
       <div id="showAppointmentForm" style='display:none;'>
         <select name="appointmentPatientID"class="" name="">
