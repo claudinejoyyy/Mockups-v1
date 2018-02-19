@@ -66,5 +66,5 @@ pharmacist(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoW
 laboratorist(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList);
 
 //port
-app.listen(3000);
+app.listen(3001);
 console.log('hello !!');
