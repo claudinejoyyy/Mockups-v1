@@ -5,14 +5,16 @@
     <title>Bed Management</title>
   </head>
   <body>
-    <a href="../doctor/dashboard">dashboard</a><br>
-    <a href="../doctor/bedManagement">bedManagement</a><br>
-    <a href="../doctor/patientManagement">patientManagement</a><br>
-    <a href="../doctor/outpatientManagement">outpatientManagement</a><br>
-    <a href="../doctor/appointmentManagement">appointmentManagement</a><br>
-    <a href="../doctor/prescriptionManagement">prescriptionManagement</a><br>
-    <a href="../doctor/labRequestManagement">labRequestManagement</a><br>
-    <a href="../doctor/profileManagement">profile</a>
+    <nav>
+      <a href="../doctor/dashboard">dashboard</a><br>
+      <a href="../doctor/bedManagement">bedManagement</a><br>
+      <a href="../doctor/patientManagement">patientManagement</a><br>
+      <a href="../doctor/outpatientManagement">outpatientManagement</a><br>
+      <a href="../doctor/appointmentManagement">appointmentManagement</a><br>
+      <a href="../doctor/prescriptionManagement">prescriptionManagement</a><br>
+      <a href="../doctor/labRequestManagement">labRequestManagement</a><br>
+      <a href="../doctor/profileManagement">profile</a>
+    </nav>
     <table>
       <tr>
         <th>Bed Number</th>
@@ -37,9 +39,8 @@
         <%} else {%>
           <td><%= DT%></td>
         <%}%>
-        <form method="POST">
-          <td><button onclick="discharge(<%= bedDetails[i].bed_id%>)">discharge</button></td>
-          <input type="text" id="dis" name="bed" style="display:none;" >
+        <form action="/doctor/bedManagement?bed=<%= bedDetails[i].bed_id%>" method="POST">
+          <td><button>discharge</button></td>
         </form>
       </tr>
       <%}%>
@@ -47,9 +48,4 @@
   </body>
 </html>
 <script>
-  function discharge(bedID){
-    console.log(bedID);
-     document.getElementById('dis').value = bedID;
-     console.log(document.getElementById('dis').value);
-  }
 </script>

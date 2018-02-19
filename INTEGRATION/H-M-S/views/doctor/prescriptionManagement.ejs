@@ -52,7 +52,9 @@
           <td><%=prescriptionDetails[i].age%></td>
           <td><%=prescriptionDetails[i].medications%></td>
           <td><%=prescriptionDetails[i].STATUS%></td>
-          <td><button type="button">cancel</button></td>
+          <form action="/doctor/prescriptionManagement?prescriptionId=<%=prescriptionDetails[i].prescription_id%>&prescriptionPatientName=<%=prescriptionDetails[i].name%>" method="post">
+            <td><button type="submit">cancel</button></td>
+          </form>
         </tr>
       <%}%>
     </table>

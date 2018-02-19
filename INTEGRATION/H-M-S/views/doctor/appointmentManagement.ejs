@@ -38,6 +38,7 @@
         <th>Patient Type</th>
         <th>Name</th>
         <th>Date and Time</th>
+        <th>remarks</th>
         <th>Action</th>
       </tr>
       <%for (var i = 0; i < appointmentDetails.length; i++) {%>
@@ -46,7 +47,10 @@
           <td><%=appointmentDetails[i].patient_type%></td>
           <td><%=appointmentDetails[i].name%></td>
           <td><%=appointmentDetails[i].appointment_timestamp%></td>
-          <td><button type="button">cancel</button></td>
+          <td><%=appointmentDetails[i].remarks%></td>
+          <form action="/doctor/appointmentManagement?appointmentId=<%=appointmentDetails[i].appointment_id%>&appointmentPatientName=<%=appointmentDetails[i].name%>" method="post">
+            <td><button type="submit">cancel</button></td>
+          </form>
         </tr>
       <%}%>
     </table>
