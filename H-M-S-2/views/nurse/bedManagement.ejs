@@ -33,9 +33,8 @@
         <%} else {%>
           <td><%= DT%></td>
         <%}%>
-        <form method="POST">
-          <td><button onclick="discharge(<%= bedDetails[i].bed_id%>)">discharge</button></td>
-          <input type="text" id="dis" name="bed" style="display:none;" >
+        <form action="/nurse/bedManagement?bed=<%= bedDetails[i].bed_id%>" method="POST">
+          <td><button>discharge</button></td>
         </form>
       </tr>
       <%}%>

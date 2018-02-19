@@ -60,7 +60,7 @@ var user, Aid, availableBedss;
       res.redirect('../login');
     }
   });
-
+//OUTPATIENT
   app.get('/doctor/outpatientManagement', function(req, res){
     if(req.session.email && req.session.sino == 'doctor'){
       if (req.session.sino == 'doctor') {
@@ -79,7 +79,6 @@ var user, Aid, availableBedss;
       res.redirect('../login')
     }
   });
-
   app.post('/doctor/outpatientManagement', function(req, res){
     var data = req.body;
     if(req.session.email && req.session.sino == 'doctor'){
@@ -119,7 +118,7 @@ var user, Aid, availableBedss;
       res.redirect('../login')
     }
   });
-
+  //BED MANAGEMENT
   app.get('/doctor/bedManagement', function(req, res){
     if (req.session.email && req.session.sino == 'doctor') {
       if (req.session.sino == 'doctor') {
@@ -134,7 +133,25 @@ var user, Aid, availableBedss;
       res.redirect('../login');
     }
   });
-
+  app.post('/doctor/bedManagement', function(req, res){
+    if(req.session.email && req.session.sino == 'doctor'){
+      if(req.session.sino == 'doctor') {
+        var dischargeSQL = "UPDATE bed SET status = 'Unoccupied', allotment_timestamp = NULL, patient_id = NULL where bed_id = "+req.query.bed+";";
+        db.query(dischargeSQL, function(err, rows, fields){
+          if(err){
+            console.log(err);
+          } else {
+            res.redirect(req.get('referer'));
+          }
+        });
+      } else {
+        res.redirect(req.session.sino+'/dashboard');
+      }
+    } else {
+      res.redirect('../login');
+    }
+  });
+  //PATIENT MANAGEMENT
   app.get('/doctor/patientManagement', function(req, res){
       if(req.session.email && req.session.sino == 'doctor'){
         if(req.session.sino == 'doctor'){
@@ -152,7 +169,7 @@ var user, Aid, availableBedss;
           res.redirect('../login');
       }
     });
-
+    //APPOINTMENT
     app.get('/doctor/appointmentManagement', function(req, res){
       if(req.session.email && req.session.sino == 'doctor'){
         if(req.session.sino == 'doctor'){
@@ -172,11 +189,29 @@ var user, Aid, availableBedss;
           res.redirect('../login');
       }
     });
-
+    app.post('/doctor/appointmentManagement', function(req, res){
+      if(req.session.email && req.session.sino == 'doctor'){
+        if(req.session.sino == 'doctor') {
+          var cancelAppointmentSQL = 'DELETE from appointment where appointment_id = '+req.query.appointmentId+';';
+          db.query(cancelAppointmentSQL, function(err){
+            if(err){
+              console.log(err);
+            } else {
+              res.redirect(req.get('referer'));
+            }
+          });
+        } else {
+          res.redirect(req.session.sino+'/dashboard');
+        }
+      } else {
+        res.redirect('../login');
+      }
+    });
+    //PRESCRIPTION
     app.get('/doctor/prescriptionManagement', function(req, res){
       if(req.session.email && req.session.sino == 'doctor'){
         if(req.session.sino == 'doctor'){
-          var prescriptionSQL = 'SELECT CONCAT("medicine:",medicine,"\nquantity:",quantity,"\ndosage:", dosage,"\ntimeframe:", timeframe) AS medications, p.status as STATUS,creation_stamp,patient_type,name,age from prescription p inner join patient using(patient_id) where doctor_id = '+Aid+';';
+          var prescriptionSQL = 'SELECT CONCAT("medicine:",medicine,"\nquantity:",quantity,"\ndosage:", dosage,"\ntimeframe:", timeframe) AS medications, p.status as STATUS,creation_stamp,patient_type,name,age,prescription_id from prescription p inner join patient using(patient_id) where doctor_id = '+Aid+';';
 
           db.query(prescriptionSQL, function(err, rows){
             if (err) {
@@ -192,7 +227,25 @@ var user, Aid, availableBedss;
           res.redirect('../login');
       }
     });
-
+    app.post('/doctor/prescriptionManagement', function(req, res){
+      if(req.session.email && req.session.sino == 'doctor'){
+        if(req.session.sino == 'doctor') {
+          var cancelPrescriptionSQL = 'DELETE from prescription where prescription_id = '+req.query.prescriptionId+';';
+          db.query(cancelPrescriptionSQL, function(err){
+            if(err){
+              console.log(err);
+            } else {
+              res.redirect(req.get('referer'));
+            }
+          });
+        } else {
+          res.redirect(req.session.sino+'/dashboard');
+        }
+      } else {
+        res.redirect('../login');
+      }
+    });
+    //LAB REQUEST
     app.get('/doctor/labRequestManagement', function(req, res){
       if(req.session.email && req.session.sino == 'doctor'){
         if(req.session.sino == 'doctor'){
@@ -212,5 +265,62 @@ var user, Aid, availableBedss;
           res.redirect('../login');
       }
     });
+    app.post('/doctor/labRequestManagement', function(req, res){
+      if(req.session.email && req.session.sino == 'doctor'){
+        if(req.session.sino == 'doctor') {
+          var cancelLabRequestSQL = 'DELETE from lab_request where request_id = '+req.query.requestId+';';
+          db.query(cancelLabRequestSQL, function(err){
+            if(err){
+              console.log(err);
+            } else {
+              res.redirect(req.get('referer'));
+            }
+          });
+        } else {
+          res.redirect(req.session.sino+'/dashboard');
+        }
+      } else {
+        res.redirect('../login');
+      }
+    });
+    // PROFILE MANAGEMENT
+    app.get('/doctor/profileManagement', function(req, res){
+      if(req.session.email && req.session.sino == 'doctor'){
+        if (req.session.sino == 'doctor') {
+          var profileInfoSQL  = 'SELECT * from user_accounts where account_id = '+req.session.Aid+';';
+          var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc;';
+          db.query(profileInfoSQL + activityLogsSQL, function(err, rows){
+            if (err) {
+              console.log(err);
+            } else {
+              res.render('doctor/profileManagement', {pInfo:rows[0], activityInfo: rows[1]});
+            }
+          });
+        } else {
+          res.redirect(req.session.sino+'/dashboard');
+        }
+      } else {
+        res.redirect('../login')
+      }
+    });
 
+    app.post('/doctor/profileManagement', function(req, res){
+      var data = req.body;
+      if (req.session.email && req.session.sino == 'doctor') {
+        if (req.session.sino == 'doctor') {
+          var updateProfileSQL = 'UPDATE user_accounts SET name = "'+data.name+'", age = '+data.age+', address = "'+data.address+'", phone = '+data.phone+' WHERE account_id = '+req.session.Aid+';';
+          db.query(updateProfileSQL, function(err, rows){
+            if (err) {
+              console.log(err);
+            } else {
+              res.redirect(req.get('referer'));
+            }
+          });
+        } else {
+          res.redirect(req.session.sino+'/dashboard');
+        }
+      } else {
+        res.redirect('../login');
+      }
+    });
 }

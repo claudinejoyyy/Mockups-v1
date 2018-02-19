@@ -8,13 +8,14 @@ var user, Aid;
         var immuSQL     = "SELECT name FROM immunization;";
         var fhSQL       = "SELECT name FROM family_history;";
         var todoList    = "SELECT * from todo_list where account_id = "+req.session.Aid+";";
-        db.query(name + counts + chart + whoCurrentlyAdmitted + whoOPD + whoWARD + immuSQL + fhSQL + doctorList + patientList + monthlyPatientCount + todoList, Aid, function(err, rows, fields){
+        var availablePatientOPD = "SELECT * from patient where patient_id NOT IN(SELECT patient_id from initial_assessment);";
+        db.query(name + counts + chart + whoCurrentlyAdmitted + whoOPD + whoWARD + immuSQL + fhSQL + doctorList + availablePatientOPD + monthlyPatientCount + todoList, Aid, function(err, rows, fields){
           if (err) {
             console.log(err);
           }
           user = rows[0];
           res.render('nurse/dashboard', {counts:rows[1], chart:rows[2], whoCurrentlyAdmitted:rows[3], whoOPD:rows[4],whoWARD:rows[5], immu:rows[6],
-                                         fh:rows[7], doctorList:rows[8], patientList:rows[9], monthlyPatientCount:rows[10], todoList:rows[11], username: user});
+                                         fh:rows[7], doctorList:rows[8], availablePatientOPD:rows[9], monthlyPatientCount:rows[10], todoList:rows[11], username: user});
         });
       } else {
         res.redirect(req.session.sino+'/dashboard');
