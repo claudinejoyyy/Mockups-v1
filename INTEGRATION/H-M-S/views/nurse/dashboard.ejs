@@ -241,6 +241,7 @@
             <!-- /.box-header -->
             <div class="box-body">
               <ul class="todo-list">
+                <%for(var i=0; i < todoList.length; i++){%>
                 <li>
                   <!-- drag handle -->
                       <span class="handle">
@@ -250,59 +251,29 @@
                   <!-- checkbox -->
                   <input type="checkbox" value="">
                   <!-- todo text -->
-                  <span class="text">General Meeting at Lim Hall</span>
+                  <span class="text"><%= todoList[i].description%>:</span>
                   <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i>today @ 1400 hours</small>
+                  <small class="label label-info"><i class="fa fa-clock-o"></i><%= todoList[i].date%></small>
                   <!-- General tools such as edit or delete-->
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
                   </div>
                 </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="">
-                  <span class="text">Meeting with Operations Officer</span>
-                  <small class="label label-info"><i class="fa fa-clock-o"></i>tomorrow @ 0800 hours</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="">
-                  <span class="text">Meeting with Information Systems Officer</span>
-                  <small class="label label-warning"><i class="fa fa-clock-o"></i>Wednesday @ 1100 hours</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="">
-                  <span class="text">Sportsfest</span>
-                  <small class="label label-success"><i class="fa fa-clock-o"></i>Thursday @ 1300 hours</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
+                <%}%>
               </ul>
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix no-border">
-              <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+              <button type="button" name="button" onclick="showTodo()" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+              <form method="POST" onsubmit="parseDateNTime()">
+                <div id="showTodo" style="display:none;">
+                  <textarea name="description" rows="8" cols="80"></textarea>
+                  <br>
+                  <input type="datetime-local" name="dateNtime">
+                  <button type="submit" name="sub" value="addTodo">save</button>
+                </div>
+              </form>
             </div>
           </div>
           <!-- chart -->
