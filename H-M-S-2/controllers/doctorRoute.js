@@ -85,7 +85,7 @@ var user, Aid, availableBedss;
       if (req.session.sino == 'doctor') {
           if (data.sub == 'admit') {
             var bedSQL = 'UPDATE bed set allotment_timestamp = "'+currentTime+'", patient_id = '+req.query.patient_id+',status = "occupied" where bed_id = '+data.bedNumber+';';
-            db.query(bedSQL, function(err){
+            db.query(bedSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "bed", "Alloted bed number: '+data.bedNumber+'");', function(err){
               if (err) {
                 console.log(err);
               } else {
@@ -137,7 +137,7 @@ var user, Aid, availableBedss;
     if(req.session.email && req.session.sino == 'doctor'){
       if(req.session.sino == 'doctor') {
         var dischargeSQL = "UPDATE bed SET status = 'Unoccupied', allotment_timestamp = NULL, patient_id = NULL where bed_id = "+req.query.bed+";";
-        db.query(dischargeSQL, function(err, rows, fields){
+        db.query(dischargeSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "bedDischarge", "Discharged a patient from bed number : '+req.query.bed+'");', function(err, rows, fields){
           if(err){
             console.log(err);
           } else {
@@ -193,7 +193,7 @@ var user, Aid, availableBedss;
       if(req.session.email && req.session.sino == 'doctor'){
         if(req.session.sino == 'doctor') {
           var cancelAppointmentSQL = 'DELETE from appointment where appointment_id = '+req.query.appointmentId+';';
-          db.query(cancelAppointmentSQL, function(err){
+          db.query(cancelAppointmentSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "cancelAppointment", "Canceled appointment with: '+req.query.appointmentPatientName+'");', function(err){
             if(err){
               console.log(err);
             } else {
@@ -231,7 +231,7 @@ var user, Aid, availableBedss;
       if(req.session.email && req.session.sino == 'doctor'){
         if(req.session.sino == 'doctor') {
           var cancelPrescriptionSQL = 'DELETE from prescription where prescription_id = '+req.query.prescriptionId+';';
-          db.query(cancelPrescriptionSQL, function(err){
+          db.query(cancelPrescriptionSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "cancelPrescription", "Canceled prescription for: '+req.query.prescriptionPatientName+'");', function(err){
             if(err){
               console.log(err);
             } else {
@@ -269,7 +269,7 @@ var user, Aid, availableBedss;
       if(req.session.email && req.session.sino == 'doctor'){
         if(req.session.sino == 'doctor') {
           var cancelLabRequestSQL = 'DELETE from lab_request where request_id = '+req.query.requestId+';';
-          db.query(cancelLabRequestSQL, function(err){
+          db.query(cancelLabRequestSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "cancelLabRequest", "Canceled lab request for: '+req.query.labrequestPatientName+'");', function(err){
             if(err){
               console.log(err);
             } else {
@@ -309,7 +309,7 @@ var user, Aid, availableBedss;
       if (req.session.email && req.session.sino == 'doctor') {
         if (req.session.sino == 'doctor') {
           var updateProfileSQL = 'UPDATE user_accounts SET name = "'+data.name+'", age = '+data.age+', address = "'+data.address+'", phone = '+data.phone+' WHERE account_id = '+req.session.Aid+';';
-          db.query(updateProfileSQL, function(err, rows){
+          db.query(updateProfileSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "settingsProfileManagement", "Edited personal info.");', function(err, rows){
             if (err) {
               console.log(err);
             } else {

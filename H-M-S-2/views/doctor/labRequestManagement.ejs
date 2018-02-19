@@ -54,7 +54,7 @@
           <td><%=labrequestDetails[i].type%></td>
           <td><%=labrequestDetails[i].remarks%></td>
           <td><%=labrequestDetails[i].lab_status%></td>
-          <form action="/doctor/labRequestManagement?requestId=<%=labrequestDetails[i].request_id%>" method="post">
+          <form action="/doctor/labRequestManagement?requestId=<%=labrequestDetails[i].request_id%>&labrequestPatientName=<%=labrequestDetails[i].name%>" method="post">
             <td><button type="submit">cancel</button></td>
           </form>
         </tr>

@@ -48,7 +48,7 @@
           <td><%=appointmentDetails[i].name%></td>
           <td><%=appointmentDetails[i].appointment_timestamp%></td>
           <td><%=appointmentDetails[i].remarks%></td>
-          <form action="/doctor/appointmentManagement?appointmentId=<%=appointmentDetails[i].appointment_id%>" method="post">
+          <form action="/doctor/appointmentManagement?appointmentId=<%=appointmentDetails[i].appointment_id%>&appointmentPatientName=<%=appointmentDetails[i].name%>" method="post">
             <td><button type="submit">cancel</button></td>
           </form>
         </tr>
