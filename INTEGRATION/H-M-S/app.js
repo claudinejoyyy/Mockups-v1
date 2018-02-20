@@ -10,6 +10,7 @@ var session = require('express-session');
 var express = require('express');
 var moment = require('moment');
 var helmet = require('helmet');
+var validator = require('validator');
 var app = express();
 
 app.locals.moment = require('moment');
