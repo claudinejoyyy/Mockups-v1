@@ -30,61 +30,189 @@
 
 </head>
 
-  <body>
-    <nav>
-      <a href="../pharmacist/dashboard">dashboard</a><br>
-      <a href="../pharmacist/prescriptionManagement">prescriptionManagement</a><br>
-      <a href="../pharmacist/patientManagement">patientManagement</a><br>
-      <a href="../pharmacist/profileManagement">profile</a> <br>
-      <a href="../pharmacist/reports">reports</a>
+<body class="hold-transition skin-blue fixed sidebar-mini">
+
+<div class="wrapper">
+
+  <header class="main-header">
+    <a href="../pharmacist/dashboard" class="logo">
+      <span class="logo-mini"><b>P</b></span>
+      <span class="logo-lg"><b>Pharmacist</b></span>
+    </a>
+    <nav class="navbar navbar-static-top" role="navigation">
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="../dist/img/avatar3.png" class="user-image" alt="User Image">
+              <span class="hidden-xs"><%= username[0].name %></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="user-header">
+                <img src="../dist/img/avatar3.png" class="img-circle" alt="User Image">
+                <p>
+                  <%= username[0].name %> - Pharmacist
+                  <small></small>
+                </p>
+              </li>
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="../pharmacist/profileManagement" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="../logout" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </nav>
-    <h1>Welcome to Patient Management Dr. <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h1>
-    <table>
-      <tr>
-          <th>Patient Type</th>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Unit </th>
-          <th>Gender</th>
-          <th>Status</th>
-          <th>Birth Date</th>
-          <th>Address</th>
-          <th>Religion</th>
-          <th>Blood Type</th>
-          <th>Allergies</th>
-          <th>Father</th>
-          <th>Mother</th>
-          <th>Birth History</th>
-          <th>Rank</th>
-          <th>Immunization</th>
-          <th>Family History</th>
-      </tr>
-      <%
-      for(var i=0; i <p.length; i++){
-          var b = new Date(p[i].birth_date);
-      %>
-      <tr>
-        <td><%= p[i].patient_type %></td>
-        <td><%= p[i].name %></td>
-        <td><%= p[i].age %></td>
-        <td><%= p[i].unit %></td>
-        <td><%= p[i].sex %></td>
-        <td><%= p[i].status %></td>
-        <td><%= b.toLocaleDateString() %></td>
-        <td><%= p[i].address %></td>
-        <td><%= p[i].religion %></td>
-        <td><%= p[i].blood_type %></td>
-        <td><%= p[i].allergies %></td>
-        <td><%= p[i].father %></td>
-        <td><%= p[i].mother %></td>
-        <td><%= p[i].birth_history %></td>
-        <td><%= p[i].rankORsn %></td>
-        <td><%= p[i].immunization %></td>
-        <td><%= p[i].family_history %></td>
-      </tr>
-      <%}%>
-    </table>
+  </header>
 
+  <aside class="main-sidebar">
+    <section class="sidebar">
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="../dist/img/avatar3.png" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p><%= username[0].name %></p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
 
+    <ul class="sidebar-menu">
+        <li class="header">Account Management</li>
+        <li><a href=../pharmacist/dashboard><i class="fa fa-link"></i> <span> Dashboard </span></a></li>
+        <li><a href=../pharmacist/prescriptionManagement><i class="fa fa-link"></i> <span> Prescriptions Management</span></a></li>
+        <li class="active"><a href="../pharmacist/patientManagement" target="_self"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
+        <li><a href=../pharmacist/profileManagement><i class="fa fa-link"></i> <span> Profile Management </span></a></li>
+        <li><a href=../pharmacist/reports><i class="fa fa-link"></i> <span> Reports </span></a></li>
+      </ul>
+    </section>
+  </aside>  
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Patient Management
+        <small></small>
+      </h1>    
+    </section>
+   
+    <section class="content">
+
+       <div class="row">
+        <div class="col-xs-12">
+
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Patient Type</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Unit </th>
+                    <th>Gender</th>
+                    <th>Status</th>
+                    <th>Birth Date</th>
+                    <th>Address</th>
+                    <th>Religion</th>
+                    <th>Blood Type</th>
+                    <th>Allergies</th>
+                    <th>Father</th>
+                    <th>Mother</th>
+                    <th>Birth History</th>
+                    <th>Rank</th>
+                    <th>Immunization</th>
+                    <th>Family History</th>
+                  </tr>
+                </thead>
+
+                <%
+                for(var i=0; i <p.length; i++){
+                    var b = new Date(p[i].birth_date);
+                %>
+                <tr>
+                  <td><%= p[i].patient_type %></td>
+                  <td><%= p[i].name %></td>
+                  <td><%= p[i].age %></td>
+                  <td><%= p[i].unit %></td>
+                  <td><%= p[i].sex %></td>
+                  <td><%= p[i].status %></td>
+                  <td><%= b.toLocaleDateString() %></td>
+                  <td><%= p[i].address %></td>
+                  <td><%= p[i].religion %></td>
+                  <td><%= p[i].blood_type %></td>
+                  <td><%= p[i].allergies %></td>
+                  <td><%= p[i].father %></td>
+                  <td><%= p[i].mother %></td>
+                  <td><%= p[i].birth_history %></td>
+                  <td><%= p[i].rankORsn %></td>
+                  <td><%= p[i].immunization %></td>
+                  <td><%= p[i].family_history %></td>
+                </tr>
+                <%}%>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>             
+    </section>
+  </div>
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1
+    </div>
+    <strong>Copyright &copy; 2018.</strong> Philippine Military Academy | Fort Del Pilar Station Hospital | All rights reserved.
+  </footer>
+
+  <div class="control-sidebar-bg"></div>
+</div>
+
+<!-- jQuery 2.2.3 -->
+<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/app.min.js"></script>
+<!-- DataTables -->
+<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../plugins/fastclick/fastclick.js"></script>
+
+<script type="text/javascript">
+  $(function () {
+    $("#example1").DataTable();
+    $("#example2").DataTable();
+//    $('#example2').DataTable({
+//      "paging": true,
+//      "lengthChange": true,
+//      "searching": true,
+//      "ordering": true,
+//      "info": true,
+//      "autoWidth": true
+//    });
+  });
+</script>
 </body>
 </html>
