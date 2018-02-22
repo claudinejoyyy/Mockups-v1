@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 18, 2018 at 11:51 AM
+-- Generation Time: Feb 22, 2018 at 07:27 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -35,279 +35,47 @@ CREATE TABLE IF NOT EXISTS `activity_logs` (
   `time` datetime NOT NULL,
   `type` text NOT NULL,
   `remarks` text NOT NULL,
+  `patient_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`logs_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=498 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `activity_logs`
 --
 
-INSERT INTO `activity_logs` (`logs_id`, `account_id`, `time`, `type`, `remarks`) VALUES
-(233, 3, '2018-02-11 01:15:15', 'log', 'Logged in'),
-(234, 3, '2018-02-11 01:15:15', 'add', 'Added: military officer - zxcweqe'),
-(235, 3, '2018-02-11 02:12:39', 'log', 'Logged in'),
-(236, 3, '2018-02-11 02:12:39', 'log', 'Logged out'),
-(237, 2, '2018-02-11 02:12:39', 'log', 'Logged in'),
-(238, 2, '2018-02-11 02:21:54', 'log', 'Logged in'),
-(239, 2, '2018-02-11 02:23:23', 'log', 'Logged in'),
-(240, 2, '2018-02-11 02:28:23', 'log', 'Logged in'),
-(241, 2, '2018-02-11 02:28:40', 'log', 'Logged in'),
-(242, 2, '2018-02-11 02:29:22', 'log', 'Logged in'),
-(243, 2, '2018-02-11 02:31:05', 'log', 'Logged in'),
-(244, 3, '2018-02-11 02:32:36', 'log', 'Logged in'),
-(245, 3, '2018-02-11 02:32:36', 'log', 'Logged out'),
-(246, 2, '2018-02-11 02:32:36', 'log', 'Logged in'),
-(247, 2, '2018-02-11 18:11:33', 'log', 'Logged in'),
-(248, 2, '2018-02-11 18:12:42', 'log', 'Logged in'),
-(249, 2, '2018-02-11 18:17:31', 'log', 'Logged in'),
-(250, 3, '2018-02-11 18:20:27', 'log', 'Logged in'),
-(251, 3, '2018-02-11 18:20:27', 'log', 'Logged out'),
-(252, 3, '2018-02-11 18:31:14', 'log', 'Logged in'),
-(253, 3, '2018-02-11 18:31:14', 'log', 'Logged out'),
-(254, 3, '2018-02-11 18:38:22', 'log', 'Logged in'),
-(255, 3, '2018-02-11 18:38:22', 'log', 'Logged out'),
-(256, 3, '2018-02-11 19:18:51', 'log', 'Logged in'),
-(257, 3, '2018-02-11 19:18:51', 'log', 'Logged out'),
-(258, 2, '2018-02-11 19:18:51', 'log', 'Logged in'),
-(259, 2, '2018-02-11 19:18:51', 'log', 'Logged out'),
-(260, 3, '2018-02-11 19:18:51', 'log', 'Logged in'),
-(261, 3, '2018-02-11 19:18:51', 'log', 'Logged out'),
-(262, 2, '2018-02-11 19:18:51', 'log', 'Logged in'),
-(263, 2, '2018-02-11 19:18:51', 'log', 'Logged out'),
-(264, 3, '2018-02-11 19:18:51', 'log', 'Logged in'),
-(265, 3, '2018-02-11 19:23:22', 'log', 'Logged in'),
-(266, 3, '2018-02-11 19:23:22', 'log', 'Logged out'),
-(267, 2, '2018-02-11 19:23:22', 'log', 'Logged in'),
-(268, 3, '2018-02-11 19:28:47', 'log', 'Logged in'),
-(269, 3, '2018-02-11 19:28:47', 'log', 'Logged out'),
-(270, 2, '2018-02-11 19:28:47', 'log', 'Logged in'),
-(271, 3, '2018-02-11 19:29:15', 'log', 'Logged in'),
-(272, 3, '2018-02-11 19:29:15', 'log', 'Logged out'),
-(273, 2, '2018-02-11 19:29:15', 'log', 'Logged in'),
-(274, 2, '2018-02-11 19:29:15', 'log', 'Logged out'),
-(275, 3, '2018-02-14 00:24:47', 'log', 'Logged in'),
-(276, 3, '2018-02-14 19:57:23', 'log', 'Logged in'),
-(277, 3, '2018-02-14 20:36:20', 'log', 'Logged in'),
-(278, 3, '2018-02-14 21:00:07', 'log', 'Logged in'),
-(279, 3, '2018-02-14 21:00:58', 'log', 'Logged in'),
-(280, 3, '2018-02-14 21:03:41', 'log', 'Logged in'),
-(281, 3, '2018-02-14 21:05:05', 'log', 'Logged in'),
-(282, 3, '2018-02-14 21:11:50', 'log', 'Logged in'),
-(283, 3, '2018-02-14 21:11:50', 'log', 'Logged out'),
-(284, 2, '2018-02-14 21:11:50', 'log', 'Logged in'),
-(285, 2, '2018-02-14 21:11:50', 'log', 'Logged out'),
-(286, 3, '2018-02-14 21:11:50', 'log', 'Logged in'),
-(287, 3, '2018-02-14 23:50:08', 'log', 'Logged in'),
-(288, 3, '2018-02-14 23:52:10', 'log', 'Logged in'),
-(289, 3, '2018-02-14 23:52:52', 'log', 'Logged in'),
-(290, 3, '2018-02-14 23:53:56', 'log', 'Logged in'),
-(291, 3, '2018-02-14 23:55:05', 'log', 'Logged in'),
-(292, 3, '2018-02-15 00:16:04', 'log', 'Logged in'),
-(293, 3, '2018-02-15 21:37:10', 'log', 'Logged in'),
-(294, 3, '2018-02-15 21:37:10', 'log', 'Logged out'),
-(295, 2, '2018-02-15 21:37:10', 'log', 'Logged in'),
-(296, 2, '2018-02-15 21:41:28', 'log', 'Logged in'),
-(297, 2, '2018-02-15 21:42:29', 'log', 'Logged in'),
-(298, 2, '2018-02-15 21:43:02', 'log', 'Logged in'),
-(299, 4, '2018-02-15 21:45:12', 'log', 'Logged in'),
-(300, 4, '2018-02-15 21:46:14', 'log', 'Logged in'),
-(301, 4, '2018-02-15 21:46:46', 'log', 'Logged in'),
-(302, 4, '2018-02-15 21:48:25', 'log', 'Logged in'),
-(303, 4, '2018-02-15 21:48:58', 'log', 'Logged in'),
-(304, 2, '2018-02-15 21:50:06', 'log', 'Logged in'),
-(305, 2, '2018-02-15 21:50:06', 'log', 'Logged out'),
-(306, 3, '2018-02-15 21:50:06', 'log', 'Logged in'),
-(307, 3, '2018-02-15 21:50:06', 'log', 'Logged out'),
-(308, 4, '2018-02-15 21:50:06', 'log', 'Logged in'),
-(309, 4, '2018-02-15 21:52:40', 'log', 'Logged in'),
-(310, 2, '2018-02-15 21:55:56', 'log', 'Logged in'),
-(311, 2, '2018-02-15 21:55:56', 'log', 'Logged out'),
-(312, 4, '2018-02-15 21:55:56', 'log', 'Logged in'),
-(313, 4, '2018-02-15 21:59:43', 'log', 'Logged in'),
-(314, 4, '2018-02-15 21:59:43', 'log', 'Logged out'),
-(315, 2, '2018-02-15 21:59:43', 'log', 'Logged in'),
-(316, 2, '2018-02-15 21:59:43', 'log', 'Logged out'),
-(317, 3, '2018-02-15 21:59:43', 'log', 'Logged in'),
-(318, 3, '2018-02-15 21:59:43', 'log', 'Logged out'),
-(319, 4, '2018-02-15 21:59:43', 'log', 'Logged in'),
-(320, 4, '2018-02-15 21:59:43', 'log', 'Logged out'),
-(321, 4, '2018-02-15 22:01:26', 'log', 'Logged in'),
-(322, 4, '2018-02-15 22:01:50', 'log', 'Logged in'),
-(323, 4, '2018-02-15 22:03:04', 'log', 'Logged in'),
-(324, 3, '2018-02-15 22:12:55', 'log', 'Logged in'),
-(325, 3, '2018-02-15 22:12:55', 'todo', 'Added : asdwasda to To Do List'),
-(326, 4, '2018-02-15 22:26:01', 'log', 'Logged in'),
-(327, 4, '2018-02-15 22:26:30', 'log', 'Logged in'),
-(328, 4, '2018-02-15 22:27:03', 'log', 'Logged in'),
-(329, 4, '2018-02-15 22:27:03', 'todo', 'Added to To Do List the following: zxcasdqweasd'),
-(330, 4, '2018-02-15 22:27:03', 'log', 'Logged out'),
-(331, 3, '2018-02-15 22:27:03', 'log', 'Logged in'),
-(332, 3, '2018-02-15 22:32:46', 'log', 'Logged in'),
-(333, 3, '2018-02-15 22:34:54', 'log', 'Logged in'),
-(334, 3, '2018-02-15 22:34:54', 'log', 'Logged out'),
-(335, 4, '2018-02-15 22:35:26', 'log', 'Logged in'),
-(336, 4, '2018-02-15 22:54:16', 'log', 'Logged in'),
-(337, 4, '2018-02-15 22:55:49', 'log', 'Logged in'),
-(338, 4, '2018-02-15 22:56:23', 'log', 'Logged in'),
-(339, 4, '2018-02-15 22:58:05', 'log', 'Logged in'),
-(340, 4, '2018-02-15 22:58:05', 'appointment', 'Set Appointment with undefined on 2018-02-19 04:04:00'),
-(341, 3, '2018-02-16 21:05:05', 'log', 'Logged in'),
-(342, 3, '2018-02-16 21:08:50', 'log', 'Logged in'),
-(343, 3, '2018-02-16 21:08:50', 'initialAssessment', 'assessment for 44'),
-(344, 3, '2018-02-16 21:08:50', 'log', 'Logged out'),
-(345, 4, '2018-02-16 21:08:50', 'log', 'Logged in'),
-(346, 4, '2018-02-16 21:08:50', 'log', 'Logged out'),
-(347, 3, '2018-02-16 21:08:50', 'log', 'Logged in'),
-(348, 3, '2018-02-16 22:09:47', 'log', 'Logged in'),
-(349, 3, '2018-02-16 22:09:47', 'log', 'Logged out'),
-(350, 4, '2018-02-16 22:09:47', 'log', 'Logged in'),
-(351, 4, '2018-02-16 22:10:26', 'log', 'Logged in'),
-(352, 4, '2018-02-16 22:11:24', 'log', 'Logged in'),
-(353, 4, '2018-02-16 22:11:46', 'log', 'Logged in'),
-(354, 4, '2018-02-16 22:12:18', 'log', 'Logged in'),
-(355, 4, '2018-02-16 22:20:16', 'log', 'Logged in'),
-(356, 4, '2018-02-16 22:21:29', 'log', 'Logged in'),
-(357, 4, '2018-02-16 22:25:05', 'log', 'Logged in'),
-(358, 4, '2018-02-16 22:30:59', 'log', 'Logged in'),
-(359, 4, '2018-02-16 22:32:05', 'log', 'Logged in'),
-(360, 4, '2018-02-16 22:33:03', 'log', 'Logged in'),
-(361, 4, '2018-02-16 22:33:36', 'log', 'Logged in'),
-(362, 4, '2018-02-16 22:35:54', 'log', 'Logged in'),
-(363, 4, '2018-02-16 22:36:36', 'log', 'Logged in'),
-(364, 4, '2018-02-16 22:37:00', 'log', 'Logged in'),
-(365, 4, '2018-02-16 22:37:24', 'log', 'Logged in'),
-(366, 4, '2018-02-16 22:38:39', 'log', 'Logged in'),
-(367, 4, '2018-02-16 22:39:37', 'log', 'Logged in'),
-(368, 4, '2018-02-16 22:40:17', 'log', 'Logged in'),
-(369, 4, '2018-02-16 22:42:59', 'log', 'Logged in'),
-(370, 4, '2018-02-16 22:43:43', 'log', 'Logged in'),
-(371, 4, '2018-02-16 22:44:20', 'log', 'Logged in'),
-(372, 4, '2018-02-16 22:44:55', 'log', 'Logged in'),
-(373, 4, '2018-02-16 22:45:33', 'log', 'Logged in'),
-(374, 4, '2018-02-16 22:46:37', 'log', 'Logged in'),
-(375, 4, '2018-02-16 22:47:04', 'log', 'Logged in'),
-(376, 4, '2018-02-16 22:48:03', 'log', 'Logged in'),
-(377, 4, '2018-02-16 22:49:07', 'log', 'Logged in'),
-(378, 4, '2018-02-16 22:50:42', 'log', 'Logged in'),
-(379, 4, '2018-02-16 22:51:08', 'log', 'Logged in'),
-(380, 4, '2018-02-16 22:51:27', 'log', 'Logged in'),
-(381, 4, '2018-02-16 22:51:58', 'log', 'Logged in'),
-(382, 4, '2018-02-16 22:52:43', 'log', 'Logged in'),
-(383, 4, '2018-02-16 22:53:43', 'log', 'Logged in'),
-(384, 4, '2018-02-16 22:54:21', 'log', 'Logged in'),
-(385, 4, '2018-02-16 22:54:48', 'log', 'Logged in'),
-(386, 4, '2018-02-16 22:57:53', 'log', 'Logged in'),
-(387, 4, '2018-02-16 23:00:07', 'log', 'Logged in'),
-(388, 4, '2018-02-16 23:00:42', 'log', 'Logged in'),
-(389, 4, '2018-02-16 23:01:01', 'log', 'Logged in'),
-(390, 4, '2018-02-16 23:05:28', 'log', 'Logged in'),
-(391, 4, '2018-02-16 23:06:23', 'log', 'Logged in'),
-(392, 4, '2018-02-16 23:06:55', 'log', 'Logged in'),
-(393, 4, '2018-02-16 23:07:55', 'log', 'Logged in'),
-(394, 4, '2018-02-16 23:11:39', 'log', 'Logged in'),
-(395, 4, '2018-02-16 23:12:45', 'log', 'Logged in'),
-(396, 4, '2018-02-16 23:25:56', 'log', 'Logged in'),
-(397, 4, '2018-02-16 23:27:16', 'log', 'Logged in'),
-(398, 4, '2018-02-16 23:28:59', 'log', 'Logged in'),
-(399, 4, '2018-02-16 23:29:18', 'log', 'Logged in'),
-(400, 4, '2018-02-17 17:53:16', 'log', 'Logged in'),
-(401, 4, '2018-02-17 18:09:14', 'log', 'Logged in'),
-(402, 4, '2018-02-17 18:33:05', 'log', 'Logged in'),
-(403, 4, '2018-02-17 19:32:46', 'log', 'Logged in'),
-(404, 4, '2018-02-17 19:33:54', 'log', 'Logged in'),
-(405, 4, '2018-02-17 19:38:45', 'log', 'Logged in'),
-(406, 4, '2018-02-17 19:40:52', 'log', 'Logged in'),
-(407, 3, '2018-02-17 19:41:42', 'log', 'Logged in'),
-(408, 4, '2018-02-17 19:45:19', 'log', 'Logged in'),
-(409, 4, '2018-02-17 19:45:19', 'log', 'Logged out'),
-(410, 4, '2018-02-17 19:45:19', 'log', 'Logged in'),
-(411, 3, '2018-02-17 19:46:34', 'log', 'Logged in'),
-(412, 4, '2018-02-17 19:50:17', 'log', 'Logged in'),
-(413, 3, '2018-02-17 19:50:29', 'log', 'Logged in'),
-(414, 3, '2018-02-17 19:50:29', 'log', 'Logged out'),
-(415, 4, '2018-02-17 19:54:42', 'log', 'Logged in'),
-(416, 4, '2018-02-17 19:56:44', 'log', 'Logged in'),
-(417, 4, '2018-02-17 20:00:04', 'log', 'Logged in'),
-(418, 4, '2018-02-17 20:01:58', 'log', 'Logged in'),
-(419, 4, '2018-02-17 20:03:48', 'log', 'Logged in'),
-(420, 4, '2018-02-17 20:04:06', 'log', 'Logged in'),
-(421, 4, '2018-02-17 20:04:06', 'log', 'Logged out'),
-(422, 3, '2018-02-17 20:04:06', 'log', 'Logged in'),
-(423, 3, '2018-02-17 20:04:06', 'log', 'Logged out'),
-(424, 4, '2018-02-17 20:04:06', 'log', 'Logged in'),
-(425, 4, '2018-02-17 20:04:06', 'log', 'Logged out'),
-(426, 3, '2018-02-17 20:04:06', 'log', 'Logged in'),
-(427, 3, '2018-02-17 20:11:35', 'log', 'Logged in'),
-(428, 3, '2018-02-17 20:26:07', 'log', 'Logged in'),
-(429, 3, '2018-02-17 20:29:49', 'log', 'Logged in'),
-(430, 3, '2018-02-17 20:30:10', 'log', 'Logged in'),
-(431, 3, '2018-02-17 20:37:28', 'log', 'Logged in'),
-(432, 3, '2018-02-17 20:39:05', 'log', 'Logged in'),
-(433, 3, '2018-02-17 20:49:02', 'log', 'Logged in'),
-(434, 3, '2018-02-17 20:50:20', 'log', 'Logged in'),
-(435, 4, '2018-02-17 20:56:42', 'log', 'Logged in'),
-(436, 4, '2018-02-17 20:56:42', 'appointment', 'Set Appointment with undefined on 2018-02-13 02:00:00'),
-(437, 4, '2018-02-17 21:00:33', 'log', 'Logged in'),
-(438, 4, '2018-02-17 21:03:43', 'log', 'Logged in'),
-(439, 4, '2018-02-17 21:04:26', 'log', 'Logged in'),
-(440, 4, '2018-02-17 21:04:26', 'log', 'Logged out'),
-(441, 3, '2018-02-17 21:04:26', 'log', 'Logged in'),
-(442, 3, '2018-02-17 21:04:26', 'log', 'Logged out'),
-(443, 4, '2018-02-17 21:04:26', 'log', 'Logged in'),
-(444, 4, '2018-02-17 21:04:26', 'log', 'Logged out'),
-(445, 3, '2018-02-17 21:04:26', 'log', 'Logged in'),
-(446, 3, '2018-02-17 21:04:26', 'log', 'Logged out'),
-(447, 4, '2018-02-17 21:04:26', 'log', 'Logged in'),
-(448, 4, '2018-02-17 21:04:26', 'log', 'Logged out'),
-(449, 3, '2018-02-17 21:04:26', 'log', 'Logged in'),
-(450, 3, '2018-02-17 21:04:26', 'log', 'Logged out'),
-(451, 4, '2018-02-17 21:04:26', 'log', 'Logged in'),
-(452, 4, '2018-02-17 21:17:44', 'log', 'Logged in'),
-(453, 4, '2018-02-17 21:17:44', 'log', 'Logged out'),
-(454, 3, '2018-02-17 21:17:44', 'log', 'Logged in'),
-(455, 3, '2018-02-17 21:22:25', 'log', 'Logged in'),
-(456, 3, '2018-02-17 21:22:25', 'log', 'Logged out'),
-(457, 4, '2018-02-17 21:22:25', 'log', 'Logged in'),
-(458, 3, '2018-02-17 21:35:30', 'log', 'Logged in'),
-(459, 3, '2018-02-17 21:35:42', 'log', 'Logged in'),
-(460, 3, '2018-02-17 21:35:42', 'initialAssessment', 'assessment for 43'),
-(461, 3, '2018-02-17 21:35:42', 'log', 'Logged out'),
-(462, 4, '2018-02-17 21:35:42', 'log', 'Logged in'),
-(463, 3, '2018-02-17 21:48:50', 'log', 'Logged in'),
-(464, 3, '2018-02-17 21:48:50', 'initialAssessment', 'assessment for 45'),
-(465, 3, '2018-02-17 21:54:03', 'log', 'Logged in'),
-(466, 3, '2018-02-17 21:54:03', 'log', 'Logged out'),
-(467, 4, '2018-02-18 13:16:28', 'log', 'Logged in'),
-(468, 4, '2018-02-18 13:47:52', 'log', 'Logged in'),
-(469, 4, '2018-02-18 13:48:46', 'log', 'Logged in'),
-(470, 4, '2018-02-18 13:49:35', 'log', 'Logged in'),
-(471, 4, '2018-02-18 14:03:31', 'log', 'Logged in'),
-(472, 4, '2018-02-18 14:03:51', 'log', 'Logged in'),
-(473, 4, '2018-02-18 14:04:06', 'log', 'Logged in'),
-(474, 4, '2018-02-18 14:05:51', 'log', 'Logged in'),
-(475, 4, '2018-02-18 14:06:03', 'log', 'Logged in'),
-(476, 4, '2018-02-18 14:06:41', 'log', 'Logged in'),
-(477, 4, '2018-02-18 14:28:50', 'log', 'Logged in'),
-(478, 4, '2018-02-18 14:30:13', 'log', 'Logged in'),
-(479, 4, '2018-02-18 14:31:03', 'log', 'Logged in'),
-(480, 4, '2018-02-18 14:32:34', 'log', 'Logged in'),
-(481, 4, '2018-02-18 14:43:23', 'log', 'Logged in'),
-(482, 4, '2018-02-18 14:44:58', 'log', 'Logged in'),
-(483, 4, '2018-02-18 14:47:08', 'log', 'Logged in'),
-(484, 4, '2018-02-18 17:43:00', 'log', 'Logged in'),
-(485, 4, '2018-02-18 17:43:00', 'log', 'Logged out'),
-(486, 3, '2018-02-18 17:43:00', 'log', 'Logged in'),
-(487, 3, '2018-02-18 17:43:00', 'add', 'Added: cadet - asdqwe'),
-(488, 3, '2018-02-18 17:43:00', 'log', 'Logged out'),
-(489, 4, '2018-02-18 17:43:00', 'log', 'Logged in'),
-(490, 4, '2018-02-18 18:05:16', 'log', 'Logged in'),
-(491, 4, '2018-02-18 18:12:15', 'log', 'Logged in'),
-(492, 4, '2018-02-18 18:15:06', 'log', 'Logged in'),
-(493, 4, '2018-02-18 18:16:27', 'log', 'Logged in'),
-(494, 4, '2018-02-18 18:25:39', 'log', 'Logged in'),
-(495, 4, '2018-02-18 18:37:17', 'log', 'Logged in'),
-(496, 4, '2018-02-18 19:17:06', 'log', 'Logged in'),
-(497, 3, '2018-02-18 19:44:05', 'log', 'Logged in');
+INSERT INTO `activity_logs` (`logs_id`, `account_id`, `time`, `type`, `remarks`, `patient_id`) VALUES
+(5, 4, '2018-02-23 02:25:44', 'bed', 'Alloted bed number: 1', 42),
+(6, 4, '2018-02-23 02:25:44', 'bed', 'Alloted bed number: 2', 48),
+(7, 4, '2018-02-23 02:25:44', 'bed', 'Alloted bed number: 3', 45),
+(8, 4, '2018-02-23 02:25:44', 'bed', 'Alloted bed number: 4', 46),
+(9, 4, '2018-02-23 02:25:44', 'bedDischarge', 'Discharged a patient from bed number : 4', NULL),
+(10, 4, '2018-02-23 02:25:44', 'bedDischarge', 'Discharged a patient from bed number : 3', NULL),
+(11, 4, '2018-02-23 02:25:44', 'bedDischarge', 'Discharged a patient from bed number : 2', NULL),
+(12, 4, '2018-02-23 02:25:44', 'bedDischarge', 'Discharged a patient from bed number : 1', NULL),
+(13, 4, '2018-02-23 02:25:44', 'bed', 'Alloted bed number: 1', 42),
+(14, 4, '2018-02-23 02:25:44', 'bed', 'Alloted bed number: 2', 48),
+(15, 4, '2018-02-23 02:25:44', 'bed', 'Alloted bed number: 3', 45),
+(16, 4, '2018-02-23 02:25:44', 'bed', 'Alloted bed number: 4', 46),
+(17, 4, '2018-02-23 02:25:44', 'appointment', 'Set Appointment with Paul Je on 2018-02-01 01:00:00', NULL),
+(18, 4, '2018-02-23 02:46:49', 'log', 'Logged in', NULL),
+(19, 4, '2018-02-23 02:46:49', 'log', 'Logged out', NULL),
+(20, 3, '2018-02-23 02:46:49', 'log', 'Logged in', NULL),
+(21, 3, '2018-02-23 02:46:49', 'initialAssessment', 'assessment for 47', NULL),
+(22, 3, '2018-02-23 02:46:49', 'log', 'Logged out', NULL),
+(23, 4, '2018-02-23 02:46:49', 'log', 'Logged in', NULL),
+(24, 3, '2018-02-23 02:54:58', 'log', 'Logged in', NULL),
+(25, 3, '2018-02-23 02:59:21', 'log', 'Logged in', NULL),
+(26, 3, '2018-02-23 03:02:44', 'log', 'Logged in', NULL),
+(27, 3, '2018-02-23 03:02:44', 'initialAssessment', 'assessment for undefined', 50),
+(28, 3, '2018-02-23 03:04:30', 'log', 'Logged in', NULL),
+(29, 3, '2018-02-23 03:04:30', 'add', 'Added: cadet - z', NULL),
+(30, 3, '2018-02-23 03:04:30', 'log', 'Logged out', NULL),
+(31, 4, '2018-02-23 03:04:30', 'log', 'Logged in', NULL),
+(32, 4, '2018-02-23 03:04:30', 'cancelPrescription', 'Canceled prescription for: ma mon', NULL),
+(33, 4, '2018-02-23 03:04:30', 'cancelPrescription', 'Canceled prescription for: ma mon', NULL),
+(34, 4, '2018-02-23 03:21:01', 'log', 'Logged in', NULL),
+(35, 4, '2018-02-23 03:21:51', 'log', 'Logged in', NULL),
+(36, 4, '2018-02-23 03:23:41', 'log', 'Logged in', NULL);
 
 -- --------------------------------------------------------
 
@@ -358,15 +126,17 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   `patient_id` int(11) NOT NULL,
   `remarks` text,
   PRIMARY KEY (`appointment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `appointment`
 --
 
 INSERT INTO `appointment` (`appointment_id`, `appointment_timestamp`, `doctor_id`, `patient_id`, `remarks`) VALUES
-(2, '2018-02-18 20:04:00', 4, 51, 'zxcasdqweasd'),
-(3, '2018-02-12 18:00:00', 4, 42, 'ngayon may appoint ako');
+(5, '2018-02-08 07:00:00', 4, 42, 'asczxcqweasd'),
+(6, '2018-02-08 08:02:00', 4, 42, 'asczxczxcasdqwe'),
+(7, '2018-03-24 05:00:00', 4, 42, 'zxcadasdzxc'),
+(8, '2018-01-31 17:00:00', 4, 42, 'zxcasd');
 
 -- --------------------------------------------------------
 
@@ -389,15 +159,15 @@ CREATE TABLE IF NOT EXISTS `bed` (
 --
 
 INSERT INTO `bed` (`bed_id`, `status`, `allotment_timestamp`, `description`, `patient_id`) VALUES
-(1, 'occupied', '2018-02-18 13:49:35', NULL, 48),
-(2, 'occupied', '2018-02-04 18:55:23', NULL, 42),
-(3, 'occupied', '2018-02-18 14:04:06', NULL, 45),
-(4, 'occupied', '2018-02-01 21:13:35', NULL, 44),
-(5, 'occupied', '2018-02-18 14:06:41', NULL, 42),
-(6, 'occupied', '2018-02-18 14:06:41', NULL, 42),
-(7, 'occupied', '2018-02-01 21:13:41', NULL, 45),
+(1, 'occupied', '2018-02-23 02:25:44', NULL, 42),
+(2, 'occupied', '2018-02-23 02:25:44', NULL, 48),
+(3, 'occupied', '2018-02-23 02:25:44', NULL, 45),
+(4, 'occupied', '2018-02-23 02:25:44', NULL, 46),
+(5, 'Unoccupied', NULL, NULL, NULL),
+(6, 'Unoccupied', NULL, NULL, NULL),
+(7, 'Unoccupied', NULL, NULL, NULL),
 (8, 'Unoccupied', NULL, NULL, NULL),
-(9, 'occupied', '2018-02-04 18:58:56', NULL, 43),
+(9, 'Unoccupied', NULL, NULL, NULL),
 (10, 'Unoccupied', NULL, NULL, NULL),
 (11, 'Unoccupied', NULL, NULL, NULL),
 (12, 'Unoccupied', NULL, NULL, NULL),
@@ -410,8 +180,8 @@ INSERT INTO `bed` (`bed_id`, `status`, `allotment_timestamp`, `description`, `pa
 (19, 'Unoccupied', NULL, NULL, NULL),
 (20, 'Unoccupied', NULL, NULL, NULL),
 (21, 'Unoccupied', NULL, NULL, NULL),
-(22, 'occupied', '2018-02-04 18:59:16', NULL, 46),
-(23, 'occupied', '2018-02-04 19:29:57', NULL, 47),
+(22, 'Unoccupied', NULL, NULL, NULL),
+(23, 'Unoccupied', NULL, NULL, NULL),
 (24, 'Unoccupied', NULL, NULL, NULL),
 (25, 'Unoccupied', NULL, NULL, NULL),
 (26, 'Unoccupied', NULL, NULL, NULL),
@@ -508,51 +278,6 @@ INSERT INTO `department` (`dep_id`, `name`) VALUES
 (1, 'OPD'),
 (2, 'ER'),
 (3, 'Ward');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `diagnosis_report`
---
-
-DROP TABLE IF EXISTS `diagnosis_report`;
-CREATE TABLE IF NOT EXISTS `diagnosis_report` (
-  `diag_report_id` int(11) NOT NULL AUTO_INCREMENT,
-  `report_type` text NOT NULL,
-  `document_type` text NOT NULL,
-  `file_name` varchar(30) NOT NULL,
-  `description` text NOT NULL,
-  `timestamp` timestamp NOT NULL,
-  PRIMARY KEY (`diag_report_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `diagnosis_report`
---
-
-INSERT INTO `diagnosis_report` (`diag_report_id`, `report_type`, `document_type`, `file_name`, `description`, `timestamp`) VALUES
-(1, 'X-Ray', 'Text', 'X-Ray.jpeg', 'asdasqwe asdasqwe asdasqwe asdasqwe', '2017-11-29 16:00:00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `diagnosis_request`
---
-
-DROP TABLE IF EXISTS `diagnosis_request`;
-CREATE TABLE IF NOT EXISTS `diagnosis_request` (
-  `request_id` int(11) NOT NULL AUTO_INCREMENT,
-  `creation_stamp` timestamp NOT NULL,
-  `test_requested` varchar(30) NOT NULL,
-  PRIMARY KEY (`request_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `diagnosis_request`
---
-
-INSERT INTO `diagnosis_request` (`request_id`, `creation_stamp`, `test_requested`) VALUES
-(1, '2017-11-29 16:00:00', 'X-Ray');
 
 -- --------------------------------------------------------
 
@@ -656,7 +381,7 @@ CREATE TABLE IF NOT EXISTS `initial_assessment` (
   PRIMARY KEY (`assessment_id`),
   KEY `patient_id` (`patient_id`),
   KEY `account_id` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `initial_assessment`
@@ -667,7 +392,11 @@ INSERT INTO `initial_assessment` (`assessment_id`, `assessment`, `date`, `patien
 (2, 'asdqwe', '2018-02-14 23:53:56', 48, 4, ''),
 (4, 'may sakit ', '2018-02-16 21:08:50', 44, 3, 'a\nq\nw\ne\nr\nt\ny'),
 (5, 'ito ano', '2018-02-17 21:35:42', 43, 3, 'ito ano\nito ano\nito ano\nito ano\nito ano\nito ano\nito ano'),
-(6, 'assessmentDoctor', '2018-02-17 21:48:50', 45, 4, 'assessmentDoctor\nassessmentDoctor\nassessmentDoctor\nassessmentDoctor\nassessmentDoctor\nassessmentDoctor\nassessmentDoctor');
+(6, 'assessmentDoctor', '2018-02-17 21:48:50', 45, 4, 'assessmentDoctor\nassessmentDoctor\nassessmentDoctor\nassessmentDoctor\nassessmentDoctor\nassessmentDoctor\nassessmentDoctor'),
+(7, 'zxcasdqwe', '2018-02-19 20:50:06', 46, 4, 'asd\nwe\neqdasd\nzxc\nxzc\nzxc\nezxc'),
+(8, 'azxc', '2018-02-23 02:46:49', 47, 4, 'a\nw\ne\nr\nt\ny\nu'),
+(9, 'z', '2018-02-23 02:59:21', 49, 4, 'a\nq\ne\nw\nr\nt\ny'),
+(10, 'a', '2018-02-23 03:02:44', 50, 4, 'a\nwe\nr\nt\ny\nu\nq');
 
 -- --------------------------------------------------------
 
@@ -687,16 +416,14 @@ CREATE TABLE IF NOT EXISTS `lab_request` (
   PRIMARY KEY (`request_id`),
   KEY `patient_id` (`patient_id`),
   KEY `doctor_id` (`doctor_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lab_request`
 --
 
 INSERT INTO `lab_request` (`request_id`, `type`, `timestamp`, `remarks`, `doctor_id`, `patient_id`, `lab_status`) VALUES
-(1, 'bloodChemistry', '2018-02-18 06:43:23', 'undefined', 4, 42, 'pending'),
-(2, 'hematology', '2018-02-18 06:44:58', 'undefined', 4, 48, 'pending'),
-(3, 'microbiology', '2018-02-18 06:47:08', 'I dont know !!', 4, 45, 'pending');
+(57, 'bloodChemistry', '2018-02-22 10:07:14', 'zxcad', 4, 42, 'pending');
 
 -- --------------------------------------------------------
 
@@ -772,7 +499,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `immunization` text,
   `family_history` text,
   PRIMARY KEY (`patient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `patient`
@@ -790,7 +517,9 @@ INSERT INTO `patient` (`patient_id`, `patient_type`, `name`, `age`, `unit`, `sex
 (50, 'military officer', 'qwe', 20, '', 'M', 'Maried', '2018-02-09', 'asd', '', '', '', '\n:', '\n:', '', '', 'Influenza:\n\n', 'DM\n\n'),
 (51, 'military officer', 'asdqweq', 25, '', 'M', 'Maried', '2018-02-13', 'asdasdqwe', '', '', '', '\n:', '\n:', '', '', 'Tetanus Toxoid:\n\n', 'DM\n\n'),
 (52, 'military officer', 'zxcweqe', 29, '', 'M', 'Maried', '2018-02-01', 'asdazxc', '', '', '', '\n:', '\n:', '', '', 'Tyroid:\n\n', '\n\nCVD\n\n'),
-(53, 'cadet', 'asdqwe', 15, '', 'M', 'Maried', '2018-02-08', 'asdqwe', '', '', '', '\n:', '\n:', '', '', '\n', '\n');
+(53, 'cadet', 'asdqwe', 15, '', 'M', 'Maried', '2018-02-08', 'asdqwe', '', '', '', '\n:', '\n:', '', '', '\n', '\n'),
+(54, 'military officer', 'asdqwe', 17, '', 'M', 'Single', '2018-02-01', 'zxcasd', '', '', '', '\n:', '\n:', '', '', 'Phenomia:2018-02\n\n', 'DM\nCVD\n\n'),
+(55, 'cadet', 'z', 2, '', 'M', 'Maried', '2018-02-01', 'a', '', '', '', '\n:', '\n:', '', '', '\n', '\n');
 
 -- --------------------------------------------------------
 
@@ -812,15 +541,16 @@ CREATE TABLE IF NOT EXISTS `prescription` (
   PRIMARY KEY (`prescription_id`),
   KEY `patient_id` (`patient_id`),
   KEY `doctor_id` (`doctor_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `prescription`
 --
 
 INSERT INTO `prescription` (`prescription_id`, `creation_stamp`, `medicine`, `quantity`, `dosage`, `timeframe`, `doctor_id`, `patient_id`, `status`) VALUES
-(2, '2018-02-18 06:31:03', 'solmux', 4, '3 times a day', 'for 2 weeks', 4, 42, 'pending'),
-(3, '2018-02-18 06:32:34', 'gamot', 2, '5 every 3 hours', 'for 1 week', 4, 48, 'pending');
+(6, '2018-02-20 10:29:37', 'asdzxc', 3, '2 T a D', 'asdqwe', 3, 42, 'confirmed'),
+(7, '2018-02-20 10:29:37', 'asdzxc', 1, 'qweasd', 'zxc', 4, 42, 'confirmed'),
+(8, '2018-02-20 10:30:48', 'xczc', 1, 'asczxc', 'zxc', 4, 42, 'pending');
 
 -- --------------------------------------------------------
 
@@ -884,7 +614,7 @@ CREATE TABLE IF NOT EXISTS `todo_list` (
   `account_id` int(11) NOT NULL,
   PRIMARY KEY (`todo_id`),
   KEY `account_id` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `todo_list`
@@ -894,7 +624,14 @@ INSERT INTO `todo_list` (`todo_id`, `description`, `date`, `account_id`) VALUES
 (1, 'asdqwe', '2018-02-01 03:30:00', 3),
 (2, 'wasd', '2018-02-01 01:20:00', 3),
 (3, 'asdwasda', '2018-02-14 01:00:00', 3),
-(4, 'zxcasdqweasd', '2018-02-07 03:03:00', 4);
+(4, 'zxcasdqweasd', '2018-02-07 03:03:00', 4),
+(5, 'asdqwe', '2018-02-01 02:01:00', 4),
+(6, 'wasd', '2018-02-16 02:02:00', 4),
+(7, 'wasDASDASDA', '2018-02-01 03:03:00', 1),
+(8, 'asdasdasdad', '2018-02-03 15:01:00', 5),
+(9, 'asdqwezxc', '2018-02-01 15:02:00', 3),
+(10, 'asdqwe', '2018-02-16 15:01:00', 4),
+(11, 'asdzxcqwe', '2018-02-02 04:02:00', 1);
 
 -- --------------------------------------------------------
 
@@ -942,10 +679,10 @@ CREATE TABLE IF NOT EXISTS `user_accounts` (
 --
 
 INSERT INTO `user_accounts` (`account_id`, `username`, `password`, `account_type`, `name`, `age`, `sex`, `address`, `phone`) VALUES
-(1, 'pharmacist@pharmacist.com', 'pharmacist', 'pharmacist', 'Bill Gamot', 19, 'F', '#23 Somewhere', '9123746523'),
+(1, 'pharmacist@pharmacist.com', 'pharmacist', 'pharmacist', 'sam pul', 19, 'F', '#23 Somewhere', '9123746523'),
 (2, 'admin@admin.com', 'admin', 'admin', 'Ma Master', 20, 'M', '#12 upper bonifacio', '9178403451'),
 (3, 'nurse@nurse.com', 'nurse', 'nurse', 'hoy ikaw', 22, 'F', '#90 dyan lang', '9123746123'),
-(4, 'doctor@doctor.com', 'doctor', 'doctor', 'Quacky Docky', 40, 'M', '#123 Di Malaman', '9123787231'),
+(4, 'doctor@doctor.com', 'doctor', 'doctor', 'Quacky Quac', 20, 'M', '#123 Di Malaman', '9123787231'),
 (5, 'laboratorist@laboratorist.com', 'laboratorist', 'laboratorist', '', 0, '', '', ''),
 (6, 'nurse2@nurse.com', 'nurse', 'nurse', '', 0, '', '', '');
 

@@ -26,6 +26,9 @@
     <a href="../doctor/labRequestManagement">labRequestManagement</a><br>
     <a href="../doctor/profileManagement">profile</a>
     <h1>Welcome to Patient Management Dr. <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h1>
+    <%if(patient){%>
+      <h1><%= patient%></h1>
+    <%}%>
     <table>
       <tr>
           <th>Patient Type</th>

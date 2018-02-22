@@ -32,6 +32,9 @@
       <a href="../doctor/labRequestManagement">labRequestManagement</a><br>
       <a href="../doctor/profileManagement">profile</a>
     </nav>
+    <%if(opdPatientInfo){%>
+      <h1><%= opdPatientInfo%></h1>
+    <%}%>
     <table>
       <tr>
         <th>counter</th>
@@ -55,6 +58,31 @@
           <form action="/doctor/prescriptionManagement?prescriptionId=<%=prescriptionDetails[i].prescription_id%>&prescriptionPatientName=<%=prescriptionDetails[i].name%>" method="post">
             <td><button type="submit">cancel</button></td>
           </form>
+        </tr>
+      <%}%>
+    </table>
+    <br>
+    <br>
+    <!-- CONFIRMED -->
+    <table>
+      <tr>
+        <th>counter</th>
+        <th>date</th>
+        <th>Patient Type</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Medications</th>
+        <th>status</th>
+      </tr>
+      <%for (var i = 0; i < confirmedprescriptionSQL.length; i++) {%>
+        <tr>
+          <td><%=i+1%></td>
+          <td><%=confirmedprescriptionSQL[i].creation_stamp%></td>
+          <td><%=confirmedprescriptionSQL[i].patient_type%></td>
+          <td><%=confirmedprescriptionSQL[i].name%></td>
+          <td><%=confirmedprescriptionSQL[i].age%></td>
+          <td><%=confirmedprescriptionSQL[i].medications%></td>
+          <td>confirmed</td>
         </tr>
       <%}%>
     </table>

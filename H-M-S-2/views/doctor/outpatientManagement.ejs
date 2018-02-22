@@ -52,16 +52,46 @@
             <td><%=opdInfo[i].blood_type%></td>
             <td><%=opdInfo[i].assessment%></td>
             <td>
-              <button name="view"><a href="../doctor/patientManagement">view</a></button>
-              <button name="lab_request" onclick="ShowLabRequest(<%=opdInfo[i].patient_id%>)">Lab Request</button>
-              <button name="prescribe" onclick="ShowPrescribe(<%=opdInfo[i].patient_id%>)">Prescribe</button>
-              <button name="admit" onclick="ShowAdmit(<%=opdInfo[i].patient_id%>)">admit</button>
-              <button name="button">diagnosis</button>
+              <!-- VIEW -->
+              <button name="view"><a href="../doctor/patientManagement?patient=<%=opdInfo[i].patient_id%>">view</a></button>
+              <!-- LAB -->
+              <%
+              var labArr= '';
+                for (var j = 0; j < labSQL.length; j++){
+                  labArr += labSQL[j].patient_id;
+                }
+              if(labArr.includes(opdInfo[i].patient_id)){%>
+                  <input type="button" name="lab_request" value=" add/view Lab Request" onclick="ShowLabRequest2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+              <%} else {%>
+                  <input type="button" name="lab_request" value="Lab Request" onclick="ShowLabRequest(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+              <%}%>
+              <!-- PRESCRIPTION -->
+              <%
+              var prescribeArr= '';
+                for (var j = 0; j < prescribeSQL.length; j++){
+                  prescribeArr += prescribeSQL[j].patient_id;
+                }
+              if(prescribeArr.includes(opdInfo[i].patient_id)){%>
+                <input type="button" name="prescribe" value="add/view Prescription" onclick="ShowPrescribe2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+              <%} else {%>
+                <input type="button" name="prescribe" value="Prescription" onclick="ShowPrescribe(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+              <%}%>
+              <!-- DIAGNOSIS -->
+              <button name="button" onclick="ShowDiagnosis(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">diagnosis</button>
+              <!-- ADMIT -->
+              <% var arr= '';
+                for (var j = 0; j < whoCurrentlyAdmitted.length; j++){
+                  arr += whoCurrentlyAdmitted[j].patient_id;
+                } if(!(arr.includes(opdInfo[i].patient_id))){%>
+                  <input type="button" name="admit" value="admit" onclick="ShowAdmit(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+              <%}%>
             </td>
         </tr>
       <%}%>
     </table>
     <!-- LAB REQUEST -->
+
+
     <div id="ShowLabRequest" style="display:none;">
       <form id="dynamicPatientIdForLab" method="post">
         <select name="testRequest">
@@ -100,21 +130,70 @@
         <button type="submit" name="sub" value="prescribe">send</button>
       </form>
     </div>
-  </body>
 
+    <div id="ShowLabRequest2" style="display:none;">
+        <a id="linkForLabView"><button id="labViewPressed">view</button></a>
+        <button id="labAdd">add</button>
+    </div>
+
+    <div id="ShowPrescribe2" style="display:none;">
+        <a id="linkForPrescribeView"><button id="prescribeViewPressed">view</button></a>
+        <button id="prescribeAdd">add</button>
+    </div>
+
+    <div id="ShowDiagnosis" style="display:none;">
+      <form id="linkDiagnosis" method="post">
+        <textarea name="diagnosis" rows="8" cols="80"></textarea>
+        <button type="submit" name="sub" value="diag">add</button>
+      </form>
+    </div>
+
+  </body>
 </html>
 
 <script>
-  function ShowLabRequest(i){
-    document.getElementById('dynamicPatientIdForLab').action = '/doctor/outpatientManagement?patient_id='+i+'';
+  function ShowLabRequest(i,o){
+    document.getElementById('dynamicPatientIdForLab').action = '/doctor/outpatientManagement?patient_id='+i+'&patient_name='+o+'"';
     document.getElementById('ShowLabRequest').style.display = 'block';
   }
-  function ShowAdmit(i){
-    document.getElementById('dynamicPatientIdForAdmit').action = '/doctor/outpatientManagement?patient_id='+i+'';
-    document.getElementById('ShowAdmit').style.display = 'block';
+  function ShowLabRequest2(i,o){
+    document.getElementById('labAdd').onclick = function() {
+      document.getElementById('ShowLabRequest').style.display = 'block';
+      document.getElementById('ShowLabRequest2').style.display = 'none';
+      ShowLabRequest(i,o);
+    };
+    document.getElementById('labViewPressed').onclick = function() {
+      document.getElementById('linkForLabView').href = "/doctor/labRequestManagement?labPatientInfo="+i+"";
+    };
+    document.getElementById('ShowLabRequest2').style.display = 'block';
+    document.getElementById('ShowLabRequest').style.display = 'none';
   }
-  function ShowPrescribe(i){
-    document.getElementById('dynamicPatientIdForPrescribe').action = '/doctor/outpatientManagement?patient_id='+i+'';
+
+  function ShowPrescribe(i,o){
+    document.getElementById('dynamicPatientIdForPrescribe').action = '/doctor/outpatientManagement?patient_id='+i+'&patient_name='+o+'';
     document.getElementById('ShowPrescribe').style.display = 'block';
   }
+  function ShowPrescribe2(i,o){
+    document.getElementById('prescribeAdd').onclick = function() {
+      document.getElementById('ShowPrescribe').style.display = 'block';
+      document.getElementById('ShowPrescribe2').style.display = 'none';
+      ShowPrescribe(i,o);
+    };
+    document.getElementById('prescribeViewPressed').onclick = function() {
+      document.getElementById('linkForPrescribeView').href = "/doctor/prescriptionManagement?opdPatient="+i+"";
+    };
+    document.getElementById('ShowPrescribe2').style.display = 'block';
+    document.getElementById('ShowPrescribe').style.display = 'none';
+  }
+
+  function ShowAdmit(i,o){
+    document.getElementById('dynamicPatientIdForAdmit').action = '/doctor/outpatientManagement?patient_id='+i+'&patient_name='+o+'';
+    document.getElementById('ShowAdmit').style.display = 'block';
+  }
+
+  function ShowDiagnosis(i,o){
+    document.getElementById('ShowDiagnosis').style.display = 'block';
+    document.getElementById('linkDiagnosis').action = '/doctor/outpatientManagement?patient_id='+i+'&patient_name='+o+'';
+  }
+
 </script>

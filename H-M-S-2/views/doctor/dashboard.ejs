@@ -3,6 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>Doctor Dashboard</title>
+    <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        font-size: 15px;~
+    }
+    </style>
   </head>
   <body>
     <nav>
@@ -16,17 +29,40 @@
       <a href="../doctor/profileManagement">profile</a>
     </nav>
     <h2>Hello I'm the <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h2>
-    <h2>Total Registered Patients = <%= counts[0].totalRegisteredPatients%></h2>
-    <h2><button onclick="currentAdmitted()">more Info</button>Currently Admitted = <%= counts[0].currentlyAdmitted%></h2>
+    <a href="/doctor/patientManagement"><button>more Info</button></a><h2 style="display:inline-block;">Total Registered Patients = <%= counts[0].totalRegisteredPatients%></h2>
+    <br>
+    <a href="/doctor/bedManagement" ><button>more Info</button></a><h2 style="display:inline;">Currently Admitted = <%= counts[0].currentlyAdmitted%></h2>
     <h2><button onclick="OPD()">more Info</button>OPD COUNT = <%= counts[0].OPD%>
-      <%for (var i = 0; i < whoOPD.length; i++) { %>
-        <h4 style="border-style:solid;"><%= whoOPD[i].name%></h4>
-      <%}%>
+      <div id="ShowOpd" style="display:none;">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>date and time</th>
+            </tr>
+            <%for (var i = 0; i < whoOPD.length; i++) { %>
+              <tr>
+                <td><%= whoOPD[i].name%></td>
+                <td><%= whoOPD[i].time%></td>
+              </tr>
+            <%}%>
+          </table>
+      </div>
     </h2>
     <h2><button onclick="WARD()">more Info</button>WARD COUNT = <%= counts[0].WARD%>
-      <%for (var i = 0; i < whoWARD.length; i++) { %>
-        <h4 style="border-style:solid;"><%= whoWARD[i].name%></h4>
-      <%}%>
+      <div id="ShowWard" style="display:none;">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>date and time</th>
+            </tr>
+            <%for (var i = 0; i < whoWARD.length; i++) { %>
+              <tr>
+                <td><%= whoWARD[i].name%></td>
+                <td><%= whoWARD[i].time%></td>
+              </tr>
+            <%}%>
+          </table>
+      </div>
     </h2>
     <!-- COUNT PIE CHART -->
     <h1>Patient Chart</h1>
@@ -95,16 +131,19 @@
     document.getElementById("modal2").reset();
     document.getElementById("immuRes").innerHTML = "";
   }
-  function currentAdmitted() {
-    document.getElementById("showAdmitted").style.display = "block";
-  }
-  function showAccessment() {
-    document.getElementById("accessment").style.display = "block";
+  function showAssessment() {
+    document.getElementById("assessment").style.display = "block";
   }
   function showTodo() {
     document.getElementById("showTodo").style.display = "block";
   }
   function showAppointmentForm() {
     document.getElementById("showAppointmentForm").style.display = "block";
+  }
+  function OPD() {
+    document.getElementById('ShowOpd').style.display = 'block';
+  }
+  function WARD() {
+    document.getElementById('ShowWard').style.display = 'block';
   }
 </script>
