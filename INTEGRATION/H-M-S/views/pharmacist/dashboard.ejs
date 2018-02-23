@@ -185,7 +185,7 @@
                       </span>
                   <input type="checkbox" value="">
                   <span class="text"><%= todoList[i].description%>:</span>
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i><%= todoList[i].date%></small>
+                  <small class="label label-success"><i class="fa fa-clock-o"></i><%= moment(todoList[i].date).format('MMM-DD-YYYY HH:mm')%></small>
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
@@ -246,24 +246,6 @@
   </footer>
   <div class="control-sidebar-bg"></div>
 </div>
-
-
-    <!-- COUNT MONTHLY -->
-    <h1>Patient Count</h1>
-    <%if(monthlyPatientCount[0].JAN) {%><h2>january <%= monthlyPatientCount[0].JAN%></h2><%}%>
-    <%if(monthlyPatientCount[0].FEB) {%><h2>february <%= monthlyPatientCount[0].FEB%></h2><%}%>
-    <%if(monthlyPatientCount[0].MARCH) {%><h2>february <%= monthlyPatientCount[0].MARCH%></h2><%}%>
-    <%if(monthlyPatientCount[0].APRIL) {%><h2>february <%= monthlyPatientCount[0].APRIL%></h2><%}%>
-    <%if(monthlyPatientCount[0].MAY) {%><h2>february <%= monthlyPatientCount[0].MAY%></h2><%}%>
-    <%if(monthlyPatientCount[0].JUNE) {%><h2>february <%= monthlyPatientCount[0].JUNE%></h2><%}%>
-    <%if(monthlyPatientCount[0].JULY) {%><h2>february <%= monthlyPatientCount[0].JULY%></h2><%}%>
-    <%if(monthlyPatientCount[0].AUGUST) {%><h2>february <%= monthlyPatientCount[0].AUGUST%></h2><%}%>
-    <%if(monthlyPatientCount[0].SEPTEMBER) {%><h2>february <%= monthlyPatientCount[0].SEPTEMBER%></h2><%}%>
-    <%if(monthlyPatientCount[0].OCTOBER) {%><h2>february <%= monthlyPatientCount[0].OCTOBER%></h2><%}%>
-    <%if(monthlyPatientCount[0].NOVEMBER) {%><h2>february <%= monthlyPatientCount[0].NOVEMBER%></h2><%}%>
-    <%if(monthlyPatientCount[0].DECEMBER) {%><h2>february <%= monthlyPatientCount[0].DECEMBER%></h2><%}%>
-    <br>
-
 
 <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -334,7 +316,18 @@ $(function () {
           pointStrokeColor: "rgba(60,141,188,1)",
           pointHighlightFill: "#fff",
           pointHighlightStroke: "rgba(60,141,188,1)",
-          data: [<%if(monthlyPatientCount[0].JAN) {%><%= monthlyPatientCount[0].JAN%><%}%>, 48, 40, 19, 86, 27, 0, 0, 0, 0, 0, 0]
+          data: [<%-JSON.stringify(monthlyPatientCount[0].JAN)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].FEB)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].MARCH)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].APRIL)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].MAY)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].JUNE)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].JULY)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].AUGUST)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].SEPTEMBER)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].OCTOBER)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].NOVEMBER)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].DECEMBER)%>]
         }
       ]
     };
