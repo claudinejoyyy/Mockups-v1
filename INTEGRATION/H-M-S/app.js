@@ -24,7 +24,7 @@ app.use(session({secret: 'shhhhh', cookie: { maxAge: 3600000 }}));
 
 
 //PARA sa DASHBOARD of all MODULES!!!
-var name   = "SELECT name FROM user_accounts where account_id = ?;";
+var name   = "SELECT name, account_type FROM user_accounts where account_id = ?;";
 var counts = "SELECT (SELECT count(patient_id) er FROM admit WHERE department = 'OPD') as OPD, "
             +"(SELECT count(patient_id) er FROM admit WHERE department = 'ward') as WARD,"
             +"(SELECT count(name) pCount FROM patient) as totalRegisteredPatients,"
