@@ -1,39 +1,272 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Profile Management</title>
-  </head>
-  <body>
-    <nav>
-      <a href="../laboratorist/dashboard">dashboard</a><br>
-      <a href="../laboratorist/daignosisRequestsManagement">daignosisRequestsManagement</a><br>
-      <a href="../laboratorist/profileManagement">profile</a> <br>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Laboratorist | Profile Management</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+
+  <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
+      <!-- DataTables -->
+  <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini fixed">
+<div class="wrapper">
+  <header class="main-header">
+    <a href="index2.html" class="logo">
+      <span class="logo-mini"><b>LAB</b></span>
+      <span class="logo-lg"><b>Laboratorist</b></span>
+    </a>
+    <nav class="navbar navbar-static-top" role="navigation">
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="../dist/img/sample prof pic.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs"><%=pInfo[0].name%></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="user-header">
+                <img src="../dist/img/sample prof pic.jpg" class="img-circle" alt="User Image">
+                <p>
+                  <%=pInfo[0].name%> - Laboratorist
+                  <small></small>
+                </p>
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="../laboratorist/profileManagement" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="../logout" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </nav>
-    <h1><%=pInfo[0].name%></h1>
-    <h2>Laboratorist</h2>
-    <h3>User Account: <%= pInfo[0].account_id%></h3>
-    <h3>Age: <%= pInfo[0].age%></h3>
-    <h3>Sex: <%= pInfo[0].sex%></h3>
-    <button type="button" id="button" onclick="show()" value="logs">Activity Logs</button>
-    <div id='logs' style="display:none;">
-      <h1>Activity Timeline</h1>
-      <%for(var i=0; i < activityInfo.length; i ++){%>
-        <h3><%= activityInfo[i].remarks%></h3>
-        <h3><%= moment(activityInfo[i].time).format('YYYY-MM-DD HH:mm:ss')%></h3>
-        <h1>-----</h1>
-      <%}%>
+  </header>
+
+  <aside class="main-sidebar">
+    <section class="sidebar">
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="../dist/img/sample prof pic.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p><%=pInfo[0].name%></p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+
+      <ul class="sidebar-menu">
+        <li class="header">Account Management</li>
+        <li><a href="../laboratorist/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+        <li><a href="../laboratorist/diagnosisRequestManagement.html"><i class="fa fa-link"></i> <span>Diagnosis Request Management</span></a></li>
+        <li class="active"><a href="../laboratorist/profileManagement.html"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
+      </ul>
+  </aside>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Profile Management
+        <small>View and Update Profile</small>
+      </h1>
+    </section>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="../dist/img/sample prof pic.jpg" alt="User profile picture">
+              <h3 class="profile-username text-center"><%=pInfo[0].name%></h3>
+              <p class="text-muted text-center">Laboratorist</p>
+            </div>
+          </div>
+
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Basic Profile</h3>
+            </div>
+
+            <div class="box-body">
+            <strong><i class="fa fa-info margin-r-5"></i> User Account No.</strong>
+              <p class="text-muted"> <%= pInfo[0].account_id%> </p>
+              <hr>
+            <strong><i class="fa fa-user-plus margin-r-5"></i> Age</strong>
+              <p class="text-muted"> <%= pInfo[0].age%> </p>
+              <hr>
+
+            <strong><i class="fa fa-user margin-r-5"></i> Sex</strong>
+              <p class="text-muted"> <%= pInfo[0].sex%> </p>
+              <hr>
+
+            <strong><i class="fa fa-eyedropper margin-r-5"></i>Section Stationed</strong>
+              <p>Laboratory</p>
+            </div>
+          </div>
+        </div>
+
+        div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li><a href="#timeline" data-toggle="tab">Activity Timeline</a></li>
+              <li><a href="#settings" data-toggle="tab" value="setting" onclick="show2()">Settings</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="timeline">
+                <%for(var i=0; i < activityInfo.length; i ++){%>
+                <ul class="timeline timeline-inverse">
+                  <li class="time-label">
+                      <span class="bg-red">
+                        <%= moment(activityInfo[i].time).format('YYYY-MM-DD HH:mm:ss')%>
+                      </span>
+                  </li>
+
+                  <li>
+                    <i class="fa fa-edit bg-blue"></i>
+                    <div class="timeline-item">
+
+                      <h3 class="timeline-header"><a href="#"><%= activityInfo[i].remarks%></a></h3>
+                      <div class="timeline-body">
+                       ...
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-xs">Read more</a>
+                        <a class="btn btn-danger btn-xs">Delete</a>
+                      </div>
+                    </div>
+                  </li>
+
+                </ul>
+                <%}%>
+              </div>
+              <!-- /.tab-pane -->
+
+              <div class="tab-pane" id="settings">
+                <form class="form-horizontal" method="POST" id="setting" style="display:none;">
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" id="name" name="name" placeholder="<%= pInfo[0].name%>">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Age</label>
+                    <div class="col-sm-10">
+                      <input type="int" id="age" name="age" placeholder="<%= pInfo[0].age%>"><br>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Address</label>
+                      <div class="col-sm-10">
+                        <input type="text" id="address" name="address" placeholder="<%= pInfo[0].address%>"><br>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Phone</label>
+                      <div class="col-sm-10">
+                        <input type="text" id="phone" name="phone" placeholder="<%= pInfo[0].phone%>"><br>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger" onclick="check()">Save</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     </div>
-    <button type="button" id="button" value="setting" onclick="show2()"> Setting</button>
-    <form method="POST" id="setting" style="display:none;">
-      name:   <input type="text" id="name" name="name" placeholder="<%= pInfo[0].name%>"><br>
-      age:    <input type="int" id="age" name="age" placeholder="<%= pInfo[0].age%>"><br>
-      address:<input type="text" id="address" name="address" placeholder="<%= pInfo[0].address%>"><br>
-      phone:  <input type="text" id="phone" name="phone" placeholder="<%= pInfo[0].phone%>"><br>
-      <button type="submit" onclick="check()">save</button>
-    </form>
-  </body>
+
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1
+    </div>
+    <!-- Default to the left -->
+     <strong>Copyright &copy; 2018.</strong> Philippine Military Academy | Fort Del Pilar Station Hospital | All rights reserved.
+  </footer>
+  <div class="control-sidebar-bg"></div>
+</div>
+
+<button type="button" id="button" onclick="show()" value="logs">Activity Logs</button>
+
+<div id='logs' style="display:none;">
+  <h1>Activity Timeline</h1>
+  <%for(var i=0; i < activityInfo.length; i ++){%>
+    <h3><%= activityInfo[i].remarks%></h3>
+    <h3><%= moment(activityInfo[i].time).format('YYYY-MM-DD HH:mm:ss')%></h3>
+    <h1>-----</h1>
+  <%}%>
+</div>
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 2.2.3 -->
+<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/app.min.js"></script>
+<!-- DataTables -->
+<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../plugins/fastclick/fastclick.js"></script>
+
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true
+    });
+  });
+</script>
+</body>
 </html>
+
 <script>
   function show(){
     document.getElementById('logs').style = 'display:block;';
