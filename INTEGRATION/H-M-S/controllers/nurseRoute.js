@@ -111,12 +111,9 @@ var user, Aid;
   app.get('/nurse/patientManagement', function(req, res){
     if(req.session.email && req.session.sino == 'nurse'){
       if(req.session.sino == 'nurse'){
-        var name  = "SELECT name FROM user_accounts where account_id = ?";
         var sql  = "SELECT * FROM patient";
-
-        db.query(name + ";" + sql, Aid, function(err, rows, fields){
-          user = rows[0];
-          res.render('nurse/patientManagement', {p:rows[1], username: user});
+        db.query(sql, Aid, function(err, rows, fields){
+          res.render('nurse/patientManagement', {p:rows, username: user});
         });
       } else {
         res.redirect(req.session.sino+'/dashboard');
@@ -131,7 +128,7 @@ var user, Aid;
       if (req.session.sino == 'nurse') {
         var bedSQL = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id); ";
         db.query(bedSQL, function(err, rows, fields){
-          res.render('nurse/bedManagement', {bedDetails:rows});
+          res.render('nurse/bedManagement', {bedDetails:rows, username: user});
         });
       } else {
         res.redirect(req.session.sino+'/dashboard');
@@ -169,7 +166,7 @@ var user, Aid;
           if (err) {
             console.log(err);
           } else {
-            res.render('nurse/profileManagement', {pInfo:rows[0], activityInfo: rows[1]});
+            res.render('nurse/profileManagement', {pInfo:rows[0], activityInfo: rows[1], username: user});
           }
         });
       } else {
