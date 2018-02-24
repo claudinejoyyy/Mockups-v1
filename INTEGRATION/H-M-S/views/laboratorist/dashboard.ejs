@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Dashboard</title>
+    <title>Pharmacist | Dashboard</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
@@ -27,9 +27,11 @@
   <body>
     <div class="wrapper">
       <header class="main-header">
-        <a href="../laboratorist/dashboard" class="logo">
-          <span class="logo-mini"><b>P</b></span>
-          <span class="logo-lg"><b>Laboratorist</b></span>
+        <a href="../nurse/dashboard" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b><%= username[0].account_type.charAt(0).toUpperCase()%></b></span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b><%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%></b></span>
         </a>
         <nav class="navbar navbar-static-top" role="navigation">
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -41,14 +43,14 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="../dist/img/sample prof pic.png" class="user-image" alt="User Image">
-                  <span class="hidden-xs"><%=pInfo[0].name%></span>
+                  <span class="hidden-xs"><%=username[0].name%></span>
                 </a>
                 <ul class="dropdown-menu">
                   <li class="user-header">
                     <img src="../dist/img/sample prof pic.png" class="img-circle" alt="User Image">
                     <p>
-                      <%=pInfo[0].name%> - Laboratorist
-                      <small></small>
+                      <%=username[0].name%> - <%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%>
+                      <small>Member since April 2014</small>
                     </p>
                   </li>
                   <li class="user-footer">
@@ -73,7 +75,7 @@
               <img src="../dist/img/sample prof pic.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p><%=pInfo[0].name%></p>
+              <p><%=username[0].name%></p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -113,7 +115,7 @@
           <button type="button"><a href="../laboratorist/diagnosis">more info<i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div>
-      
+
     <button type="button"><a href="../laboratorist/diagnosis">more info</a></button>Total pending Diagnosis Tests = <%= diagnosisSQL.length%><br>
     <button type="button">more info</button>bloodChemistrySQL = <%= bloodChemistrySQL.length%><br>
     <button type="button">more info</button>hermatology = <%= hermatology.length%><br>

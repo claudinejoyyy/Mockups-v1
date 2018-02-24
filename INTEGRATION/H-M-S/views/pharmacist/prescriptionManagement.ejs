@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Pharmacist | Prescriptions Management</title>
+  <title>Pharmacist | Prescription Management</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -35,9 +35,11 @@
 <div class="wrapper">
 
   <header class="main-header">
-    <a href="../pharmacist/dashboard" class="logo">
-      <span class="logo-mini"><b>P</b></span>
-      <span class="logo-lg"><b>Pharmacist</b></span>
+    <a href="../nurse/dashboard" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b><%= username[0].account_type.charAt(0).toUpperCase()%></b></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b><%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%></b></span>
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -49,14 +51,14 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/avatar3.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">Malou Beth</span>
+              <span class="hidden-xs"><%= username[0].name %></span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
                 <img src="../dist/img/avatar3.png" class="img-circle" alt="User Image">
                 <p>
-                  Malou Beth - Pharmacist
-                  <small></small>
+                  <%= username[0].name %> - <%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%>
+                  <small>Member since kahapon</small>
                 </p>
               </li>
               <li class="user-footer">
@@ -81,7 +83,7 @@
           <img src="../dist/img/avatar3.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Malou Beth</p>
+          <p><%= username[0].name %></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>

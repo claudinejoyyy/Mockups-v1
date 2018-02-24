@@ -35,9 +35,11 @@
 <div class="wrapper">
 
   <header class="main-header">
-    <a href="../pharmacist/dashboard" class="logo">
-      <span class="logo-mini"><b>P</b></span>
-      <span class="logo-lg"><b>Pharmacist</b></span>
+    <a href="../nurse/dashboard" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b><%= username[0].account_type.charAt(0).toUpperCase()%></b></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b><%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%></b></span>
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -55,7 +57,7 @@
               <li class="user-header">
                 <img src="../dist/img/avatar3.png" class="img-circle" alt="User Image">
                 <p>
-                  <%= username[0].name %> - Pharmacist
+                  <%= username[0].name %> - <%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%>
                   <small></small>
                 </p>
               </li>
@@ -104,16 +106,16 @@
         <li><a href=../pharmacist/reports><i class="fa fa-link"></i> <span> Reports </span></a></li>
       </ul>
     </section>
-  </aside>  
+  </aside>
 
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
         Patient Management
         <small></small>
-      </h1>    
+      </h1>
     </section>
-   
+
     <section class="content">
 
        <div class="row">
@@ -172,7 +174,7 @@
             </div>
           </div>
         </div>
-      </div>             
+      </div>
     </section>
   </div>
 
