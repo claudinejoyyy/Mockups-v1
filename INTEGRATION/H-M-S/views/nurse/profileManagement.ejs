@@ -112,7 +112,7 @@
             <div class="box-body box-profile">
               <img class="profile-user-img img-responsive img-circle" src="../dist/img/avatar2.png" alt="User profile picture">
               <h3 class="profile-username text-center"><%=pInfo[0].name%></h3>
-              <p class="text-muted text-center"><%= username[0].account_type.charAt(0).toUpperCase()%></p>
+              <p class="text-muted text-center"><%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%></p>
             </div>
           </div>
 
@@ -133,8 +133,6 @@
               <p class="text-muted"> <%= pInfo[0].sex%> </p>
               <hr>
 
-            <strong><i class="fa fa-eyedropper margin-r-5"></i> Section Stationed</strong>
-              <p> Pharmacy </p>
             </div>
           </div>
         </div>
@@ -156,17 +154,41 @@
                   </li>
 
                   <li>
-                    <i class="fa fa-edit bg-blue"></i>
-                    <div class="timeline-item">
+                    <% if (activityInfo[i].type == 'add'){ %>
+                      <i class="fa fa-user-plus bg-green"></i>
+                      <div class="timeline-item">
+                    <%} else if (activityInfo[i].type == 'appointment'){ %>
+                      <i class="fa fa-calendar bg-yellow"></i>
+                      <div class="timeline-item">
+                    <%} else if (activityInfo[i].type == 'bed'){ %>
+                      <i class="fa fa-bed bg-primary"></i>
+                      <div class="timeline-item">
+                    <%} else if (activityInfo[i].type == 'bedDischarge'){ %>
+                      <i class="fa fa-check-circle bg-navy"></i>
+                      <div class="timeline-item">
+                    <%} else if (activityInfo[i].type == 'cancelLabRequest'){ %>
+                      <i class="fa fa-check-circle bg-orange"></i>
+                      <div class="timeline-item">
+                    <%} else if (activityInfo[i].type == 'cancelPrescription'){ %>
+                      <i class="fa fa-check-circle bg-orange"></i>
+                      <div class="timeline-item">
+                    <%} else if (activityInfo[i].type == 'diagnosis'){ %>
+                      <i class="fa fa-check-circle bg-yellow"></i>
+                      <div class="timeline-item">
+                    <%} else if (activityInfo[i].type == 'initialAssessment'){ %>
+                      <i class="fa fa-check-circle bg-maroon"></i>
+                      <div class="timeline-item">
+                    <%} else if (activityInfo[i].type == 'labRequest'){ %>
+                      <i class="fa fa-check-circle bg-purple"></i>
+                      <div class="timeline-item">
+                    <%} else if (activityInfo[i].type == 'log'){ %>
+                      <i class="fa fa-check-circle bg-teal"></i>
+                      <div class="timeline-item">
+                    <%}%>
 
-                      <h3 class="timeline-header"><a href="#"><%= activityInfo[i].remarks%></a></h3>
-                      <div class="timeline-body">
-                       ...
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
-                      </div>
+
+                      <h3 class="timeline-header"><%= activityInfo[i].remarks%></a></h3>
+
                     </div>
                   </li>
 
