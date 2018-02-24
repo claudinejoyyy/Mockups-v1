@@ -105,16 +105,16 @@
 
       </ul>
     </section>
-  </aside>  
+  </aside>
 
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
         Prescriptions Management
         <small>List of Prescriptions</small>
-      </h1>    
+      </h1>
     </section>
-   
+
     <section class="content">
 
        <div class="row">
@@ -140,7 +140,7 @@
                   </tr>
                 </thead>
 
-                <%for (var i = 0; i < prescriptionDetails.length; i++) {%>  
+                <%for (var i = 0; i < prescriptionDetails.length; i++) {%>
                 <tr>
                   <td><%=i+1%></td>
                   <td><%=prescriptionDetails[i].creation_stamp%></td>
@@ -187,14 +187,14 @@
                   <td><%=confirmedprescriptionSQL[i].name%></td>
                   <td><%=confirmedprescriptionSQL[i].age%></td>
                   <td><%=confirmedprescriptionSQL[i].medications%></td>
-                  <td>Confirmed</td> 
+                  <td>Confirmed</td>
                 </tr>
                 <%}%>
               </table>
             </div>
           </div>
         </div>
-      </div>             
+      </div>
     </section>
   </div>
 
