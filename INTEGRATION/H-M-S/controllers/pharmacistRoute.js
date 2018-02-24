@@ -9,11 +9,12 @@ var user, Aid;
         var acceptedRequestSQL = 'SELECT * from prescription r inner join patient p using(patient_id) where r.status="confirmed";';
         var pendingRequestSQL  = 'SELECT * from prescription r inner join patient p using(patient_id) where r.status="pending";';
         var todoList           = "SELECT * from todo_list where account_id = "+Aid+";";
-        db.query(prescriptionSQL + acceptedRequestSQL + pendingRequestSQL + todoList + monthlyPatientCount, function(err, rows){
+        db.query(prescriptionSQL + acceptedRequestSQL + pendingRequestSQL + todoList + monthlyPatientCount + name, function(err, rows){
           if (err) {
             console.log(err);
           } else {
-            res.render('pharmacist/dashboard', {prescriptionInfo:rows[0], accepted:rows[1], pending:rows[2], todoList:rows[3], monthlyPatientCount:rows[4]});
+            user = rows[5];
+            res.render('pharmacist/dashboard', {prescriptionInfo:rows[0], accepted:rows[1], pending:rows[2], todoList:rows[3], monthlyPatientCount:rows[4], username:user});
           }
         });
       } else {
@@ -53,12 +54,10 @@ var user, Aid;
   app.get('/pharmacist/patientManagement', function(req, res){
       if(req.session.email && req.session.sino == 'pharmacist'){
         if(req.session.sino == 'pharmacist'){
-          var name  = "SELECT name FROM user_accounts where account_id = ?";
           var sql  = "SELECT * FROM patient";
 
-          db.query(name + ";" + sql, Aid, function(err, rows, fields){
-            user = rows[0];
-            res.render('pharmacist/patientManagement', {p:rows[1], username: user});
+          db.query(sql, Aid, function(err, rows, fields){
+            res.render('pharmacist/patientManagement', {p:rows, username: user});
           });
         } else {
           res.redirect(req.session.sino+'/dashboard');
@@ -77,7 +76,7 @@ var user, Aid;
             if (err) {
               console.log(err);
             } else {
-              res.render('pharmacist/appointmentManagement', {appointmentDetails:rows});
+              res.render('pharmacist/appointmentManagement', {appointmentDetails:rows, username:user});
             }
           });
         } else {
@@ -115,7 +114,7 @@ var user, Aid;
             if (err) {
               console.log(err);
             } else {
-              res.render('pharmacist/prescriptionManagement', {prescriptionDetails:rows[0], confirmedprescriptionSQL:rows[1]});
+              res.render('pharmacist/prescriptionManagement', {prescriptionDetails:rows[0], confirmedprescriptionSQL:rows[1], username:user});
             }
           });
         } else {
@@ -153,7 +152,7 @@ var user, Aid;
             if (err) {
               console.log(err);
             } else {
-              res.render('pharmacist/profileManagement', {pInfo:rows[0], activityInfo: rows[1]});
+              res.render('pharmacist/profileManagement', {pInfo:rows[0], activityInfo: rows[1], username:user});
             }
           });
         } else {
@@ -194,7 +193,7 @@ var user, Aid;
             if (err) {
               console.log(err);
             } else {
-              res.render('pharmacist/reports', {reportsInfo:rows});
+              res.render('pharmacist/reports', {reportsInfo:rows, username:user});
             }
           });
         } else {

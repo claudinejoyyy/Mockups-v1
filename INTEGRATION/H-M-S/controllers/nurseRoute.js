@@ -32,9 +32,9 @@ var user, Aid;
         var pNameSQL = "SELECT name from patient where patient_id = "+data.patient+";";
 
         if(data.sub == 'assessment') {
-          var vitalSigns = data.BP +'\n'+ data.CR +'\n'+ data.PR +'\n'+ data.RR +'\n'+ data.temperature +'\n'+ data.Wt +'\n'+ data.age;
+          var vitalSigns = 'BP: '+data.BP +'\nCR: '+ data.CR +'\nPR: '+ data.PR +'\nRR: '+ data.RR +'\n TEMP: '+ data.temperature +'\nWT: '+ data.Wt;
           var initialAssessment = 'INSERT into initial_assessment (assessment, date, patient_id, account_id, vital_signs) VALUES("'+data.assessment+'", "'+currentTime+'",'+data.assessmentPatient+','+data.assessmentDoctor+',"'+vitalSigns+'");';
-          db.query(initialAssessment + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "initialAssessment", "assessment for '+data.assessmentPatient+'");', function(err){
+          db.query(initialAssessment + 'INSERT into activity_logs(account_id, time, type, remarks, patient_id) VALUES ('+Aid+',"'+currentTime+'", "initialAssessment", "assessment for '+req.query.assessmentPatient+'", '+data.assessmentPatient+');', function(err){
             if (err) {
               console.log(err);
             }
@@ -112,8 +112,9 @@ var user, Aid;
     if(req.session.email && req.session.sino == 'nurse'){
       if(req.session.sino == 'nurse'){
         var sql  = "SELECT * FROM patient";
+
         db.query(sql, Aid, function(err, rows, fields){
-          res.render('nurse/patientManagement', {p:rows, username: user});
+          res.render('nurse/patientManagement', {p:rows[0], username: user});
         });
       } else {
         res.redirect(req.session.sino+'/dashboard');
@@ -128,7 +129,7 @@ var user, Aid;
       if (req.session.sino == 'nurse') {
         var bedSQL = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id); ";
         db.query(bedSQL, function(err, rows, fields){
-          res.render('nurse/bedManagement', {bedDetails:rows, username: user});
+          res.render('nurse/bedManagement', {bedDetails:rows[1], username:user});
         });
       } else {
         res.redirect(req.session.sino+'/dashboard');
@@ -166,7 +167,7 @@ var user, Aid;
           if (err) {
             console.log(err);
           } else {
-            res.render('nurse/profileManagement', {pInfo:rows[0], activityInfo: rows[1], username: user});
+            res.render('nurse/profileManagement', {pInfo:rows[0], activityInfo: rows[1], username:user});
           }
         });
       } else {
