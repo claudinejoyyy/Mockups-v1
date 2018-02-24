@@ -201,16 +201,6 @@
               <a onclick="showAdd()" class="btn btn-app" data-toggle="modal" data-target="#myModal">
                 <i class="fa fa-plus" data-target="#myModal"></i> Register Patient
               </a>
-<!--
-              <a class="btn btn-app">
-                <i class="fa fa-bed" data-toggle="modal" data-target="#myModal2"></i> Bed Allotment
-              </a>
--->
-<!--
-              <a class="btn btn-app">
-                <i class="fa fa-calendar" data-toggle="modal" data-target="#myModal2"></i> Set Appointment
-              </a>
--->
             </div>
           </center>
             <!-- /.box-body -->
@@ -427,12 +417,12 @@
       <!------------------------------------------------------------------------------------------ /Modal-->
 
       <!---------------------------------------------------------------------------------------------- Modal of out patient ----------->
-        <div class="modal fade" id="myModal1" role="dialog" aria-labelledby="myModalLabel" style="overflow:hidden;">
+        <div class="modal fade" id="myModal1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">New Outpatient</h4>
+                <h4 class="modal-title" id="myModalLabel1">New Outpatient</h4>
                 <small>*Register new patient if patient is not found</small>
               </div>
               <div class="modal-body">
@@ -459,12 +449,13 @@
                       <option value="<%= doctorList[i].account_id%>"><%= doctorList[i].name%></option>
                     <%}%>
                   </select>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" name="sub" value="assessment" onclick="linkAssessment(<%= availablePatientOPD[i].name%>)">Confirm</button>
+                  </div>
                 </form>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary" name="sub" value="assessment" onclick="linkAssessment(<%= availablePatientOPD[i].name%>)">Confirm</button>
-              </div>
+
             </div>
           </div>
         </div>
