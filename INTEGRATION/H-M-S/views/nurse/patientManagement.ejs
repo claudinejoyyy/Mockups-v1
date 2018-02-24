@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Nurse | Patient Management</title>
-  <!-- Tell the browser to be responsive to screen width -->
+  <title>Patient Management</title>
   <% include ../partials/header.ejs %>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -26,44 +25,29 @@
   <header class="main-header">
     <!-- Logo -->
     <a href="../nurse/dashboard" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b><%= username[0].account_type.charAt(0).toUpperCase()%></b></span>
-      <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b><%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%></b></span>
     </a>
-    <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
-      <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-
-          <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- The user image in the navbar-->
               <img src="../dist/img/avatar2.png" class="user-image" alt="User Image">
-              <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs"><%= username[0].name %></span>
             </a>
             <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
               <li class="user-header">
                 <img src="../dist/img/avatar2.png" class="img-circle" alt="User Image">
-
                 <p>
                   <%= username[0].name %> - <%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%>
                   <small>Member since April 2014</small>
                 </p>
               </li>
-              <!-- Menu Body -->
-
-              <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
                   <a href='"nurseprofile.html"' class="btn btn-default btn-flat">Profile</a>
@@ -74,17 +58,13 @@
               </li>
             </ul>
           </li>
-          <!-- Control Sidebar Toggle Button -->
-
         </ul>
       </div>
     </nav>
   </header>
-  <!-- Left side column. contains the logo and sidebar -->
+
   <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
           <img src="../dist/img/avatar2.png" class="img-circle" alt="User Image">
@@ -94,7 +74,8 @@
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-      <!-- search form -->
+
+
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -104,21 +85,17 @@
               </span>
         </div>
       </form>
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
+
     <ul class="sidebar-menu">
-      <li><a href="dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-      <li class="active"><a href="patientmanagement" target="_self"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
-      <li><a href="bedmanagement"><i class="fa fa-link"></i> <span>Bed Management</span></a></li>
-      <li><a href="profilemanagement"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
+      <li><a href="../nurse/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+      <li class="active"><a href="../nurse/patientmanagement" target="_self"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
+      <li><a href="../nurse/bedmanagement"><i class="fa fa-link"></i> <span>Bed Management</span></a></li>
+      <li><a href="../nurse/profilemanagement"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
     </ul>
     </section>
-    <!-- /.sidebar -->
   </aside>
 
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
         Patient Management
@@ -126,18 +103,14 @@
       </h1>
     </section>
 
-    <!-- Main content -->
     <section class="content">
-
        <div class="row">
         <div class="col-xs-12">
-          <!-- /.box -->
-
           <div class="box">
             <div class="box-header">
               <a class ="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Register Patient</a>
-          </div>
-          <!-- /.box-header -->
+            </div>
+
           <div class="box-body">
             <table id="example1" class="table table-bordered table-striped">
               <thead>
@@ -187,12 +160,9 @@
                 <%}%>
               </table>
             </div>
-            <!-- /.box-body -->
           </div>
-          <!-- /.box -->
         </div>
-        <!-- /.col -->
-      </div>
+      </section>
 
       <!---------------------------------------------------------------------------------------------- Modal of Adding new patient ----------->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -355,60 +325,29 @@
         </div>
       </div>
       <!------------------------------------------------------------------------------------------ /Modal-->
-      </section>
-      <!-- /.content -->
-      </div>
-      <!-- /.content-wrapper -->
 
-      <!-- Main Footer -->
+      </div>
       <footer class="main-footer">
-      <!-- To the right -->
         <div class="pull-right hidden-xs">
           <b>Version</b> 1
         </div>
         <strong>Copyright &copy; 2018.</strong> Philippine Military Academy | Fort Del Pilar Station Hospital | All rights reserved.
       </footer>
-
-
-      <!-- /.control-sidebar -->
-      <!-- Add the sidebar's background. This div must be placed
-      immediately after the control sidebar -->
       <div class="control-sidebar-bg"></div>
       </div>
-      <!-- ./wrapper -->
-
-      <!-- REQUIRED JS SCRIPTS -->
-
-      <!-- jQuery 2.2.3 -->
       <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-      <!-- Bootstrap 3.3.6 -->
       <script src="../bootstrap/js/bootstrap.min.js"></script>
-      <!-- AdminLTE App -->
       <script src="../dist/js/app.min.js"></script>
-      <!-- DataTables -->
       <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
       <script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
-      <!-- SlimScroll -->
       <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-      <!-- FastClick -->
       <script src="../plugins/fastclick/fastclick.js"></script>
 
-      <script>
+      <script type="text/javascript">
         $(function () {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": true
-        });
+          $("#example1").DataTable();
+          $("#example2").DataTable();
         });
       </script>
-      <!-- Optionally, you can add Slimscroll and FastClick plugins.
-      Both of these plugins are recommended to enhance the
-      user experience. Slimscroll is required when using the
-      fixed layout. -->
    </body>
 </html>
