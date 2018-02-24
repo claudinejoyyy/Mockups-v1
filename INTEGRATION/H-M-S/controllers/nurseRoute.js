@@ -109,20 +109,20 @@ var user, Aid;
   });
 
   app.get('/nurse/patientManagement', function(req, res){
-    if(req.session.email && req.session.sino == 'nurse'){
-      if(req.session.sino == 'nurse'){
-        var sql  = "SELECT * FROM patient";
-
-        db.query(sql, Aid, function(err, rows, fields){
-          res.render('nurse/patientManagement', {p:rows[0], username: user});
-        });
+      if(req.session.email && req.session.sino == 'nurse'){
+        if(req.session.sino == 'nurse'){
+          var sql  = "SELECT * FROM patient";
+  
+          db.query(sql, function(err, rows, fields){
+            res.render('nurse/patientManagement', {p:rows, username: user});
+          });
+        } else {
+          res.redirect(req.session.sino+'/dashboard');
+        }
       } else {
-        res.redirect(req.session.sino+'/dashboard');
+          res.redirect('../login');
       }
-    } else {
-        res.redirect('../login');
-    }
-  });
+    });
 
   app.get('/nurse/bedManagement', function(req, res){
     if (req.session.email && req.session.sino == 'nurse') {
