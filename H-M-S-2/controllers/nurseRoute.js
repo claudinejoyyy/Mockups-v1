@@ -32,7 +32,7 @@ var user, Aid;
         var pNameSQL = "SELECT name from patient where patient_id = "+data.patient+";";
 
         if(data.sub == 'assessment') {
-          var vitalSigns = data.BP +'\n'+ data.CR +'\n'+ data.PR +'\n'+ data.RR +'\n'+ data.temperature +'\n'+ data.Wt +'\n'+ data.age;
+          var vitalSigns = 'BP: '+data.BP +'\nCR: '+ data.CR +'\nPR: '+ data.PR +'\nRR: '+ data.RR +'\n TEMP: '+ data.temperature +'\nWT: '+ data.Wt;
           var initialAssessment = 'INSERT into initial_assessment (assessment, date, patient_id, account_id, vital_signs) VALUES("'+data.assessment+'", "'+currentTime+'",'+data.assessmentPatient+','+data.assessmentDoctor+',"'+vitalSigns+'");';
           db.query(initialAssessment + 'INSERT into activity_logs(account_id, time, type, remarks, patient_id) VALUES ('+Aid+',"'+currentTime+'", "initialAssessment", "assessment for '+req.query.assessmentPatient+'", '+data.assessmentPatient+');', function(err){
             if (err) {

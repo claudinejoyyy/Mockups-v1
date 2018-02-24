@@ -23,7 +23,7 @@ app.use(session({secret: 'shhhhh', cookie: { maxAge: 3600000 }}));
 
 
 //PARA sa DASHBOARD of all MODULES!!!
-var name   = "SELECT name FROM user_accounts where account_id = ?;";
+var name   = "SELECT name,account_type FROM user_accounts where account_id = ?;";
 var counts = "SELECT (SELECT count(patient_id) From patient p inner join activity_logs a USING(patient_id) where a.type = 'initialAssessment') as OPD, "
             +"(SELECT count(patient_id) From patient p inner join activity_logs a USING(patient_id) where a.type = 'bed') as WARD,"
             +"(SELECT count(name) pCount FROM patient) as totalRegisteredPatients,"
@@ -36,7 +36,7 @@ var chart  = "SELECT  (SELECT count(patient_id) from patient where patient_type 
 //COUNT
 var whoOPD               = "SELECT p.name, a.time From patient p inner join activity_logs a USING(patient_id) where a.type = 'initialAssessment';";
 var whoWARD              = "SELECT p.name, a.time From patient p inner join activity_logs a USING(patient_id) where a.type = 'bed';";
-var whoCurrentlyAdmitted = "SELECT p.name, a.patient_id FROM bed a INNER JOIN patient p USING(patient_id);";
+var whoCurrentlyAdmitted = "SELECT p.name, a.patient_id, a.bed_id FROM bed a INNER JOIN patient p USING(patient_id);";
 // GRAPH
 var currentTime = moment().format('YYYY');
 var monthlyPatientCount  = 'SELECT (SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-01-01 00:00:00" and "'+currentTime+'-02-01 00:00:00" and type = "add") as JAN,'

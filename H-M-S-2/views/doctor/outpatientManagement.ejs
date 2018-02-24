@@ -39,8 +39,9 @@
         <th>name</th>
         <th>age</th>
         <th>gender</th>
-        <th>blood type</th>
+        <th>Vital Signs</th>
         <th>initial Assessment</th>
+        <th>bed</th>
         <th>action</th>
       </tr>
       <%for (var i = 0; i < opdInfo.length; i++) {%>
@@ -49,11 +50,28 @@
             <td><%=opdInfo[i].name%></td>
             <td><%=opdInfo[i].age%></td>
             <td><%=opdInfo[i].sex%></td>
-            <td><%=opdInfo[i].blood_type%></td>
+            <td style="font-size:10px;">
+              <%
+                var vitals = opdInfo[i].vital_signs.split('\n');
+                for(var l=0; l < 7; l++){ %>
+                  <%=vitals[l]%><br>
+              <%}%>
+            </td>
             <td><%=opdInfo[i].assessment%></td>
+            <%
+            var bedArr= '';
+              for (var j = 0; j < whoCurrentlyAdmittedV2.length; j++){
+                bedArr += whoCurrentlyAdmittedV2[j].patient_id;
+              }
+            if(bedArr.includes(opdInfo[i].patient_id)){%>
+              <td><%= whoCurrentlyAdmittedV2[i].bed_id%><a href="/doctor/bedManagement?bed_id=<%=whoCurrentlyAdmittedV2[i].bed_id%>" style="font-size:10px;">-details</a></td>
+            <%} else {%>
+              <td></td>
+            <%}%>
+
             <td>
               <!-- VIEW -->
-              <button name="view"><a href="../doctor/patientManagement?patient=<%=opdInfo[i].patient_id%>">view</a></button>
+              <a href="../doctor/patientManagement?patient=<%=opdInfo[i].patient_id%>"><button name="view">view</button></a>
               <!-- LAB -->
               <%
               var labArr= '';
@@ -61,7 +79,7 @@
                   labArr += labSQL[j].patient_id;
                 }
               if(labArr.includes(opdInfo[i].patient_id)){%>
-                  <input type="button" name="lab_request" value=" add/view Lab Request" onclick="ShowLabRequest2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                  <input type="button" name="lab_request" style="color:blue" value="Lab Request" onclick="ShowLabRequest2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
               <%} else {%>
                   <input type="button" name="lab_request" value="Lab Request" onclick="ShowLabRequest(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
               <%}%>
@@ -72,7 +90,7 @@
                   prescribeArr += prescribeSQL[j].patient_id;
                 }
               if(prescribeArr.includes(opdInfo[i].patient_id)){%>
-                <input type="button" name="prescribe" value="add/view Prescription" onclick="ShowPrescribe2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                <input type="button" name="prescribe" style="color:blue" value="Prescription" onclick="ShowPrescribe2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
               <%} else {%>
                 <input type="button" name="prescribe" value="Prescription" onclick="ShowPrescribe(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
               <%}%>
@@ -80,11 +98,13 @@
               <button name="button" onclick="ShowDiagnosis(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">diagnosis</button>
               <!-- ADMIT -->
               <% var arr= '';
-                for (var j = 0; j < whoCurrentlyAdmitted.length; j++){
-                  arr += whoCurrentlyAdmitted[j].patient_id;
+                for (var j = 0; j < whoCurrentlyAdmittedV2.length; j++){
+                  arr += whoCurrentlyAdmittedV2[j].patient_id;
                 } if(!(arr.includes(opdInfo[i].patient_id))){%>
                   <input type="button" name="admit" value="admit" onclick="ShowAdmit(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
               <%}%>
+              <!-- LAB REQUEST TABLE VIEW -->
+
             </td>
         </tr>
       <%}%>

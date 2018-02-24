@@ -64,14 +64,17 @@ var user, Aid, availableBedss, p;
   app.get('/doctor/outpatientManagement', function(req, res){
     if(req.session.email && req.session.sino == 'doctor'){
       if (req.session.sino == 'doctor') {
-          var outpatientDepartmentSQL = 'SELECT * FROM patient inner join initial_assessment i using(patient_id) where i.account_id = '+Aid+';';
-          var labSQL                  = 'SELECT * from lab_request inner join patient using(patient_id) group by patient_id;';
+          var outpatientDepartmentSQL = 'SELECT * FROM patient inner join initial_assessment i using(patient_id) where i.account_id = '+Aid+' and patient_id NOT IN (SELECT patient_id from diagnosis) order by patient_id;';
+          var labSQL                  = 'SELECT * from lab_request left join initial_assessment using(patient_id);';
           var prescribeSQL            = 'SELECT * from prescription inner join patient using(patient_id) group by patient_id;';
-          db.query(outpatientDepartmentSQL + availableBeds + whoCurrentlyAdmitted + labSQL + prescribeSQL, function(err, rows){
+          var whoCurrentlyAdmittedV2  = 'SELECT * FROM patient p left join initial_assessment i ON p.patient_id = i.patient_id left join bed a ON p.patient_id = a.patient_id where i.account_id = '+Aid+' and p.patient_id NOT IN (SELECT patient_id from diagnosis) order by p.patient_id;';
+
+          db.query(outpatientDepartmentSQL + availableBeds + whoCurrentlyAdmittedV2 + labSQL + prescribeSQL, function(err, rows){
           if (err) {
             console.log(err);
           } else {
-              res.render('doctor/outpatientManagement', {opdInfo:rows[0], admitAvailableBeds:rows[1], whoCurrentlyAdmitted:rows[2], labSQL:rows[3], prescribeSQL:rows[4]});
+              //var vitals = rows[1].vital_signs.split('\n');
+              res.render('doctor/outpatientManagement', {opdInfo:rows[0], admitAvailableBeds:rows[1], whoCurrentlyAdmittedV2:rows[2], labSQL:rows[3], prescribeSQL:rows[4]});
           }
         });
       } else {
@@ -87,7 +90,7 @@ var user, Aid, availableBedss, p;
       if (req.session.sino == 'doctor') {
           if (data.sub == 'admit') {
             var bedSQL = 'UPDATE bed set allotment_timestamp = "'+currentTime+'", patient_id = '+req.query.patient_id+',status = "occupied" where bed_id = '+data.bedNumber+';';
-            db.query(bedSQL + 'INSERT into activity_logs(account_id, time, type, remarks, patient_id) VALUES ('+Aid+',"'+currentTime+'", "bed", "Alloted bed number: '+data.bedNumber+'",'+req.query.patient_id+');', function(err){
+            db.query(bedSQL + 'INSERT into activity_logs(account_id, time, type, remarks, patient_id) VALUES ('+Aid+',"'+currentTime+'", "bed", "Alloted bed number: '+data.bedNumber+' to patient:'+req.query.patient_name+'",'+req.query.patient_id+');', function(err){
               if (err) {
                 console.log(err);
               } else {
@@ -113,7 +116,14 @@ var user, Aid, availableBedss, p;
               }
             });
           } else if (data.sub == 'diag') {
-            var diagnosisSQL = 'INSERT into doctor_diagnosis';
+            var diagnosisSQL = 'INSERT into diagnosis (diagnosis, date, patient_id, doctor_id) VALUES ("'+data.diagnosis+'","'+currentTime+'",'+req.query.patient_id+','+Aid+');';
+            db.query(diagnosisSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "diagnosis", "diagnosis for : '+req.query.patient_name+'");', function(err){
+              if (err) {
+                console.log(err);
+              } else {
+                res.redirect(req.get('referer'));
+              }
+            });
           }
       } else {
         res.redirect(req.session.sino+'/dashboard');
@@ -126,10 +136,17 @@ var user, Aid, availableBedss, p;
   app.get('/doctor/bedManagement', function(req, res){
     if (req.session.email && req.session.sino == 'doctor') {
       if (req.session.sino == 'doctor') {
-        var bedSQL = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id); ";
-        db.query(bedSQL, function(err, rows, fields){
-          res.render('doctor/bedManagement', {bedDetails:rows});
-        });
+        if (req.query.bed_id) {
+          var bedSQL = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id) where bed_id = "+req.query.bed_id+"; ";
+          db.query(bedSQL, function(err, rows, fields){
+            res.render('doctor/bedManagement', {bedDetails:rows});
+          });
+        } else {
+          var bedSQL = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id); ";
+          db.query(bedSQL, function(err, rows, fields){
+            res.render('doctor/bedManagement', {bedDetails:rows});
+          });
+        }
       } else {
         res.redirect(req.session.sino+'/dashboard');
       }
@@ -361,3 +378,4 @@ var user, Aid, availableBedss, p;
       }
     });
 }
+//CREATE A QUERY onsubmit of LAB REQUEST to be passed on the OPD tab
