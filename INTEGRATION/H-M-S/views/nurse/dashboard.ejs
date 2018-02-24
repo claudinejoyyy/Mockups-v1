@@ -195,8 +195,8 @@
               <h3 class="box-title">Quick Access</h3>
             </div>
             <div class="box-body">
-              <a class="btn btn-app" data-toggle="modal" data-target="#myModal1">
-                <i class="fa fa-edit" data-target="#myModal1"></i> New Patient
+              <a onclick="showAccessment()" class="btn btn-app" data-toggle="modal" data-target="#myModal1">
+                <i class="fa fa-edit" data-target="#myModal1"></i> OPD Patient
               </a>
               <a onclick="showAdd()" class="btn btn-app" data-toggle="modal" data-target="#myModal">
                 <i class="fa fa-plus" data-target="#myModal"></i> Register Patient
@@ -416,7 +416,7 @@
                   <br>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary" name="sub" value="add">save</button>
+                    <button type="submit" class="btn btn-primary" name="sub" value="add">Save</button>
                   </div>
                 </form>
             </div>
@@ -427,146 +427,43 @@
       <!------------------------------------------------------------------------------------------ /Modal-->
 
       <!---------------------------------------------------------------------------------------------- Modal of out patient ----------->
-        <div class="modal fade" id="myModal1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+        <div class="modal fade" id="myModal1" role="dialog" aria-labelledby="myModalLabel" style="overflow:hidden;">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel1">New Outpatient</h4>
+                <h4 class="modal-title" id="myModalLabel">New Outpatient</h4>
                 <small>*Register new patient if patient is not found</small>
               </div>
               <div class="modal-body">
-                <form class="form-horizontal">
-
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-                    <div class="col-sm-10">
-                        <select class="form-control select2" style="width: 100%;">
-                            <option>Rufina Spiker</option>
-                            <option>Halina Seago</option>
-                            <option>Rene Chess</option>
-                            <option>Aide Stow</option>
-                            <option>Truman Lipe</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                  </div>
-
-<!--Mag-aadmit lang nakaregister na sa database-->
-<!--
-                  <div class="form-group">
-                      <label for="inputExperience" class="col-sm-2 control-label">Type</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                            <option>Cadet</option>
-                            <option>Officer</option>
-                            <option>Civilian</option>
-                          </select>
-                        </div>
-                  </div>
--->
-<!--
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Physician</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills">
-                    </div>
-                  </div>
--->
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Initial Assessment</label>
-
-                    <div class="col-sm-10">
-                      <textarea class="form-control" rows="3" placeholder="Initial Assessment ..."></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Medical Officer of the Day</label>
-                    <div class="col-sm-10">
-                        <select class="form-control select2" style="width: 100%;">
-                            <option>Luffy D. Monkey</option>
-                            <option>Loyd John</option>
-                            <option>Leolo Gutierres</option>
-                            <option>Rupert Saban</option>
-                            <option>Eileen Quimby</option>
-                            <option>Jose Beecroft</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                  </div>
+                <form id="assessment" method="post" style="display:none;">
+                  <!-- PATIENT !! -->
+                  <h4 style="display:inline-block;">select a patient</h4>
+                  <select name="assessmentPatient" style="display:inline-block;" required>
+                    <%for(var i = 0; i < availablePatientOPD.length; i++){%>
+                      <option  value="<%= availablePatientOPD[i].patient_id%>"><%= availablePatientOPD[i].name%></option>
+                    <%}%>
+                  </select>
+                  <br>
+                  <input type="text" name="BP" required>BP <br>
+                  <input type="text" name="CR" required>CR <br>
+                  <input type="text" name="PR" required>PR <br>
+                  <input type="text" name="RR" required>RR <br>
+                  <input type="text" name="temperature" required>Temperature <br>
+                  <input type="text" name="Wt" required>Wt <br>
+                  <!-- OTHERS!!! -->
+                  <h4>Chief Complaints</h4>
+                  <textarea name="assessment" rows="8" cols="80" required></textarea>
+                  <select name="assessmentDoctor" required>
+                    <%for(var i = 0; i < doctorList.length; i++){%>
+                      <option value="<%= doctorList[i].account_id%>"><%= doctorList[i].name%></option>
+                    <%}%>
+                  </select>
                 </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!------------------------------------------------------------------------------------------ /Modal-->
-
-        <!---------------------------------------------------------------------------------------------- Modal for Bed Allotment ----------->
-        <div class="modal fade" id="myModal2" role="dialog" aria-labelledby="myModalLabel" style="overflow:hidden;">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Bed Allotment</h4>
-              </div>
-              <div class="modal-body">
-                <form class="form-horizontal">
-
-                <div class="form-group">
-                  <label for="inputBedNumber" class="col-sm-2 control-label">Bed Number</label>
-                  <div class="col-sm-10">
-                    <select class="form-control select2" style="width: 100%;">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>...</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputName" class="col-sm-2 control-label">Name</label>
-                  <div class="col-sm-10">
-                    <select class="form-control select2" style="width: 100%;">
-                      <option>Rufina Spiker</option>
-                      <option>Halina Seago</option>
-                      <option>Rene Chess</option>
-                      <option>Aide Stow</option>
-                      <option>Truman Lipe</option>
-                      <option>...</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputConfinementDate" class="col-sm-2 control-label">Confinement Date</label>
-                    <div class="col-sm-10">
-                      <input type="date" class="form-control datepicker" id="datepicker" placeholder="MM/DD/YYYY">
-                    </div>
-                </div>
-
-<!-- sa bed management na table yung mga discharge na siguro-->
-<!--
-                <div class="form-group">
-                  <label for="inputDischargeDate" class="col-sm-2 control-label">Discharge Date</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control datepicker" id="datepicker">
-                  </div>
-                </div>
--->
-
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
+                <button type="submit" class="btn btn-primary" name="sub" value="assessment" onclick="linkAssessment(<%= availablePatientOPD[i].name%>)">Confirm</button>
               </div>
             </div>
           </div>
@@ -656,11 +553,11 @@
      */
     var data = [], totalPoints = 100;
     var donutData = [
-      {label: "MD", data: 15, color: "red"},
-      {label: "CE", data: 10, color: "yellow"},
-      {label: "MO", data: 25, color: "aqua"},
-      {label: "C", data: 40, color: "gray"},
-      {label: "AC", data: 10, color: "blue"}
+      {label: "MD", data: <%= chart[0].military_dependent %>, color: "red"},
+      {label: "CE", data: <%= chart[0].civilian %>, color: "yellow"},
+      {label: "MO", data: <%= chart[0].military_officer %>, color: "aqua"},
+      {label: "C", data: <%= chart[0].cadet %>, color: "gray"},
+      {label: "AC", data: <%= chart[0].authorized_civilian%>, color: "blue"}
     ];
     $.plot("#donut-chart1", donutData, {
       series: {
