@@ -9,7 +9,7 @@ var user, Aid;
         var acceptedRequestSQL = 'SELECT * from prescription r inner join patient p using(patient_id) where r.status="confirmed";';
         var pendingRequestSQL  = 'SELECT * from prescription r inner join patient p using(patient_id) where r.status="pending";';
         var todoList           = "SELECT * from todo_list where account_id = "+Aid+";";
-        db.query(prescriptionSQL + acceptedRequestSQL + pendingRequestSQL + todoList + monthlyPatientCount + name, function(err, rows){
+        db.query(prescriptionSQL + acceptedRequestSQL + pendingRequestSQL + todoList + monthlyPatientCount + name, Aid, function(err, rows){
           if (err) {
             console.log(err);
           } else {

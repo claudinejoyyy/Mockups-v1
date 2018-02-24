@@ -14,7 +14,7 @@ var user, Aid;
         var microbiology      = 'SELECT * from lab_request l inner join patient using(patient_id) where l.type = "microbiology";';
         var xRay              = 'SELECT * from lab_request l inner join patient using(patient_id) where l.type = "xRay";';
         var todoList          = "SELECT * from todo_list where account_id = "+Aid+";";
-        db.query(todoList + diagnosisSQL + bloodChemistrySQL + hermatology + microscopy + parasitology + serology + microbiology + xRay + monthlyPatientCount + name, function(err, rows){
+        db.query(todoList + diagnosisSQL + bloodChemistrySQL + hermatology + microscopy + parasitology + serology + microbiology + xRay + monthlyPatientCount + name, Aid, function(err, rows){
           if (err) {
             console.log(err);
           } else {
