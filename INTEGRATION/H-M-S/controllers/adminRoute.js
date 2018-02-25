@@ -1,24 +1,170 @@
 module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds){
 var user, Aid;
 
-  app.get('/admin/dashboard', function(req, res){
-    if(req.session.email && req.session.sino == 'admin'){
-      Aid = req.session.Aid;
-      if(req.session.sino == 'admin'){
-        var todoList    = "SELECT * from todo_list where account_id = "+req.session.Aid+";";
-        db.query(name + counts + chart + whoCurrentlyAdmitted + whoOPD + whoWARD + patientList + availableBeds + monthlyPatientCount + todoList, Aid, function(err, rows, fields){
-          if (err) {
-            console.log(err);
-          }
-          user = rows[0];
-          res.render('admin/dashboard', {counts:rows[1], chart:rows[2], whoCurrentlyAdmitted:rows[3], whoOPD:rows[4],
-                                         whoWARD:rows[5], patientList:rows[6], availableBeds:rows[7], monthlyPatientCount:rows[8], todoList:rows[9], username: user});
-       });
+app.get('/admin/dashboard', function(req, res){
+  if(req.session.email && req.session.sino == 'admin'){
+    Aid = req.session.Aid;
+    if(req.session.sino == 'admin'){
+      var todoList    = "SELECT * from todo_list where account_id = "+Aid+";";
+      db.query(name + counts + chart + whoCurrentlyAdmitted + whoOPD + whoWARD + patientList + availableBeds + monthlyPatientCount + todoList, Aid, function(err, rows, fields){
+        if (err) {
+          console.log(err);
+        }
+        user = rows[0];
+        availableBedss = rows[7];
+        res.render('admin/dashboard', {counts:rows[1], chart:rows[2], whoCurrentlyAdmitted:rows[3], whoOPD:rows[4], whoWARD:rows[5], patientList:rows[6],
+                                       availableBeds:rows[7], monthlyPatientCount:rows[8], todoList:rows[9], username: user});
+     });
+    } else {
+      res.redirect(req.session.sino + '/dashboard');
+    }
+  } else {
+    res.redirect('../login');
+  }
+});
+
+app.post('/admin/dashboard', function(req, res){
+  var data = req.body;
+  if(req.session.email && req.session.sino == 'admin'){
+      if (req.session.sino == 'admin') {
+            if(data.sub == 'addTodo') {
+                  var splitDateNTime = data.dateNtime.split('T');
+                  var parseDate      = splitDateNTime[0];
+                  var parseTime      = splitDateNTime[1] + ':00';
+                  var parseDateNTime = parseDate+' '+parseTime;
+
+                  var addTodo  = 'INSERT into todo_list (description, date, account_id) VALUES("'+data.description+'","'+parseDateNTime+'",'+Aid+');';
+                  db.query(addTodo + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "todo", "Added to To Do List the following: '+data.description+'");', function(err){
+                    if (err) {
+                      console.log(err);
+                    }
+                  });
+                  res.redirect(req.get('referer'));
+            }
       } else {
         res.redirect(req.session.sino + '/dashboard');
+      }
+  } else {
+    res.redirect('../login');
+  }
+});
+//PATIENT MANAGEMENT
+app.get('/admin/patientManagement', function(req, res){
+    if(req.session.email && req.session.sino == 'admin'){
+      if(req.session.sino == 'admin'){
+        var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient";
+        db.query(sql, function(err, rows){
+          res.render('admin/patientManagement', {p:rows, username:user});
+        });
+      } else {
+        res.redirect(req.session.sino+'/dashboard');
+      }
+    } else {
+        res.redirect('../login');
+    }
+  });
+
+  // PROFILE MANAGEMENT
+  app.get('/admin/profileManagement', function(req, res){
+    if(req.session.email && req.session.sino == 'admin'){
+      if (req.session.sino == 'admin') {
+        var profileInfoSQL  = 'SELECT * from user_accounts where account_id = '+req.session.Aid+';';
+        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc;';
+        db.query(profileInfoSQL + activityLogsSQL, function(err, rows){
+          if (err) {
+            console.log(err);
+          } else {
+            res.render('admin/profileManagement', {pInfo:rows[0], activityInfo: rows[1], username: user});
+          }
+        });
+      } else {
+        res.redirect(req.session.sino+'/dashboard');
+      }
+    } else {
+      res.redirect('../login')
+    }
+  });
+
+  app.post('/admin/profileManagement', function(req, res){
+    var data = req.body;
+    if (req.session.email && req.session.sino == 'admin') {
+      if (req.session.sino == 'admin') {
+        var updateProfileSQL = 'UPDATE user_accounts SET name = "'+data.name+'", age = '+data.age+', address = "'+data.address+'", phone = '+data.phone+' WHERE account_id = '+req.session.Aid+';';
+        db.query(updateProfileSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "settingsProfileManagement", "Edited personal info.");', function(err, rows){
+          if (err) {
+            console.log(err);
+          } else {
+            res.redirect(req.get('referer'));
+          }
+        });
+      } else {
+        res.redirect(req.session.sino+'/dashboard');
       }
     } else {
       res.redirect('../login');
     }
   });
+
+  //USER ACCOUNTS MANAGEMENT
+  app.get('/admin/userAccountsManagement', function(req, res){
+      if(req.session.email && req.session.sino == 'admin'){
+        if(req.session.sino == 'admin'){
+          var sql  = "SELECT account_id, account_type, name, age, sex, max(time) as last_Login FROM user_accounts left join activity_logs using(account_id) group by account_id;";
+          db.query(sql, function(err, rows){
+            res.render('admin/userAccountsManagement', {p:rows, username:user});
+          });
+        } else {
+          res.redirect(req.session.sino+'/dashboard');
+        }
+      } else {
+          res.redirect('../login');
+      }
+    });
+
+    app.post('/admin/userAccountsManagement', function(req, res){
+      var data = req.body;
+      if (req.session.email && req.session.sino == 'admin') {
+        if (req.session.sino == 'admin') {
+          if (data.sub == 'remove') {
+            var deleteUserAccount = 'DELETE FROM user_accounts where account_id = '+req.query.account+';';
+            db.query(deleteUserAccount + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "removedUser", "removed user: '+req.query.name+'");', function(err, rows){
+              if (err) {
+                console.log(err);
+              } else {
+                res.redirect(req.get('referer'));
+              }
+            });
+          } else if (data.sub == 'add') {
+            var addUserAccount = 'INSERT into user_accounts (username, password, account_type, name, age, sex, address, phone) VALUES ("'+data.user+'","'+data.pass+'","'+data.type+'","'+data.name+'",'+data.age+',"'+data.gender+'","'+data.address+'","'+data.phone+'");';
+            db.query(addUserAccount + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "addUser", "Added user: '+data.name+'");', function(err, rows){
+              if (err) {
+                console.log(err);
+              } else {
+                res.redirect(req.get('referer'));
+              }
+            });
+          }
+        } else {
+          res.redirect(req.session.sino+'/dashboard');
+        }
+      } else {
+        res.redirect('../login');
+      }
+    });
+
+    //BED MANAGEMENT
+    app.get('/admin/bedManagement', function(req, res){
+      if (req.session.email && req.session.sino == 'admin') {
+        if (req.session.sino == 'admin') {
+            var bedSQL = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id); ";
+            db.query(bedSQL, function(err, rows, fields){
+              res.render('admin/bedManagement', {bedDetails:rows, username: user});
+            });
+        } else {
+          res.redirect(req.session.sino+'/dashboard');
+        }
+      } else {
+        res.redirect('../login');
+      }
+    });
 }
