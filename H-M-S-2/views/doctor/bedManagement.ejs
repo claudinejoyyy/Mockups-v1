@@ -38,9 +38,12 @@
         <%} else {%>
           <td><%= DT%></td>
         <%}%>
+
+        <%if(bedDetails[i].name){%>
         <form action="/doctor/bedManagement?bed=<%= bedDetails[i].bed_id%>" method="POST">
           <td><button>discharge</button></td>
         </form>
+        <%}%>
       </tr>
       <%}%>
     </table>

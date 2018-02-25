@@ -3,25 +3,36 @@
   <head>
     <meta charset="utf-8">
     <title>Dashboard</title>
+    <style media="screen">
+      table{
+        font-family: sans-serif;
+        width:100%;
+      }
+      td,th{
+        border:1px solid;
+        font-weight: bold;
+        text-align: center;
+      }
+
+    </style>
   </head>
   <body>
     <nav>
       <a href="../laboratorist/dashboard">dashboard</a><br>
-      <a href="../laboratorist/diagnosis">prescriptionManagement</a><br>
+      <a href="../laboratorist/labRequestManagement">labRequestManagement</a><br>
       <a href="../laboratorist/patientManagement">patientManagement</a><br>
       <a href="../laboratorist/profileManagement">profile</a> <br>
-      <a href="../laboratorist/reports">reports</a>
     </nav>
     <br>
     <br>
-    <button type="button"><a href="../laboratorist/diagnosis">more info</a></button>Total pending Diagnosis Tests = <%= diagnosisSQL.length%><br>
-    <button type="button">more info</button>bloodChemistrySQL = <%= bloodChemistrySQL.length%><br>
-    <button type="button">more info</button>hermatology = <%= hermatology.length%><br>
-    <button type="button">more info</button>microscopy = <%= microscopy.length%><br>
-    <button type="button">more info</button>parasitology = <%= parasitology.length%><br>
-    <button type="button">more info</button>serology = <%= serology.length%><br>
-    <button type="button">more info</button>microbiology = <%= microbiology.length%><br>
-    <button type="button">more info</button>xRay = <%= xRay.length%><br>
+    <button type="button"><a href="../laboratorist/labRequestManagement">more info</a></button>Total pending Diagnosis Tests = <%= diagnosisSQL.length%><br>
+    <button type="button" onclick="showBloodChem()">more info</button>bloodChemistrySQL = <%= bloodChemistrySQL.length%><br>
+    <button type="button" onclick="showHerma()">more info</button>hermatology = <%= hermatology.length%><br>
+    <button type="button" onclick="showMicroscopy()">more info</button>microscopy = <%= microscopy.length%><br>
+    <button type="button" onclick="showParasitology()">more info</button>parasitology = <%= parasitology.length%><br>
+    <button type="button" onclick="showSerology()">more info</button>serology = <%= serology.length%><br>
+    <button type="button" onclick="showMicrobiology()">more info</button>microbiology = <%= microbiology.length%><br>
+    <button type="button" onclick="showXray()">more info</button>xRay = <%= xRay.length%><br>
 
 
     <!-- TODOLIST -->
@@ -58,10 +69,137 @@
     <br>
     <button type="button"><a href="../logout">LOGOUT</a></button>
 
+    <div id="showBloodChem" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < bloodChemistrySQL.length; i++){%>
+        <tr>
+            <td><%= bloodChemistrySQL[i].name%></td>
+            <td><%= bloodChemistrySQL[i].timestamp%></td>
+        </tr>
+        <%}%>
+      </table>
+    </div>
+
+    <div id="showHerma" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < hermatology.length; i++){%>
+        <tr>
+            <td><%= hermatology[i].name%></td>
+            <td><%= hermatology[i].timestamp%></td>
+        </tr>
+        <%}%>
+      </table>
+    </div>
+
+    <div id="showMicroscopy" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < microscopy.length; i++){%>
+        <tr>
+            <td><%= microscopy[i].name%></td>
+            <td><%= microscopy[i].timestamp%></td>
+        </tr>
+        <%}%>
+      </table>
+    </div>
+
+    <div id="showParasitology" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < parasitology.length; i++){%>
+        <tr>
+            <td><%= parasitology[i].name%></td>
+            <td><%= parasitology[i].timestamp%></td>
+        </tr>
+        <%}%>
+      </table>
+    </div>
+
+    <div id="showSerology" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < serology.length; i++){%>
+        <tr>
+            <td><%= serology[i].name%></td>
+            <td><%= serology[i].timestamp%></td>
+        </tr>
+        <%}%>
+      </table>
+    </div>
+
+
+    <div id="showMicrobiology" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < microbiology.length; i++){%>
+        <tr>
+            <td><%= microbiology[i].name%></td>
+            <td><%= microbiology[i].timestamp%></td>
+        </tr>
+        <%}%>
+      </table>
+    </div>
+
+
+    <div id="showXray" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < xRay.length; i++){%>
+          <tr>
+            <td><%= xRay[i].name%></td>
+            <td><%= xRay[i].timestamp%></td>
+          </tr>
+        <%}%>
+      </table>
+    </div>
   </body>
 </html>
 <script>
   function showTodo() {
     document.getElementById("showTodo").style.display = "block";
+  }
+  function showBloodChem() {
+    document.getElementById("showBloodChem").style.display = "block";
+  }
+  function showHerma() {
+    document.getElementById("showHerma").style.display = "block";
+  }
+  function showMicroscopy() {
+    document.getElementById("showMicroscopy").style.display = "block";
+  }
+  function showParasitology() {
+    document.getElementById("showParasitology").style.display = "block";
+  }
+  function showSerology() {
+    document.getElementById("showSerology").style.display = "block";
+  }
+  function showMicrobiology() {
+    document.getElementById("showMicrobiology").style.display = "block";
+  }
+  function showXray() {
+    document.getElementById("showXray").style.display = "block";
   }
 </script>
