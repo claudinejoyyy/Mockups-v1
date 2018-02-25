@@ -176,25 +176,50 @@ var user, Aid, availableBedss, p;
   app.get('/doctor/patientManagement', function(req, res){
       if(req.session.email && req.session.sino == 'doctor'){
         if(req.session.sino == 'doctor'){
-
           if(req.query.patient){
-            var sql  = "SELECT * FROM patient where patient_id = "+req.query.patient+"";
-            db.query(sql, Aid, function(err, rows){
-              res.render('doctor/patientManagement', {p:rows, username:user, patient:req.query.patient});
+            var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.patient+";";
+            db.query(sql, function(err, rows){
+              res.render('doctor/patientManagement', {p:rows, p2:null, username:user, invalid:null});
             });
           } else {
-            var sql  = "SELECT * FROM patient";
-            db.query(name + ";" + sql, Aid, function(err, rows){
-              user = rows[0];
-              res.render('doctor/patientManagement', {p:rows[1], username:user, patient:null});
-            });
+              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient";
+              db.query(sql, function(err, rows){
+                res.render('doctor/patientManagement', {p:rows, p2:null, username:user, invalid:null});
+              });
           }
-
         } else {
           res.redirect(req.session.sino+'/dashboard');
         }
       } else {
           res.redirect('../login');
+      }
+    });
+    app.post('/doctor/patientManagement', function(req, res){
+      var data = req.body;
+      if(req.session.email && req.session.sino == 'doctor'){
+        if(req.session.sino == 'doctor') {
+          var checkPassword = 'Select * from user_accounts where account_id='+Aid+' and password="'+data.patientPassword+'";';
+          db.query(checkPassword, function(err, rows){
+            if(err){
+              console.log(err);
+            } else if(rows == ''){
+              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
+              db.query(sql, function(err, errorRows){
+                res.render('doctor/patientManagement', {p:errorRows, p2:null, username:user, invalid:'error'});
+              });
+            } else {
+              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
+              var sql2  = "SELECT * FROM patient where patient_id = "+req.query.passPatient+";";
+              db.query(sql + sql2, function(err, successRows){
+                res.render('doctor/patientManagement', {p:successRows[0], p2:successRows[1], username:user, invalid:null});
+              });
+            }
+          });
+        } else {
+          res.redirect(req.session.sino+'/dashboard');
+        }
+      } else {
+        res.redirect('../login');
       }
     });
     //APPOINTMENT
