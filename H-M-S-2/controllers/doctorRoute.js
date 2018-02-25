@@ -74,7 +74,7 @@ var user, Aid, availableBedss, p;
             console.log(err);
           } else {
               //var vitals = rows[1].vital_signs.split('\n');
-              res.render('doctor/outpatientManagement', {opdInfo:rows[0], admitAvailableBeds:rows[1], whoCurrentlyAdmittedV2:rows[2], labSQL:rows[3], prescribeSQL:rows[4]});
+              res.render('doctor/outpatientManagement', {opdInfo:rows[0], admitAvailableBeds:rows[1], whoCurrentlyAdmittedV2:rows[2], labSQL:rows[3], prescribeSQL:rows[4], username: user});
           }
         });
       } else {
@@ -139,12 +139,12 @@ var user, Aid, availableBedss, p;
         if (req.query.bed_id) {
           var bedSQL = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id) where bed_id = "+req.query.bed_id+"; ";
           db.query(bedSQL, function(err, rows, fields){
-            res.render('doctor/bedManagement', {bedDetails:rows});
+            res.render('doctor/bedManagement', {bedDetails:rows, username: user});
           });
         } else {
           var bedSQL = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id); ";
           db.query(bedSQL, function(err, rows, fields){
-            res.render('doctor/bedManagement', {bedDetails:rows});
+            res.render('doctor/bedManagement', {bedDetails:rows, username: user});
           });
         }
       } else {
@@ -176,27 +176,50 @@ var user, Aid, availableBedss, p;
   app.get('/doctor/patientManagement', function(req, res){
       if(req.session.email && req.session.sino == 'doctor'){
         if(req.session.sino == 'doctor'){
-
           if(req.query.patient){
-            var name  = "SELECT name FROM user_accounts where account_id = ?";
-            var sql  = "SELECT * FROM patient where patient_id = "+req.query.patient+"";
-            db.query(sql, Aid, function(err, rows){
-              res.render('doctor/patientManagement', {p:rows, username:user, patient:req.query.patient});
+            var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.patient+";";
+            db.query(sql, function(err, rows){
+              res.render('doctor/patientManagement', {p:rows, p2:null, username:user, invalid:null});
             });
           } else {
-            var name  = "SELECT name FROM user_accounts where account_id = ?";
-            var sql  = "SELECT * FROM patient";
-            db.query(name + ";" + sql, Aid, function(err, rows){
-              user = rows[0];
-              res.render('doctor/patientManagement', {p:rows[1], username:user, patient:null});
-            });
+              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient";
+              db.query(sql, function(err, rows){
+                res.render('doctor/patientManagement', {p:rows, p2:null, username:user, invalid:null});
+              });
           }
-
         } else {
           res.redirect(req.session.sino+'/dashboard');
         }
       } else {
           res.redirect('../login');
+      }
+    });
+    app.post('/doctor/patientManagement', function(req, res){
+      var data = req.body;
+      if(req.session.email && req.session.sino == 'doctor'){
+        if(req.session.sino == 'doctor') {
+          var checkPassword = 'Select * from user_accounts where account_id='+Aid+' and password="'+data.patientPassword+'";';
+          db.query(checkPassword, function(err, rows){
+            if(err){
+              console.log(err);
+            } else if(rows == ''){
+              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
+              db.query(sql, function(err, errorRows){
+                res.render('doctor/patientManagement', {p:errorRows, p2:null, username:user, invalid:'error'});
+              });
+            } else {
+              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
+              var sql2  = "SELECT * FROM patient where patient_id = "+req.query.passPatient+";";
+              db.query(sql + sql2, function(err, successRows){
+                res.render('doctor/patientManagement', {p:successRows[0], p2:successRows[1], username:user, invalid:null});
+              });
+            }
+          });
+        } else {
+          res.redirect(req.session.sino+'/dashboard');
+        }
+      } else {
+        res.redirect('../login');
       }
     });
     //APPOINTMENT
@@ -209,7 +232,7 @@ var user, Aid, availableBedss, p;
             if (err) {
               console.log(err);
             } else {
-              res.render('doctor/appointmentManagement', {appointmentDetails:rows});
+              res.render('doctor/appointmentManagement', {appointmentDetails:rows, username: user});
             }
           });
         } else {
@@ -249,7 +272,7 @@ var user, Aid, availableBedss, p;
               if (err) {
                 console.log(err);
               } else {
-                res.render('doctor/prescriptionManagement', {prescriptionDetails:rows[0], confirmedprescriptionSQL:rows[1], opdPatientInfo:req.query.opdPatient});
+                res.render('doctor/prescriptionManagement', {prescriptionDetails:rows[0], confirmedprescriptionSQL:rows[1], opdPatientInfo:req.query.opdPatient, username: user});
               }
             });
           } else {
@@ -298,7 +321,7 @@ var user, Aid, availableBedss, p;
             var labRequestSQL = 'SELECT * from lab_request l inner join patient using(patient_id) where doctor_id = '+Aid+' and patient_id = '+req.query.labPatientInfo+';';
 
             db.query(labRequestSQL, function(err, rows){
-              res.render('doctor/labRequestManagement', {labrequestDetails:rows, labPatientInfo:req.query.labPatientInfo});
+              res.render('doctor/labRequestManagement', {labrequestDetails:rows, labPatientInfo:req.query.labPatientInfo, username: user});
             });
           } else {
             var labRequestSQL = 'SELECT * from lab_request l inner join patient using(patient_id) where doctor_id = '+Aid+';';
@@ -307,7 +330,7 @@ var user, Aid, availableBedss, p;
               if (err) {
                 console.log(err);
               } else {
-                res.render('doctor/labRequestManagement', {labrequestDetails:rows,labPatientInfo:null});
+                res.render('doctor/labRequestManagement', {labrequestDetails:rows,labPatientInfo:null, username: user});
               }
             });
           }
@@ -347,7 +370,7 @@ var user, Aid, availableBedss, p;
             if (err) {
               console.log(err);
             } else {
-              res.render('doctor/profileManagement', {pInfo:rows[0], activityInfo: rows[1]});
+              res.render('doctor/profileManagement', {pInfo:rows[0], activityInfo: rows[1], username: user});
             }
           });
         } else {

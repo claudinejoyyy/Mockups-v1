@@ -108,30 +108,58 @@ var user, Aid;
     }
   });
 
+  //PATIENT MANAGEMENT
   app.get('/nurse/patientManagement', function(req, res){
-    if(req.session.email && req.session.sino == 'nurse'){
-      if(req.session.sino == 'nurse'){
-        var name  = "SELECT name FROM user_accounts where account_id = ?";
-        var sql  = "SELECT * FROM patient";
-
-        db.query(name + ";" + sql, Aid, function(err, rows, fields){
-          user = rows[0];
-          res.render('nurse/patientManagement', {p:rows[1], username: user});
-        });
+      if(req.session.email && req.session.sino == 'nurse'){
+        if(req.session.sino == 'nurse'){
+          var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient";
+          db.query(sql, function(err, rows){
+            res.render('nurse/patientManagement', {p:rows, p2:null, username:user, invalid:null});
+          });
+        } else {
+          res.redirect(req.session.sino+'/dashboard');
+        }
       } else {
-        res.redirect(req.session.sino+'/dashboard');
+          res.redirect('../login');
       }
-    } else {
+    });
+    app.post('/nurse/patientManagement', function(req, res){
+      var data = req.body;
+      if(req.session.email && req.session.sino == 'nurse'){
+        if(req.session.sino == 'nurse') {
+          var checkPassword = 'Select * from user_accounts where account_id='+Aid+' and password="'+data.patientPassword+'";';
+          db.query(checkPassword, function(err, rows){
+            if(err){
+              console.log(err);
+            } else if(rows == ''){
+              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
+              db.query(sql, function(err, errorRows){
+                res.render('nurse/patientManagement', {p:errorRows, p2:null, username:user, invalid:'error'});
+              });
+            } else {
+              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
+              var sql2  = "SELECT * FROM patient where patient_id = "+req.query.passPatient+";";
+              db.query(sql + sql2, function(err, successRows){
+                res.render('nurse/patientManagement', {p:successRows[0], p2:successRows[1], username:user, invalid:null});
+              });
+            }
+          });
+        } else {
+          res.redirect(req.session.sino+'/dashboard');
+        }
+      } else {
         res.redirect('../login');
-    }
-  });
+      }
+    });
 
+
+  //BEDMANAGEMENT
   app.get('/nurse/bedManagement', function(req, res){
     if (req.session.email && req.session.sino == 'nurse') {
       if (req.session.sino == 'nurse') {
         var bedSQL = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id); ";
         db.query(bedSQL, function(err, rows, fields){
-          res.render('nurse/bedManagement', {bedDetails:rows});
+          res.render('nurse/bedManagement', {bedDetails:rows, username:user});
         });
       } else {
         res.redirect(req.session.sino+'/dashboard');
@@ -169,7 +197,7 @@ var user, Aid;
           if (err) {
             console.log(err);
           } else {
-            res.render('nurse/profileManagement', {pInfo:rows[0], activityInfo: rows[1]});
+            res.render('nurse/profileManagement', {pInfo:rows[0], activityInfo: rows[1], username:user});
           }
         });
       } else {

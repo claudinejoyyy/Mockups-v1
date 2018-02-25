@@ -14,12 +14,13 @@ var user, Aid;
         var microbiology      = 'SELECT * from lab_request l inner join patient using(patient_id) where l.type = "microbiology";';
         var xRay              = 'SELECT * from lab_request l inner join patient using(patient_id) where l.type = "xRay";';
         var todoList          = "SELECT * from todo_list where account_id = "+Aid+";";
-        db.query(todoList + diagnosisSQL + bloodChemistrySQL + hermatology + microscopy + parasitology + serology + microbiology + xRay + monthlyPatientCount, function(err, rows){
+        db.query(todoList + diagnosisSQL + bloodChemistrySQL + hermatology + microscopy + parasitology + serology + microbiology + xRay + monthlyPatientCount + name, Aid, function(err, rows){
           if (err) {
             console.log(err);
           } else {
+            user = rows[10];
             res.render('laboratorist/dashboard', {todoList:rows[0],diagnosisSQL:rows[1],bloodChemistrySQL:rows[2],hermatology:rows[3],
-                                                microscopy:rows[4],parasitology:rows[5],serology:rows[6],microbiology:rows[7],xRay:rows[8],monthlyPatientCount:rows[9]});
+                                                microscopy:rows[4],parasitology:rows[5],serology:rows[6],microbiology:rows[7],xRay:rows[8],monthlyPatientCount:rows[9], username: user});
           }
         });
       } else {
