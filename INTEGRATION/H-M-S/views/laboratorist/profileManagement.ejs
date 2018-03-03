@@ -37,13 +37,13 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/sample prof pic.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"><%=pInfo[0].name%></span>
+              <span class="hidden-xs"><%=username[0].name%></span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
                 <img src="../dist/img/sample prof pic.jpg" class="img-circle" alt="User Image">
                 <p>
-                  <%=pInfo[0].name%> - Laboratorist
+                  <%=username[0].name%> - Laboratorist
                   <small></small>
                 </p>
               <li class="user-footer">
@@ -68,7 +68,7 @@
           <img src="../dist/img/sample prof pic.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><%=pInfo[0].name%></p>
+          <p><%=username[0].name%></p>
           <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
         </div>
       </div>
@@ -105,7 +105,7 @@
           <div class="box box-primary">
             <div class="box-body box-profile">
               <img class="profile-user-img img-responsive img-circle" src="../dist/img/sample prof pic.jpg" alt="User profile picture">
-              <h3 class="profile-username text-center"><%=pInfo[0].name%></h3>
+              <h3 class="profile-username text-center"><%=username[0].name%></h3>
               <p class="text-muted text-center">Laboratorist</p>
             </div>
           </div>
@@ -117,14 +117,14 @@
 
             <div class="box-body">
             <strong><i class="fa fa-info margin-r-5"></i> User Account No.</strong>
-              <p class="text-muted"> <%= pInfo[0].account_id%> </p>
+              <p class="text-muted"> <%= username[0].account_id%> </p>
               <hr>
             <strong><i class="fa fa-user-plus margin-r-5"></i> Age</strong>
-              <p class="text-muted"> <%= pInfo[0].age%> </p>
+              <p class="text-muted"> <%= username[0].age%> </p>
               <hr>
 
             <strong><i class="fa fa-user margin-r-5"></i> Sex</strong>
-              <p class="text-muted"> <%= pInfo[0].sex%> </p>
+              <p class="text-muted"> <%= username[0].sex%> </p>
               <hr>
 
             <strong><i class="fa fa-eyedropper margin-r-5"></i>Section Stationed</strong>
@@ -174,28 +174,28 @@
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" id="name" name="name" placeholder="<%= pInfo[0].name%>">
+                      <input type="text" id="name" name="name" placeholder="<%= username[0].name%>">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Age</label>
                     <div class="col-sm-10">
-                      <input type="int" id="age" name="age" placeholder="<%= pInfo[0].age%>"><br>
+                      <input type="int" id="age" name="age" placeholder="<%= username[0].age%>"><br>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label">Address</label>
                       <div class="col-sm-10">
-                        <input type="text" id="address" name="address" placeholder="<%= pInfo[0].address%>"><br>
+                        <input type="text" id="address" name="address" placeholder="<%= username[0].address%>"><br>
                       </div>
                   </div>
 
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label">Phone</label>
                       <div class="col-sm-10">
-                        <input type="text" id="phone" name="phone" placeholder="<%= pInfo[0].phone%>"><br>
+                        <input type="text" id="phone" name="phone" placeholder="<%= username[0].phone%>"><br>
                       </div>
                   </div>
 
@@ -277,16 +277,16 @@
   //USEFUL SCRIPT do not DELETE(important) !!
   function check() {
     if (!document.getElementById('name').value) {
-      document.getElementById('name').value = "<%= pInfo[0].name%>";
+      document.getElementById('name').value = "<%= username[0].name%>";
     }
     if (!document.getElementById('age').value) {
-      document.getElementById('age').value = "<%= pInfo[0].age%>";
+      document.getElementById('age').value = "<%= username[0].age%>";
     }
     if (!document.getElementById('address').value) {
-      document.getElementById('address').value = "<%= pInfo[0].address%>";
+      document.getElementById('address').value = "<%= username[0].address%>";
     }
     if (!document.getElementById('phone').value) {
-      document.getElementById('phone').value = "<%= pInfo[0].phone%>";
+      document.getElementById('phone').value = "<%= username[0].phone%>";
     }
   }
 </script>
