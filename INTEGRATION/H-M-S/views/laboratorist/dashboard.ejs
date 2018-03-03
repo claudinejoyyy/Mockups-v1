@@ -1,73 +1,318 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Dashboard</title>
-    <style media="screen">
-      table{
-        font-family: sans-serif;
-        width:100%;
-      }
-      td,th{
-        border:1px solid;
-        font-weight: bold;
-        text-align: center;
-      }
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Laboratorist | Dashboard</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
 
-    </style>
-  </head>
-  <body>
-    <nav>
-      <a href="../laboratorist/dashboard">dashboard</a><br>
-      <a href="../laboratorist/labRequestManagement">labRequestManagement</a><br>
-      <a href="../laboratorist/patientManagement">patientManagement</a><br>
-      <a href="../laboratorist/profileManagement">profile</a> <br>
-    </nav>
-    <br>
-    <br>
-    <button type="button"><a href="../laboratorist/labRequestManagement">more info</a></button>Total pending Diagnosis Tests = <%= diagnosisSQL.length%><br>
-    <button type="button" onclick="showBloodChem()">more info</button>bloodChemistrySQL = <%= bloodChemistrySQL.length%><br>
-    <button type="button" onclick="showHerma()">more info</button>hermatology = <%= hermatology.length%><br>
-    <button type="button" onclick="showMicroscopy()">more info</button>microscopy = <%= microscopy.length%><br>
-    <button type="button" onclick="showParasitology()">more info</button>parasitology = <%= parasitology.length%><br>
-    <button type="button" onclick="showSerology()">more info</button>serology = <%= serology.length%><br>
-    <button type="button" onclick="showMicrobiology()">more info</button>microbiology = <%= microbiology.length%><br>
-    <button type="button" onclick="showXray()">more info</button>xRay = <%= xRay.length%><br>
+  <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
+      <!-- DataTables -->
+  <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
 
+</head>
 
-    <!-- TODOLIST -->
-    <h1>TO DO LIST</h1>
-    <button type="button" name="button" onclick="showTodo()">add item</button>
-    <br>
-    <%for(var i=0; i < todoList.length; i++){%>
-        <h3 style="display:inline-block;"><%= todoList[i].description%>:</h3> <h5 style="display:inline-block; font-style:italic;"><%= todoList[i].date%></h5>
-        <br>
-    <%}%>
-    <form method="POST" name="parseDateNTime()">
-      <div id="showTodo" style="display:none;">
-        <textarea name="description" rows="8" cols="80"></textarea>
-        <br>
-        <input type="datetime-local" name="dateNtime">
-        <button type="submit" name="sub" value="addTodo">save</button>
+<body class="hold-transition skin-blue sidebar-mini fixed">
+<div class="wrapper">
+  <header class="main-header">
+    <a href="index2.html" class="logo">
+      <span class="logo-mini"><b>LAB</b></span>
+      <span class="logo-lg"><b>Laboratorist</b></span>
+    </a>
+    <nav class="navbar navbar-static-top" role="navigation">
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="../dist/img/sample prof pic.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs"><%=pInfo[0].name%></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="user-header">
+                <img src="../dist/img/sample prof pic.jpg" class="img-circle" alt="User Image">
+                <p>
+                  <%=pInfo[0].name%> - Laboratorist
+                  <small></small>
+                </p>
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="../laboratorist/profileManagement" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="../logout" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
-    </form>
+    </nav>
+  </header>
 
-    <!-- COUNT MONTHLY -->
-    <h1>Patient Count</h1>
-    <%if(monthlyPatientCount[0].JAN) {%><h2>january <%= monthlyPatientCount[0].JAN%></h2><%}%>
-    <%if(monthlyPatientCount[0].FEB) {%><h2>february <%= monthlyPatientCount[0].FEB%></h2><%}%>
-    <%if(monthlyPatientCount[0].MARCH) {%><h2>february <%= monthlyPatientCount[0].MARCH%></h2><%}%>
-    <%if(monthlyPatientCount[0].APRIL) {%><h2>february <%= monthlyPatientCount[0].APRIL%></h2><%}%>
-    <%if(monthlyPatientCount[0].MAY) {%><h2>february <%= monthlyPatientCount[0].MAY%></h2><%}%>
-    <%if(monthlyPatientCount[0].JUNE) {%><h2>february <%= monthlyPatientCount[0].JUNE%></h2><%}%>
-    <%if(monthlyPatientCount[0].JULY) {%><h2>february <%= monthlyPatientCount[0].JULY%></h2><%}%>
-    <%if(monthlyPatientCount[0].AUGUST) {%><h2>february <%= monthlyPatientCount[0].AUGUST%></h2><%}%>
-    <%if(monthlyPatientCount[0].SEPTEMBER) {%><h2>february <%= monthlyPatientCount[0].SEPTEMBER%></h2><%}%>
-    <%if(monthlyPatientCount[0].OCTOBER) {%><h2>february <%= monthlyPatientCount[0].OCTOBER%></h2><%}%>
-    <%if(monthlyPatientCount[0].NOVEMBER) {%><h2>february <%= monthlyPatientCount[0].NOVEMBER%></h2><%}%>
-    <%if(monthlyPatientCount[0].DECEMBER) {%><h2>february <%= monthlyPatientCount[0].DECEMBER%></h2><%}%>
-    <br>
-    <button type="button"><a href="../logout">LOGOUT</a></button>
+  <aside class="main-sidebar">
+    <section class="sidebar">
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="../dist/img/sample prof pic.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p><%=pInfo[0].name%></p>
+          <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+        </div>
+      </div>
+
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+
+      <ul class="sidebar-menu">
+        <li class="header">Account Management</li>
+        <li class="active"><a href="../laboratorist/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+        <li><a href="../laboratorist/labRequestManagement"><i class="fa fa-link"></i> <span>Diagnosis Request Management</span></a></li>
+        <li><a href="../laboratorist/profileManagement"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
+      </ul>
+  </aside>
+
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Dashboard
+        <small>Control panel</small>
+      </h1>
+    </section>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3><%= diagnosisSQL.length%></h3>
+
+              <p>Total Pending Diagnosis Tests</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person"></i>
+            </div>
+            <a href="../laboratorist/labRequestManagement" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3><%= bloodChemistrySQL.length%></h3>
+
+              <p>Blood Chemistry</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <button type="button" onclick="showBloodChem()"><a class="small-box-footer">More info</button><i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3><%= hermatology.length%></h3>
+
+              <p>Hermatology</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <button type="button" onclick="showHerma()"><a class="small-box-footer">More info</button><i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3><%= microscopy.length%></h3>
+
+              <p>Microscopy</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <button type="button" onclick="showMicroscopy()"><a class="small-box-footer">More info</button><i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-orange">
+            <div class="inner">
+              <h3><%= parasitology.length%></h3>
+
+              <p>Parasitology</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <button type="button" onclick="showParasitology()"><a class="small-box-footer">More info</button><i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-gray">
+            <div class="inner">
+              <h3><%= serology.length%></h3>
+
+              <p>Serology</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <button type="button" onclick="showSerology()"><a class="small-box-footer">More info</button><i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-purple">
+            <div class="inner">
+              <h3><%= microbiology.length%></h3>
+
+              <p>Microbiology</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <button type="button" onclick="showMicrobiology()"><a class="small-box-footer">More info</button><i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3><%= xRay.length%></h3>
+
+              <p>X-Ray</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <button type="button" onclick="showXray()"><a class="small-box-footer">More info</button><i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+
+      <div class="row">
+           <!-- TO DO List -->
+          <div class="box box-primary">
+            <div class="box-header">
+              <i class="ion ion-clipboard"></i>
+
+              <h3 class="box-title">To Do List</h3>
+
+              <div class="box-tools pull-right">
+                <ul class="pagination pagination-sm inline">
+                  <li><a href="#">&laquo;</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">&raquo;</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="box-body">
+              <ul class="todo-list">
+              	<%for(var i=0; i < todoList.length; i++){%>
+                <li>
+                      <span class="handle">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                      </span>
+                  <input type="checkbox" value="">
+                  <span class="text"><%= todoList[i].description%>:</span>
+                  <small class="label label-success"><i class="fa fa-clock-o"></i><%= moment(todoList[i].date).format('MMM-DD-YYYY HH:mm')%></small>
+                  <div class="tools">
+                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-trash-o"></i>
+                  </div>
+                </li>
+                <%}%>
+              </ul>
+            </div>
+
+            <div class="box-footer clearfix no-border">
+           	<button type="button" name="button" onclick="showTodo()" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+				        <form method="POST" name="parseDateNTime()">
+        					<div id="showTodo" style="display:none;">
+        						<textarea name="description" rows="8" cols="80"></textarea>
+        						<br>
+        						<input type="datetime-local" name="dateNtime">
+        						<button type="submit" name="sub" value="addTodo">Save</button>
+        					</div>
+				        </form>
+            </div>
+          </div>
+
+          <!-- AREA CHART -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Patient Count</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="chart">
+                <canvas id="areaChart" style="height:250px"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <section class="col-lg-5 connectedSortable">
+            <div class="box-header">
+              <div class="pull-right box-tools">
+              </div>
+            </div>
+          </section>
+
+        </div>
+    </section>
+  </div>
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1
+    </div>
+    <strong>Copyright &copy; 2018.</strong> Philippine Military Academy | Fort Del Pilar Station Hospital | All rights reserved.
+  </footer>
+  <div class="control-sidebar-bg"></div>
+</div>
 
     <div id="showBloodChem" style="display:none;">
       <table>
@@ -175,9 +420,133 @@
         <%}%>
       </table>
     </div>
+
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Select2 -->
+    <script src="../plugins/select2/select2.full.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <!-- Morris.js charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="../plugins/morris/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="../plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../plugins/knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="../plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+
+    <script src="../plugins/chartjs/Chart.min.js"></script>
+
   </body>
 </html>
 <script>
+$(function () {
+    /* ChartJS
+     * -------
+     * Here we will create a few charts using ChartJS
+     */
+
+    //--------------
+    //- AREA CHART -
+    //--------------
+
+    // Get context with jQuery - using jQuery's .get() method.
+    var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
+    // This will get the first returned node in the jQuery collection.
+    var areaChart = new Chart(areaChartCanvas);
+
+    var areaChartData = {
+      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September" ,"October", "November", "December"],
+      datasets: [
+        {
+          label: "Patient",
+          fillColor: "rgba(60,141,188,0.9)",
+          strokeColor: "rgba(60,141,188,0.8)",
+          pointColor: "#3b8bba",
+          pointStrokeColor: "rgba(60,141,188,1)",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(60,141,188,1)",
+          data: [<%-JSON.stringify(monthlyPatientCount[0].JAN)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].FEB)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].MARCH)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].APRIL)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].MAY)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].JUNE)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].JULY)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].AUGUST)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].SEPTEMBER)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].OCTOBER)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].NOVEMBER)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].DECEMBER)%>]
+        }
+      ]
+    };
+
+    var areaChartOptions = {
+      //Boolean - If we should show the scale at all
+      showScale: true,
+      //Boolean - Whether grid lines are shown across the chart
+      scaleShowGridLines: false,
+      //String - Colour of the grid lines
+      scaleGridLineColor: "rgba(0,0,0,.05)",
+      //Number - Width of the grid lines
+      scaleGridLineWidth: 1,
+      //Boolean - Whether to show horizontal lines (except X axis)
+      scaleShowHorizontalLines: true,
+      //Boolean - Whether to show vertical lines (except Y axis)
+      scaleShowVerticalLines: true,
+      //Boolean - Whether the line is curved between points
+      bezierCurve: true,
+      //Number - Tension of the bezier curve between points
+      bezierCurveTension: 0.3,
+      //Boolean - Whether to show a dot for each point
+      pointDot: false,
+      //Number - Radius of each point dot in pixels
+      pointDotRadius: 4,
+      //Number - Pixel width of point dot stroke
+      pointDotStrokeWidth: 1,
+      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+      pointHitDetectionRadius: 20,
+      //Boolean - Whether to show a stroke for datasets
+      datasetStroke: true,
+      //Number - Pixel width of dataset stroke
+      datasetStrokeWidth: 2,
+      //Boolean - Whether to fill the dataset with a color
+      datasetFill: true,
+      //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true
+    };
+
+    //Create the line chart
+    areaChart.Line(areaChartData, areaChartOptions);
+
+  });
+
   function showTodo() {
     document.getElementById("showTodo").style.display = "block";
   }
