@@ -2,128 +2,37 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Pharmacist | Dashboard</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.6 -->
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="../plugins/iCheck/flat/blue.css">
-    <!-- Morris chart -->
-    <link rel="stylesheet" href="../plugins/morris/morris.css">
-    <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="../plugins/select2/select2.min.css">
+    <title>Dashboard</title>
+    <style media="screen">
+      table{
+        font-family: sans-serif;
+        width:100%;
+      }
+      td,th{
+        border:1px solid;
+        font-weight: bold;
+        text-align: center;
+      }
+
+    </style>
   </head>
   <body>
-    <div class="wrapper">
-      <header class="main-header">
-        <a href="../nurse/dashboard" class="logo">
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b><%= username[0].account_type.charAt(0).toUpperCase()%></b></span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b><%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%></b></span>
-        </a>
-        <nav class="navbar navbar-static-top" role="navigation">
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-          </a>
-
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-              <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="../dist/img/sample prof pic.png" class="user-image" alt="User Image">
-                  <span class="hidden-xs"><%=username[0].name%></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="user-header">
-                    <img src="../dist/img/sample prof pic.png" class="img-circle" alt="User Image">
-                    <p>
-                      <%=username[0].name%> - <%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%>
-                      <small>Member since April 2014</small>
-                    </p>
-                  </li>
-                  <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="../laboratorist/profileManagement" class="btn btn-default btn-flat">Profile</a>
-                    </div>
-                    <div class="pull-right">
-                      <a href="../logout" class="btn btn-default btn-flat">Sign out</a>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-
-      <aside class="main-sidebar">
-        <section class="sidebar">
-          <div class="user-panel">
-            <div class="pull-left image">
-              <img src="../dist/img/sample prof pic.jpg" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-              <p><%=username[0].name%></p>
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-          </div>
-
-          <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search...">
-                  <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                    </button>
-                  </span>
-            </div>
-          </form>
-
-          <ul class="sidebar-menu">
-            <li class="header">Account Management</li>
-            <li class="active"><a href="../laboratorist/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-            <li><a href="../laboratorist/diagnosisRequestManagement.html"><i class="fa fa-link"></i> <span>Diagnosis Request Management</span></a></li>
-            <li class="active"><a href="../laboratorist/profileManagement.html"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
-          </ul>
-      </aside>
-
+    <nav>
+      <a href="../laboratorist/dashboard">dashboard</a><br>
+      <a href="../laboratorist/labRequestManagement">labRequestManagement</a><br>
+      <a href="../laboratorist/patientManagement">patientManagement</a><br>
+      <a href="../laboratorist/profileManagement">profile</a> <br>
+    </nav>
     <br>
     <br>
-
-    <div class="row">
-      <div class="col-lg-3 col-xs-6">
-        <div class="small-box bg-aqua">
-          <div class="inner">
-            <h3>23</h3>
-
-            <p>Total Pending Diagnosis Tests</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-person"></i>
-          </div>
-          <button type="button"><a href="../laboratorist/diagnosis">more info<i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
-
-    <button type="button"><a href="../laboratorist/diagnosis">more info</a></button>Total pending Diagnosis Tests = <%= diagnosisSQL.length%><br>
-    <button type="button">more info</button>bloodChemistrySQL = <%= bloodChemistrySQL.length%><br>
-    <button type="button">more info</button>hermatology = <%= hermatology.length%><br>
-    <button type="button">more info</button>microscopy = <%= microscopy.length%><br>
-    <button type="button">more info</button>parasitology = <%= parasitology.length%><br>
-    <button type="button">more info</button>serology = <%= serology.length%><br>
-    <button type="button">more info</button>microbiology = <%= microbiology.length%><br>
-    <button type="button">more info</button>xRay = <%= xRay.length%><br>
+    <button type="button"><a href="../laboratorist/labRequestManagement">more info</a></button>Total pending Diagnosis Tests = <%= diagnosisSQL.length%><br>
+    <button type="button" onclick="showBloodChem()">more info</button>bloodChemistrySQL = <%= bloodChemistrySQL.length%><br>
+    <button type="button" onclick="showHerma()">more info</button>hermatology = <%= hermatology.length%><br>
+    <button type="button" onclick="showMicroscopy()">more info</button>microscopy = <%= microscopy.length%><br>
+    <button type="button" onclick="showParasitology()">more info</button>parasitology = <%= parasitology.length%><br>
+    <button type="button" onclick="showSerology()">more info</button>serology = <%= serology.length%><br>
+    <button type="button" onclick="showMicrobiology()">more info</button>microbiology = <%= microbiology.length%><br>
+    <button type="button" onclick="showXray()">more info</button>xRay = <%= xRay.length%><br>
 
 
     <!-- TODOLIST -->
@@ -160,10 +69,137 @@
     <br>
     <button type="button"><a href="../logout">LOGOUT</a></button>
 
+    <div id="showBloodChem" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < bloodChemistrySQL.length; i++){%>
+        <tr>
+            <td><%= bloodChemistrySQL[i].name%></td>
+            <td><%= bloodChemistrySQL[i].timestamp%></td>
+        </tr>
+        <%}%>
+      </table>
+    </div>
+
+    <div id="showHerma" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < hermatology.length; i++){%>
+        <tr>
+            <td><%= hermatology[i].name%></td>
+            <td><%= hermatology[i].timestamp%></td>
+        </tr>
+        <%}%>
+      </table>
+    </div>
+
+    <div id="showMicroscopy" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < microscopy.length; i++){%>
+        <tr>
+            <td><%= microscopy[i].name%></td>
+            <td><%= microscopy[i].timestamp%></td>
+        </tr>
+        <%}%>
+      </table>
+    </div>
+
+    <div id="showParasitology" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < parasitology.length; i++){%>
+        <tr>
+            <td><%= parasitology[i].name%></td>
+            <td><%= parasitology[i].timestamp%></td>
+        </tr>
+        <%}%>
+      </table>
+    </div>
+
+    <div id="showSerology" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < serology.length; i++){%>
+        <tr>
+            <td><%= serology[i].name%></td>
+            <td><%= serology[i].timestamp%></td>
+        </tr>
+        <%}%>
+      </table>
+    </div>
+
+
+    <div id="showMicrobiology" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < microbiology.length; i++){%>
+        <tr>
+            <td><%= microbiology[i].name%></td>
+            <td><%= microbiology[i].timestamp%></td>
+        </tr>
+        <%}%>
+      </table>
+    </div>
+
+
+    <div id="showXray" style="display:none;">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>date</th>
+        </tr>
+        <%for(var i = 0; i < xRay.length; i++){%>
+          <tr>
+            <td><%= xRay[i].name%></td>
+            <td><%= xRay[i].timestamp%></td>
+          </tr>
+        <%}%>
+      </table>
+    </div>
   </body>
 </html>
 <script>
   function showTodo() {
     document.getElementById("showTodo").style.display = "block";
+  }
+  function showBloodChem() {
+    document.getElementById("showBloodChem").style.display = "block";
+  }
+  function showHerma() {
+    document.getElementById("showHerma").style.display = "block";
+  }
+  function showMicroscopy() {
+    document.getElementById("showMicroscopy").style.display = "block";
+  }
+  function showParasitology() {
+    document.getElementById("showParasitology").style.display = "block";
+  }
+  function showSerology() {
+    document.getElementById("showSerology").style.display = "block";
+  }
+  function showMicrobiology() {
+    document.getElementById("showMicrobiology").style.display = "block";
+  }
+  function showXray() {
+    document.getElementById("showXray").style.display = "block";
   }
 </script>
