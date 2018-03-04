@@ -43,6 +43,10 @@ var user, Aid;
         } else if(data.sub == "add") {
             var bdParse       = data.birth.split('-');
             var birthDate     = bdParse[0] + bdParse[1] + bdParse[2];
+            var cur           = new Date();
+            var bd            = new Date(data.birth);
+            var dif           = cur - bd;
+            var age           = Math.floor(dif/31557600000);
             var fhParse       = data.family_history.split(',');
             var immuParse     = data.immunization.split(',');
             var father        = data.father + '\n:' + data.fatherO;
@@ -51,7 +55,7 @@ var user, Aid;
             var immunization   = ""; for (var i = 0; i < immuParse.length; i++) {immunization += immuParse[i] + '\n';};
             var addSQL = "INSERT INTO patient (name, unit, address, age, religion, father, mother, allergies, birth_history,birth_date, sex, patient_type, status, blood_type, rankORsn, immunization, family_history)"
                        +" VALUES ("+JSON.stringify(data.name)+", "+JSON.stringify(data.unit)+","+JSON.stringify(data.address)+","
-                       +" "+data.age+", "+JSON.stringify(data.religion)+", "+JSON.stringify(father)+","+JSON.stringify(mother)+","
+                       +" "+age+", "+JSON.stringify(data.religion)+", "+JSON.stringify(father)+","+JSON.stringify(mother)+","
                        +" "+JSON.stringify(data.allergies)+", "+JSON.stringify(data.bh)+", "+birthDate+", "+JSON.stringify(data.gender)+","
                        +" "+JSON.stringify(data.type)+", "+JSON.stringify(data.status)+", "+JSON.stringify(data.blood)+","
                        +" "+JSON.stringify(data.rankSN)+", "+JSON.stringify(immunization)+", "+JSON.stringify(family_history)+");";
