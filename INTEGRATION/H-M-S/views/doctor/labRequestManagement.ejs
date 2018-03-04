@@ -60,6 +60,33 @@
         </tr>
       <%}%>
     </table>
+    <br>
+    <br>
+    <!-- CONFIRMED -->
+    <table>
+      <tr>
+        <th>counter</th>
+        <th>Patient Type</th>
+        <th>Name</th>
+        <th>Date and Time</th>
+        <th>Age</th>
+        <th>Tests</th>
+        <th>Remarks</th>
+        <th>status</th>
+      </tr>
+      <%for (var i = 0; i < confirmedLabRequestSQL.length; i++) {%>
+        <tr>
+          <td><%=i+1%></td>
+          <td><%=confirmedLabRequestSQL[i].patient_type%></td>
+          <td><%=confirmedLabRequestSQL[i].name%></td>
+          <td><%=confirmedLabRequestSQL[i].timestamp%></td>
+          <td><%=confirmedLabRequestSQL[i].age%></td>
+          <td><%=confirmedLabRequestSQL[i].type%></td>
+          <td><%=confirmedLabRequestSQL[i].remarks%></td>
+          <td><%=confirmedLabRequestSQL[i].lab_status%></td>
+        </tr>
+      <%}%>
+    </table>
 
   </body>
 </html>
