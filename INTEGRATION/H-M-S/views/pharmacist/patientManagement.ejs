@@ -144,14 +144,21 @@
                     var b = new Date(p[i].birth_date);
                 %>
                 <tr>
-                  <td><%= p[i].patient_type %></td>
+                   <td><%= p[i].patient_type %></td>
                   <td><%= p[i].name %></td>
                   <td><%= p[i].age %></td>
                   <td><%= p[i].unit %></td>
                   <td><%= p[i].sex %></td>
                   <td><%= p[i].status %></td>
+                  <td><%= b.toLocaleDateString() %></td>
+                  <td><%= p[i].address %></td>
+                  <td><%= p[i].religion %></td>
                   <td><%= p[i].blood_type %></td>
                   <td><%= p[i].allergies %></td>
+                  <td><%= p[i].father %></td>
+                  <td><%= p[i].mother %></td>
+                  <td><%= p[i].birth_history %></td>
+                  <td><%= p[i].rankORsn %></td>
                   <td><%= p[i].immunization %></td>
                   <td><%= p[i].family_history %></td>
                 </tr>
