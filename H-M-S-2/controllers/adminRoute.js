@@ -109,10 +109,10 @@ app.get('/admin/patientManagement', function(req, res){
   app.get('/admin/userAccountsManagement', function(req, res){
       if(req.session.email && req.session.sino == 'admin'){
         if(req.session.sino == 'admin'){
-          var sql  = "SELECT account_id, account_type, name, age, sex, max(time) as last_Login FROM user_accounts left join activity_logs using(account_id) group by account_id;";
-          db.query(sql, function(err, rows){
-            res.render('admin/userAccountsManagement', {p:rows, username:user});
-          });
+            var sql  = "SELECT account_id, account_type, name, age, sex, max(time) as last_Login FROM user_accounts left join activity_logs using(account_id) group by account_id;";
+            db.query(sql, function(err, rows){
+              res.render('admin/userAccountsManagement', {p:rows, username:user});
+            });
         } else {
           res.redirect(req.session.sino+'/dashboard');
         }
@@ -135,14 +135,33 @@ app.get('/admin/patientManagement', function(req, res){
               }
             });
           } else if (data.sub == 'add') {
-            var addUserAccount = 'INSERT into user_accounts (username, password, account_type, name, age, sex, address, phone) VALUES ("'+data.user+'","'+data.pass+'","'+data.type+'","'+data.name+'",'+data.age+',"'+data.gender+'","'+data.address+'","'+data.phone+'");';
-            db.query(addUserAccount + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "addUser", "Added user: '+data.name+'");', function(err, rows){
-              if (err) {
-                console.log(err);
-              } else {
-                res.redirect(req.get('referer'));
-              }
-            });
+            req.checkBody('type','type is required.').notEmpty();
+            req.checkBody('gender','gender is required.').notEmpty();
+            req.checkBody('user','username is required.').notEmpty();
+            req.checkBody('pass','password is required.').notEmpty();
+            req.checkBody('name','name is required.').notEmpty();
+            req.checkBody('birth','birth date is required.').notEmpty();
+            req.checkBody('phone','phone is required.').notEmpty();
+            req.checkBody('address','address is required.').notEmpty();
+            var errors = req.validationErrors();
+            if (errors) {
+              req.flash('danger', 'Failed to add user account!');
+              res.redirect(req.get('referer'));
+            } else {
+              var cur           = new Date();
+              var bd            = new Date(data.birth);
+              var dif           = cur - bd;
+              var age           = Math.floor(dif/31557600000);
+              var addUserAccount = 'INSERT into user_accounts (username, password, account_type, name, age, sex, address, phone) VALUES ("'+data.user+'","'+data.pass+'","'+data.type+'","'+data.name+'",'+age+',"'+data.gender+'","'+data.address+'","'+data.phone+'");';
+              db.query(addUserAccount + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "addUser", "Added user: '+data.name+'");', function(err, rows){
+                if (err) {
+                  console.log(err);
+                } else {
+                  req.flash('success', 'user account successfully added !');
+                  res.redirect(req.get('referer'));
+                }
+              });
+            }
           }
         } else {
           res.redirect(req.session.sino+'/dashboard');

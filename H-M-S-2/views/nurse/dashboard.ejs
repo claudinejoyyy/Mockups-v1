@@ -107,10 +107,11 @@
     <br>
     <button onclick="showAdd()">add patient</button>
     <form method='POST' id='modal2'  style="display:none;" onsubmit="showSuccess()">
-      <input type="text" name="name" placeholder="eg:Juan M. Dela Cruz" required>enter name<br>
+
+      <input type="text" name="name" placeholder="eg:Juan M. Dela Cruz"  >enter name<br>
       <input type="text" name="rankSN">rank/serial number<br>
       <input type="text" name="unit" >unit<br>
-      <input type="text" name="address" required>address<br>
+      <input type="text" name="address"  >address<br>
       <input type="text" name="religion">religion<br>
       <input type="text" name="father">name of father
       <input type="text" name="fatherO">occupation <br>
@@ -118,12 +119,12 @@
       <input type="text" name="motherO">occupation <br>
       <textarea name="allergies" rows="4" cols="40" placeholder="Allergies"></textarea> <br>
       <textarea name="bh" rows="4" cols="40" placeholder="Birth History"></textarea> <br>
-      <select name="gender" required>
+      <select name="gender"  >
         <option disabled selected value>Gender</option>
         <option value="M">Male</option>
         <option value="F">Female</option>
       </select><br>
-      <select name="type" required>
+      <select name="type"  >
         <option disabled selected value>Patient Type</option>
         <option value="cadet">Cadet</option>
         <option value="military officer">Miltary Officer</option>
@@ -131,7 +132,7 @@
         <option value="civilian">Civilian</option>
         <option value="authorized civilian">Authorized Civilian</option>
       </select><br>
-      <select name="status" required>
+      <select name="status"  >
         <option selected value>Status</option>
         <option value="Maried">Maried</option>
         <option value="Single">Single</option>
@@ -143,7 +144,7 @@
         <option value="AB">AB</option>
         <option value="O">O</option>
       </select><br>
-      <input type="date" name="birth" required>birth date<br>
+      <input type="date" name="birth"  >birth date<br>
       <h3>Family History</h3>
       <select id="fhName">
         <option value="" selected></option>
@@ -178,29 +179,29 @@
     <form id="assessment" method="post" style="display:none;">
       <!-- PATIENT !! -->
       <h4 style="display:inline-block;">select a patient</h4>
-      <select name="assessmentPatient" style="display:inline-block;" required>
+      <select name="assessmentPatient" style="display:inline-block;"  >
         <%for(var i = 0; i < availablePatientOPD.length; i++){%>
           <option  value="<%= availablePatientOPD[i].patient_id%>"><%= availablePatientOPD[i].name%></option>
         <%}%>
       </select>
       <br>
-      <input type="text" name="BP" required>BP <br>
-      <input type="text" name="CR" required>CR <br>
-      <input type="text" name="PR" required>PR <br>
-      <input type="text" name="RR" required>RR <br>
-      <input type="text" name="temperature" required>Temperature <br>
-      <input type="text" name="Wt" required>Wt <br>
+      <input type="text" name="BP"  >BP <br>
+      <input type="text" name="CR"  >CR <br>
+      <input type="text" name="PR"  >PR <br>
+      <input type="text" name="RR"  >RR <br>
+      <input type="text" name="temperature"  >Temperature <br>
+      <input type="text" name="Wt"  >Wt <br>
       <!-- OTHERS!!! -->
       <h4>Chief Complaints</h4>
-      <textarea name="assessment" rows="8" cols="80" required></textarea>
-      <select name="assessmentDoctor" required>
+      <textarea name="assessment" rows="8" cols="80"  ></textarea>
+      <select name="assessmentDoctor"  >
         <%for(var i = 0; i < doctorList.length; i++){%>
           <option value="<%= doctorList[i].account_id%>"><%= doctorList[i].name%></option>
         <%}%>
       </select>
       <button type="smubmit" name="sub" value="assessment" onclick="linkAssessment(<%= availablePatientOPD[i].name%>)">send</button>
     </form>
-
+    <h1><%= err%></h1>
   </body>
 </html>
 <script>
@@ -212,7 +213,7 @@
     document.getElementById("addMore").style.display = "inline-block";
   }
  function showSuccess() {
-    alert("Success !!");
+    alert('success');
   }
   function immuResult() {
     var e = document.getElementById("immuName");

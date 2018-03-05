@@ -45,6 +45,7 @@ module.exports = function(app, db, currentTime){
   });
 
   app.get('/logout', function(req, res){
+    if(req.session.email){
       db.query('INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "log","Logged out");', function(err){
         if (err) {
           console.log(err);
@@ -54,6 +55,9 @@ module.exports = function(app, db, currentTime){
           res.redirect('login');
         }
       });
+    } else {
+      res.redirect('login');
+    }
   });
 
   app.get('/error', function(req, res){

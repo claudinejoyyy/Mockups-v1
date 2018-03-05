@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <meta charset="utf-8">
     <title>Patient Management</title>
     <style>
@@ -25,6 +26,7 @@
       <a href="../admin/profileManagement">profile</a>
     </nav>
     <h1>Welcome to Patient Management Dr. <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h1>
+    <%- messages('message', locals) %>
     <button type="button" onclick="showCreateUser()">create user</button>
 
     <form method="post" id="showCreateUser" style="display:none;">
@@ -40,8 +42,8 @@
       <input type="username" name="user">username <br>
       <input type="password" name="pass">password <br>
       <input type="text" name="name">name <br>
-      <input type="number" name="age">age <br>
-      <input type="text" name="phone">phone number <br>
+      <input type="date" name="birth">birth date <br>
+      <input type="text" name="phone" maxlength="10">phone number <br>
       <textarea name="address" rows="8" cols="80">address</textarea> <br>
       <button type="submit" name="sub" value="add">add user</button>
     </form>
