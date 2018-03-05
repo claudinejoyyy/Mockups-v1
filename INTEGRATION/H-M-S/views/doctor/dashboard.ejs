@@ -270,7 +270,7 @@
                     <!-- todo text -->
                         <span style="display:inline-block;"><%= todoList[i].description%></span>
                     <!-- Emphasis label -->
-                    <small class="label label-danger"><i class="fa fa-clock-o"></i><h5 style="display:inline-block; font-style:italic;"><%= todoList[i].date%></h5></small>
+                    <small class="label label-danger"><i class="fa fa-clock-o"></i><h5 style="display:inline-block; font-style:italic;"><%= moment(todoList[i].date, "MMM-DD-YYYY hh:mm")%></h5></small>
                     <!-- General tools such as edit or delete-->
                     <div class="tools">
                       <i class="fa fa-edit"></i>
