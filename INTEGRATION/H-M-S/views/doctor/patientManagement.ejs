@@ -3,31 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Pharmacist | Patient Management</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="../plugins/iCheck/flat/blue.css">
-  <!-- Morris chart -->
-  <link rel="stylesheet" href="../plugins/morris/morris.css">
-  <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="../plugins/select2/select2.min.css">
-      <!-- DataTables -->
-  <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
-
+  <title>Patient Management</title>
+<% include ../partials/header.ejs %>
 </head>
 
 <body class="hold-transition skin-blue fixed sidebar-mini">
@@ -65,7 +42,7 @@
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="../pharmacist/profileManagement" class="btn btn-default btn-flat">Profile</a>
+                  <a href="/profileManagement" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="../logout" class="btn btn-default btn-flat">Sign out</a>
@@ -126,10 +103,11 @@
 
        <div class="row">
         <div class="col-xs-12">
-
+         <div class="box-header">
+         </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example2" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Patient Type</th>
@@ -144,36 +122,40 @@
                     <th>Family History</th>
                   </tr>
                 </thead>
-
-                <%
-                for(var i=0; i <p.length; i++){
-                    var b = new Date(p[i].birth_date);
-                %>
-                <tr>
-                   <td><%= p[i].patient_type %></td>
-                  <td><%= p[i].name %></td>
-                  <td><%= p[i].age %></td>
-                  <td><%= p[i].unit %></td>
-                  <td><%= p[i].sex %></td>
-                  <td><%= p[i].status %></td>
-                  <td><%= b.toLocaleDateString() %></td>
-                  <td><%= p[i].address %></td>
-                  <td><%= p[i].religion %></td>
-                  <td><%= p[i].blood_type %></td>
-                  <td><%= p[i].allergies %></td>
-                  <td><%= p[i].father %></td>
-                  <td><%= p[i].mother %></td>
-                  <td><%= p[i].birth_history %></td>
-                  <td><%= p[i].rankORsn %></td>
-                  <td><%= p[i].immunization %></td>
-                  <td><%= p[i].family_history %></td>
-                </tr>
-                <%}%>
+                  <tbody>
+                        <%
+                        for(var i=0; i <p.length; i++){
+                            var b = new Date(p[i].birth_date);
+                        %>
+                        <tr>
+                           <td><%= p[i].patient_type %></td>
+                          <td><%= p[i].name %></td>
+                          <td><%= p[i].age %></td>
+                          <td><%= p[i].unit %></td>
+                          <td><%= p[i].sex %></td>
+                          <td><%= p[i].status %></td>
+<!--
+                          <td><--%= b.toLocaleDateString() %></td>
+                          <td><--%= p[i].address %></td>
+                          <td><--%= p[i].religion %></td>
+-->
+                          <td><%= p[i].blood_type %></td>
+                          <td><%= p[i].allergies %></td>
+<!--
+                          <td><--%= p[i].father %></td>
+                          <td><--%= p[i].mother %></td>
+                          <td><--%= p[i].birth_history %></td>
+                          <td><--%= p[i].rankORsn %></td>
+-->
+                          <td><%= p[i].immunization %></td>
+                          <td><%= p[i].family_history %></td>
+                        </tr>
+                        <%}%>
+                  </tbody>
               </table>
             </div>
           </div>
         </div>
-      </div>
     </section>
   </div>
 

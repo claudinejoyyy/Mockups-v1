@@ -4,24 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Doctor | Appointment Management</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect.
-  -->
-  <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
-      <!-- DataTables -->
-  <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
+  <title>Prescription Management</title>
+    <% include ../partials/header.ejs %>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -57,11 +41,11 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-  <a href=../doctor/dashboard "" class="logo">
+  <a href="../doctor/dashboard" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>D</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Doctor</b></span>
+      <span class="logo-lg"><b>...</b></span>
     </a>
 
     <!-- Header Navbar -->
@@ -88,17 +72,17 @@ desired effect
 
                 <p>
                     <!--%= username[0].name %-->
-                     <small>Hello there Doctor!</small>
+                     <small>Hello there ....</small>
                 </p>
               </li>
               <!-- Menu Body -->
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="../profileManagement" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -156,65 +140,66 @@ desired effect
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+    <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-            <section class="content-header">
-              <h1>
-                Prescription Management
-            <small>Control panel</small>
-            </h1>
-          </section>
+    <section class="content-header">
+      <h1>
+        Prescription Management
+    </h1>
+    </section>
 
-          <!-- Main content -->
-          <section class="content">
+  <!-- Main content -->
+      <section class="content">
 
-            <div class="row">
-             <div class="col-xs-12">
-               <div class="box">
-                 <div class="box-header">
+        <div class="row">
+         <div class="col-xs-12">
+           <div class="box">
+             <div class="box-header">
 
 
-                 </div>
-                 <div class="box-body">
-                   <table id="example2" class="table table-bordered table-striped">
-                          <thead>
-      <tr>
-        <th>counter</th>
-        <th>date</th>
-        <th>Patient Type</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Medications</th>
-        <th>Status</th>
-        <th>action</th>
-      </tr>
-      <%for (var i = 0; i < prescriptionDetails.length; i++) {%>
-        <tr>
-          <td><%=i+1%></td>
-          <td><%=prescriptionDetails[i].creation_stamp%></td>
-          <td><%=prescriptionDetails[i].patient_type%></td>
-          <td><%=prescriptionDetails[i].name%></td>
-          <td><%=prescriptionDetails[i].age%></td>
-          <td><%=prescriptionDetails[i].medications%></td>
-          <td><%=prescriptionDetails[i].STATUS%></td>
-          <form action="/doctor/prescriptionManagement?prescriptionId=<%=prescriptionDetails[i].prescription_id%>&prescriptionPatientName=<%=prescriptionDetails[i].name%>" method="post">
-            <td><button type="submit">cancel</button></td>
-            <td><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add New Prescription</button></td>
-          </form>
-        </tr>
-      <%}%>
-    </thead>
-            </table>
-         </div>
-         <!-- /.box-body -->
-       </div>
-       <!-- /.box -->
-     </div>
-     <!-- /.col -->
+             </div>
+             <div class="box-body">
+               <table id="table2" class="table table-bordered table-striped">
+                  <thead>
+                      <tr>
+                        <th>Counter</th>
+                        <th>Date</th>
+                        <th>Patient Type</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Medications</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      <%for (var i = 0; i < prescriptionDetails.length; i++) {%>
+                        <tr>
+                          <td><%=i+1%></td>
+                          <td><%=prescriptionDetails[i].creation_stamp%></td>
+                          <td><%=prescriptionDetails[i].patient_type%></td>
+                          <td><%=prescriptionDetails[i].name%></td>
+                          <td><%=prescriptionDetails[i].age%></td>
+                          <td><%=prescriptionDetails[i].medications%></td>
+                          <td><%=prescriptionDetails[i].STATUS%></td>
+                          <form action="/doctor/prescriptionManagement?prescriptionId=<%=prescriptionDetails[i].prescription_id%>&prescriptionPatientName=<%=prescriptionDetails[i].name%>" method="post">
+                            <td><button type="submit">cancel</button></td>
+                            <td><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add New Prescription</button></td>
+                          </form>
+                        </tr>
+                      <%}%>
+                   </tbody>
+                </table>
+            </div>
+     <!-- /.box-body -->
    </div>
-  </section>
+   <!-- /.box -->
+ </div>
+ <!-- /.col -->
+</div>
+      </section>
   <!-- /.content -->
-  </div>
+    </div>
 
   <!-- /.content-wrapper -->
 
@@ -246,23 +231,23 @@ desired effect
   <script src="../plugins/fastclick/fastclick.js"></script>
 
   <script type="text/javascript">
-  $(function () {
-  $("#example1").DataTable();
-  $('#example2').DataTable({
+$(function () {
+ $("#example1").DataTable();
+ $('#table2').DataTable({
    "paging": true,
-   "lengthChange": false,
-   "searching": false,
+   "lengthChange": true,
+   "searching": true,
    "ordering": true,
    "info": true,
    "autoWidth": true
-  });
-  });
-
-  function showAppointmentForm() {
-  document.getElementById("showAppointmentForm").style.display = "block";
-  }
+ });
+});
+      function showAppointmentForm() {
+      document.getElementById("showAppointmentForm").style.display = "block";
+      }
 
   </script>
+
   <!-- Optionally, you can add Slimscroll and FastClick plugins.
   Both of these plugins are recommended to enhance the
   user experience. Slimscroll is required when using the

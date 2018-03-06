@@ -5,23 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Doctor | Appointment Management</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect.
-  -->
-  <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
-      <!-- DataTables -->
-  <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
+<% include ../partials/header.ejs %>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -172,37 +156,35 @@ desired effect
              <div class="col-xs-12">
                <div class="box">
                  <div class="box-header">
-              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal2">
-                <i class="fa fa-plus" data-target="#myModal2"></i> Add New Appointment</button>
-            </div>
-                 <div class="box-header">
-
-
-                 </div>
+                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal2">
+                    <i class="fa fa-plus" data-target="#myModal2"></i> Add New Appointment</button>
+                </div>
                  <div class="box-body">
                    <table id="example2" class="table table-bordered table-striped">
                           <thead>
-      <tr>
-        <th>counter</th>
-        <th>Patient Type</th>
-        <th>Name</th>
-        <th>Date and Time</th>
-        <th>remarks</th>
-        <th>Action</th>
-      </tr>
-      <%for (var i = 0; i < appointmentDetails.length; i++) {%>
-        <tr>
-          <td><%=i+1%></td>
-          <td><%=appointmentDetails[i].patient_type%></td>
-          <td><%=appointmentDetails[i].name%></td>
-          <td><%=appointmentDetails[i].appointment_timestamp%></td>
-          <td><%=appointmentDetails[i].remarks%></td>
-          <form action="/doctor/appointmentManagement?appointmentId=<%=appointmentDetails[i].appointment_id%>&appointmentPatientName=<%=appointmentDetails[i].name%>" method="post">
-            <td><button type="submit">cancel</button></td>
-          </form>
-        </tr>
-      <%}%>
-    </thead>
+                              <tr>
+                                <th>counter</th>
+                                <th>Patient Type</th>
+                                <th>Name</th>
+                                <th>Date and Time</th>
+                                <th>remarks</th>
+                                <th>Action</th>
+                              </tr>
+                          </thead>
+                       <tbody>
+                          <%for (var i = 0; i < appointmentDetails.length; i++) {%>
+                            <tr>
+                              <td><%=i+1%></td>
+                              <td><%=appointmentDetails[i].patient_type%></td>
+                              <td><%=appointmentDetails[i].name%></td>
+                              <td><%=appointmentDetails[i].appointment_timestamp%></td>
+                              <td><%=appointmentDetails[i].remarks%></td>
+                              <form action="/doctor/appointmentManagement?appointmentId=<%=appointmentDetails[i].appointment_id%>&appointmentPatientName=<%=appointmentDetails[i].name%>" method="post">
+                                <td><button type="submit">cancel</button></td>
+                              </form>
+                            </tr>
+                          <%}%>
+                       </tbody>
             </table>
          </div>
          <!-- /.box-body -->
@@ -279,8 +261,8 @@ $(function () {
  $("#example1").DataTable();
  $('#example2').DataTable({
    "paging": true,
-   "lengthChange": false,
-   "searching": false,
+   "lengthChange": true,
+   "searching": true,
    "ordering": true,
    "info": true,
    "autoWidth": true
