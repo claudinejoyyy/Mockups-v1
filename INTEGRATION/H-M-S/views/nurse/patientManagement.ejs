@@ -135,7 +135,7 @@
 
           <div class="box">
             <div class="box-header">
-              <a class ="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Register Patient</a>
+              <a onclick="showAdd()" class ="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" data-target="#myModal"></i> Register Patient</a>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -203,125 +203,184 @@
               <h4 class="modal-title" id="myModalLabel">Add New Patient</h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal">
+              <form method='POST' id='modal2'  style="display:none;" onsubmit="showSuccess()" class="form-group">
 
-                <div class="form-group">
-                  <label for="inputPatientType" class="col-sm-2 control-label">Patient Type</label>
+                <div class="form group">
+                  <label for="type" class="col-sm-2 control-label" disabled>Patient Type</label>
                     <div class="col-sm-10">
-                      <select class="form-control">
-                          <option>Cadet</option>
-                          <option>Military Officer</option>
-                          <option>Civilian Employee</option>
-                          <option>Authorized Civilian</option>
-                        </select>
-                      </div>
-                </div>
+                      <select class="form-control" name="type" required>
+                        <option value="cadet">Cadet</option>
+                        <option value="military officer">Miltary Officer</option>
+                        <option value="military dependent">Miltary Dependent</option>
+                        <option value="civilian">Civilian</option>
+                        <option value="authorized civilian">Authorized Civilian</option>
+                      </select>
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
 
-                <div class="form-group">
-                  <label for="inputName" class="col-sm-2 control-label">Name</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputName" value="">
+                  <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
                   </div>
-                </div>
+                  <br>
+                  <br>
 
-                <div class="form-group">
-                  <label for="inputRankOrAfpsn" class="col-sm-2 control-label">Rank/Serial Number</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputRankOrAfpsn" value="">
+                  <div class="form-group">
+                    <label for="rankSN" class="col-sm-2 control-label">Rank/Serial Number</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="rankSN" name="rankSN">
+                    </div>
+                    <label for="unit" class="col-sm-2 control-label">Unit</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="unit" name="unit">
+                    </div>
                   </div>
-                  <label for="inputUnit" class="col-sm-2 control-label">Unit</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputUnit" value="">
-                  </div>
-                </div>
+                  <br>
+                  <br>
 
-                <div class="form-group">
-                  <label for="inputBirthdate" class="col-sm-2 control-label">Birthdate</label>
-                  <div class="col-sm-4">
-                    <input type="date" class="form-control datepicker" id="datepicker">
+                  <div class="form-group">
+                    <label for="inputBirthdate" class="col-sm-2 control-label">Birthdate</label>
+                    <div class="col-sm-4">
+                      <input type="date" class="form-control datepicker" name="birth" id="birth" required>
+                    </div>
+                    <label for="gender" class="col-sm-2 control-label" disabled>Gender</label>
+                    <div class="col-sm-4">
+                      <select class="form-control" name="gender" required>
+                          <option value="M">Male</option>
+                          <option value="F">Female</option>
+                      </select>
+                    </div>
                   </div>
-                  <label for="inputGender" class="col-sm-2 control-label">Sex</label>
-                  <div class="col-sm-4">
-                    <select class="form-control">
-                        <option>Male</option>
-                        <option>Female</option>
-                    </select>
-                  </div>
-                </div>
+                  <br>
+                  <br>
 
-                <div class="form-group">
-                  <label for="inputStatus" class="col-sm-2 control-label">Status</label>
-                  <div class="col-sm-4">
-                    <select class="form-control">
-                        <option>Single</option>
-                        <option>Married</option>
-                        <option>Widowed</option>
-                    </select>
+                  <div class="form-group">
+                    <label for="status" class="col-sm-2 control-label">Civil Status</label>
+                    <div class="col-sm-4">
+                      <select class="form-control" name="status" required>
+                          <option value="Single" selected value>Single</option>
+                          <option value="Maried">Married</option>
+                      </select>
+                    </div>
+                    <label for="religion" class="col-sm-2 control-label">Religion</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="religion" name="religion">
+                    </div>
                   </div>
-                  <label for="inputRelihion" class="col-sm-2 control-label">Religion</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputReligion" value="">
-                  </div>
-                </div>
+                  <br>
+                  <br>
 
-                <div class="form-group">
-                  <label for="inputAddress" class="col-sm-2 control-label">Address</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputAddress" value="">
+                  <div class="form-group">
+                    <label for="address" class="col-sm-2 control-label">Address</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="address" name="address">
+                    </div>
                   </div>
-                </div>
+                  <br>
+                  <br>
 
-                <div class="form-group">
-                  <label for="inputFather" class="col-sm-2 control-label">Name of Father</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputFather" value="">
+                  <div class="form-group">
+                    <label for="father" class="col-sm-2 control-label">Name of Father</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="father" name="father">
+                    </div>
+                    <label for="fatherO" class="col-sm-2 control-label">Occupation</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="fatherO" name="fatherO">
+                    </div>
                   </div>
-                  <label for="inputFOccupation" class="col-sm-2 control-label">Occupation</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputFOccupation" value="">
-                  </div>
-                </div>
+                  <br>
+                  <br>
 
-                <div class="form-group">
-                  <label for="inputMother" class="col-sm-2 control-label">Name of Mother</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputMother" value="">
+                  <div class="form-group">
+                    <label for="mother" class="col-sm-2 control-label">Name of Mother</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="mother" name="mother">
+                    </div>
+                    <label for="motherO" class="col-sm-2 control-label">Occupation</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="motherO" name="motherO">
+                    </div>
                   </div>
-                  <label for="inputMOccupation" class="col-sm-2 control-label">Occupation</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputMOccupation" value="">
-                  </div>
-                </div>
+                  <br>
+                  <br>
 
-                <div class="form-group">
-                  <label for="inputBloodType" class="col-sm-2 control-label">Blood Type</label>
-                  <div class="col-sm-4">
-                    <select class="form-control">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>AB</option>
-                      <option>O</option>
-                    </select>
+                  <div class="form-group">
+                    <label for="blood" class="col-sm-2 control-label">Blood Type</label>
+                    <div class="col-sm-4">
+                      <select class="form-control" name="blood" required>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="AB">AB</option>
+                        <option value="O">O</option>
+                      </select>
+                    </div>
+                    <label for="bh" class="col-sm-2 control-label">Birth History</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="bh" name="bh">
+                    </div>
                   </div>
-                  <label for="inputBirthHist" class="col-sm-2 control-label">Birth History</label>
-                  <div class="col-sm-4">
-                    <input type="email" class="form-control" id="inputBirthHist" value="">
-                  </div>
-                </div>
+                  <br>
+                  <br>
 
-                <div class="form-group">
-                  <label for="inputAllergies" class="col-sm-2 control-label">Allergies</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputAllergies" value="">
+                  <div class="form-group">
+                    <label for="allergies" class="col-sm-2 control-label">Allergies</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="allergies" name="allergies">
+                    </div>
                   </div>
-                </div>
+                  <br>
+                  <br>
 
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary">Add</button>
-            </div>
+                  <div class="form-group">
+                    <label for="fhName" class="col-sm-2 control-label">Family History</label>
+                    <div class="col-sm-8">
+                      <select id="fhName" class="form-control">
+                        <option value="" selected></option>
+                        <%for(var i=1; i <fh.length; i++){%>
+                          <option value="<%= fh[i].name%>"><%= fh[i].name%></option>
+                        <%}%>
+                      </select>
+                      <button type="button"  onclick="fhResult()">Add</button>
+                      <h5 style="opacity:0.7;" id="fhRes" name="family_history"></h5>
+                      <input type="text" id="family_history" name="family_history" style="display:none;">
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+
+                  <div class="form-group">
+                    <label for="immuName" class="col-sm-2 control-label">Immunization</label>
+                    <div class="col-sm-8">
+                      <select id="immuName" onchange="showDate()">
+                        <option value="" selected></option>
+                        <%for(var i=1; i <immu.length; i++){%>
+                          <option value="<%= immu[i].name%>"><%= immu[i].name%></option>
+                        <%}%>
+                      </select>
+                      <input type="month" id="immuDate">
+                      <button type="button" id="addMore" onclick="immuResult()">add</button>
+                      <h5 style="opacity:0.7;" id="immuRes"></h5>
+                      <input type="text" id="immunization" name="immunization" style="display:none;">
+                    </div>
+                  </div>
+                  <br>
+
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" name="sub" value="add">Save</button>
+             </div>
+
           </div>
         </div>
       </div>
@@ -398,6 +457,45 @@
         "autoWidth": true
         });
         });
+
+        function showAdd() {
+          document.getElementById("modal2").style.display = "block";
+        }
+        function showDate() {
+          document.getElementById("immuDate").style.display = "inline-block";
+          document.getElementById("addMore").style.display = "inline-block";
+        }
+       function showSuccess() {
+          alert("Success !!");
+        }
+        function immuResult() {
+          var e = document.getElementById("immuName");
+          var immu = e.options[e.selectedIndex].value;
+          var immuDate = document.getElementById("immuDate").value;
+          document.getElementById("immuRes").innerHTML += immu + immuDate + "<br>";
+          document.getElementById("immunization").value += immu +":"+ immuDate + ",";
+        }
+        function fhResult() {
+          var e = document.getElementById("fhName");
+          var fh = e.options[e.selectedIndex].value;
+          document.getElementById("fhRes").innerHTML += fh + "<br>";
+          document.getElementById("family_history").value += fh + ",";
+        }
+        function resetForm() {
+          document.getElementById("modal2").reset();
+          document.getElementById("assessment").reset();
+          document.getElementById("immuRes").innerHTML = "";
+        }
+        function currentAdmitted() {
+          document.getElementById("showAdmitted").style.display = "block";
+        }
+        function showAccessment() {
+          document.getElementById("assessment").style.display = "block";
+        }
+        function showTodo() {
+          document.getElementById("showTodo").style.display = "block";
+        }
+
       </script>
       <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
@@ -405,4 +503,3 @@
       fixed layout. -->
    </body>
 </html>
-
