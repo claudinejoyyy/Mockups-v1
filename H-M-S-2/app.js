@@ -100,8 +100,7 @@ laboratorist(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,wh
 
 //FOR AGE INCREMENT
 var CronJob = require('cron').CronJob;
-new CronJob('00 14 13 * * 1-7', function() {
-  console.log('ano na !');
+new CronJob('00 00 * * 1-7', function() {
     var checkBD = 'SELECT patient_id, birth_date from patient';
     db.query(checkBD, function(err, rows){
       var resultDB = JSON.parse(JSON.stringify(rows));
@@ -119,14 +118,5 @@ new CronJob('00 14 13 * * 1-7', function() {
     });
 }, null, true);
 
-// var CronJob = require('cron').CronJob;
-// new CronJob('00 00 12 * * 1-7', function() {
-//
-//   },
-//   null,
-//   true
-// );
-
-//port
 app.listen(3000);
 console.log('hello !!');
