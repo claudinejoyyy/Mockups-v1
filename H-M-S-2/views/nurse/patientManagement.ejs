@@ -209,11 +209,8 @@ function resetForm() {
   document.getElementById("assessment").reset();
   document.getElementById("immuRes").innerHTML = "";
 }
-  function PasswordInput(id){
-    document.getElementById('PasswordInput').style.display = 'block';
-    document.getElementById('dynamicActionPassword').action = '/nurse/patientManagement?passPatient='+id+'';
-  }
-
-
-
+function PasswordInput(id){
+  document.getElementById('PasswordInput').style.display = 'block';
+  document.getElementById('dynamicActionPassword').action = '/nurse/patientManagement?passPatient='+id+'';
+}
 </script>

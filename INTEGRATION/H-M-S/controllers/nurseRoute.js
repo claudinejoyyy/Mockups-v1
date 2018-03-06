@@ -1,12 +1,12 @@
 module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList){
 var user, Aid;
+var immuSQL     = "SELECT name FROM immunization;";
+var fhSQL       = "SELECT name FROM family_history;";
 
   app.get('/nurse/dashboard', function(req, res){
     if(req.session.email && req.session.sino == 'nurse'){
       if(req.session.sino == 'nurse'){
         Aid = req.session.Aid;
-        var immuSQL     = "SELECT name FROM immunization;";
-        var fhSQL       = "SELECT name FROM family_history;";
         var todoList    = "SELECT * from todo_list where account_id = "+req.session.Aid+";";
         var availablePatientOPD = "SELECT * from patient where patient_id NOT IN(SELECT patient_id from initial_assessment);";
         db.query(name + counts + chart + whoCurrentlyAdmitted + whoOPD + whoWARD + immuSQL + fhSQL + doctorList + availablePatientOPD + monthlyPatientCount + todoList, Aid, function(err, rows, fields){
@@ -15,7 +15,7 @@ var user, Aid;
           }
           user = rows[0];
           res.render('nurse/dashboard', {counts:rows[1], chart:rows[2], whoCurrentlyAdmitted:rows[3], whoOPD:rows[4],whoWARD:rows[5], immu:rows[6],
-                                         fh:rows[7], doctorList:rows[8], availablePatientOPD:rows[9], monthlyPatientCount:rows[10], todoList:rows[11], username: user});
+                                         fh:rows[7], doctorList:rows[8], availablePatientOPD:rows[9], monthlyPatientCount:rows[10], todoList:rows[11], username: user, err:req.query.status});
         });
       } else {
         res.redirect(req.session.sino+'/dashboard');
@@ -41,37 +41,48 @@ var user, Aid;
           });
           res.redirect(req.get('referer'));
         } else if(data.sub == "add") {
-            var bdParse       = data.birth.split('-');
-            var birthDate     = bdParse[0] + bdParse[1] + bdParse[2];
-            var cur           = new Date();
-            var bd            = new Date(data.birth);
-            var dif           = cur - bd;
-            var age           = Math.floor(dif/31557600000);
-            var fhParse       = data.family_history.split(',');
-            var immuParse     = data.immunization.split(',');
-            var father        = data.father + '\n:' + data.fatherO;
-            var mother        = data.mother + '\n:' + data.motherO;
-            var family_history = ""; for (var i = 0; i < fhParse.length; i++) {family_history += fhParse[i] + '\n';};
-            var immunization   = ""; for (var i = 0; i < immuParse.length; i++) {immunization += immuParse[i] + '\n';};
-            var addSQL = "INSERT INTO patient (name, unit, address, age, religion, father, mother, allergies, birth_history,birth_date, sex, patient_type, status, blood_type, rankORsn, immunization, family_history)"
-                       +" VALUES ("+JSON.stringify(data.name)+", "+JSON.stringify(data.unit)+","+JSON.stringify(data.address)+","
-                       +" "+age+", "+JSON.stringify(data.religion)+", "+JSON.stringify(father)+","+JSON.stringify(mother)+","
-                       +" "+JSON.stringify(data.allergies)+", "+JSON.stringify(data.bh)+", "+birthDate+", "+JSON.stringify(data.gender)+","
-                       +" "+JSON.stringify(data.type)+", "+JSON.stringify(data.status)+", "+JSON.stringify(data.blood)+","
-                       +" "+JSON.stringify(data.rankSN)+", "+JSON.stringify(immunization)+", "+JSON.stringify(family_history)+");";
+            req.checkBody('name','name is required').notEmpty();
+            req.checkBody('address','address is required').notEmpty();
+            req.checkBody('gender','gender is required').notEmpty();
+            req.checkBody('type','type is required').notEmpty();
+            req.checkBody('status','status is required').notEmpty();
+            req.checkBody('birth','birth is required').notEmpty();
+            errors = req.validationErrors();
+            if (errors) {
+              res.redirect(req.get('referer'));
+            } else {
+              var bdParse       = data.birth.split('-');
+              var birthDate     = bdParse[0] + bdParse[1] + bdParse[2];
+              var cur           = new Date();
+              var bd            = new Date(data.birth);
+              var dif           = cur - bd;
+              var age           = Math.floor(dif/31557600000);
+              var fhParse       = data.family_history.split(',');
+              var immuParse     = data.immunization.split(',');
+              var father        = data.father + '\n:' + data.fatherO;
+              var mother        = data.mother + '\n:' + data.motherO;
+              var family_history = ""; for (var i = 0; i < fhParse.length; i++) {family_history += fhParse[i] + '\n';};
+              var immunization   = ""; for (var i = 0; i < immuParse.length; i++) {immunization += immuParse[i] + '\n';};
+              var addSQL = "INSERT INTO patient (name, unit, address, age, religion, father, mother, allergies, birth_history,birth_date, sex, patient_type, status, blood_type, rankORsn, immunization, family_history)"
+                         +" VALUES ("+JSON.stringify(data.name)+", "+JSON.stringify(data.unit)+","+JSON.stringify(data.address)+","
+                         +" "+age+", "+JSON.stringify(data.religion)+", "+JSON.stringify(father)+","+JSON.stringify(mother)+","
+                         +" "+JSON.stringify(data.allergies)+", "+JSON.stringify(data.bh)+", "+birthDate+", "+JSON.stringify(data.gender)+","
+                         +" "+JSON.stringify(data.type)+", "+JSON.stringify(data.status)+", "+JSON.stringify(data.blood)+","
+                         +" "+JSON.stringify(data.rankSN)+", "+JSON.stringify(immunization)+", "+JSON.stringify(family_history)+");";
 
-            db.query(addSQL, function(err, rows){
-              if(err){
-                console.log(err);
-              } else {
-                db.query('INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "add", "Added: '+data.type+' - '+data.name+'");', function(err){
-                  if (err) {
-                    console.log(err);
-                  }
-                  });
-                res.redirect(req.get('referer'));
-              }
-            });
+              db.query(addSQL, function(err, rows){
+                if(err){
+                  console.log(err);
+                } else {
+                  db.query('INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "add", "Added: '+data.type+' - '+data.name+'");', function(err){
+                    if (err) {
+                      console.log(err);
+                    }
+                    });
+                  res.redirect(req.get('referer'));
+                }
+              });
+            }
         } else if (data.sub == 'discharge'){
               var admitDischarge           = "DELETE FROM admit WHERE patient_id = "+req.query.id+";";
               var patientNameSQL           = "SELECT name from patient WHERE patient_id = "+req.query.id+";";
@@ -116,9 +127,9 @@ var user, Aid;
   app.get('/nurse/patientManagement', function(req, res){
       if(req.session.email && req.session.sino == 'nurse'){
         if(req.session.sino == 'nurse'){
-          var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient";
-          db.query(sql, function(err, rows){
-            res.render('nurse/patientManagement', {p:rows, p2:null, username:user, invalid:null});
+          var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient;";
+          db.query(sql + immuSQL + fhSQL, function(err, rows){
+            res.render('nurse/patientManagement', {p:rows[0], immu:rows[1], fh:rows[2], p2:null, username:user, invalid:null});
           });
         } else {
           res.redirect(req.session.sino+'/dashboard');
@@ -131,23 +142,68 @@ var user, Aid;
       var data = req.body;
       if(req.session.email && req.session.sino == 'nurse'){
         if(req.session.sino == 'nurse') {
-          var checkPassword = 'Select * from user_accounts where account_id='+Aid+' and password="'+data.patientPassword+'";';
-          db.query(checkPassword, function(err, rows){
-            if(err){
-              console.log(err);
-            } else if(rows == ''){
-              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
-              db.query(sql, function(err, errorRows){
-                res.render('nurse/patientManagement', {p:errorRows, p2:null, username:user, invalid:'error'});
-              });
+          if (data.sub == 'add') {
+            req.checkBody('name','name is required').notEmpty();
+            req.checkBody('address','address is required').notEmpty();
+            req.checkBody('gender','gender is required').notEmpty();
+            req.checkBody('type','type is required').notEmpty();
+            req.checkBody('status','status is required').notEmpty();
+            req.checkBody('birth','birth is required').notEmpty();
+            errors = req.validationErrors();
+            if (errors) {
+              res.redirect(req.get('referer'));
             } else {
-              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
-              var sql2  = "SELECT * FROM patient where patient_id = "+req.query.passPatient+";";
-              db.query(sql + sql2, function(err, successRows){
-                res.render('nurse/patientManagement', {p:successRows[0], p2:successRows[1], username:user, invalid:null});
+              var bdParse       = data.birth.split('-');
+              var birthDate     = bdParse[0] + bdParse[1] + bdParse[2];
+              var cur           = new Date();
+              var bd            = new Date(data.birth);
+              var dif           = cur - bd;
+              var age           = Math.floor(dif/31557600000);
+              var fhParse       = data.family_history.split(',');
+              var immuParse     = data.immunization.split(',');
+              var father        = data.father + '\n:' + data.fatherO;
+              var mother        = data.mother + '\n:' + data.motherO;
+              var family_history = ""; for (var i = 0; i < fhParse.length; i++) {family_history += fhParse[i] + '\n';};
+              var immunization   = ""; for (var i = 0; i < immuParse.length; i++) {immunization += immuParse[i] + '\n';};
+              var addSQL = "INSERT INTO patient (name, unit, address, age, religion, father, mother, allergies, birth_history,birth_date, sex, patient_type, status, blood_type, rankORsn, immunization, family_history)"
+                         +" VALUES ("+JSON.stringify(data.name)+", "+JSON.stringify(data.unit)+","+JSON.stringify(data.address)+","
+                         +" "+age+", "+JSON.stringify(data.religion)+", "+JSON.stringify(father)+","+JSON.stringify(mother)+","
+                         +" "+JSON.stringify(data.allergies)+", "+JSON.stringify(data.bh)+", "+birthDate+", "+JSON.stringify(data.gender)+","
+                         +" "+JSON.stringify(data.type)+", "+JSON.stringify(data.status)+", "+JSON.stringify(data.blood)+","
+                         +" "+JSON.stringify(data.rankSN)+", "+JSON.stringify(immunization)+", "+JSON.stringify(family_history)+");";
+
+              db.query(addSQL, function(err, rows){
+                if(err){
+                  console.log(err);
+                } else {
+                  db.query('INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "add", "Added: '+data.type+' - '+data.name+'");', function(err){
+                    if (err) {
+                      console.log(err);
+                    }
+                    });
+                  res.redirect(req.get('referer'));
+                }
               });
             }
-          });
+          } else {
+            var checkPassword = 'Select * from user_accounts where account_id='+Aid+' and password="'+data.patientPassword+'";';
+            db.query(checkPassword, function(err, rows){
+              if(err){
+                console.log(err);
+              } else if(rows == ''){
+                var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
+                db.query(sql, function(err, errorRows){
+                  res.render('nurse/patientManagement', {p:errorRows, p2:null, username:user, invalid:'error'});
+                });
+              } else {
+                var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
+                var sql2  = "SELECT * FROM patient where patient_id = "+req.query.passPatient+";";
+                db.query(sql + sql2, function(err, successRows){
+                  res.render('nurse/patientManagement', {p:successRows[0], p2:successRows[1], username:user, invalid:null});
+                });
+              }
+            });
+          }
         } else {
           res.redirect(req.session.sino+'/dashboard');
         }
@@ -196,7 +252,7 @@ var user, Aid;
     if(req.session.email && req.session.sino == 'nurse'){
       if (req.session.sino == 'nurse') {
         var profileInfoSQL  = 'SELECT * from user_accounts where account_id = '+req.session.Aid+';';
-        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc LIMIT 5;';
+        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc;';
         db.query(profileInfoSQL + activityLogsSQL, function(err, rows){
           if (err) {
             console.log(err);
