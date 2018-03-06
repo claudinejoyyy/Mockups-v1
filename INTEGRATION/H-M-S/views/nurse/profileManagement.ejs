@@ -198,28 +198,28 @@
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" id="name" name="name" placeholder="<%= pInfo[0].name%>">
+                      <input type="text" id="name" name="name" placeholder="" value="<%= pInfo[0].name%>">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Age</label>
                     <div class="col-sm-10">
-                      <input type="int" id="age" name="age" placeholder="<%= pInfo[0].age%>"><br>
+                      <input type="int" id="age" name="age" placeholder="" value="<%= pInfo[0].age%>"><br>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label">Address</label>
                       <div class="col-sm-10">
-                        <input type="text" id="address" name="address" placeholder="<%= pInfo[0].address%>"><br>
+                        <input type="text" id="address" name="address" placeholder="" value="<%= pInfo[0].address%>"><br>
                       </div>
                   </div>
 
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label">Phone</label>
                       <div class="col-sm-10">
-                        <input type="text" id="phone" name="phone" placeholder="<%= pInfo[0].phone%>"><br>
+                        <input type="text" id="phone" name="phone" placeholder="" value="<%= pInfo[0].phone%>"><br>
                       </div>
                   </div>
 
@@ -251,6 +251,7 @@
 </div>
 
 
+<!--
     <button type="button" id="button" onclick="show()" value="logs">Activity Logs</button>
 
     <div id='logs' style="display:none;">
@@ -261,20 +262,12 @@
         <h1>-----</h1>
       <%}%>
     </div>
+-->
 
-<!-- jQuery 2.2.3 -->
-<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/app.min.js"></script>
-<!-- DataTables -->
-<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="../plugins/fastclick/fastclick.js"></script>
+    </div>
+    <% include ../partials/footer.ejs %>
+</body>
+</html>
 
 <script>
   $(function () {
@@ -289,10 +282,6 @@
     });
   });
 </script>
-    </div>
-</body>
-        <% include ../partials/footer.ejs %>
-</html>
 <script>
   function show(){
     document.getElementById('logs').style = 'display:block;';
