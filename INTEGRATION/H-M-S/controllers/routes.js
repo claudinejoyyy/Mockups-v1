@@ -1,4 +1,4 @@
-module.exports = function(app, db, currentTime){
+module.exports = function(app, db, currentTime, bcrypt){
   app.get('/', function(req, res){
     if(req.session.email){
         res.redirect(req.session.sino+'/dashboard');
@@ -17,31 +17,46 @@ module.exports = function(app, db, currentTime){
 
   app.post('/login', function(req, res){
       // res.end(req.body.email);
-      var user = req.body.username;
-      var pass = req.body.pass;
-      var sql  = "SELECT * FROM user_accounts WHERE username = ? and password = ?" ;
+      req.checkBody('username', 'username is required').notEmpty();
+      req.checkBody('pass', 'password is required').notEmpty();
+      if (req.validationErrors()) {
+        req.flash('danger', 'Failed to login!');
+        res.render('login');
+      }  else {
+        var username = req.body.username;
+        var password = req.body.pass;
+        var user  = "SELECT * FROM user_accounts WHERE username = ?;" ;
 
-      db.query(sql, [user, pass], function(err, rows, fields){
-        if(err){
-          console.log(err);
-        }
-        else if(rows == ''){
-          res.redirect('error');
-          //Dapat meron ccheck din kung may laman ung username or password dapat di mag redirect dapat mag reload lang(with the error message)
-        } else {
-          //JUST GET THE ACCOUNT ID FROM THE QUERY ABOVE MEN WATCHA DOIN !!!
-            req.session.sino = rows[0].account_type;
-            req.session.Aid = rows[0].account_id;
-            req.session.email = req.body.username;
-            req.session.password = req.body.pass;
-            db.query('INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "log", "Logged in");', function(err){
+        db.query(user, username, function(err, rows, fields){
+          if(err){
+            console.log(err);
+          }
+          else if(rows == ''){
+            req.flash('danger', 'Invalid Credentials!');
+            res.redirect(req.get('referer'));
+          } else {
+            bcrypt.compare(password, rows[0].password, function(err, isMatch) {
               if (err) {
                 console.log(err);
+              } else if(isMatch) {
+                req.session.sino = rows[0].account_type;
+                req.session.Aid = rows[0].account_id;
+                req.session.email = req.body.username;
+                req.session.password = rows[0].password;
+                db.query('INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "log", "Logged in");', function(err){
+                  if (err) {
+                    console.log(err);
+                  }
+                });
+                res.redirect(req.session.sino +'/dashboard');
+              } else {
+                req.flash('danger', 'Invalid Credentials!');
+                res.redirect(req.get('referer'));
               }
             });
-            res.redirect(req.session.sino +'/dashboard');
-        }
-      });
+          }
+        });
+      }
   });
 
   app.get('/logout', function(req, res){
