@@ -84,7 +84,8 @@
       </form>
 
       <ul class="sidebar-menu">
-        <li class="active"><a href="../laboratorist/dashboard"><i class="fa fa-link" target="_self"></i> <span>Dashboard</span></a></li>
+        <li class="header">Account Management</li>
+        <li class="active"><a href="../laboratorist/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
         <li><a href="../laboratorist/labRequestManagement"><i class="fa fa-link"></i> <span>Diagnosis Request Management</span></a></li>
         <li><a href="../laboratorist/profileManagement"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
       </ul>
@@ -126,7 +127,7 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a onclick="showBloodChem()" class="small-box-footer">More info<i class="fa fa-arrow-circle-right"></i></a>
+            <a onclick="showBloodChem()" class="small-box-footer" data-toggle="modal" data-target="#bloodChem">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -141,7 +142,7 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a onclick="showHerma()" class="small-box-footer">More info<i class="fa fa-arrow-circle-right"></i></a>
+            <a onclick="showHerma()" class="small-box-footer" data-toggle="modal" data-target="#herma">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -156,7 +157,7 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a onclick="showMicroscopy()" class="small-box-footer">More info<i class="fa fa-arrow-circle-right"></i></a>
+            <a onclick="showMicroscopy()" class="small-box-footer" data-toggle="modal" data-target="#micro">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -171,7 +172,7 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a onclick="showParasitology()" class="small-box-footer">More info<i class="fa fa-arrow-circle-right"></i></a>
+            <a onclick="showParasitology()" class="small-box-footer" data-toggle="modal" data-target="#para">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -186,7 +187,7 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a onclick="showSerology()" class="small-box-footer">More info<i class="fa fa-arrow-circle-right"></i></a>
+            <a onclick="showSerology()" class="small-box-footer" data-toggle="modal" data-target="#sero">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -201,7 +202,7 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a onclick="showMicrobiology()" class="small-box-footer">More info<i class="fa fa-arrow-circle-right"></i></a>
+            <a onclick="showMicrobiology()" class="small-box-footer" data-toggle="modal" data-target="#microBio">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -217,7 +218,7 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a onclick="showXray()" class="small-box-footer">More info<i class="fa fa-arrow-circle-right"></i></a>
+            <a onclick="showXray()" class="small-box-footer" data-toggle="modal" data-target="#xray">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -304,121 +305,233 @@
     </section>
   </div>
 
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1
-    </div>
-    <strong>Copyright &copy; 2018.</strong> Philippine Military Academy | Fort Del Pilar Station Hospital | All rights reserved.
-  </footer>
-  <div class="control-sidebar-bg"></div>
+    <footer class="main-footer">
+      <div class="pull-right hidden-xs">
+        <b>Version</b> 1
+      </div>
+      <strong>Copyright &copy; 2018.</strong> Philippine Military Academy | Fort Del Pilar Station Hospital | All rights reserved.
+    </footer>
+    <div class="control-sidebar-bg"></div>
 </div>
 
-    <div id="showBloodChem" style="display:none;">
-      <table>
-        <tr>
-          <th>name</th>
-          <th>date</th>
-        </tr>
-        <%for(var i = 0; i < bloodChemistrySQL.length; i++){%>
-        <tr>
-            <td><%= bloodChemistrySQL[i].name%></td>
-            <td><%= bloodChemistrySQL[i].timestamp%></td>
-        </tr>
-        <%}%>
-      </table>
+
+<!---------------------------------------------------------------------------------------------- Modal for  Blood Chemistry ----------->
+  <div class="modal fade" id="bloodChem" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+   <div class="col-xs-12">
+     <div class="box">
+       <div class="box-header">
+         <h3 class="box-title">Request for Blood Chemistry Test</h3>
+       </div>
+       <div class="box-body">
+         <table id="example1" class="table table-bordered table-striped">
+           <thead>
+               <tr>
+                 <th>Name</th>
+                 <th>Date and Time</th>
+               </tr>
+           </thead>
+           <tbody>
+               <%for(var i = 0; i < bloodChemistrySQL.length; i++){%>
+                 <tr>
+                     <td><%= bloodChemistrySQL[i].name%></td>
+                     <td><%= bloodChemistrySQL[i].timestamp%></td>
+                 </tr>
+               <%}%>
+         </table>
+       </div>
+       <!-- /.box-body -->
+     </div>
+     <!-- /.box -->
+   </div>
+   <!-- /.col -->
+  </div>
+
+  <!---------------------------------------------------------------------------------------------- Modal for  Hermatology ----------->
+    <div class="modal fade" id="herma" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+     <div class="col-xs-12">
+       <div class="box">
+         <div class="box-header">
+           <h3 class="box-title">Request for Hermatology Test</h3>
+         </div>
+         <div class="box-body">
+           <table id="example1" class="table table-bordered table-striped">
+             <thead>
+                 <tr>
+                   <th>Name</th>
+                   <th>Date and Time</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <%for(var i = 0; i < hermatology.length; i++){%>
+                   <tr>
+                     <td><%= hermatology[i].name%></td>
+                     <td><%= hermatology[i].timestamp%></td>
+                   </tr>
+                 <%}%>
+           </table>
+         </div>
+         <!-- /.box-body -->
+       </div>
+       <!-- /.box -->
+     </div>
+     <!-- /.col -->
     </div>
 
-    <div id="showHerma" style="display:none;">
-      <table>
-        <tr>
-          <th>name</th>
-          <th>date</th>
-        </tr>
-        <%for(var i = 0; i < hermatology.length; i++){%>
-        <tr>
-            <td><%= hermatology[i].name%></td>
-            <td><%= hermatology[i].timestamp%></td>
-        </tr>
-        <%}%>
-      </table>
-    </div>
+    <!---------------------------------------------------------------------------------------------- Modal for  Microscopy ----------->
+      <div class="modal fade" id="micro" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+       <div class="col-xs-12">
+         <div class="box">
+           <div class="box-header">
+             <h3 class="box-title">Request for Microscopy Test</h3>
+           </div>
+           <div class="box-body">
+             <table id="example1" class="table table-bordered table-striped">
+               <thead>
+                   <tr>
+                     <th>Name</th>
+                     <th>Date and Time</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <%for(var i = 0; i < microscopy.length; i++){%>
+                     <tr>
+                       <td><%= microscopy[i].name%></td>
+                       <td><%= microscopy[i].timestamp%></td>
+                     </tr>
+                   <%}%>
+             </table>
+           </div>
+           <!-- /.box-body -->
+         </div>
+         <!-- /.box -->
+       </div>
+       <!-- /.col -->
+      </div>
 
-    <div id="showMicroscopy" style="display:none;">
-      <table>
-        <tr>
-          <th>name</th>
-          <th>date</th>
-        </tr>
-        <%for(var i = 0; i < microscopy.length; i++){%>
-        <tr>
-            <td><%= microscopy[i].name%></td>
-            <td><%= microscopy[i].timestamp%></td>
-        </tr>
-        <%}%>
-      </table>
-    </div>
+      <!---------------------------------------------------------------------------------------------- Modal for  Parasitology ----------->
+        <div class="modal fade" id="para" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+         <div class="col-xs-12">
+           <div class="box">
+             <div class="box-header">
+               <h3 class="box-title">Request for Parasitology Test</h3>
+             </div>
+             <div class="box-body">
+               <table id="example1" class="table table-bordered table-striped">
+                 <thead>
+                     <tr>
+                       <th>Name</th>
+                       <th>Date and Time</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <%for(var i = 0; i < parasitology.length; i++){%>
+                       <tr>
+                         <td><%= parasitology[i].name%></td>
+                         <td><%= parasitology[i].timestamp%></td>
+                       </tr>
+                     <%}%>
+               </table>
+             </div>
+             <!-- /.box-body -->
+           </div>
+           <!-- /.box -->
+         </div>
+         <!-- /.col -->
+        </div>
 
-    <div id="showParasitology" style="display:none;">
-      <table>
-        <tr>
-          <th>name</th>
-          <th>date</th>
-        </tr>
-        <%for(var i = 0; i < parasitology.length; i++){%>
-        <tr>
-            <td><%= parasitology[i].name%></td>
-            <td><%= parasitology[i].timestamp%></td>
-        </tr>
-        <%}%>
-      </table>
-    </div>
+        <!---------------------------------------------------------------------------------------------- Modal for  Serology ----------->
+          <div class="modal fade" id="sero" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+           <div class="col-xs-12">
+             <div class="box">
+               <div class="box-header">
+                 <h3 class="box-title">Request for Parasitology Test</h3>
+               </div>
+               <div class="box-body">
+                 <table id="example1" class="table table-bordered table-striped">
+                   <thead>
+                       <tr>
+                         <th>Name</th>
+                         <th>Date and Time</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <%for(var i = 0; i < serology.length; i++){%>
+                         <tr>
+                           <td><%= serology[i].name%></td>
+                           <td><%= serology[i].timestamp%></td>
+                         </tr>
+                       <%}%>
+                 </table>
+               </div>
+               <!-- /.box-body -->
+             </div>
+             <!-- /.box -->
+           </div>
+           <!-- /.col -->
+          </div>
 
-    <div id="showSerology" style="display:none;">
-      <table>
-        <tr>
-          <th>name</th>
-          <th>date</th>
-        </tr>
-        <%for(var i = 0; i < serology.length; i++){%>
-        <tr>
-            <td><%= serology[i].name%></td>
-            <td><%= serology[i].timestamp%></td>
-        </tr>
-        <%}%>
-      </table>
-    </div>
+          <!---------------------------------------------------------------------------------------------- Modal for  Microbiology ----------->
+            <div class="modal fade" id="microBio" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+             <div class="col-xs-12">
+               <div class="box">
+                 <div class="box-header">
+                   <h3 class="box-title">Request for Parasitology Test</h3>
+                 </div>
+                 <div class="box-body">
+                   <table id="example1" class="table table-bordered table-striped">
+                     <thead>
+                         <tr>
+                           <th>Name</th>
+                           <th>Date and Time</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <%for(var i = 0; i < microbiology.length; i++){%>
+                           <tr>
+                             <td><%= microbiology[i].name%></td>
+                             <td><%= microbiology[i].timestamp%></td>
+                           </tr>
+                         <%}%>
+                   </table>
+                 </div>
+                 <!-- /.box-body -->
+               </div>
+               <!-- /.box -->
+             </div>
+             <!-- /.col -->
+            </div>
 
+            <!---------------------------------------------------------------------------------------------- Modal for  XRay ----------->
+              <div class="modal fade" id="xray" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+               <div class="col-xs-12">
+                 <div class="box">
+                   <div class="box-header">
+                     <h3 class="box-title">Request for Parasitology Test</h3>
+                   </div>
+                   <div class="box-body">
+                     <table id="example1" class="table table-bordered table-striped">
+                       <thead>
+                           <tr>
+                             <th>Name</th>
+                             <th>Date and Time</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <%for(var i = 0; i < xRay.length; i++){%>
+                             <tr>
+                               <td><%= xRay[i].name%></td>
+                               <td><%= xRay[i].timestamp%></td>
+                             </tr>
+                           <%}%>
+                     </table>
+                   </div>
+                   <!-- /.box-body -->
+                 </div>
+                 <!-- /.box -->
+               </div>
+               <!-- /.col -->
+              </div>
 
-    <div id="showMicrobiology" style="display:none;">
-      <table>
-        <tr>
-          <th>name</th>
-          <th>date</th>
-        </tr>
-        <%for(var i = 0; i < microbiology.length; i++){%>
-        <tr>
-            <td><%= microbiology[i].name%></td>
-            <td><%= microbiology[i].timestamp%></td>
-        </tr>
-        <%}%>
-      </table>
-    </div>
-
-
-    <div id="showXray" style="display:none;">
-      <table>
-        <tr>
-          <th>name</th>
-          <th>date</th>
-        </tr>
-        <%for(var i = 0; i < xRay.length; i++){%>
-          <tr>
-            <td><%= xRay[i].name%></td>
-            <td><%= xRay[i].timestamp%></td>
-          </tr>
-        <%}%>
-      </table>
-    </div>
 
     <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
