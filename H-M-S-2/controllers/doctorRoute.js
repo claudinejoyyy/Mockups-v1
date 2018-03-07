@@ -1,4 +1,4 @@
-module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds){
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,bcrypt){
 var user, Aid, availableBedss, p;
 
   app.get('/doctor/dashboard', function(req, res){
@@ -73,7 +73,6 @@ var user, Aid, availableBedss, p;
           if (err) {
             console.log(err);
           } else {
-              //var vitals = rows[1].vital_signs.split('\n');
               res.render('doctor/outpatientManagement', {opdInfo:rows[0], admitAvailableBeds:rows[1], whoCurrentlyAdmittedV2:rows[2], labSQL:rows[3], prescribeSQL:rows[4], username: user});
           }
         });
@@ -198,20 +197,20 @@ var user, Aid, availableBedss, p;
       var data = req.body;
       if(req.session.email && req.session.sino == 'doctor'){
         if(req.session.sino == 'doctor') {
-          var checkPassword = 'Select * from user_accounts where account_id='+Aid+' and password="'+data.patientPassword+'";';
-          db.query(checkPassword, function(err, rows){
-            if(err){
+
+          bcrypt.compare(data.patientPassword, req.session.password, function(err, isMatch){
+            if (err) {
               console.log(err);
-            } else if(rows == ''){
-              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
-              db.query(sql, function(err, errorRows){
-                res.render('doctor/patientManagement', {p:errorRows, p2:null, username:user, invalid:'error'});
-              });
-            } else {
+            } else if(isMatch) {
               var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
               var sql2  = "SELECT * FROM patient where patient_id = "+req.query.passPatient+";";
               db.query(sql + sql2, function(err, successRows){
                 res.render('doctor/patientManagement', {p:successRows[0], p2:successRows[1], username:user, invalid:null});
+              });
+            } else {
+              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
+              db.query(sql, function(err, errorRows){
+                res.render('doctor/patientManagement', {p:errorRows, p2:null, username:user, invalid:'error'});
               });
             }
           });
