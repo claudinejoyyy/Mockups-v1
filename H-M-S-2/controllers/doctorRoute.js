@@ -204,8 +204,14 @@ var user, Aid, availableBedss, p;
             } else if(isMatch) {
               var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
               var sql2  = "SELECT * FROM patient where patient_id = "+req.query.passPatient+";";
-              db.query(sql + sql2, function(err, successRows){
-                res.render('doctor/patientManagement', {p:successRows[0], p2:successRows[1], username:user, invalid:null});
+              var latestMedicine =  'SELECT medicine FROM `prescription` where patient_id = '+req.query.passPatient+' and creation_stamp = (SELECT creation_stamp from prescription where patient_id = '+req.query.passPatient+' order by creation_stamp desc limit 1);'
+              db.query(sql + sql2 + latestMedicine, function(err, successRows){
+                var medicineParse = JSON.parse(JSON.stringify(successRows[2]));
+                var medicine= '';
+                for (var i = 0; i < medicineParse.length; i++) {
+                  medicine += medicineParse[i].medicine + ',\n';
+                }
+                res.render('doctor/patientManagement', {p:successRows[0], p2:successRows[1], medicine:medicine, username:user, invalid:null});
               });
             } else {
               var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";

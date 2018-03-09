@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="/notif.js"></script>
     <title>Doctor Dashboard</title>
     <style>
     table {
@@ -18,6 +20,7 @@
     </style>
   </head>
   <body>
+    <h1 id="assess"></h1>
     <nav>
       <a href="../doctor/dashboard">dashboard</a><br>
       <a href="../doctor/bedManagement">bedManagement</a><br>

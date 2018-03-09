@@ -16,6 +16,37 @@ var flash = require('connect-flash');
 var app = express();
 
 
+// Run server to listen on port 3000.
+const server = app.listen(3000, () => {
+  console.log('listening on *:3000');
+});
+
+const io = require('socket.io')(server);
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
+
+//socket
+// var socket = require('socket.io');
+// var server = app.listen(3000);
+// var io = socket(server);
+// io.sockets.on('connection', (socket) => {
+//   console.log('new connection');
+//
+//   socket.on('mouse', msg);
+//   function msg(data){
+//     console.log(data);
+//   }
+// });
+
+
+
 
 
 
@@ -90,7 +121,7 @@ var availableBeds        = "SELECT b.bed_id, p.patient_type, p.name, b.status, b
 
 var currentTime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
 login (app,db,currentTime,bcrypt);
-nurse (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList);
+nurse (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList,io);
 doctor(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,bcrypt);
 admin (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,bcrypt);
 pharmacist(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList);
@@ -118,5 +149,4 @@ new CronJob('00 00 * * 1-7', function() {
     });
 }, null, true);
 
-app.listen(3000);
 console.log('hello !!');

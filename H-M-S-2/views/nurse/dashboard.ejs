@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    </script>
     <title>Nurse</title>
     <style>
     table {
@@ -202,6 +204,7 @@
       <button type="smubmit" name="sub" value="assessment" onclick="linkAssessment(<%= availablePatientOPD[i].name%>)">send</button>
     </form>
     <h1><%= err%></h1>
+
   </body>
 </html>
 <script>

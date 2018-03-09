@@ -1,4 +1,4 @@
-module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList){
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList,io){
 var user, Aid;
 var immuSQL     = "SELECT name FROM immunization;";
 var fhSQL       = "SELECT name FROM family_history;";
@@ -38,6 +38,7 @@ var fhSQL       = "SELECT name FROM family_history;";
             if (err) {
               console.log(err);
             }
+            io.emit('assess', 'newPatient');
           });
           res.redirect(req.get('referer'));
         } else if(data.sub == "add") {
@@ -181,7 +182,7 @@ var fhSQL       = "SELECT name FROM family_history;";
                       console.log(err);
                     }
                     });
-                  res.redirect(req.get('referer'));
+                    res.redirect(req.get('referer'));
                 }
               });
             }

@@ -75,6 +75,7 @@
             <th>Rank</th>
             <th>Immunization</th>
             <th>Family History</th>
+            <th>Medicine</th>
         </tr>
         <%
         for(var i=0; i <p2.length; i++){
@@ -98,11 +99,13 @@
           <td><%= p2[i].rankORsn %></td>
           <td><%= p2[i].immunization %></td>
           <td><%= p2[i].family_history %></td>
+          <td><%= medicine%></td>
         </tr>
         <%}%>
       </table>
     <%}%>
     <!-- PASSWORD -->
+    <%- messages('message', locals) %>
     <div id="PasswordInput" style="display:none">
       <form id="dynamicActionPassword" method="post">
         Password: <input type="password" name="patientPassword">
