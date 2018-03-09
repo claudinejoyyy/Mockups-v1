@@ -18,32 +18,29 @@ var app = express();
 
 // Run server to listen on port 3000.
 const server = app.listen(3000, () => {
-  console.log('listening on *:3000');
+  console.log('--listening on port 3000--');
 });
-
 const io = require('socket.io')(server);
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
-
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-});
-
-
-//socket
-// var socket = require('socket.io');
-// var server = app.listen(3000);
-// var io = socket(server);
-// io.sockets.on('connection', (socket) => {
-//   console.log('new connection');
-//
-//   socket.on('mouse', msg);
-//   function msg(data){
-//     console.log(data);
-//   }
-// });
+//FOR AGE INCREMENT
+var CronJob = require('cron').CronJob;
+new CronJob('00 00 * * 1-7', function() {
+    var checkBD = 'SELECT patient_id, birth_date from patient';
+    db.query(checkBD, function(err, rows){
+      var resultDB = JSON.parse(JSON.stringify(rows));
+      for (var i in resultDB) {
+        if (moment(new Date()).format('MM-DD') == moment(resultDB[i].birth_date).format('MM-DD')) {
+          db.query('UPDATE patient SET birth_date="'+ resultDB[i].birth_date+1 +'"where patient_id ='+resultDB[i].patient_id+';', function(err){
+            if (err) {
+              console.log(err);
+            } else {
+              console.log('gumagana');
+            }
+          });
+        }
+      }
+    });
+}, null, true);
 
 
 
@@ -101,52 +98,35 @@ var whoOPD               = "SELECT p.name, a.time From patient p inner join acti
 var whoWARD              = "SELECT p.name, a.time From patient p inner join activity_logs a USING(patient_id) where a.type = 'bed';";
 var whoCurrentlyAdmitted = "SELECT p.name, a.patient_id, a.bed_id FROM bed a INNER JOIN patient p USING(patient_id);";
 // GRAPH
-var monthlyPatientCount  = 'SELECT (SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-01-01 00:00:00" and "'+currentTime+'-02-01 00:00:00" and type = "add") as JAN,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-02-01 00:00:00" and "'+currentTime+'-03-01 00:00:00" and type = "add") as FEB,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-03-01 00:00:00" and "'+currentTime+'-04-01 00:00:00" and type = "add") as MARCH,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-04-01 00:00:00" and "'+currentTime+'-05-01 00:00:00" and type = "add") as APRIL,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-05-01 00:00:00" and "'+currentTime+'-06-01 00:00:00" and type = "add") as MAY,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-06-01 00:00:00" and "'+currentTime+'-07-01 00:00:00" and type = "add") as JUNE,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-07-01 00:00:00" and "'+currentTime+'-08-01 00:00:00" and type = "add") as JULY,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-08-01 00:00:00" and "'+currentTime+'-09-01 00:00:00" and type = "add") as AUGUST,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-09-01 00:00:00" and "'+currentTime+'-010-01 00:00:00" and type = "add") as SEPTEMBER,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-010-01 00:00:00" and "'+currentTime+'-011-01 00:00:00" and type = "add") as OCTOBER,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-011-01 00:00:00" and "'+currentTime+'-012-01 00:00:00" and type = "add") as NOVEMBER,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-012-01 00:00:00" and "'+currentTime+'-001-01 00:00:00" and type = "add") as DECEMBER;';
+var currentYear = moment(new Date()).format('YYYY');
+var monthlyPatientCount  = 'SELECT (SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-01-01 00:00:00" and "'+currentYear+'-02-01 00:00:00" and type = "add") as JAN,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-02-01 00:00:00" and "'+currentYear+'-03-01 00:00:00" and type = "add") as FEB,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-03-01 00:00:00" and "'+currentYear+'-04-01 00:00:00" and type = "add") as MARCH,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-04-01 00:00:00" and "'+currentYear+'-05-01 00:00:00" and type = "add") as APRIL,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-05-01 00:00:00" and "'+currentYear+'-06-01 00:00:00" and type = "add") as MAY,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-06-01 00:00:00" and "'+currentYear+'-07-01 00:00:00" and type = "add") as JUNE,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-07-01 00:00:00" and "'+currentYear+'-08-01 00:00:00" and type = "add") as JULY,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-08-01 00:00:00" and "'+currentYear+'-09-01 00:00:00" and type = "add") as AUGUST,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-09-01 00:00:00" and "'+currentYear+'-010-01 00:00:00" and type = "add") as SEPTEMBER,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-010-01 00:00:00" and "'+currentYear+'-011-01 00:00:00" and type = "add") as OCTOBER,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-011-01 00:00:00" and "'+currentYear+'-012-01 00:00:00" and type = "add") as NOVEMBER,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-012-01 00:00:00" and "'+currentYear+'-001-01 00:00:00" and type = "add") as DECEMBER;';
 //TO DO LIST
 //OTHERS
 var patientList          = "SELECT * from patient;";
 var doctorList           = "SELECT * FROM user_accounts WHERE account_type = 'doctor';";
 var availableBeds        = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id) where b.status = 'Unoccupied';";
 
+//PATIENTMANAGEMENT
+var patientManagementSQL = 'SELECT patient_id, patient_type, sex, name, age,blood_type, "" as medicines  from patient where patient_id not in (SELECT patient_id medicines FROM patient left join prescription using(patient_id) where prescription.status="confirmed" and creation_stamp = (SELECT creation_stamp from prescription where prescription.status="confirmed" order by creation_stamp desc limit 1)) '
+                            +'UNION '
+                            +'SELECT patient_id, patient_type, sex, name, age, blood_type,GROUP_CONCAT(medicine) medicines FROM patient left join prescription p using(patient_id) where p.status="confirmed" and creation_stamp = (SELECT creation_stamp from prescription p where p.status="confirmed" order by creation_stamp desc limit 1) order by patient_id desc;';
+
+
 var currentTime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
 login (app,db,currentTime,bcrypt);
-nurse (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList,io);
-doctor(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,bcrypt);
-admin (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,bcrypt);
+nurse (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList,patientManagementSQL,io);
+doctor(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,patientManagementSQL,bcrypt);
+admin (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,patientManagementSQL,bcrypt);
 pharmacist(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList);
 laboratorist(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList);
-
-
-
-//FOR AGE INCREMENT
-var CronJob = require('cron').CronJob;
-new CronJob('00 00 * * 1-7', function() {
-    var checkBD = 'SELECT patient_id, birth_date from patient';
-    db.query(checkBD, function(err, rows){
-      var resultDB = JSON.parse(JSON.stringify(rows));
-      for (var i in resultDB) {
-        if (moment(new Date()).format('MM-DD') == moment(resultDB[i].birth_date).format('MM-DD')) {
-          db.query('UPDATE patient SET birth_date="'+ resultDB[i].birth_date+1 +'"where patient_id ='+resultDB[i].patient_id+';', function(err){
-            if (err) {
-              console.log(err);
-            } else {
-              console.log('gumagana');
-            }
-          });
-        }
-      }
-    });
-}, null, true);
-
-console.log('hello !!');

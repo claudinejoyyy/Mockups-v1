@@ -127,8 +127,8 @@ var user, Aid;
     app.post('/pharmacist/prescriptionManagement', function(req, res){
       if(req.session.email && req.session.sino == 'pharmacist'){
         if(req.session.sino == 'pharmacist') {
-          var cancelPrescriptionSQL = 'UPDATE prescription set status = "confirmed" where prescription_id = '+req.query.prescriptionId+';';
-          db.query(cancelPrescriptionSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "approvedPrescription", "Approved prescription for: '+req.query.prescriptionPatientName+'");', function(err){
+          var confirmPrescriptionSQL = 'UPDATE prescription set status = "confirmed" where prescription_id = '+req.query.prescriptionId+';';
+          db.query(confirmPrescriptionSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "approvedPrescription", "Approved prescription for: '+req.query.prescriptionPatientName+'");', function(err){
             if(err){
               console.log(err);
             } else {

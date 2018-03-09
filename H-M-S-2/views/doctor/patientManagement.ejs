@@ -34,6 +34,7 @@
           <th>Age</th>
           <th>Gender</th>
           <th>Blood Type</th>
+          <th>Previous Medicine taken</th>
           <th>action</th>
       </tr>
       <%
@@ -46,6 +47,8 @@
         <td><%= p[i].age %></td>
         <td><%= p[i].sex %></td>
         <td><%= p[i].blood_type %></td>
+        <td><%= p[i].medicines %></td>
+
         <td><button type="button" name="button" onclick="PasswordInput(<%= p[i].patient_id %>)">view</button></td>
       </tr>
       <%}%>

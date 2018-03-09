@@ -1,4 +1,4 @@
-module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,bcrypt){
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,patientManagementSQL,bcrypt){
 var user, Aid, availableBedss, p;
 
   app.get('/doctor/dashboard', function(req, res){
@@ -181,8 +181,7 @@ var user, Aid, availableBedss, p;
               res.render('doctor/patientManagement', {p:rows, p2:null, username:user, invalid:null});
             });
           } else {
-              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient";
-              db.query(sql, function(err, rows){
+              db.query(patientManagementSQL, function(err, rows){
                 res.render('doctor/patientManagement', {p:rows, p2:null, username:user, invalid:null});
               });
           }
@@ -204,7 +203,7 @@ var user, Aid, availableBedss, p;
             } else if(isMatch) {
               var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
               var sql2  = "SELECT * FROM patient where patient_id = "+req.query.passPatient+";";
-              var latestMedicine =  'SELECT medicine FROM `prescription` where patient_id = '+req.query.passPatient+' and creation_stamp = (SELECT creation_stamp from prescription where patient_id = '+req.query.passPatient+' order by creation_stamp desc limit 1);'
+              var latestMedicine =  'SELECT medicine FROM `prescription` where status="confirmed" and patient_id = '+req.query.passPatient+' and creation_stamp = (SELECT creation_stamp from prescription where patient_id = '+req.query.passPatient+' and status="confirmed" order by creation_stamp desc limit 1);'
               db.query(sql + sql2 + latestMedicine, function(err, successRows){
                 var medicineParse = JSON.parse(JSON.stringify(successRows[2]));
                 var medicine= '';

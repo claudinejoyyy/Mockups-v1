@@ -1,4 +1,4 @@
-module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList,io){
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList,patientManagementSQL,io){
 var user, Aid;
 var immuSQL     = "SELECT name FROM immunization;";
 var fhSQL       = "SELECT name FROM family_history;";
@@ -128,8 +128,7 @@ var fhSQL       = "SELECT name FROM family_history;";
   app.get('/nurse/patientManagement', function(req, res){
       if(req.session.email && req.session.sino == 'nurse'){
         if(req.session.sino == 'nurse'){
-          var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient;";
-          db.query(sql + immuSQL + fhSQL, function(err, rows){
+          db.query(patientManagementSQL + immuSQL + fhSQL, function(err, rows){
             res.render('nurse/patientManagement', {p:rows[0], immu:rows[1], fh:rows[2], p2:null, username:user, invalid:null});
           });
         } else {
