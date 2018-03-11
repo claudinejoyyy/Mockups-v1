@@ -70,18 +70,19 @@ var whoOPD               = "SELECT p.name, a.time From patient p inner join acti
 var whoWARD              = "SELECT p.name, a.time From patient p inner join activity_logs a USING(patient_id) where a.type = 'bed';";
 var whoCurrentlyAdmitted = "SELECT p.name, a.patient_id, a.bed_id FROM bed a INNER JOIN patient p USING(patient_id);";
 // GRAPH
-var monthlyPatientCount  = 'SELECT (SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-01-01 00:00:00" and "'+currentTime+'-02-01 00:00:00" and type = "add") as JAN,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-02-01 00:00:00" and "'+currentTime+'-03-01 00:00:00" and type = "add") as FEB,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-03-01 00:00:00" and "'+currentTime+'-04-01 00:00:00" and type = "add") as MARCH,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-04-01 00:00:00" and "'+currentTime+'-05-01 00:00:00" and type = "add") as APRIL,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-05-01 00:00:00" and "'+currentTime+'-06-01 00:00:00" and type = "add") as MAY,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-06-01 00:00:00" and "'+currentTime+'-07-01 00:00:00" and type = "add") as JUNE,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-07-01 00:00:00" and "'+currentTime+'-08-01 00:00:00" and type = "add") as JULY,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-08-01 00:00:00" and "'+currentTime+'-09-01 00:00:00" and type = "add") as AUGUST,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-09-01 00:00:00" and "'+currentTime+'-010-01 00:00:00" and type = "add") as SEPTEMBER,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-010-01 00:00:00" and "'+currentTime+'-011-01 00:00:00" and type = "add") as OCTOBER,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-011-01 00:00:00" and "'+currentTime+'-012-01 00:00:00" and type = "add") as NOVEMBER,'
-                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentTime+'-012-01 00:00:00" and "'+currentTime+'-001-01 00:00:00" and type = "add") as DECEMBER;';
+var currentYear = moment(new Date()).format('YYYY');
+var monthlyPatientCount  = 'SELECT (SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-01-01 00:00:00" and "'+currentYear+'-02-01 00:00:00" and type = "add") as JAN,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-02-01 00:00:00" and "'+currentYear+'-03-01 00:00:00" and type = "add") as FEB,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-03-01 00:00:00" and "'+currentYear+'-04-01 00:00:00" and type = "add") as MARCH,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-04-01 00:00:00" and "'+currentYear+'-05-01 00:00:00" and type = "add") as APRIL,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-05-01 00:00:00" and "'+currentYear+'-06-01 00:00:00" and type = "add") as MAY,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-06-01 00:00:00" and "'+currentYear+'-07-01 00:00:00" and type = "add") as JUNE,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-07-01 00:00:00" and "'+currentYear+'-08-01 00:00:00" and type = "add") as JULY,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-08-01 00:00:00" and "'+currentYear+'-09-01 00:00:00" and type = "add") as AUGUST,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-09-01 00:00:00" and "'+currentYear+'-010-01 00:00:00" and type = "add") as SEPTEMBER,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-010-01 00:00:00" and "'+currentYear+'-011-01 00:00:00" and type = "add") as OCTOBER,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-011-01 00:00:00" and "'+currentYear+'-012-01 00:00:00" and type = "add") as NOVEMBER,'
+                          +'(SELECT count(logs_id) from activity_logs WHERE time BETWEEN "'+currentYear+'-012-01 00:00:00" and "'+currentYear+'-001-01 00:00:00" and type = "add") as DECEMBER;';
 //TO DO LIST
 //OTHERS
 var patientList          = "SELECT * from patient;";
