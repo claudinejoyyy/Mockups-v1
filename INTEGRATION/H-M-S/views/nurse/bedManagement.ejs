@@ -97,7 +97,10 @@
                     <td><%= DT%></td>
                   <%}%>
                   <form action="/nurse/bedManagement?bed=<%= bedDetails[i].bed_id%>" method="POST">
-                    <td><button>discharge</button></td>
+                    <td><button class="btn btn-danger" <%if(bedDetails[i].status == 'Unoccupied'){%>
+                    disabled
+                  <%} else {%>
+                  <%}%>>Discharge</button></td>
                   </form>
                 </tr>
                 <%}%>
