@@ -60,11 +60,11 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="doctordashboard.html" class="logo">
+    <a href="../doctor/dashboard" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>D</b></span>
+      <span class="logo-mini"><b><%= username[0].account_type.charAt(0).toUpperCase()%></b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Doctor</b></span>
+      <span class="logo-lg"><b><%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%></b></span>
     </a>
 
     <!-- Header Navbar -->
@@ -83,16 +83,15 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="../dist/img/avatar04.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Doctor Joe King</span>
+              <span class="hidden-xs"><%= username[0].name %></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
                 <img src="../dist/img/avatar04.png" class="img-circle" alt="User Image">
-
                 <p>
-                  Doctor Joe King
-                  <small>Hematology/Oncology</small>
+                  <%=username[0].name%> - <%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%>
+                  <small>Member since April 2014</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -102,7 +101,7 @@ desired effect
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href='../logout' class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -123,7 +122,9 @@ desired effect
           <img src="../dist/img/avatar04.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Doctor Joe King</p>
+          <p>
+            <%= username[0].name %>
+          </p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -142,13 +143,16 @@ desired effect
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
-        <li><a href="doctordashboard.html"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-        <li class="active"><a href="patientmanagement.html" target="_self"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
-        <li><a href="appointmentmanagement.html"><i class="fa fa-link"></i> <span>Appointment Management</span></a></li>
-        <li><a href="prescriptionmanagement.html"><i class="fa fa-link"></i> <span>Prescription Management</span></a></li>
-        <li><a href="diagnosismanagement.html"><i class="fa fa-link"></i> <span>Diagnosis Management</span></a></li>
-        <li><a href="bedmanagement.html"><i class="fa fa-link"></i> <span>Bed Management</span></a></li>
-        <li><a href="doctorprofile.html"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
+        <!-- Optionally, you can add icons to the links -->
+        <li class="active"><a href="../doctor/dashboard" target="_self"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+        <li><a href="../doctor/bedManagement"><i class="fa fa-link"></i> <span>Bed Management</span></a></li>
+        <li><a href="../doctor/patientManagement"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
+        <li><a href="../doctor/outpatientManagement"><i class="fa fa-link"></i> <span>Outpatient Management</span></a></li>
+        <li><a href="../doctor/appointmentManagement"><i class="fa fa-link"></i> <span>Appointment Management</span></a></li>
+        <li><a href="../doctor/prescriptionManagement"><i class="fa fa-link"></i> <span>Prescription Management</span></a></li>
+        <li><a href="../doctor/labRequestManagement"><i class="fa fa-link"></i> <span>Lab Request Management</span></a></li>
+        <li><a href="../doctor/profileManagement"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
+
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -187,398 +191,82 @@ desired effect
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Patient Type</th>
-                  <th>Name</th>
-                  <th>Age</th>
-                  <th>Gender</th>
-                  <th>Blood Type</th>
-                  <th>Initial Assessment</th>
-                  <th>Action</th>
-                </tr>
+                  <tr>
+                    <th>Patient Type</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Vital Signs</th>
+                    <th>Initial Assessment</th>
+                    <th>Bed</th>
+                    <th>Action</th>
+                  </tr>
                 </thead>
-                <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Cadet</td>
-                  <td>Rottweiler Getzerhund</td>
-                  <td>21</td>
-                  <td>Male</td>
-                  <td>AB</td>
-                  <td>Blood Pressure: 120/70
-                    <br>Body Temperature: 39 Degrees
-                    <br>Coughing
-                    <br>Pain in Thyroid Part
-                    <br>etc etc
-                    </td>
-                  <td align="center"><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i> View</button> <button class="btn btn-primary btn-sm"><i class="fa fa-sticky-note-o"></i> Lab Request</button> <button class="btn btn-primary btn-sm"><i class="fa fa-sticky-note-o"></i> Prescribe</button> <button class="btn btn-primary btn-sm"><i  class="fa fa-sign-in"></i> Admit</button></td>
-                </tr>
-<!--
-                <tr>
-                  <td>2</td>
-                  <td>Military Cadet</td>
-                  <td>Shad Gaulding</td>
-                  <td>29</td>
-                  <td>Male</td>
-                  <td>A</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Military Dependent</td>
-                  <td>Booker Ludlum</td>
-                  <td>27</td>
-                  <td>Male</td>
-                  <td>O</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Civilian Employee</td>
-                  <td>Loyd Isett</td>
-                  <td>28</td>
-                  <td>Male</td>
-                  <td>B</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Authorized Civilian</td>
-                  <td>Anastacia Haithcock</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>Military Officer</td>
-                  <td>Pat Reedy</td>
-                  <td>28</td>
-                  <td>Male</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>Military Cadet</td>
-                  <td>Janice Kouba</td>
-                  <td>29</td>
-                  <td>Female</td>
-                  <td>A</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>Military Dependent</td>
-                  <td>Dalia Tallant</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>O</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>9</td>
-                  <td>Civilian Employee</td>
-                  <td>Henriette Bastien</td>
-                  <td>28</td>
-                  <td>Female</td>
-                  <td>B</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>10</td>
-                  <td>Authorized Civilian</td>
-                  <td>Johnna Bland</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>11</td>
-                  <td>Military Officer</td>
-                  <td>Helen Zaremba</td>
-                  <td>28</td>
-                  <td>Female</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>12</td>
-                  <td>Military Cadet</td>
-                  <td>Leeanna Dunson</td>
-                  <td>29</td>
-                  <td>Female</td>
-                  <td>A</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>13</td>
-                  <td>Military Dependent</td>
-                  <td>Deloris Boes</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>O</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>14</td>
-                  <td>Civilian Employee</td>
-                  <td>Evelina Mcray</td>
-                  <td>28</td>
-                  <td>Female</td>
-                  <td>B</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>15</td>
-                  <td>Authorized Civilian</td>
-                  <td>Shakita Bellinger</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>16</td>
-                  <td>Military Officer</td>
-                  <td>Minnie Deramus</td>
-                  <td>28</td>
-                  <td>Female</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>17</td>
-                  <td>Military Cadet</td>
-                  <td>Teena Gordillo</td>
-                  <td>29</td>
-                  <td>Female</td>
-                  <td>A</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>18</td>
-                  <td>Military Dependent</td>
-                  <td>Leola Gutierres</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>O</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>19</td>
-                  <td>Civilian Employee</td>
-                  <td>Rupert Saban</td>
-                  <td>28</td>
-                  <td>Male</td>
-                  <td>B</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>20</td>
-                  <td>Authorized Civilian</td>
-                  <td>Eileen Quimby</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>21</td>
-                  <td>Military Officer</td>
-                  <td>Jose Beecroft</td>
-                  <td>28</td>
-                  <td>Male</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>22</td>
-                  <td>Military Cadet</td>
-                  <td>Rene Chess</td>
-                  <td>29</td>
-                  <td>Male</td>
-                  <td>A</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>23</td>
-                  <td>Military Dependent</td>
-                  <td>Rufina Spiker</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>O</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>24</td>
-                  <td>Civilian Employee</td>
-                  <td>Halina Seago</td>
-                  <td>28</td>
-                  <td>Female</td>
-                  <td>B</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>25</td>
-                  <td>Authorized Civilian</td>
-                  <td>Lily Bonn</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>26</td>
-                  <td>Military Officer</td>
-                  <td>Shantell Tyndall</td>
-                  <td>28</td>
-                  <td>Female</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>27</td>
-                  <td>Military Cadet</td>
-                  <td>Eliza Clingman</td>
-                  <td>29</td>
-                  <td>Female</td>
-                  <td>A</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>28</td>
-                  <td>Military Dependent</td>
-                  <td>Aide Stow</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>O</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>29</td>
-                  <td>Civilian Employee</td>
-                  <td>Huey Tomko</td>
-                  <td>28</td>
-                  <td>Male</td>
-                  <td>B</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>30</td>
-                  <td>Authorized Civilian</td>
-                  <td>Bettina Sherwood</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>31</td>
-                  <td>Military Officer</td>
-                  <td>Truman Lipe</td>
-                  <td>28</td>
-                  <td>Male</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>32</td>
-                  <td>Military Cadet</td>
-                  <td>Gordon Lager</td>
-                  <td>29</td>
-                  <td>Male</td>
-                  <td>A</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>33</td>
-                  <td>Military Dependent</td>
-                  <td>Carolina Lamarre</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>O</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>34</td>
-                  <td>Civilian Employee</td>
-                  <td>Ramiro Moncayo</td>
-                  <td>28</td>
-                  <td>Male</td>
-                  <td>B</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>35</td>
-                  <td>Authorized Civilian</td>
-                  <td>Terrilyn Sheilds</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>36</td>
-                  <td>Military Dependent</td>
-                  <td>Loise Abramson</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>O</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>37</td>
-                  <td>Authorized Civilian</td>
-                  <td>Maudie Nathan</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>38</td>
-                  <td>Military Dependent</td>
-                  <td>Madeleine Riggio</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>O</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>39</td>
-                  <td>Authorized Civilian</td>
-                  <td>Keila Alden</td>
-                  <td>27</td>
-                  <td>Female</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
-                <tr>
-                  <td>40</td>
-                  <td>Authorized Civilian</td>
-                  <td>Keith Tanner</td>
-                  <td>27</td>
-                  <td>Male</td>
-                  <td>AB</td>
-                  <td align="center"><a href="patientprofile.html" class="fa fa-fw fa-folder-open" title="View Profile"></a>&nbsp&nbsp<a href="" class="fa fa-fw fa-archive" title="Archive Patient Profile"></a></td>
-                </tr>
--->
-                <!-- <tfoot>
-                <tr>
-                  <th>#</th>
-                  <th>Patient Type</th>
-                  <th>Name</th>
-                  <th>Age</th>
-                  <th>Gender</th>
-                  <th>Blood Type</th>
-                </tr>
-                </tfoot> -->
+                <%for (var i = 0; i < opdInfo.length; i++) {%>
+                  <tr>
+                      <td><%=opdInfo[i].patient_type%></td>
+                      <td><%=opdInfo[i].name%></td>
+                      <td><%=opdInfo[i].age%></td>
+                      <td><%=opdInfo[i].sex%></td>
+                      <td style="font-size:10px;">
+                        <%
+                          var vitals = opdInfo[i].vital_signs.split('\n');
+                          for(var l=0; l < 7; l++){ %>
+                            <%=vitals[l]%><br>
+                        <%}%>
+                      </td>
+                      <td><%=opdInfo[i].assessment%></td>
+                      <%
+                      var bedArr= '';
+                        for (var j = 0; j < whoCurrentlyAdmittedV2.length; j++){
+                          bedArr += whoCurrentlyAdmittedV2[j].patient_id;
+                        }
+                      if(bedArr.includes(opdInfo[i].patient_id)){%>
+                        <td><%= whoCurrentlyAdmittedV2[i].bed_id%><a href="/doctor/bedManagement?bed_id=<%=whoCurrentlyAdmittedV2[i].bed_id%>" style="font-size:10px;">-details</a></td>
+                      <%} else {%>
+                        <td></td>
+                      <%}%>
+
+                      <td>
+                        <!-- VIEW -->
+                        <a href="../doctor/patientManagement?patient=<%=opdInfo[i].patient_id%>"><button class="btn btn-primary btn-sm" name="view">view</button></a>
+                        <!-- LAB -->
+                        <%
+                        var labArr= '';
+                          for (var j = 0; j < labSQL.length; j++){
+                            labArr += labSQL[j].patient_id;
+                          }
+                        if(labArr.includes(opdInfo[i].patient_id)){%>
+                            <input class="btn btn-primary btn-sm" type="button" name="lab_request" style="color:blue" value="Lab Request" onclick="ShowLabRequest2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                        <%} else {%>
+                            <input class="btn btn-primary btn-sm" type="button" name="lab_request" value="Lab Request" onclick="ShowLabRequest(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                        <%}%>
+                        <!-- PRESCRIPTION -->
+                        <%
+                        var prescribeArr= '';
+                          for (var j = 0; j < prescribeSQL.length; j++){
+                            prescribeArr += prescribeSQL[j].patient_id;
+                          }
+                        if(prescribeArr.includes(opdInfo[i].patient_id)){%>
+                          <input class="btn btn-primary btn-sm" type="button" name="prescribe" style="color:blue" value="Prescription" onclick="ShowPrescribe2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                        <%} else {%>
+                          <input class="btn btn-primary btn-sm" type="button" name="prescribe" value="Prescription" onclick="ShowPrescribe(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                        <%}%>
+                        <!-- DIAGNOSIS -->
+                        <button class="btn btn-primary btn-sm" class="btn btn-primary btn-sm" name="button" onclick="ShowDiagnosis(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">diagnosis</button>
+                        <!-- ADMIT -->
+                        <% var arr= '';
+                          for (var j = 0; j < whoCurrentlyAdmittedV2.length; j++){
+                            arr += whoCurrentlyAdmittedV2[j].patient_id;
+                          } if(!(arr.includes(opdInfo[i].patient_id))){%>
+                            <input class="btn btn-primary btn-sm" type="button" name="admit" value="admit" onclick="ShowAdmit(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                        <%}%>
+                        <!-- LAB REQUEST TABLE VIEW -->
+
+                      </td>
+                  </tr>
+                <%}%>
               </table>
-            </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
@@ -595,7 +283,7 @@ desired effect
                 <small>Cadet</small>
               </div>
               <div class="modal-body">
-                <form class="form-horizontal">      
+                <form class="form-horizontal">
                     <dl class="dl-horizontal">
                         <dt>Initial Assessment</dt>
                         <dd>Blood Pressure: 120/70
@@ -603,8 +291,8 @@ desired effect
                     <br>Coughing
                     <br>Pain in Thyroid Part
                     <br>etc etc</dd>
-                    </dl>   
-                
+                    </dl>
+
 <!--Mag-aadmit lang nakaregister na sa database-->
 <!--
                   <div class="form-group">
@@ -688,6 +376,52 @@ desired effect
       "autoWidth": true
     });
   });
+
+  function ShowLabRequest(i,o){
+    document.getElementById('dynamicPatientIdForLab').action = '/doctor/outpatientManagement?patient_id='+i+'&patient_name='+o+'"';
+    document.getElementById('ShowLabRequest').style.display = 'block';
+  }
+  function ShowLabRequest2(i,o){
+    document.getElementById('labAdd').onclick = function() {
+      document.getElementById('ShowLabRequest').style.display = 'block';
+      document.getElementById('ShowLabRequest2').style.display = 'none';
+      ShowLabRequest(i,o);
+    };
+    document.getElementById('labViewPressed').onclick = function() {
+      document.getElementById('linkForLabView').href = "/doctor/labRequestManagement?labPatientInfo="+i+"";
+    };
+    document.getElementById('ShowLabRequest2').style.display = 'block';
+    document.getElementById('ShowLabRequest').style.display = 'none';
+  }
+
+  function ShowPrescribe(i,o){
+    document.getElementById('dynamicPatientIdForPrescribe').action = '/doctor/outpatientManagement?patient_id='+i+'&patient_name='+o+'';
+    document.getElementById('ShowPrescribe').style.display = 'block';
+  }
+  function ShowPrescribe2(i,o){
+    document.getElementById('prescribeAdd').onclick = function() {
+      document.getElementById('ShowPrescribe').style.display = 'block';
+      document.getElementById('ShowPrescribe2').style.display = 'none';
+      ShowPrescribe(i,o);
+    };
+    document.getElementById('prescribeViewPressed').onclick = function() {
+      document.getElementById('linkForPrescribeView').href = "/doctor/prescriptionManagement?opdPatient="+i+"";
+    };
+    document.getElementById('ShowPrescribe2').style.display = 'block';
+    document.getElementById('ShowPrescribe').style.display = 'none';
+  }
+
+  function ShowAdmit(i,o){
+    document.getElementById('dynamicPatientIdForAdmit').action = '/doctor/outpatientManagement?patient_id='+i+'&patient_name='+o+'';
+    document.getElementById('ShowAdmit').style.display = 'block';
+  }
+
+  function ShowDiagnosis(i,o){
+    document.getElementById('ShowDiagnosis').style.display = 'block';
+    document.getElementById('linkDiagnosis').action = '/doctor/outpatientManagement?patient_id='+i+'&patient_name='+o+'';
+  }
+
+
 </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
