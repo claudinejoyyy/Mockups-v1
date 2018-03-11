@@ -441,20 +441,8 @@
     var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
     // This will get the first returned node in the jQuery collection.
     var areaChart = new Chart(areaChartCanvas);
-    <%if(monthlyPatientCount[0].JAN) {var jan = monthlyPatientCount[0].JAN;}%>
-    <%if(monthlyPatientCount[0].FEB) {var feb = monthlyPatientCount[0].FEB;}%>
-    <%if(monthlyPatientCount[0].MARCH) {var march = monthlyPatientCount[0].MARCH;}%>
-    <%if(monthlyPatientCount[0].APRIL) {var apr = monthlyPatientCount[0].APRIL;}%>
-    <%if(monthlyPatientCount[0].MAY) {var may = monthlyPatientCount[0].MAY;}%>
-    <%if(monthlyPatientCount[0].JUNE) {var jun = monthlyPatientCount[0].JUNE;}%>
-    <%if(monthlyPatientCount[0].JULY) {var jul = monthlyPatientCount[0].JULY;}%>
-    <%if(monthlyPatientCount[0].AUGUST) {var aug = monthlyPatientCount[0].AUGUST;}%>
-    <%if(monthlyPatientCount[0].SEPTEMBER) {var sept = monthlyPatientCount[0].SEPTEMBER;}%>
-    <%if(monthlyPatientCount[0].OCTOBER) {var oct = monthlyPatientCount[0].OCTOBER;}%>
-    <%if(monthlyPatientCount[0].NOVEMBER) {var nov = monthlyPatientCount[0].NOVEMBER;}%>
-    <%if(monthlyPatientCount[0].DECEMBER) {var dec = monthlyPatientCount[0].DECEMBER;}%>
     var areaChartData = {
-      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September" ,"October", "November", "December"],
       datasets: [
         {
           label: "Patient",
@@ -464,7 +452,18 @@
           pointStrokeColor: "rgba(60,141,188,1)",
           pointHighlightFill: "#fff",
           pointHighlightStroke: "rgba(60,141,188,1)",
-          data: [<%=jan %>, <%=feb %>, <%=march %>, <%=apr %>, <%=may %>, <%=jun %>, <%=jul %>, <%=aug %>, <%=sept %>, <%=oct %>, <%=nov %>, <%=dec %>]
+          data: [<%-JSON.stringify(monthlyPatientCount[0].JAN)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].FEB)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].MARCH)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].APRIL)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].MAY)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].JUNE)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].JULY)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].AUGUST)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].SEPTEMBER)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].OCTOBER)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].NOVEMBER)%>,
+            <%-JSON.stringify(monthlyPatientCount[0].DECEMBER)%>]
         }
       ]
     };
