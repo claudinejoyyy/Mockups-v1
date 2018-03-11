@@ -315,6 +315,13 @@
       <!-- /.row (main row) -->
 
       <!---------------------------------------------------------------------------------------------- Modal of Adding new patient ----------->
+      <style>
+        .parsley-error{
+          border-color: red;
+        }
+
+      </style>
+
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -332,7 +339,7 @@
                         <option value="cadet">Cadet</option>
                         <option value="military officer">Miltary Officer</option>
                         <option value="military dependent">Miltary Dependent</option>
-                        <option value="civilian">Civilian</option>
+                        <option value="civilian">Civilian Employee</option>
                         <option value="authorized civilian">Authorized Civilian</option>
                       </select>
                     </div>
@@ -389,7 +396,7 @@
                     </div>
                     <label for="religion" class="col-sm-2 control-label">Religion</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="religion" name="religion">
+                      <input type="text" class="form-control" id="religion" name="religion" data-parsley-type="number">
                     </div>
                   </div>
                   <br>
@@ -493,16 +500,11 @@
                   </div>
                   <br>
                   <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" name="sub" value="add">Save</button>
+                    <button type="submit" class="btn btn-primary" name="sub" onclick="validateForm" value="add">Save</button>
                     <button type="button" class="btn btn-default" onclick="resetForm()">Reset</button>
                   </div>
                 </form>
               </div>
-
-              <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary" name="sub" value="add">Save</button>
-             </div> -->
 
           </div>
         </div>
@@ -660,17 +662,26 @@
 <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
 <script src="../plugins/flot/jquery.flot.categories.min.js"></script>
 
-<!-- ChartJS 1.0.1 -->
 <script src="../plugins/chartjs/Chart.min.js"></script>
+
+<script src="../public/jquery.min.js"></script>
+
+<script src="../public/parsely.min.js"></script>
+
+<script type="text/javascript">
+  function validateForm() {
+    $('#modal2').parsley().on('field:validated', function() {
+      var ok = $('.parsley-error').length === 0;
+      $('.bs-callout-info').toggleClass('hidden', !ok);
+      $('.bs-callout-warning').toggleClass('hidden', ok);
+    })
+  };
+</script>
 
 </body>
 </html>
 
 <script>
-//  $(function () {
-//    $(".select2").select2();
-//  });
-
 
   $(function () {
     /*
@@ -832,5 +843,13 @@
   function showTodo() {
     document.getElementById("showTodo").style.display = "block";
   }
+
+  function validateForm() {
+      $('#form').parsley().on('field:validated', function() {
+        var ok = $('.parsley-error').length === 0;
+        $('.bs-callout-info').toggleClass('hidden', !ok);
+        $('.bs-callout-warning').toggleClass('hidden', ok);
+      })
+    };
 
 </script>
