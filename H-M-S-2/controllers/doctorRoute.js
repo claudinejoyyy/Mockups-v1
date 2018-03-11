@@ -116,7 +116,8 @@ var user, Aid, availableBedss, p;
             });
           } else if (data.sub == 'diag') {
             var diagnosisSQL = 'INSERT into diagnosis (diagnosis, date, patient_id, doctor_id) VALUES ("'+data.diagnosis+'","'+currentTime+'",'+req.query.patient_id+','+Aid+');';
-            db.query(diagnosisSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "diagnosis", "diagnosis for : '+req.query.patient_name+'");', function(err){
+            var assessmentDel = 'DELETE from assessment where patient_id = '+req.query.patient_id+';';
+            db.query(diagnosisSQL + assessmentDel + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "diagnosis", "diagnosis for : '+req.query.patient_name+'");', function(err){
               if (err) {
                 console.log(err);
               } else {

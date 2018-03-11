@@ -26,7 +26,7 @@
       <a href="../nurse/patientManagement">patientManagement</a><br>
       <a href="../nurse/profileManagement">profile</a>
     </nav>
-    <h2>Hello I'm the <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h2>
+    <h2 name='patient' value='<%= username[0].name %>' >Hello I'm the <%= username[0].name %> !! <button><a href='../logout'>logout</a></button></h2>
     <h2>Total Registered Patients = <%= counts[0].totalRegisteredPatients%></h2>
     <a href="/nurse/patientManagement"><button>more info</button></a><h2 style="display:inline-block;">Total Registered Patient = <%= counts[0].totalRegisteredPatients%></h2>
     <br>
@@ -183,7 +183,7 @@
       <h4 style="display:inline-block;">select a patient</h4>
       <select name="assessmentPatient" style="display:inline-block;"  >
         <%for(var i = 0; i < availablePatientOPD.length; i++){%>
-          <option  value="<%= availablePatientOPD[i].patient_id%>"><%= availablePatientOPD[i].name%></option>
+          <option  value="<%= availablePatientOPD[i].patient_id%>,<%= availablePatientOPD[i].name%>"><%= availablePatientOPD[i].name%></option>
         <%}%>
       </select>
       <br>
@@ -201,7 +201,7 @@
           <option value="<%= doctorList[i].account_id%>"><%= doctorList[i].name%></option>
         <%}%>
       </select>
-      <button type="smubmit" name="sub" value="assessment" onclick="linkAssessment(<%= availablePatientOPD[i].name%>)">send</button>
+      <button type="submit" name="sub" value="assessment" onclick="linkAssessment(<%= availablePatientOPD[i].name%>)">send</button>
     </form>
     <h1><%= err%></h1>
 

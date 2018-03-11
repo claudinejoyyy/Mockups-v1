@@ -1,12 +1,18 @@
 var socket = io();
-socket.on('add', function(call){
-  if (call) {
-    document.getElementById('testing').innerHTML = call;
-  }
-});
+var ilan = 0;
+$(document).ready(function(){
+  var assessmentCounter = 0;
+  socket.on('type', function(value){
+    if (value.what == 'assess') {
+      $('#OPD').css('color', 'red');
+      $('#assessment').val('test').css('display','block');
+    } else {
+      console.log('bad');
+    }
 
-socket.on('assess', function(call){
-  if (call) {
-    document.getElementById('assess').innerHTML = call;
-  }
+    // if (assessmentCounter > 0) {
+    //   $('#OPD').css('color', 'red');
+    //   console.log(assessmentCounter);
+    // }
+  });
 });

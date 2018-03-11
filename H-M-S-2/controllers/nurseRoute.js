@@ -29,16 +29,15 @@ var fhSQL       = "SELECT name FROM family_history;";
     var data = req.body;
     if(req.session.email && req.session.sino == 'nurse'){
       if(req.session.sino == 'nurse'){
-        var pNameSQL = "SELECT name from patient where patient_id = "+data.patient+";";
-
         if(data.sub == 'assessment') {
+          var nameForEmit = data.assessmentPatient.split(',');
           var vitalSigns = 'BP: '+data.BP +'\nCR: '+ data.CR +'\nPR: '+ data.PR +'\nRR: '+ data.RR +'\n TEMP: '+ data.temperature +'\nWT: '+ data.Wt;
-          var initialAssessment = 'INSERT into initial_assessment (assessment, date, patient_id, account_id, vital_signs) VALUES("'+data.assessment+'", "'+currentTime+'",'+data.assessmentPatient+','+data.assessmentDoctor+',"'+vitalSigns+'");';
-          db.query(initialAssessment + 'INSERT into activity_logs(account_id, time, type, remarks, patient_id) VALUES ('+Aid+',"'+currentTime+'", "initialAssessment", "assessment for '+req.query.assessmentPatient+'", '+data.assessmentPatient+');', function(err){
+          var initialAssessment = 'INSERT into initial_assessment (assessment, date, patient_id, account_id, vital_signs) VALUES("'+data.assessment+'", "'+currentTime+'",'+nameForEmit[0]+','+data.assessmentDoctor+',"'+vitalSigns+'");';
+          db.query(initialAssessment + 'INSERT into activity_logs(account_id, time, type, remarks, patient_id) VALUES ('+Aid+',"'+currentTime+'", "initialAssessment", "assessment for '+req.query.assessmentPatient+'", '+nameForEmit[0]+');', function(err){
             if (err) {
               console.log(err);
             }
-            io.emit('assess', 'newPatient');
+            io.emit('type', {what:'assess',message:'Received Assessment for '+nameForEmit[1]+'.'});
           });
           res.redirect(req.get('referer'));
         } else if(data.sub == "add") {
