@@ -229,7 +229,7 @@ desired effect
 
                       <td>
                         <!-- VIEW -->
-                        <a href="../doctor/patientManagement?patient=<%=opdInfo[i].patient_id%>"><button class="btn btn-primary btn-sm" name="view">view</button></a>
+                        <a href="../doctor/patientManagement?patient=<%=opdInfo[i].patient_id%>"><button class="btn btn-primary btn-sm" name="view">View</button></a>
                         <!-- LAB -->
                         <%
                         var labArr= '';
@@ -237,9 +237,13 @@ desired effect
                             labArr += labSQL[j].patient_id;
                           }
                         if(labArr.includes(opdInfo[i].patient_id)){%>
-                            <input class="btn btn-primary btn-sm" type="button" name="lab_request" style="color:blue" value="Lab Request" onclick="ShowLabRequest2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                          <a data-toggle="modal">
+                            <input class="btn btn-primary btn-sm" type="button" value="Lab Request" name="lab_request" style="color:blue" data-target="#labRequest" onclick="ShowLabRequest2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                          </a>
                         <%} else {%>
-                            <input class="btn btn-primary btn-sm" type="button" name="lab_request" value="Lab Request" onclick="ShowLabRequest(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                          <a data-toggle="modal">
+                            <input class="btn btn-primary btn-sm" type="button" value="Lab Request" name="lab_request" data-toggle="modal" data-target="#labRequest" onclick="ShowLabRequest(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                          </a>
                         <%}%>
                         <!-- PRESCRIPTION -->
                         <%
@@ -273,64 +277,81 @@ desired effect
         </div>
         <!-- /.col -->
       </div>
-
-        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
+      <!-- LAB REQUEST -->
+      <div class="modal fade" id="labRequest" role="dialog" aria-labelledby="labRequestlabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel1">Rottweiler Getzerhund</h4>
-                <small>Cadet</small>
-              </div>
-              <div class="modal-body">
-                <form class="form-horizontal">
-                    <dl class="dl-horizontal">
-                        <dt>Initial Assessment</dt>
-                        <dd>Blood Pressure: 120/70
-                    <br>Body Temperature: 39 Degrees
-                    <br>Coughing
-                    <br>Pain in Thyroid Part
-                    <br>etc etc</dd>
-                    </dl>
-
-<!--Mag-aadmit lang nakaregister na sa database-->
-<!--
-                  <div class="form-group">
-                      <label for="inputExperience" class="col-sm-2 control-label">Type</label>
-                      <div class="col-sm-10">
-                        <select class="form-control">
-                            <option>Cadet</option>
-                            <option>Officer</option>
-                            <option>Civilian</option>
-                          </select>
-                        </div>
-                  </div>
--->
-<!--
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Physician</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills">
-                    </div>
-                  </div>
--->
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Diagnosis</label>
-
-                    <div class="col-sm-10">
-                      <textarea class="form-control" rows="3" placeholder="Diagnosis ..."></textarea>
-                    </div>
-                  </div>
+                <h4 class="modal-title" id="labRequestlabel">Lab Request</h4>
+            </div>
+            <div class="modal-body">
+              <div>
+                <form id="dynamicPatientIdForLab" method="post">
+                  <select name="testRequest">
+                    <option value="bloodChemistry">bloodChemistry</option>
+                    <option value="hermatology">Hematology</option>
+                    <option value="microscopy">Microscopy</option>
+                    <option value="parasitology">parasitology</option>
+                    <option value="serotology">serotology</option>
+                    <option value="microbiology">microbiology</option>
+                    <option value="xRay">xRay</option>
+                  </select>
+                  <button type="submit" name="sub" value="labRequest">send</button>
+                  <br>
+                  <textarea name="labRequestremarks" rows="8" cols="80"></textarea>
                 </form>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
-              </div>
+
             </div>
+
           </div>
+
         </div>
+
+      </div>
+
+
+      <!-- ADMIT  -->
+      <div id="ShowAdmit" style="display:none;">
+        <form id="dynamicPatientIdForAdmit" method="post">
+          available Beds:
+          <select name="bedNumber">
+            <%for (var i = 0; i < admitAvailableBeds.length; i++) { %>
+              <option value="<%= admitAvailableBeds[i].bed_id%>"><%= admitAvailableBeds[i].bed_id%></option>
+            <%}%>
+          </select>
+          <button type="submit" name="sub" value="admit">alot</button>
+        </form>
+      </div>
+      <!-- PRESCRIBE -->
+      <div id="ShowPrescribe" style="display:none;">
+        <form id="dynamicPatientIdForPrescribe" method="post">
+          <input type="text" name="medicine">medicine <br>
+          <input type="number" name="quantity">quantity <br>
+          <input type="text" name="dosage">dosage <br>
+          <input type="text" name="timeframe">timeframe <br>
+          <button type="submit" name="sub" value="prescribe">send</button>
+        </form>
+      </div>
+
+      <div id="ShowLabRequest2" style="display:none;">
+          <a id="linkForLabView"><button id="labViewPressed">view</button></a>
+          <button id="labAdd">add</button>
+      </div>
+
+      <div id="ShowPrescribe2" style="display:none;">
+          <a id="linkForPrescribeView"><button id="prescribeViewPressed">view</button></a>
+          <button id="prescribeAdd">add</button>
+      </div>
+
+      <div id="ShowDiagnosis" style="display:none;">
+        <form id="linkDiagnosis" method="post">
+          <textarea name="diagnosis" rows="8" cols="80"></textarea>
+          <button type="submit" name="sub" value="diag">add</button>
+        </form>
+      </div>
+
 
     </section>
     <!-- /.content -->
