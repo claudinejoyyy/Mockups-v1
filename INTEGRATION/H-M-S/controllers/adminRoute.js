@@ -69,7 +69,7 @@ app.get('/admin/patientManagement', function(req, res){
     if(req.session.email && req.session.sino == 'admin'){
       if (req.session.sino == 'admin') {
         var profileInfoSQL  = 'SELECT * from user_accounts where account_id = '+req.session.Aid+';';
-        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc;';
+        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc LIMIT 5;';
         db.query(profileInfoSQL + activityLogsSQL, function(err, rows){
           if (err) {
             console.log(err);
@@ -150,6 +150,7 @@ app.get('/admin/patientManagement', function(req, res){
               req.flash('danger', 'Failed to add user account!');
               res.redirect(req.get('referer'));
               console.log('failed to add user account');
+              console.log(errors);
             } else {
             console.log('pumasok sa age calculation');
               //FOR the calculation of age !!
