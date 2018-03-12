@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Nurse | Profile Management</title>
+  <title>Pharmacist | Profile Management</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -87,10 +87,11 @@
       </form>
 
       <ul class="sidebar-menu">
-        <li><a href="../nurse/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-        <li><a href="../nurse/patientmanagement" target="_self"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
-        <li><a href="../nurse/bedmanagement"><i class="fa fa-link"></i> <span>Bed Management</span></a></li>
-        <li class="active"><a href="../nurse/profilemanagement"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
+        <li><a href=../pharmacist/dashboard><i class="fa fa-link"></i> <span> Dashboard </span></a></li>
+        <li><a href="../pharmacist/prescriptionManagement"><i class="fa fa-link"></i> <span>Prescriptions Management</span></a></li>
+        <li><a href=../pharmacist/patientManagement><i class="fa fa-link"></i> <span> Patient Management </span></a></li>
+        <li class="active"><a href="../pharmacist/profileManagement" target="_self"><i class="fa fa-link"></i> <span>Profile Management</span></a></li>
+        <li><a href=../pharmacist/reports><i class="fa fa-link"></i> <span> Reports </span></a></li>
       </ul>
     </section>
   </aside>
@@ -267,18 +268,6 @@
 
   <div class="control-sidebar-bg"></div>
 </div>
-
-
-    <button type="button" id="button" onclick="show()" value="logs">Activity Logs</button>
-
-    <div id='logs' style="display:none;">
-      <h1>Activity Timeline</h1>
-      <%for(var i=0; i < activityInfo.length; i ++){%>
-        <h3><%= activityInfo[i].remarks%></h3>
-        <h3><%= moment(activityInfo[i].time).format('YYYY-MM-DD HH:mm:ss')%></h3>
-        <h1>-----</h1>
-      <%}%>
-    </div>
 
 <!-- jQuery 2.2.3 -->
 <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
