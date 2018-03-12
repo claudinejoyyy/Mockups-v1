@@ -223,12 +223,17 @@
                     <i class="fa fa-ellipsis-v"></i>
                   </span>
                   <span class="text"><%= todoList[i].description%>:</span>
-                  <small class="label label-info"><i class="fa fa-clock-o"></i><%= todoList[i].date%></small>
-                  <div class="tools">
+
+                  <%if(todoList[i].status == 'general'){%>
+                  <small class="label label-info"><i class="fa fa-clock-o"></i><%= moment(new Date(todoList[i].date)).format('YYYY-MM-DD HH:mm:ss')%></small>
+                  <%} else{%>
+                  <small class="label label-danger"><i class="fa fa-clock-o"></i><%= moment(new Date(todoList[i].date)).format('YYYY-MM-DD HH:mm:ss')%></small>
+                  <%}%>
+                  <!-- <div class="tools">
                     <i class="fa fa-trash-o"></i>
-                  </div>
+                  </div> -->
                   <form action="/nurse/dashboard?tId=<%= todoList[i].todo_id%>" method="POST">
-                    <button type="submit" name="sub" value="delToDo">del</button>
+                    <button type="submit" name="sub" value="delToDo">Delete</button>
                   </form>
                 </li>
                 <%}%>
@@ -237,16 +242,9 @@
             </div>
 
             <div class="box-footer clearfix no-border">
-              <button type="button" name="button" onclick="showTodo()" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-              <form method="POST" onsubmit="parseDateNTime()">
-                <div id="showTodo" style="display:none;">
-                  <textarea name="description" rows="8" cols="80"></textarea>
-                  <br>
-                  <input type="datetime-local" name="dateNtime">
-                  <button type="submit" name="sub" value="addTodo">save</button>
-                </div>
-              </form>
+              <button type="button" name="button" onclick="showTodo()" class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal4"><i class="fa fa-plus" data-target="#myModal4"></i> Add item</button>
             </div>
+
           </div>
           <!-- chart -->
           <div class="box box-primary">
@@ -395,7 +393,7 @@
                     </div>
                     <label for="religion" class="col-sm-2 control-label">Religion</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="religion" name="religion" data-parsley-pattern="/^[A-Za-z]+$/">
+                      <input type="text" class="form-control" id="religion" name="religion" data-parsley-pattern="/^[A-Za-z ]+$/">
                     </div>
                   </div>
                   <br>
@@ -413,11 +411,11 @@
                   <div class="form-group">
                     <label for="father" class="col-sm-2 control-label">Name of Father</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="father" name="father" data-parsley-required data-parsley-pattern="/^[A-Za-z]+$/">
+                      <input type="text" class="form-control" id="father" name="father" data-parsley-required data-parsley-pattern="/^[A-Za-z .]+$/">
                     </div>
                     <label for="fatherO" class="col-sm-2 control-label">Occupation</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="fatherO" name="fatherO" data-parsley-required data-parsley-pattern="/^[0-9A-Za-z]+$/">
+                      <input type="text" class="form-control" id="fatherO" name="fatherO" data-parsley-required data-parsley-pattern="/^[0-9A-Za-z -/,]+$/">
                     </div>
                   </div>
                   <br>
@@ -426,11 +424,11 @@
                   <div class="form-group">
                     <label for="mother" class="col-sm-2 control-label">Name of Mother</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="mother" name="mother" data-parsley-required data-parsley-pattern="/^[A-Za-z]+$/">
+                      <input type="text" class="form-control" id="mother" name="mother" data-parsley-required data-parsley-pattern="/^[A-Za-z .]+$/">
                     </div>
                     <label for="motherO" class="col-sm-2 control-label">Occupation</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="motherO" name="motherO" data-parsley-required data-parsley-pattern="/^[0-9A-Za-z]+$/">
+                      <input type="text" class="form-control" id="motherO" name="motherO" data-parsley-required data-parsley-pattern="/^[0-9A-Za-z -/,]+$/">
                     </div>
                   </div>
                   <br>
@@ -448,7 +446,7 @@
                     </div>
                     <label for="bh" class="col-sm-2 control-label">Birth History</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="bh" name="bh" data-parsley-pattern="/^[A-Za-z]+$/">
+                      <input type="text" class="form-control" id="bh" name="bh" data-parsley-pattern="/^[A-Za-z ]+$/">
                     </div>
                   </div>
                   <br>
@@ -457,7 +455,7 @@
                   <div class="form-group">
                     <label for="allergies" class="col-sm-2 control-label">Allergies</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="allergies" name="allergies"data-parsley-pattern="/^[A-Za-z]+$/">
+                      <input type="text" class="form-control" id="allergies" name="allergies"data-parsley-pattern="/^[A-Za-z &/,]+$/">
                     </div>
                   </div>
                   <br>
@@ -657,6 +655,55 @@
             </div>
           </div>
         </div>
+      <!------------------------------------------------------------------------------------------ /Modal-->
+
+      <!---------------------------------------------------------------------------------------------- Modal of To Do List ----------->
+      <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel1">To Do List</h4>
+            </div>
+
+            <div class="modal-body">
+              <form method="POST" onsubmit="parseDateNTime()" class="form-horizontal" id="showTodo">
+                <!-- <div id="showTodo" style="display:none;"> -->
+
+                  <div class="form-group">
+                    <label for="description" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="description" name="description" data-parsley-required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="todoStatus" class="col-sm-2 control-label">Status</label>
+                    <div class="col-sm-3">
+                      <select name="todoStatus" class="form-control">
+                        <option value="general">General</option>
+                        <option value="urgent">Urgent</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="dateNtime" class="col-sm-2 control-label">Date and Time</label>
+                    <div class="col-sm-5">
+                      <input type="datetime-local" name="dateNtime" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" name="sub" value="addTodo">Add</button>
+                  </div>
+
+              </form>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <!------------------------------------------------------------------------------------------ /Modal-->
 
 
@@ -919,6 +966,9 @@
   }
   function showTodo() {
     document.getElementById("showTodo").style.display = "block";
+  }
+  function linkAssessment(name) {
+    document.getElementById('assessment').action = '/nurse/dashboard?assessmentPatient='+name+'';
   }
   function OPD() {
     document.getElementById('ShowOpd').style.display = 'block';

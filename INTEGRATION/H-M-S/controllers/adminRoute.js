@@ -69,7 +69,7 @@ app.get('/admin/patientManagement', function(req, res){
     if(req.session.email && req.session.sino == 'admin'){
       if (req.session.sino == 'admin') {
         var profileInfoSQL  = 'SELECT * from user_accounts where account_id = '+req.session.Aid+';';
-        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc LIMIT 5;';
+        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc;';
         db.query(profileInfoSQL + activityLogsSQL, function(err, rows){
           if (err) {
             console.log(err);
@@ -95,7 +95,6 @@ app.get('/admin/patientManagement', function(req, res){
             console.log(err);
           } else {
             res.redirect(req.get('referer'));
-            res.render('admin/dashboard');
           }
         });
       } else {
