@@ -295,10 +295,10 @@
                 <br>
                 <ul class="chart-legend clearfix">
                     <li><i class="fa fa-circle text-gray"></i> Cadet</li>
-                    <li><i class="fa fa-circle text-aqua"></i> Authorized Civilian</li>
-                    <li><i class="fa fa-circle text-purple"></i> Military Dependent</li>
-                    <li><i class="fa fa-circle text-blue"></i> Civilian Employees</li>
-                    <li><i class="fa fa-circle text-maroon"></i> Military Officer</li>
+                    <li><i class="fa fa-circle text-blue"></i> Authorized Civilian</li>
+                    <li><i class="fa fa-circle text-red"></i> Military Dependent</li>
+                    <li><i class="fa fa-circle text-yellow"></i> Civilian Employees</li>
+                    <li><i class="fa fa-circle text-aqua"></i> Military Officer</li>
                   </ul>
 
             </div>
@@ -706,11 +706,11 @@
      */
     var data = [], totalPoints = 100;
     var donutData = [
-      {label: "", data: <%= chart[0].military_dependent %>, color: "purple"},
-      {label: "", data: <%= chart[0].civilian %>, color: "blue"},
-      {label: "", data: <%= chart[0].military_officer %>, color: "maroon"},
+      {label: "", data: <%= chart[0].military_dependent %>, color: "red"},
+      {label: "", data: <%= chart[0].civilian %>, color: "yellow"},
+      {label: "", data: <%= chart[0].military_officer %>, color: "aqua"},
       {label: "", data: <%= chart[0].cadet %>, color: "gray"},
-      {label: "", data: <%= chart[0].authorized_civilian%>, color: "aqua"}
+      {label: "", data: <%= chart[0].authorized_civilian%>, color: "blue"}
     ];
     $.plot("#donut-chart1", donutData, {
       series: {
