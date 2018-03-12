@@ -238,7 +238,7 @@ desired effect
                           }
                         if(labArr.includes(opdInfo[i].patient_id)){%>
                           <a data-toggle="modal">
-                            <input class="btn btn-primary btn-sm" type="button" value="Lab Request" name="lab_request" style="color:blue" data-target="#labRequest" onclick="ShowLabRequest2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                            <input class="btn btn-primary btn-sm" type="button" value="Lab Request" name="lab_request" style="color:blue" data-toggle="modal" data-target="#labRequest2" onclick="ShowLabRequest2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
                           </a>
                         <%} else {%>
                           <a data-toggle="modal">
@@ -263,7 +263,7 @@ desired effect
                           for (var j = 0; j < whoCurrentlyAdmittedV2.length; j++){
                             arr += whoCurrentlyAdmittedV2[j].patient_id;
                           } if(!(arr.includes(opdInfo[i].patient_id))){%>
-                            <input class="btn btn-primary btn-sm" type="button" name="admit" value="admit" data-toggle="modal" data-target="#admit" onclick="ShowAdmit(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                            <input class="btn btn-primary btn-sm" type="button" name="dmit" value="admit" data-toggle="modal" data-target="#admit" onclick="ShowAdmit(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
                         <%}%>
                         <!-- LAB REQUEST TABLE VIEW -->
 
@@ -289,16 +289,21 @@ desired effect
             <div class="modal-body">
               <div>
                 <form class="form-horizontal" id="dynamicPatientIdForLab" method="post">
-                  <select name="testRequest">
-                    <option value="bloodChemistry">Blood Chemistry</option>
-                    <option value="hermatology">Hematology</option>
-                    <option value="microscopy">Microscopy</option>
-                    <option value="parasitology">Parasitology</option>
-                    <option value="serotology">Serotology</option>
-                    <option value="microbiology">Microbiology</option>
-                    <option value="xRay">X-Ray</option>
-                  </select>
-                  <textarea name="labRequestremarks" rows="8" cols="80"></textarea>
+                  <label for="testRequest" class="col-sm-2 control-label">Test Type:</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" name="testRequest">
+                      <option value="bloodChemistry">Blood Chemistry</option>
+                      <option value="hermatology">Hematology</option>
+                      <option value="microscopy">Microscopy</option>
+                      <option value="parasitology">Parasitology</option>
+                      <option value="serotology">Serotology</option>
+                      <option value="microbiology">Microbiology</option>
+                      <option value="xRay">X-Ray</option>
+                    </select>
+                  </div>
+                  <br>
+                  <br>
+                  <textarea name="labRequestremarks" class="form-control" rows="8" cols="80"></textarea>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary" name="sub" value="labRequest">Send</button>
@@ -337,7 +342,7 @@ desired effect
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-primary" name="sub" value="prescribe">Admit</button>
+                  <button type="submit" class="btn btn-primary" name="sub" value="admit">Admit</button>
                 </div>
               </form>
             </div>
@@ -392,9 +397,39 @@ desired effect
         </div>
       </div>
 
-      <div id="ShowLabRequest2" style="display:none;">
-          <a id="linkForLabView"><button id="labViewPressed">view</button></a>
-          <button id="labAdd">add</button>
+      <div class="modal fade" id="labRequest2" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Lab Request</h4>
+            </div>
+            <div class="modal-body">
+              <form id="labViewPressed" class="form-horizontal" method="post" onsubmit="successAlert()">
+                <label for="testRequest" class="col-sm-2 control-label">Test Type:</label>
+                <div class="col-sm-10">
+                  <select class="form-control" name="testRequest">
+                    <option value="bloodChemistry">Blood Chemistry</option>
+                    <option value="hermatology">Hematology</option>
+                    <option value="microscopy">Microscopy</option>
+                    <option value="parasitology">Parasitology</option>
+                    <option value="serotology">Serotology</option>
+                    <option value="microbiology">Microbiology</option>
+                    <option value="xRay">X-Ray</option>
+                  </select>
+                </div>
+                <br>
+                <br>
+                  <textarea name="labRequestremarks" class="form-control" rows="8" cols="80"></textarea>
+                  <div class="modal-footer">
+                    <a id="linkForLabView"><button id="labViewPressed" type="button" class="btn btn-default">View</button><a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button id="labAdd" type="submit" class="btn btn-primary" name="sub" value="labRequest">Add</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div id="prescribe2" style="display:none;">
@@ -411,7 +446,7 @@ desired effect
             </div>
             <div class="modal-body">
               <form id="linkDiagnosis" class="form-group" method="post" onsubmit="successAlert()">
-                <textarea name="diagnosis" rows="8" cols="80"></textarea>
+                <textarea name="diagnosis" class="form-control" rows="8" cols="80"></textarea>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                   <button type="submit" class="btn btn-primary" name="sub" value="prescribe">Add</button>
