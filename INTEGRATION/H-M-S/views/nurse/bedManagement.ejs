@@ -73,10 +73,11 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                    <th>Status</th>
                     <th>Bed Number</th>
                     <th>Patient Type</th>
                     <th>Patient Name</th>
-                    <th>Status</th>
+
                     <th>Confinement Date</th>
                     <th>Action</th>
                   </tr>
@@ -84,10 +85,11 @@
 
                 <%for(var i=0; i < bedDetails.length; i++){%>
                 <tr>
+                  <td><%= bedDetails[i].status.charAt(0).toUpperCase() + bedDetails[i].status.slice(1);%></td>
                   <td><%= bedDetails[i].bed_id%></td>
                   <td><%= bedDetails[i].patient_type%></td>
                   <td><%= bedDetails[i].name%></td>
-                  <td><%= bedDetails[i].status%></td>
+
                   <%
                   var DT = moment(bedDetails[i].allotment_timestamp).format('YYYY-MM-DD HH:mm:ss');
                   console.log(DT);
