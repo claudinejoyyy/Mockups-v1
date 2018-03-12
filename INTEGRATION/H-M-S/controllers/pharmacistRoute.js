@@ -127,8 +127,8 @@ var user, Aid;
     app.post('/pharmacist/prescriptionManagement', function(req, res){
       if(req.session.email && req.session.sino == 'pharmacist'){
         if(req.session.sino == 'pharmacist') {
-          var cancelPrescriptionSQL = 'UPDATE prescription set status = "confirmed" where prescription_id = '+req.query.prescriptionId+';';
-          db.query(cancelPrescriptionSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "approvedPrescription", "Approved prescription for: '+req.query.prescriptionPatientName+'");', function(err){
+          var confirmPrescriptionSQL = 'UPDATE prescription set status = "confirmed" where prescription_id = '+req.query.prescriptionId+';';
+          db.query(confirmPrescriptionSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "approvedPrescription", "Approved prescription for: '+req.query.prescriptionPatientName+'");', function(err){
             if(err){
               console.log(err);
             } else {
@@ -147,7 +147,7 @@ var user, Aid;
       if(req.session.email && req.session.sino == 'pharmacist'){
         if (req.session.sino == 'pharmacist') {
           var profileInfoSQL  = 'SELECT * from user_accounts where account_id = '+req.session.Aid+';';
-          var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc LIMIT 5;';
+          var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc;';
           db.query(profileInfoSQL + activityLogsSQL, function(err, rows){
             if (err) {
               console.log(err);

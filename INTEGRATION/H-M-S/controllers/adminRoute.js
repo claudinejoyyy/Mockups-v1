@@ -69,7 +69,7 @@ app.get('/admin/patientManagement', function(req, res){
     if(req.session.email && req.session.sino == 'admin'){
       if (req.session.sino == 'admin') {
         var profileInfoSQL  = 'SELECT * from user_accounts where account_id = '+req.session.Aid+';';
-        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc LIMIT 5;';
+        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc;';
         db.query(profileInfoSQL + activityLogsSQL, function(err, rows){
           if (err) {
             console.log(err);
@@ -95,6 +95,7 @@ app.get('/admin/patientManagement', function(req, res){
             console.log(err);
           } else {
             res.redirect(req.get('referer'));
+            res.render('admin/dashboard');
           }
         });
       } else {
@@ -143,15 +144,11 @@ app.get('/admin/patientManagement', function(req, res){
             req.checkBody('birth','birth date is required.').notEmpty();
             req.checkBody('phone','phone is required.').notEmpty();
             req.checkBody('address','address is required.').notEmpty();
-            console.log('pumasok sa check input');
             var errors = req.validationErrors();
             if (errors) {
               req.flash('danger', 'Failed to add user account!');
               res.redirect(req.get('referer'));
-              console.log('failed to add user account');
-              console.log(errors);
             } else {
-            console.log('pumasok sa age calculation');
               //FOR the calculation of age !!
               var cur           = new Date();
               var bd            = new Date(data.birth);
@@ -162,10 +159,8 @@ app.get('/admin/patientManagement', function(req, res){
                   if (err) {
                     console.log(err);
                   }
-                  console.log('papasok palang sa insert account query');
                   var addUserAccount = 'INSERT into user_accounts (username, password, account_type, name, age, sex, address, phone) VALUES ("'+data.user+'","'+hash+'","'+data.type+'","'+data.name+'",'+age+',"'+data.gender+'","'+data.address+'","'+data.phone+'");';
                   db.query(addUserAccount + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "addUser", "Added user: '+data.name+'");', function(err, rows){
-                  console.log('insert query executed');
                     if (err) {
                       console.log(err);
                     } else {

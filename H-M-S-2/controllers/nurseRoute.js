@@ -1,4 +1,4 @@
-module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList,patientManagementSQL,io){
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList,patientManagementSQL,io,moment){
 var user, Aid;
 var immuSQL     = "SELECT name FROM immunization;";
 var fhSQL       = "SELECT name FROM family_history;";
@@ -114,6 +114,14 @@ var fhSQL       = "SELECT name FROM family_history;";
                 }
               });
               res.redirect(req.get('referer'));
+        } else if (data.sub == 'delToDo') {
+          var delTodo = 'DELETE FROM todo_list where todo_id = '+req.query.tId+';';
+          db.query(delTodo + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+moment(new Date()).format('YYYY-MM-DD HH:mm:ss')+'", "delTodo", "Deleted data from todo List");', function(err){
+            if (err) {
+              console.log(err);
+            }
+          });
+          res.redirect(req.get('referer'))
         }
       } else {
         res.redirect(req.session.sino+'/dashboard');

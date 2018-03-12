@@ -1,4 +1,4 @@
-module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,bcrypt){
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,patientManagementSQL,bcrypt){
 var user, Aid, availableBedss, p;
 
   app.get('/doctor/dashboard', function(req, res){
@@ -116,7 +116,8 @@ var user, Aid, availableBedss, p;
             });
           } else if (data.sub == 'diag') {
             var diagnosisSQL = 'INSERT into diagnosis (diagnosis, date, patient_id, doctor_id) VALUES ("'+data.diagnosis+'","'+currentTime+'",'+req.query.patient_id+','+Aid+');';
-            db.query(diagnosisSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "diagnosis", "diagnosis for : '+req.query.patient_name+'");', function(err){
+            var assessmentDel = 'DELETE from assessment where patient_id = '+req.query.patient_id+';';
+            db.query(diagnosisSQL + assessmentDel + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "diagnosis", "diagnosis for : '+req.query.patient_name+'");', function(err){
               if (err) {
                 console.log(err);
               } else {
@@ -181,8 +182,7 @@ var user, Aid, availableBedss, p;
               res.render('doctor/patientManagement', {p:rows, p2:null, username:user, invalid:null});
             });
           } else {
-              var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient";
-              db.query(sql, function(err, rows){
+              db.query(patientManagementSQL, function(err, rows){
                 res.render('doctor/patientManagement', {p:rows, p2:null, username:user, invalid:null});
               });
           }
@@ -204,8 +204,14 @@ var user, Aid, availableBedss, p;
             } else if(isMatch) {
               var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
               var sql2  = "SELECT * FROM patient where patient_id = "+req.query.passPatient+";";
-              db.query(sql + sql2, function(err, successRows){
-                res.render('doctor/patientManagement', {p:successRows[0], p2:successRows[1], username:user, invalid:null});
+              var latestMedicine =  'SELECT medicine FROM `prescription` where status="confirmed" and patient_id = '+req.query.passPatient+' and creation_stamp = (SELECT creation_stamp from prescription where patient_id = '+req.query.passPatient+' and status="confirmed" order by creation_stamp desc limit 1);'
+              db.query(sql + sql2 + latestMedicine, function(err, successRows){
+                var medicineParse = JSON.parse(JSON.stringify(successRows[2]));
+                var medicine= '';
+                for (var i = 0; i < medicineParse.length; i++) {
+                  medicine += medicineParse[i].medicine + ',\n';
+                }
+                res.render('doctor/patientManagement', {p:successRows[0], p2:successRows[1], medicine:medicine, username:user, invalid:null});
               });
             } else {
               var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient where patient_id = "+req.query.passPatient+";";
@@ -366,7 +372,7 @@ var user, Aid, availableBedss, p;
       if(req.session.email && req.session.sino == 'doctor'){
         if (req.session.sino == 'doctor') {
           var profileInfoSQL  = 'SELECT * from user_accounts where account_id = '+req.session.Aid+';';
-          var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc LIMIT 5;';
+          var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc;';
           db.query(profileInfoSQL + activityLogsSQL, function(err, rows){
             if (err) {
               console.log(err);

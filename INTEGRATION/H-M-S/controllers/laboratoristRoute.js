@@ -101,7 +101,7 @@ var user, Aid;
     if(req.session.email && req.session.sino == 'laboratorist'){
       if (req.session.sino == 'laboratorist') {
         var profileInfoSQL  = 'SELECT * from user_accounts where account_id = '+req.session.Aid+';';
-        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc LIMIT 5;';
+        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc;';
         db.query(profileInfoSQL + activityLogsSQL, function(err, rows){
           if (err) {
             console.log(err);

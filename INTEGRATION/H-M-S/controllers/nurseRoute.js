@@ -1,4 +1,4 @@
-module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList){
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList,patientManagementSQL,io,moment){
 var user, Aid;
 var immuSQL     = "SELECT name FROM immunization;";
 var fhSQL       = "SELECT name FROM family_history;";
@@ -29,15 +29,15 @@ var fhSQL       = "SELECT name FROM family_history;";
     var data = req.body;
     if(req.session.email && req.session.sino == 'nurse'){
       if(req.session.sino == 'nurse'){
-        var pNameSQL = "SELECT name from patient where patient_id = "+data.patient+";";
-
         if(data.sub == 'assessment') {
+          var nameForEmit = data.assessmentPatient.split(',');
           var vitalSigns = 'BP: '+data.BP +'\nCR: '+ data.CR +'\nPR: '+ data.PR +'\nRR: '+ data.RR +'\n TEMP: '+ data.temperature +'\nWT: '+ data.Wt;
-          var initialAssessment = 'INSERT into initial_assessment (assessment, date, patient_id, account_id, vital_signs) VALUES("'+data.assessment+'", "'+currentTime+'",'+data.assessmentPatient+','+data.assessmentDoctor+',"'+vitalSigns+'");';
-          db.query(initialAssessment + 'INSERT into activity_logs(account_id, time, type, remarks, patient_id) VALUES ('+Aid+',"'+currentTime+'", "initialAssessment", "assessment for '+req.query.assessmentPatient+'", '+data.assessmentPatient+');', function(err){
+          var initialAssessment = 'INSERT into initial_assessment (assessment, date, patient_id, account_id, vital_signs) VALUES("'+data.assessment+'", "'+currentTime+'",'+nameForEmit[0]+','+data.assessmentDoctor+',"'+vitalSigns+'");';
+          db.query(initialAssessment + 'INSERT into activity_logs(account_id, time, type, remarks, patient_id) VALUES ('+Aid+',"'+currentTime+'", "initialAssessment", "assessment for '+req.query.assessmentPatient+'", '+nameForEmit[0]+');', function(err){
             if (err) {
               console.log(err);
             }
+            io.emit('type', {what:'assess',message:'Received Assessment for '+nameForEmit[1]+'.'});
           });
           res.redirect(req.get('referer'));
         } else if(data.sub == "add") {
@@ -114,6 +114,14 @@ var fhSQL       = "SELECT name FROM family_history;";
                 }
               });
               res.redirect(req.get('referer'));
+        } else if (data.sub == 'delToDo') {
+          var delTodo = 'DELETE FROM todo_list where todo_id = '+req.query.tId+';';
+          db.query(delTodo + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+moment(new Date()).format('YYYY-MM-DD HH:mm:ss')+'", "delTodo", "Deleted data from todo List");', function(err){
+            if (err) {
+              console.log(err);
+            }
+          });
+          res.redirect(req.get('referer'))
         }
       } else {
         res.redirect(req.session.sino+'/dashboard');
@@ -127,8 +135,7 @@ var fhSQL       = "SELECT name FROM family_history;";
   app.get('/nurse/patientManagement', function(req, res){
       if(req.session.email && req.session.sino == 'nurse'){
         if(req.session.sino == 'nurse'){
-          var sql  = "SELECT patient_id,patient_type,name,age,sex,blood_type FROM patient;";
-          db.query(sql + immuSQL + fhSQL, function(err, rows){
+          db.query(patientManagementSQL + immuSQL + fhSQL, function(err, rows){
             res.render('nurse/patientManagement', {p:rows[0], immu:rows[1], fh:rows[2], p2:null, username:user, invalid:null});
           });
         } else {
@@ -181,7 +188,7 @@ var fhSQL       = "SELECT name FROM family_history;";
                       console.log(err);
                     }
                     });
-                  res.redirect(req.get('referer'));
+                    res.redirect(req.get('referer'));
                 }
               });
             }
@@ -252,7 +259,7 @@ var fhSQL       = "SELECT name FROM family_history;";
     if(req.session.email && req.session.sino == 'nurse'){
       if (req.session.sino == 'nurse') {
         var profileInfoSQL  = 'SELECT * from user_accounts where account_id = '+req.session.Aid+';';
-        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc LIMIT 5;';
+        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc;';
         db.query(profileInfoSQL + activityLogsSQL, function(err, rows){
           if (err) {
             console.log(err);
@@ -273,7 +280,7 @@ var fhSQL       = "SELECT name FROM family_history;";
     if (req.session.email && req.session.sino == 'nurse') {
       if (req.session.sino == 'nurse') {
         var updateProfileSQL = 'UPDATE user_accounts SET name = "'+data.name+'", age = '+data.age+', address = "'+data.address+'", phone = '+data.phone+' WHERE account_id = '+req.session.Aid+';';
-        db.query(updateProfileSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "settingsProfileManagement", "Edited personal info.");', function(err, rows){
+        db.query(updateProfileSQL, function(err, rows){
           if (err) {
             console.log(err);
           } else {

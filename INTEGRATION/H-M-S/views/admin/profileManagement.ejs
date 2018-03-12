@@ -188,6 +188,9 @@
                     <%} else if (activityInfo[i].type == 'todo'){ %>
                           <i class="fa fa-plus bg-green"></i>
                           <div class="timeline-item">
+                    <%} else if (activityInfo[i].type == 'delTodo'){ %>
+                          <i class="fa fa-remove bg-red"></i>
+                          <div class="timeline-item">
                     <%} else if (activityInfo[i].type == 'settingsProfileManagement'){ %>
                       <i class="fa fa-edit bg-purple"></i>
                       <div class="timeline-item">
