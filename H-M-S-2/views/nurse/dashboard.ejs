@@ -102,6 +102,11 @@
     <%}%>
     <form method="POST" onsubmit="parseDateNTime()">
       <div id="showTodo" style="display:none;">
+        <select name="todoStatus">
+          <option value="general">general</option>
+          <option value="urgent">urgent</option>
+        </select>
+        <br>
         <textarea name="description" rows="8" cols="80"></textarea>
         <br>
         <input type="datetime-local" name="dateNtime">

@@ -106,9 +106,14 @@ var fhSQL       = "SELECT name FROM family_history;";
               var parseDate      = splitDateNTime[0];
               var parseTime      = splitDateNTime[1] + ':00';
               var parseDateNTime = parseDate+' '+parseTime;
-
-              var addTodo  = 'INSERT into todo_list (description, date, account_id) VALUES("'+data.description+'","'+parseDateNTime+'",'+req.session.Aid+');';
-              db.query(addTodo + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "todo", "Added to To Do List the following: '+data.description+'");', function(err){
+              var todoLog = '';
+              if (data.todoStatus == 'urgent') {
+                todoLog = 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "urgentTodo", "Added to do urgent: '+data.description+'");';
+              } else if(data.todoStatus == 'general') {
+                todoLog = 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "generalTodo", "Added to do general: '+data.description+'");';
+              }
+              var addTodo  = 'INSERT into todo_list (description, status,date, account_id) VALUES("'+data.description+'","'+data.todoStatus+'","'+parseDateNTime+'",'+req.session.Aid+');';
+              db.query(addTodo + todoLog, function(err){
                 if (err) {
                   console.log(err);
                 }
