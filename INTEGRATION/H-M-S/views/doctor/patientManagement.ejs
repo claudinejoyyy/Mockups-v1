@@ -110,7 +110,7 @@
 
           <div class="box">
             <div class="box-header">
-              
+
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -126,38 +126,29 @@
                   <th>Action</th>
                 </tr>
               </thead>
-                <%
-                for(var i=0; i <p.length; i++){
-                    var b = new Date(p[i].birth_date);
-                %>
-                <tr>
-                  <td><%= p[i].patient_type %></td>
-                  <td><%= p[i].name %></td>
-                  <td><%= p[i].age %></td>
-                  <!-- <td><%= p[i].unit %></td> -->
-                  <td><%= p[i].sex %></td>
-                  <!-- <td><%= p[i].status %></td> -->
-                  <!-- <td><%= b.toLocaleDateString() %></td> -->
-                  <!-- <td><%= p[i].address %></td> -->
-                  <!-- <td><%= p[i].religion %></td> -->
-                  <td><%= p[i].blood_type %></td>
-                  <!-- <td><%= p[i].allergies %></td> -->
-                  <!-- <td><%= p[i].father %></td> -->
-                  <!-- <td><%= p[i].mother %></td> -->
-                  <!-- <td><%= p[i].birth_history %></td> -->
-                  <!-- <td><%= p[i].rankORsn %></td> -->
-                  <!-- <td><%= p[i].immunization %></td> -->
-                  <!-- <td><%= p[i].family_history %></td> -->
-                  <td><%= p[i].medicines%></td>
-                  <td><button type="button" name="button" onclick="PasswordInput(<%= p[i].patient_id %>)">view</button></td>
-                </tr>
-                <%}%>
+              <%
+              for(var i=0; i <p.length; i++){
+                  var b = new Date(p[i].birth_date);
+              %>
+              <tr>
+                <td><%= p[i].patient_type %></td>
+                <td><%= p[i].name %></td>
+                <td><%= p[i].age %></td>
+                <td><%= p[i].sex %></td>
+                <td><%= p[i].blood_type %></td>
+                <td><%= p[i].medicines %></td>
+
+                <td>
+                  <button type="button" name="button" data-toggle="modal" data-target="#showInputPassword" onclick="PasswordInput(<%= p[i].patient_id %>)">view</button>
+                </td>
+              </tr>
+              <%}%>
               </table>
 
               <%if(p2){%>
                 <br>
                 <h2>Ito dapat modal lang din, lagyan nyu nalang ng exit na button</h2>
-                <a href="/nurse/patientManagement"><button type="button" name="button">exit</button></a>
+                <a href="/doctor/patientManagement"><button type="button" name="button">exit</button></a>
                 <br>
                 <table>
                   <tr>
@@ -178,6 +169,7 @@
                       <th>Rank</th>
                       <th>Immunization</th>
                       <th>Family History</th>
+                      <th>Medicine</th>
                   </tr>
                   <%
                   for(var i=0; i <p2.length; i++){
@@ -201,17 +193,15 @@
                     <td><%= p2[i].rankORsn %></td>
                     <td><%= p2[i].immunization %></td>
                     <td><%= p2[i].family_history %></td>
+                    <td><%= medicine%></td>
                   </tr>
                   <%}%>
                 </table>
               <%}%>
+
+                <%- messages('message', locals) %>
               <!-- PASSWORD -->
-              <div id="PasswordInput" style="display:none">
-                <form id="dynamicActionPassword" method="post">
-                  Password: <input type="password" name="patientPassword">
-                  <button type="submit" name="sub" value="pass">enter</button>
-                </form>
-              </div>
+
             </div>
             <!-- /.box-body -->
           </div>
@@ -226,6 +216,26 @@
       <!-- /.content-wrapper -->
 
       <% include ../partials/footer.ejs %>
+      <div class="modal fade" id="showInputPassword" role="dialog" aria-labelledby="labRequestlabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="labRequestlabel"><%= username[0].name %>, please input your password.</h4>
+            </div>
+            <div class="modal-body">
+              <div id="PasswordInput" style="display:none">
+                <form id="dynamicActionPassword" method="post">
+                  Password: <input type="password" name="patientPassword">
+                  <button type="submit" name="sub" value="pass">enter</button>
+                </form>
+              </div>
+
+          </div>
+
+        </div>
+
+      </div>
 
   <div class="control-sidebar-bg"></div>
 </div>
@@ -257,6 +267,17 @@
 //      "autoWidth": true
 //    });
   });
+
+  <%if(invalid){%>
+  alert('invalid password');
+  $(document).ready(function(){
+    $("#PasswordInput").show();
+  });
+<%}%>
+  function PasswordInput(id){
+    document.getElementById('PasswordInput').style.display = 'block';
+    document.getElementById('dynamicActionPassword').action = '/doctor/patientManagement?passPatient='+id+'';
+  }
 </script>
 </body>
 </html>
