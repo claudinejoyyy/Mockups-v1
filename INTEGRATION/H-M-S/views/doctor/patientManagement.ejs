@@ -78,9 +78,9 @@
 
       <ul class="sidebar-menu">
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="../doctor/dashboard" target="_self"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+        <li><a href="../doctor/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
         <li><a href="../doctor/bedManagement"><i class="fa fa-link"></i> <span>Bed Management</span></a></li>
-        <li><a href="../doctor/patientManagement"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
+        <li class="active"><a href="../doctor/patientManagement" target="_self"><i class="fa fa-link"></i> <span>Patient Management</span></a></li>
         <li><a href="../doctor/outpatientManagement"><i class="fa fa-link"></i> <span>Outpatient Management</span></a></li>
         <li><a href="../doctor/appointmentManagement"><i class="fa fa-link"></i> <span>Appointment Management</span></a></li>
         <li><a href="../doctor/prescriptionManagement"><i class="fa fa-link"></i> <span>Prescription Management</span></a></li>
@@ -91,80 +91,141 @@
     </section>
   </aside>
 
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
         Patient Management
-        <small></small>
+        <small>List of Registered Patients</small>
       </h1>
     </section>
 
+    <!-- Main content -->
     <section class="content">
 
        <div class="row">
         <div class="col-xs-12">
-         <div class="box-header">
-         </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example2" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>Patient Type</th>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Unit </th>
-                    <th>Gender</th>
-                    <th>Status</th>
-                    <th>Blood Type</th>
-                    <th>Allergies</th>
-                    <th>Immunization</th>
-                    <th>Family History</th>
-                  </tr>
-                </thead>
-                  <tbody>
-                        <%
-                        for(var i=0; i <p.length; i++){
-                            var b = new Date(p[i].birth_date);
-                        %>
-                        <tr>
-                           <td><%= p[i].patient_type %></td>
-                          <td><%= p[i].name %></td>
-                          <td><%= p[i].age %></td>
-                          <td><%= p[i].unit %></td>
-                          <td><%= p[i].sex %></td>
-                          <td><%= p[i].status %></td>
-<!--
-                          <td><--%= b.toLocaleDateString() %></td>
-                          <td><--%= p[i].address %></td>
-                          <td><--%= p[i].religion %></td>
--->
-                          <td><%= p[i].blood_type %></td>
-                          <td><%= p[i].allergies %></td>
-<!--
-                          <td><--%= p[i].father %></td>
-                          <td><--%= p[i].mother %></td>
-                          <td><--%= p[i].birth_history %></td>
-                          <td><--%= p[i].rankORsn %></td>
--->
-                          <td><%= p[i].immunization %></td>
-                          <td><%= p[i].family_history %></td>
-                        </tr>
-                        <%}%>
-                  </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-    </section>
-  </div>
+          <!-- /.box -->
 
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1
-    </div>
-    <strong>Copyright &copy; 2018.</strong> Philippine Military Academy | Fort Del Pilar Station Hospital | All rights reserved.
-  </footer>
+          <div class="box">
+            <div class="box-header">
+              
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Patient Type</th>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Blood Type</th>
+                  <th>Latest Medicine Taken</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+                <%
+                for(var i=0; i <p.length; i++){
+                    var b = new Date(p[i].birth_date);
+                %>
+                <tr>
+                  <td><%= p[i].patient_type %></td>
+                  <td><%= p[i].name %></td>
+                  <td><%= p[i].age %></td>
+                  <!-- <td><%= p[i].unit %></td> -->
+                  <td><%= p[i].sex %></td>
+                  <!-- <td><%= p[i].status %></td> -->
+                  <!-- <td><%= b.toLocaleDateString() %></td> -->
+                  <!-- <td><%= p[i].address %></td> -->
+                  <!-- <td><%= p[i].religion %></td> -->
+                  <td><%= p[i].blood_type %></td>
+                  <!-- <td><%= p[i].allergies %></td> -->
+                  <!-- <td><%= p[i].father %></td> -->
+                  <!-- <td><%= p[i].mother %></td> -->
+                  <!-- <td><%= p[i].birth_history %></td> -->
+                  <!-- <td><%= p[i].rankORsn %></td> -->
+                  <!-- <td><%= p[i].immunization %></td> -->
+                  <!-- <td><%= p[i].family_history %></td> -->
+                  <td><%= p[i].medicines%></td>
+                  <td><button type="button" name="button" onclick="PasswordInput(<%= p[i].patient_id %>)">view</button></td>
+                </tr>
+                <%}%>
+              </table>
+
+              <%if(p2){%>
+                <br>
+                <h2>Ito dapat modal lang din, lagyan nyu nalang ng exit na button</h2>
+                <a href="/nurse/patientManagement"><button type="button" name="button">exit</button></a>
+                <br>
+                <table>
+                  <tr>
+                      <th>Patient Type</th>
+                      <th>Name</th>
+                      <th>Age</th>
+                      <th>Unit </th>
+                      <th>Gender</th>
+                      <th>Status</th>
+                      <th>Birth Date</th>
+                      <th>Address</th>
+                      <th>Religion</th>
+                      <th>Blood Type</th>
+                      <th>Allergies</th>
+                      <th>Father</th>
+                      <th>Mother</th>
+                      <th>Birth History</th>
+                      <th>Rank</th>
+                      <th>Immunization</th>
+                      <th>Family History</th>
+                  </tr>
+                  <%
+                  for(var i=0; i <p2.length; i++){
+                      var b = new Date(p2[i].birth_date);
+                  %>
+                  <tr>
+                    <td><%= p2[i].patient_type %></td>
+                    <td><%= p2[i].name %></td>
+                    <td><%= p2[i].age %></td>
+                    <td><%= p2[i].unit %></td>
+                    <td><%= p2[i].sex %></td>
+                    <td><%= p2[i].status %></td>
+                    <td><%= b.toLocaleDateString() %></td>
+                    <td><%= p2[i].address %></td>
+                    <td><%= p2[i].religion %></td>
+                    <td><%= p2[i].blood_type %></td>
+                    <td><%= p2[i].allergies %></td>
+                    <td><%= p2[i].father %></td>
+                    <td><%= p2[i].mother %></td>
+                    <td><%= p2[i].birth_history %></td>
+                    <td><%= p2[i].rankORsn %></td>
+                    <td><%= p2[i].immunization %></td>
+                    <td><%= p2[i].family_history %></td>
+                  </tr>
+                  <%}%>
+                </table>
+              <%}%>
+              <!-- PASSWORD -->
+              <div id="PasswordInput" style="display:none">
+                <form id="dynamicActionPassword" method="post">
+                  Password: <input type="password" name="patientPassword">
+                  <button type="submit" name="sub" value="pass">enter</button>
+                </form>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+
+      </section>
+      <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+
+      <% include ../partials/footer.ejs %>
 
   <div class="control-sidebar-bg"></div>
 </div>
