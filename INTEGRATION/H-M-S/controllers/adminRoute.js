@@ -95,7 +95,6 @@ app.get('/admin/patientManagement', function(req, res){
             console.log(err);
           } else {
             res.redirect(req.get('referer'));
-            res.render('admin/dashboard');
           }
         });
       } else {

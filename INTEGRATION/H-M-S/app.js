@@ -15,10 +15,7 @@ var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var app = express();
 
-
-
-
-
+//MIDDLEWARES
 app.locals.moment = require('moment');
 app.set('view engine', 'ejs');
 app.use(helmet.noCache());
@@ -26,6 +23,32 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static('./public'));
 app.use(session({secret: 'shhhhh', cookie: { maxAge: 3600000 }}));
+
+// Run server to listen on port 3000.
+const server = app.listen(3000, () => {
+  console.log('--listening on port 3000--');
+});
+const io = require('socket.io')(server);
+
+//FOR AGE INCREMENT
+var CronJob = require('cron').CronJob;
+new CronJob('00 00 * * 1-7', function() {
+    var checkBD = 'SELECT patient_id, birth_date from patient';
+    db.query(checkBD, function(err, rows){
+      var resultDB = JSON.parse(JSON.stringify(rows));
+      for (var i in resultDB) {
+        if (moment(new Date()).format('MM-DD') == moment(resultDB[i].birth_date).format('MM-DD')) {
+          db.query('UPDATE patient SET birth_date="'+ resultDB[i].birth_date+1 +'"where patient_id ='+resultDB[i].patient_id+';', function(err){
+            if (err) {
+              console.log(err);
+            } else {
+              console.log('gumagana');
+            }
+          });
+        }
+      }
+    });
+}, null, true);
 
 // Express Validator Middleware
 app.use(expressValidator({
@@ -89,35 +112,15 @@ var patientList          = "SELECT * from patient;";
 var doctorList           = "SELECT * FROM user_accounts WHERE account_type = 'doctor';";
 var availableBeds        = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id) where b.status = 'Unoccupied';";
 
+//PATIENTMANAGEMENT
+var patientManagementSQL = 'SELECT patient_id, patient_type, sex, name, age,blood_type, "New Patient" as medicines  from patient where patient_id not in (SELECT patient_id medicines FROM patient left join prescription using(patient_id) where prescription.status="confirmed" and creation_stamp = (SELECT creation_stamp from prescription where prescription.status="confirmed" order by creation_stamp desc limit 1)) '
+                            +'UNION '
+                            +'SELECT patient_id, patient_type, sex, name, age, blood_type,GROUP_CONCAT(medicine) medicines FROM patient left join prescription p using(patient_id) where p.status="confirmed" and creation_stamp = (SELECT creation_stamp from prescription p where p.status="confirmed" order by creation_stamp desc limit 1) order by patient_id desc;';
+
 var currentTime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
 login (app,db,currentTime,bcrypt);
-nurse (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList);
-doctor(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,bcrypt);
-admin (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,bcrypt);
+nurse (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList,patientManagementSQL,io);
+doctor(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,patientManagementSQL,bcrypt);
+admin (app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,patientManagementSQL,bcrypt);
 pharmacist(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList);
 laboratorist(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList);
-
-
-
-//FOR AGE INCREMENT
-var CronJob = require('cron').CronJob;
-new CronJob('00 00 * * 1-7', function() {
-    var checkBD = 'SELECT patient_id, birth_date from patient';
-    db.query(checkBD, function(err, rows){
-      var resultDB = JSON.parse(JSON.stringify(rows));
-      for (var i in resultDB) {
-        if (moment(new Date()).format('MM-DD') == moment(resultDB[i].birth_date).format('MM-DD')) {
-          db.query('UPDATE patient SET birth_date="'+ resultDB[i].birth_date+1 +'"where patient_id ='+resultDB[i].patient_id+';', function(err){
-            if (err) {
-              console.log(err);
-            } else {
-              console.log('gumagana');
-            }
-          });
-        }
-      }
-    });
-}, null, true);
-
-app.listen(3001);
-console.log('hello !!');
