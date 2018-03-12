@@ -9,6 +9,26 @@
     <a href="../nurse/bedManagement">bedManagement</a><br>
     <a href="../nurse/patientManagement">patientManagement</a><br>
     <a href="../nurse/profileManagement">profile</a>
+    <br>
+    <!-- ADMIT  -->
+    <button type="button" onclick="ShowAdmit()">Allot</button>
+    <div id="ShowAdmit" style="display:none;">
+      <select name="bedPatient">
+        <%for (var i = 0; i < availPatient.length; i++) { %>
+          <form action="/nurse/bedManagement?name=<%= availPatient[i].name%>">
+            <option value="<%= availPatient[i].patient_id%>"><%= availPatient[i].name%></option>
+          </form>
+        <%}%>
+      </select>
+      available Beds:
+      <select name="bedNumber">
+        <%for (var i = 0; i < availableBeds.length; i++) { %>
+          <option value="<%= availableBeds[i].bed_id%>"><%= availableBeds[i].bed_id%></option>
+        <%}%>
+      </select>
+      <button type="submit" name="sub" value="admit">alot</button>
+    </div>
+
     <table>
       <tr>
         <th>Bed Number</th>
@@ -40,17 +60,6 @@
       </tr>
       <%}%>
     </table>
-    <!-- ADMIT  -->
-    <button type="button" onclick="ShowAdmit()"></button>
-    <div id="ShowAdmit" style="display:none;">
-        available Beds:
-        <select name="bedNumber">
-          <%for (var i = 0; i < admitAvailableBeds.length; i++) { %>
-            <option value="<%= admitAvailableBeds[i].bed_id%>"><%= admitAvailableBeds[i].bed_id%></option>
-          <%}%>
-        </select>
-        <button type="submit" name="sub" value="admit">alot</button>
-    </div>
   </body>
 </html>
 <script>
