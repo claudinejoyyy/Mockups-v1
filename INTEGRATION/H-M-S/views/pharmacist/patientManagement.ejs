@@ -112,7 +112,7 @@
     <section class="content-header">
       <h1>
         Patient Management
-        <small></small>
+        <small>List of Registered Patients</small>
       </h1>
     </section>
 
@@ -121,21 +121,20 @@
        <div class="row">
         <div class="col-xs-12">
 
-            <!-- /.box-header -->
-            <div class="box-body">
+          <div class="box">
+            <div class="box-header">
+          </div>
+          <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Patient Type</th>
                     <th>Name</th>
                     <th>Age</th>
-                    <th>Unit </th>
                     <th>Gender</th>
-                    <th>Status</th>
                     <th>Blood Type</th>
-                    <th>Allergies</th>
-                    <th>Immunization</th>
-                    <th>Family History</th>
+                    <th>Latest Medicine Taken</th>
+                    <th>Number of days confined</th>
                   </tr>
                 </thead>
 
@@ -144,23 +143,13 @@
                     var b = new Date(p[i].birth_date);
                 %>
                 <tr>
-                   <td><%= p[i].patient_type %></td>
+                  <td><%= p[i].patient_type %></td>
                   <td><%= p[i].name %></td>
                   <td><%= p[i].age %></td>
-                  <td><%= p[i].unit %></td>
                   <td><%= p[i].sex %></td>
-                  <td><%= p[i].status %></td>
-                  <td><%= b.toLocaleDateString() %></td>
-                  <td><%= p[i].address %></td>
-                  <td><%= p[i].religion %></td>
                   <td><%= p[i].blood_type %></td>
-                  <td><%= p[i].allergies %></td>
-                  <td><%= p[i].father %></td>
-                  <td><%= p[i].mother %></td>
-                  <td><%= p[i].birth_history %></td>
-                  <td><%= p[i].rankORsn %></td>
-                  <td><%= p[i].immunization %></td>
-                  <td><%= p[i].family_history %></td>
+                  <td><%= p[i].medicines%></td>
+                  <td></td>
                 </tr>
                 <%}%>
               </table>

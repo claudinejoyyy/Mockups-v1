@@ -252,18 +252,18 @@ desired effect
                             prescribeArr += prescribeSQL[j].patient_id;
                           }
                         if(prescribeArr.includes(opdInfo[i].patient_id)){%>
-                          <input class="btn btn-primary btn-sm" type="button" name="prescribe" style="color:blue" value="Prescription" onclick="ShowPrescribe2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                          <input class="btn btn-primary btn-sm" type="button" name="prescribe" style="color:blue" value="Prescription" data-toggle="modal" data-target="prescribe2" onclick="ShowPrescribe2(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)" >
                         <%} else {%>
-                          <input class="btn btn-primary btn-sm" type="button" name="prescribe" value="Prescription" onclick="ShowPrescribe(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                          <input class="btn btn-primary btn-sm" type="button" name="prescribe" value="Prescription" data-toggle="modal" data-target="#prescribe" onclick="ShowPrescribe(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
                         <%}%>
                         <!-- DIAGNOSIS -->
-                        <button class="btn btn-primary btn-sm" class="btn btn-primary btn-sm" name="button" onclick="ShowDiagnosis(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">diagnosis</button>
+                        <button class="btn btn-primary btn-sm" class="btn btn-primary btn-sm" name="button" data-toggle="modal" data-target="#diagnosis" onclick="ShowDiagnosis(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">Diagnosis</button>
                         <!-- ADMIT -->
                         <% var arr= '';
                           for (var j = 0; j < whoCurrentlyAdmittedV2.length; j++){
                             arr += whoCurrentlyAdmittedV2[j].patient_id;
                           } if(!(arr.includes(opdInfo[i].patient_id))){%>
-                            <input class="btn btn-primary btn-sm" type="button" name="admit" value="admit" onclick="ShowAdmit(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
+                            <input class="btn btn-primary btn-sm" type="button" name="admit" value="admit" data-toggle="modal" data-target="#admit" onclick="ShowAdmit(<%=opdInfo[i].patient_id%>,<%=JSON.stringify(opdInfo[i].name)%>)">
                         <%}%>
                         <!-- LAB REQUEST TABLE VIEW -->
 
@@ -289,15 +289,15 @@ desired effect
               <div>
                 <form id="dynamicPatientIdForLab" method="post">
                   <select name="testRequest">
-                    <option value="bloodChemistry">bloodChemistry</option>
+                    <option value="bloodChemistry">Blood Chemistry</option>
                     <option value="hermatology">Hematology</option>
                     <option value="microscopy">Microscopy</option>
-                    <option value="parasitology">parasitology</option>
-                    <option value="serotology">serotology</option>
-                    <option value="microbiology">microbiology</option>
-                    <option value="xRay">xRay</option>
+                    <option value="parasitology">Parasitology</option>
+                    <option value="serotology">Serotology</option>
+                    <option value="microbiology">Microbiology</option>
+                    <option value="xRay">X-Ray</option>
                   </select>
-                  <button type="submit" name="sub" value="labRequest">send</button>
+                  <button type="submit" name="sub" value="labRequest">Send</button>
                   <br>
                   <textarea name="labRequestremarks" rows="8" cols="80"></textarea>
                 </form>
@@ -313,26 +313,50 @@ desired effect
 
 
       <!-- ADMIT  -->
-      <div id="ShowAdmit" style="display:none;">
-        <form id="dynamicPatientIdForAdmit" method="post">
-          available Beds:
-          <select name="bedNumber">
-            <%for (var i = 0; i < admitAvailableBeds.length; i++) { %>
-              <option value="<%= admitAvailableBeds[i].bed_id%>"><%= admitAvailableBeds[i].bed_id%></option>
-            <%}%>
-          </select>
-          <button type="submit" name="sub" value="admit">alot</button>
-        </form>
+      <div class="modal fade" id="admit" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">New Appointment</h4>
+            </div>
+            <div class="modal-body">
+              <form id="dynamicPatientIdForAdmit" class="form-group" method="post" onsubmit="successAlert()">
+                available Beds:
+                <select name="bedNumber">
+                  <%for (var i = 0; i < admitAvailableBeds.length; i++) { %>
+                    <option value="<%= admitAvailableBeds[i].bed_id%>"><%= admitAvailableBeds[i].bed_id%></option>
+                  <%}%>
+                </select>
+                <button type="submit" name="sub" value="admit">alot</button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- PRESCRIBE -->
-      <div id="ShowPrescribe" style="display:none;">
-        <form id="dynamicPatientIdForPrescribe" method="post">
-          <input type="text" name="medicine">medicine <br>
-          <input type="number" name="quantity">quantity <br>
-          <input type="text" name="dosage">dosage <br>
-          <input type="text" name="timeframe">timeframe <br>
-          <button type="submit" name="sub" value="prescribe">send</button>
-        </form>
+      <div class="modal fade" id="prescribe" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">New Appointment</h4>
+            </div>
+            <div class="modal-body">
+              <form id="dynamicPatientIdForPrescribe" class="form-group" method="post" onsubmit="successAlert()">
+                <label for="medicine" class="col-sm-2 control-label">Medicine</label>
+                <input type="text" class="form-control" id="medicine" name="medicine">
+                <label for="medicine" class="col-sm-2 control-label">Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="quantity">
+                <label for="medicine" class="col-sm-2 control-label">Dosageg</label>
+                <input type="text" class="form-control" id="dosage" name="dosage">
+                <label for="medicine" class="col-sm-2 control-label">Timeframe</label>
+                <input type="text" class="form-control" id="timeframe" name="timeframe">
+                <button type="submit"  name="sub" value="prescribe">send</button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div id="ShowLabRequest2" style="display:none;">
@@ -340,18 +364,27 @@ desired effect
           <button id="labAdd">add</button>
       </div>
 
-      <div id="ShowPrescribe2" style="display:none;">
+      <div id="prescribe2" style="display:none;">
           <a id="linkForPrescribeView"><button id="prescribeViewPressed">view</button></a>
           <button id="prescribeAdd">add</button>
       </div>
 
-      <div id="ShowDiagnosis" style="display:none;">
-        <form id="linkDiagnosis" method="post">
-          <textarea name="diagnosis" rows="8" cols="80"></textarea>
-          <button type="submit" name="sub" value="diag">add</button>
-        </form>
+      <div class="modal fade" id="diagnosis" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">New Appointment</h4>
+            </div>
+            <div class="modal-body">
+              <form id="linkDiagnosis" class="form-group" method="post" onsubmit="successAlert()">
+                <textarea name="diagnosis" rows="8" cols="80"></textarea>
+                <button type="submit" name="sub" value="diag">add</button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-
 
     </section>
     <!-- /.content -->
