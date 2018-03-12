@@ -40,9 +40,23 @@
       </tr>
       <%}%>
     </table>
+    <!-- ADMIT  -->
+    <button type="button" onclick="ShowAdmit()"></button>
+    <div id="ShowAdmit" style="display:none;">
+        available Beds:
+        <select name="bedNumber">
+          <%for (var i = 0; i < admitAvailableBeds.length; i++) { %>
+            <option value="<%= admitAvailableBeds[i].bed_id%>"><%= admitAvailableBeds[i].bed_id%></option>
+          <%}%>
+        </select>
+        <button type="submit" name="sub" value="admit">alot</button>
+    </div>
   </body>
 </html>
 <script>
+function ShowAdmit(){
+  document.getElementById('ShowAdmit').style.display = 'block';
+}
   function discharge(bedID){
     console.log(bedID);
      document.getElementById('dis').value = bedID;
