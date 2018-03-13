@@ -103,9 +103,7 @@ var fhSQL       = "SELECT name FROM family_history;";
               });
         } else if (data.sub == 'addTodo') {
               var splitDateNTime = data.dateNtime.split('T');
-              var parseDate      = splitDateNTime[0];
-              var parseTime      = splitDateNTime[1] + ':00';
-              var parseDateNTime = parseDate+' '+parseTime;
+              var parseDateNTime = splitDateNTime[0]+' '+splitDateNTime[1];
               var todoLog = '';
               if (data.todoStatus == 'urgent') {
                 todoLog = 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "urgentTodo", "Added to do urgent: '+data.description+'");';

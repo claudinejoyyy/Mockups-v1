@@ -187,7 +187,10 @@
                       <i class="fa fa-remove bg-red"></i>
                       <div class="timeline-item">
                     <%} else if (activityInfo[i].type == 'urgentTodo'){ %>
-                      <i class="fa fa-remove bg-red"></i>
+                      <i class="fa fa-remove bg-orange"></i>
+                      <div class="timeline-item">
+                    <%} else if (activityInfo[i].type == 'generalTodo'){%>
+                      <i class="fa fa-remove bg-green"></i>
                       <div class="timeline-item">
                     <%}%>
 
