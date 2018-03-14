@@ -336,12 +336,12 @@
                   <div id="donut-chart1" style="height: 350px;"></div>
                   <br>
                   <ul class="chart-legend clearfix">
-                    <li><i class="fa fa-circle-o text-red"></i>Military Dependent</li>
-                    <li><i class="fa fa-circle-o text-graye"></i>Cadet</li>
-                    <li><i class="fa fa-circle-o text-aqua"></i>Military Officer</li>
-                    <li><i class="fa fa-circle-o text-yellow"></i> Civilian</li>
-                    <li><i class="fa fa-circle-o text-light-blue"></i> Authorized Civilian</li>
-                  </ul>
+                      <li><i class="fa fa-circle text-gray"></i> Cadet</li>
+                      <li><i class="fa fa-circle text-blue"></i> Authorized Civilian</li>
+                      <li><i class="fa fa-circle text-red"></i> Military Dependent</li>
+                      <li><i class="fa fa-circle text-yellow"></i> Civilian Employees</li>
+                      <li><i class="fa fa-circle text-aqua"></i> Military Officer</li>
+                    </ul>
 
                 </div>
                 <!-- /.box-body-->
@@ -575,40 +575,18 @@
 
     }
 
-    $(function() {
+    $(function () {
       /*
        * DONUT CHART
        * -----------
        */
-
-      var list = <%-JSON.stringify(counts[0].totalRegisteredPatients)%>;
-      var data = [],
-        totalPoints = list;
-      var donutData = [{
-          label: "MD",
-          data: <%-JSON.stringify(chart[0].military_dependent)%>,
-          color: "red"
-        },
-        {
-          label: "CE",
-          data: <%-JSON.stringify(chart[0].cadet)%>,
-          color: "gray"
-        },
-        {
-          label: "MO",
-          data: <%-JSON.stringify(chart[0].military_officer)%>,
-          color: "aqua"
-        },
-        {
-          label: "CI",
-          data: <%-JSON.stringify(chart[0].civilian)%>,
-          color: "orange"
-        },
-        {
-          label: "AC",
-          data: <%-JSON.stringify(chart[0].authorized_civilian)%>,
-          color: "blue"
-        }
+      var data = [], totalPoints = 100;
+      var donutData = [
+        {label: "", data: <%= chart[0].military_dependent %>, color: "red"},
+        {label: "", data: <%= chart[0].civilian %>, color: "yellow"},
+        {label: "", data: <%= chart[0].military_officer %>, color: "aqua"},
+        {label: "", data: <%= chart[0].cadet %>, color: "gray"},
+        {label: "", data: <%= chart[0].authorized_civilian%>, color: "blue"}
       ];
       $.plot("#donut-chart1", donutData, {
         series: {
