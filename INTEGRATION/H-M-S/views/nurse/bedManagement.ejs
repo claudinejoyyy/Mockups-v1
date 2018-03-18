@@ -5,22 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Bed Management</title>
     <% include ../partials/header.ejs %>
-
   </head>
   <body class="hold-transition skin-blue fixed sidebar-mini">
   <div class="wrapper">
     <header class="main-header">
       <a href="../nurse/dashboard" class="logo">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b><%= username[0].account_type.charAt(0).toUpperCase()%></b></span>
-        <!-- logo for regular state and mobile devices -->
         <span class="logo-lg"><b><%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%></b></span>
       </a>
       <nav class="navbar navbar-static-top" role="navigation">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
           <span class="sr-only">Toggle navigation</span>
         </a>
-
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
             <li class="dropdown user user-menu">
@@ -60,15 +56,9 @@
     </section>
 
     <section class="content">
-
        <div class="row">
         <div class="col-xs-12">
-
           <div class="box">
-            <div class="box-header">
-              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> New Bed Allocation</button>
-            </div>
-
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -77,19 +67,16 @@
                     <th>Bed Number</th>
                     <th>Patient Type</th>
                     <th>Patient Name</th>
-
                     <th>Confinement Date</th>
                     <th>Action</th>
                   </tr>
                 </thead>
-
                 <%for(var i=0; i < bedDetails.length; i++){%>
                 <tr>
                   <td><%= bedDetails[i].status.charAt(0).toUpperCase() + bedDetails[i].status.slice(1);%></td>
                   <td><%= bedDetails[i].bed_id%></td>
                   <td><%= bedDetails[i].patient_type%></td>
                   <td><%= bedDetails[i].name%></td>
-
                   <%
                   var DT = moment(bedDetails[i].allotment_timestamp).format('YYYY-MM-DD HH:mm:ss');
                   console.log(DT);
@@ -142,7 +129,6 @@
         <li><a href="../nurse/profilemanagement"><i class="fa fa-info"></i> <span>Profile Management</span></a></li>
         </ul>
       </section>
-
     </aside>
 
     <div class="control-sidebar-bg"></div>
@@ -154,7 +140,8 @@
     <script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
     <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <script src="../plugins/fastclick/fastclick.js"></script>
-      <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -198,18 +185,17 @@
 <script src="../plugins/flot/jquery.flot.pie.min.js"></script>
 <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
 <script src="../plugins/flot/jquery.flot.categories.min.js"></script>
-
 <script src="../plugins/chartjs/Chart.min.js"></script>
 
-    <script>
-      $(function () {
-      $("#example1").DataTable();
-      $('#example2').DataTable({
-      });
-      });
-    </script>
+<script>
+  $(function () {
+  $("#example1").DataTable();
+  $('#example2').DataTable({
+  });
+  });
+</script>
+</div>
 
-  </div>
   <!---------------------------------------------------------------------------------------------- Modal of Allocating Bed ----------->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
@@ -263,5 +249,3 @@
   </body>
       <% include ../partials/footer.ejs %>
 </html>
-<script>
-</script>

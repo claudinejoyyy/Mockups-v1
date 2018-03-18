@@ -4,26 +4,20 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Admin | Profile Management</title>
-  <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <% include ../partials/header.ejs %>
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini fixed">
 <div class="wrapper">
-
   <header class="main-header">
     <a href="../nurse/dashboard" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b><%= username[0].account_type.charAt(0).toUpperCase()%></b></span>
-      <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b><%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%></b></span>
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
-
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
@@ -93,10 +87,8 @@
     </section>
 
     <section class="content">
-
       <div class="row">
         <div class="col-md-3">
-
           <div class="box box-primary">
             <div class="box-body box-profile">
               <img class="profile-user-img img-responsive img-circle" src="../dist/img/user2-160x160.jpg" alt="User profile picture">
@@ -109,7 +101,6 @@
             <div class="box-header with-border">
               <h3 class="box-title">Basic Profile</h3>
             </div>
-
             <div class="box-body">
             <strong><i class="fa fa-info margin-r-5"></i> User Account No.</strong>
               <p class="text-muted"> <%= pInfo[0].account_id%> </p>
@@ -117,11 +108,9 @@
             <strong><i class="fa fa-user-plus margin-r-5"></i> Age</strong>
               <p class="text-muted"> <%= pInfo[0].age%> </p>
               <hr>
-
             <strong><i class="fa fa-user margin-r-5"></i> Sex</strong>
               <p class="text-muted"> <%= pInfo[0].sex%> </p>
               <hr>
-
             </div>
           </div>
         </div>
@@ -201,16 +190,12 @@
                       <i class="fa fa-arrow-circle-right bg-green"></i>
                       <div class="timeline-item">
                     <%}%>
-
                       <h3 class="timeline-header"><%= activityInfo[i].remarks%></a></h3>
-
                     </div>
                   </li>
-
                 </ul>
                 <%}%>
               </div>
-              <!-- /.tab-pane -->
 
               <div class="tab-pane" id="settings">
                 <form class="form-horizontal" method="POST" id="setting" style="display:none;">
@@ -255,7 +240,6 @@
       </div>
     </section>
   </div>
-
 <% include ../partials/footer.ejs %>
 
 <script>
@@ -278,7 +262,6 @@
   function show2() {
     document.getElementById('setting').style = 'display:block;';
   }
-  //USEFUL SCRIPT do not DELETE(important) !!
   function check() {
     if (!document.getElementById('name').value) {
       document.getElementById('name').value = "<%= pInfo[0].name%>";
