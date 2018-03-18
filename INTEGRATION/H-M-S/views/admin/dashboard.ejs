@@ -243,41 +243,30 @@
                 <div class="box-body">
                   <ul class="todo-list">
                     <%for(var i=0; i < todoList.length; i++){%>
+                      <%if(new Date() < new Date(todoList[i].date)) {%>
                     <li>
-                      <!-- drag handle -->
-                          <span class="handle">
-                            <i class="fa fa-ellipsis-v"></i>
-                            <i class="fa fa-ellipsis-v"></i>
-                          </span>
-                      <!-- checkbox -->
-                      <input type="checkbox" value="">
-                      <!-- todo text -->
+                      <span class="handle">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                      </span>
                       <span class="text"><%= todoList[i].description%>:</span>
-                      <!-- Emphasis label -->
-                      <small class="label label-danger"><i class="fa fa-clock-o"></i><%= todoList[i].date%></small>
-                      <!-- General tools such as edit or delete-->
-                      <div class="tools">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                      </div>
-                    </li>
-                    <%}%>
-                  </ul>
+                      <%if(todoList[i].status == 'general'){%>
+                      <small class="label label-info"><i class="fa fa-clock-o"></i><%= moment(new Date(todoList[i].date)).format('YYYY-MM-DD HH:mm:ss')%></small>
+                      <%} else{%>
+                      <small class="label label-danger"><i class="fa fa-clock-o"></i><%= moment(new Date(todoList[i].date)).format('YYYY-MM-DD HH:mm:ss')%></small>
+                      <%}%>
+                      <form action="/admin/dashboard?tId=<%= todoList[i].todo_id%>" method="POST">
+                        <button type="submit" name="sub" value="delToDo">Delete</button>
+                      </form>
+                      </li>
+                      <%}%>
+                      <%}%>
+                    </ul>
                 </div>
-                <!-- /.box-body -->
+
                 <div class="box-footer clearfix no-border">
-                  <button type="button" class="btn btn-default pull-right" onclick="showTodo()"><i class="fa fa-plus"></i> Add item</button>
-                  <br>
-                  <form method="POST" onsubmit="parseDateNTime()">
-                    <div class="form-group" id="showTodo" style="display:none;">
-                      <textarea class="form-control" name="description" rows="8" cols="80"></textarea>
-                      <br>
-                      <input type="date" class="form-control" id="inputDate" name="dateNtime" style="width: 50%;">
-                      <button class="btn btn-primary pull-right" type="submit" name="sub" value="addTodo">Save</button>
-                    </div>
-                  </form>
+                  <button type="button" name="button" onclick="showTodo()" class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal4"><i class="fa fa-plus" data-target="#myModal4"></i> Add item</button>
                 </div>
-              </div>
 
               <!-- /.box -->
             </section>
@@ -366,6 +355,53 @@
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary">Confirm</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!------------------------------------------------------------------------------------------ /Modal-->
+
+            <!---------------------------------------------------------------------------------------------- Modal of To Do List ----------->
+            <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel1">To Do List</h4>
+                  </div>
+
+                  <div class="modal-body">
+                    <form method="POST" onsubmit="parseDateNTime()" class="form-horizontal" id="showTodo">
+                        <div class="form-group">
+                          <label for="description" class="col-sm-2 control-label">Name</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="description" name="description" data-parsley-required>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="todoStatus" class="col-sm-2 control-label">Status</label>
+                          <div class="col-sm-3">
+                            <select name="todoStatus" class="form-control">
+                              <option value="general">General</option>
+                              <option value="urgent">Urgent</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="dateNtime" class="col-sm-2 control-label">Date and Time</label>
+                          <div class="col-sm-5">
+                            <input type="datetime-local" name="dateNtime" class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary" name="sub" value="addTodo">Add</button>
+                        </div>
+
+                    </form>
+                  </div>
                   </div>
                 </div>
               </div>
