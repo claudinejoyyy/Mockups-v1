@@ -267,16 +267,16 @@
               </form>
             </div>
 
-            </div>
           </div>
         </div>
+      </div>
 
         <div class="modal fade" id="acceptModal" role="dialog" aria-labelledby="myModalLabel2">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel2">Ward Information</h4>
+                  <h4 class="modal-title" id="myModalLabel2">Accepted Request</h4>
               </div>
               <div class="modal-body">
                 <div>
@@ -284,28 +284,11 @@
                     <tr>
                       <th>Counter</th>
                       <th>Date</th>
-                      <th>Patient Type</th>
                       <th>Name</th>
                       <th>Age</th>
                       <th>Medications</th>
-                      <th>Status</th>
                     </tr>
-                    <%for (var i = 0; i < confirmedprescriptionSQL.length; i++) {%>
-                      <tr>
-                        <td><%=i+1%></td>
-                        <td><%=confirmedprescriptionSQL[i].creation_stamp%></td>
-                        <td><%=confirmedprescriptionSQL[i].patient_type%></td>
-                        <td><%=confirmedprescriptionSQL[i].name%></td>
-                        <td><%=confirmedprescriptionSQL[i].age%></td>
-                        <td>
-                          <%var v = confirmedprescriptionSQL[i].medications.split('\n');
-                            for(var l=0; l < 4; l++){ %>
-                            <%=v[l]%><br>
-                          <%}%>
-                        </td>
-                        <td><span class="label label-success">Confirmed</span></td>
-                      </tr>
-                    <%}%>
+
                   </table>
                 </div>
               </div>
@@ -318,7 +301,7 @@
             <div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel3">Pending Precriptions</h4>
+                  <h4 class="modal-title" id="myModalLabel3">Pending Request</h4>
               </div>
               <div class="modal-body">
                 <div>
@@ -326,27 +309,11 @@
                     <tr>
                       <th>Counter</th>
                       <th>Date</th>
-                      <th>Patient Type</th>
                       <th>Name</th>
                       <th>Age</th>
                       <th>Medications</th>
-                      <th>Action</th>
                     </tr>
-                    <%for (var i = 0; i < prescriptionDetails.length; i++) { %>
-                      <tr>
-                        <td><%=i+1%></td>
-                        <td><%=prescriptionDetails[i].creation_stamp%></td>
-                        <td><%=prescriptionDetails[i].patient_type%></td>
-                        <td><%=prescriptionDetails[i].name%></td>
-                        <td><%=prescriptionDetails[i].age%></td>
-                        <td>
-                          <%var v = prescriptionDetails[i].medications.split('\n');
-                            for(var l=0; l < 4; l++){ %>
-                            <%=v[l]%><br>
-                          <%}%>
-                        </td>
-                      </tr>
-                    <%}%>
+
                   </table>
                 </div>
               </div>
