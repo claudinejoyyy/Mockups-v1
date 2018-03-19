@@ -11,9 +11,10 @@
       }
   </style>
   </head>
-  <body class="hold-transition skin-blue fixed sidebar-mini">
+  <body class="hold-transition skin-blue fixed sidebar-mini" onload="myFunction()">
+    <div id="loader"></div>
     <div class="wrapper">
-  <header class="main-header">
+    <header class="main-header">
 
     <!-- Logo -->
     <a href="../dashboard" class="logo">
@@ -91,7 +92,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="dashboard" target="_self"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li id="dashboard" class="active"><a href="dashboard" target="_self"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li><a href="patientmanagement"><i class="fa fa-users"></i> <span>Patient Management</span></a></li>
         <li><a href="bedManagement"><i class="fa fa-bed"></i> <span>Bed Management</span></a></li>   
         <li><a href="userAccountsManagement"><i class="fa fa-user"></i> <span>User Accounts Management</span></a></li>
@@ -101,7 +102,7 @@
         <!-- /.sidebar -->
       </aside>
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+      <div class="content-wrapper"  id="myDiv1">
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
@@ -111,7 +112,7 @@
         </section>
 
         <!-- Main content -->
-        <section class="content">
+        <section class="content animate-bottom">
           <!-- Small boxes (Stat box) -->
           <div class="row">
             <div class="col-lg-3 col-xs-6">
@@ -636,3 +637,4 @@
         $(".select2").select2();
     });
 </script>
+      

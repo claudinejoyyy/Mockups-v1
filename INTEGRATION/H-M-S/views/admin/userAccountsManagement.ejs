@@ -29,7 +29,8 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue sidebar-mini fixed">
+<body class="hold-transition skin-blue sidebar-mini fixed" onload="myFunction()">
+<div id="loader"></div>
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -129,7 +130,7 @@ desired effect
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" id="myDiv1">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -145,7 +146,7 @@ desired effect
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content animate-bottom">
 
        <div class="row">
         <div class="col-xs-12">
