@@ -138,7 +138,7 @@
                 <td><%= p[i].medicines %></td>
 
                 <td>
-                  <button type="button" name="button" data-toggle="modal" data-target="#showInputPassword" onclick="PasswordInput(<%= p[i].patient_id %>)">view</button>
+                  <button type="button" class="btn btn-primary btn-sm" name="button" data-toggle="modal" data-target="#showInputPassword" onclick="PasswordInput(<%= p[i].patient_id %>)"><i class="fa fa-eye"></i> View</button>
                 </td>
               </tr>
               <%}%>
@@ -216,7 +216,7 @@
 
       <% include ../partials/footer.ejs %>
       <div class="modal fade" id="showInputPassword" role="dialog" aria-labelledby="labRequestlabel">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-sm" role="document">
           <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -226,7 +226,7 @@
               <div id="PasswordInput" style="display:none">
                 <form id="dynamicActionPassword" method="post">
                   Password: <input type="password" name="patientPassword">
-                  <button type="submit" name="sub" value="pass">enter</button>
+                  <button type="submit" name="sub" class="btn btn-default btn-sm pull-right" value="pass"><i class="fa fa-sign-in"></i> Enter</button>
                 </form>
               </div>
 
