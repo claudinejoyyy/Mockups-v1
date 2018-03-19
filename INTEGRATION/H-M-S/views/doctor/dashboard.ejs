@@ -433,20 +433,41 @@
               </div>
               <div class="modal-body">
                 <form name="setAppointmentForm" class="horizontal" method="post" onsubmit="successAlert()">
-                  <div id="showAppointmentForm" style='display:inline-block;'>
-                    <select name="appointmentPatientID"class="" name="">
-                      <%for(var i = 0; i < patientList.length; i++){%>
-                        <option value="<%= patientList[i].patient_id%>"><%= patientList[i].name%></option>
-                      <%}%>
-                    </select>
-                    <input type="datetime-local" name="dateNtime" min="2000-10-06T00:00:00" max="9000-11-16T21:25:33" required>
+<!--                  <div id="showAppointmentForm" style='display:inline-block;'>-->
+                    <div class="form-group">
+                      <label for="inputPatientType" class="col-sm-2 control-label">Patient</label>
+                      <div class="col-sm-10">
+                        <select name="appointmentPatientID" class="form-control select2" style="width: 100%;" name="">
+                          <%for(var i = 0; i < patientList.length; i++){%>
+                            <option value="<%= patientList[i].patient_id%>"><%= patientList[i].name%></option>
+                          <%}%>
+                        </select>
+                      </div>
+                    </div>
                     <br>
-                    <textarea name="appointmentRemarks" rows="12" cols="80" required></textarea>
+                    <br>
+                    <div class="form-group">
+                      <label for="inputPatientType" class="col-sm-2 control-label">Date</label>
+                      <div class="col-sm-10">
+                        <input type="datetime-local" class="form-control" name="dateNtime" min="2000-10-06T00:00:00" max="9000-11-16T21:25:33" required>
+                      </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                      <label for="inputPatientType" class="col-sm-2 control-label">Remarks</label>
+                      <div class="col-sm-10">
+                        <textarea name="appointmentRemarks" class="form-control" rows="2" cols="80" required></textarea>
+                      </div>
+                    </div>
+                    <br>
+                    <br>
+                    
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                       <button type="submit" name="sub" value="appointment" class="btn btn-primary">Confirm</button>
                     </div>
-                  </div>
+<!--                  </div>-->
                 </form>
               </div>
 
