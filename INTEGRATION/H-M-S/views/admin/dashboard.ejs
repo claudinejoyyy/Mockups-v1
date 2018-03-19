@@ -445,11 +445,11 @@
      */
     var data = [], totalPoints = <%= counts[0].totalRegisteredPatients%>;
     var donutData = [
-      {label: "MD", data: <%= chart[0].military_dependent%>, color: "red"},
-      {label: "CE", data: <%= chart[0].civilian%>, color: "yellow"},
-      {label: "MO", data: <%= chart[0].military_officer%>, color: "aqua"},
-      {label: "C", data: <%= chart[0].cadet%>, color: "gray"},
-      {label: "AC", data: <%= chart[0].authorized_civilian%>, color: "blue"}
+      {label: "", data: <%= chart[0].military_dependent%>, color: "red"},
+      {label: "", data: <%= chart[0].civilian%>, color: "yellow"},
+      {label: "", data: <%= chart[0].military_officer%>, color: "aqua"},
+      {label: "", data: <%= chart[0].cadet%>, color: "gray"},
+      {label: "", data: <%= chart[0].authorized_civilian%>, color: "blue"}
     ];
     $.plot("#donut-chart1", donutData, {
       series: {
