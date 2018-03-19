@@ -1,4 +1,4 @@
-module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,patientManagementSQL,bcrypt,moment){
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,patientManagementSQL,bcrypt,io,moment){
 var user, Aid, availableBedss, p;
 
   app.get('/doctor/dashboard', function(req, res){
@@ -54,7 +54,7 @@ var user, Aid, availableBedss, p;
                     console.log(err);
                   }
                 });
-                res.redirect(req.get('referer'))
+                res.redirect(req.get('referer'));
 
               } else if(data.sub == 'appointment') {
                     var splitDateNTime = data.dateNtime.split('T');

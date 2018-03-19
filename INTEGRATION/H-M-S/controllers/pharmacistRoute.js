@@ -1,4 +1,4 @@
-module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList){
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,io,moment){
 var user, Aid;
 
   app.get('/pharmacist/dashboard', function(req, res){
@@ -55,7 +55,7 @@ var user, Aid;
               console.log(err);
             }
           });
-          res.redirect(req.get('referer'))
+          res.redirect(req.get('referer'));
 
         } else if(data.sub == 'appointment') {
               var splitDateNTime = data.dateNtime.split('T');
