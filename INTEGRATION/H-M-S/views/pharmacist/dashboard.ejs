@@ -159,9 +159,7 @@
           <div class="box box-primary">
             <div class="box-header">
               <i class="ion ion-clipboard"></i>
-
               <h3 class="box-title">To Do List</h3>
-
               <div class="box-tools pull-right">
                 <ul class="pagination pagination-sm inline">
                   <li><a href="#">&laquo;</a></li>
@@ -172,37 +170,32 @@
                 </ul>
               </div>
             </div>
-
             <div class="box-body">
               <ul class="todo-list">
-              	<%for(var i=0; i < todoList.length; i++){%>
+                <%for(var i=0; i < todoList.length; i++){%>
+                  <%if(new Date() < new Date(todoList[i].date)) {%>
                 <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="">
+                  <span class="handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                  </span>
                   <span class="text"><%= todoList[i].description%>:</span>
-                  <small class="label label-success"><i class="fa fa-clock-o"></i><%= moment(todoList[i].date).format('MMM-DD-YYYY HH:mm')%></small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
+                  <%if(todoList[i].status == 'general'){%>
+                  <small class="label label-info"><i class="fa fa-clock-o"></i><%= moment(new Date(todoList[i].date)).format('YYYY-MM-DD HH:mm:ss')%></small>
+                  <%} else{%>
+                  <small class="label label-danger"><i class="fa fa-clock-o"></i><%= moment(new Date(todoList[i].date)).format('YYYY-MM-DD HH:mm:ss')%></small>
+                  <%}%>
+                  <form action="/nurse/dashboard?tId=<%= todoList[i].todo_id%>" method="POST">
+                    <button type="submit" name="sub" value="delToDo">Delete</button>
+                  </form>
                 </li>
+                <%}%>
                 <%}%>
               </ul>
             </div>
 
             <div class="box-footer clearfix no-border">
-           	<button type="button" name="button" onclick="showTodo()" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-				<form method="POST" name="parseDateNTime()">
-					<div id="showTodo" style="display:none;">
-						<textarea name="description" rows="8" cols="80"></textarea>
-						<br>
-						<input type="datetime-local" name="dateNtime">
-						<button type="submit" name="sub" value="addTodo">Save</button>
-					</div>
-				</form>
+              <button type="button" name="button" onclick="showTodo()" class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal4"><i class="fa fa-plus" data-target="#myModal4"></i> Add item</button>
             </div>
           </div>
 
@@ -231,6 +224,51 @@
             </div>
         </section>
 
+      </div>
+
+      <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel1">To Do List</h4>
+            </div>
+
+            <div class="modal-body">
+              <form method="POST" onsubmit="parseDateNTime()" class="form-horizontal" id="showTodo">
+                  <div class="form-group">
+                    <label for="description" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="description" name="description" data-parsley-required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="todoStatus" class="col-sm-2 control-label">Status</label>
+                    <div class="col-sm-3">
+                      <select name="todoStatus" class="form-control">
+                        <option value="general">General</option>
+                        <option value="urgent">Urgent</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="dateNtime" class="col-sm-2 control-label">Date and Time</label>
+                    <div class="col-sm-5">
+                      <input type="datetime-local" name="dateNtime" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" name="sub" value="addTodo">Add</button>
+                  </div>
+
+              </form>
+            </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </section>
