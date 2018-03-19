@@ -96,10 +96,10 @@
       </form>
 
       <ul class="sidebar-menu">
-        <li class="active"><a href="../pharmacist/dashboard" target="_self"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-        <li><a href=../pharmacist/prescriptionManagement><i class="fa fa-link"></i> <span> Prescriptions Management </span></a></li>
-        <li><a href=../pharmacist/patientManagement><i class="fa fa-link"></i> <span> Patient Management </span></a></li>
-        <li><a href=../pharmacist/profileManagement><i class="fa fa-link"></i> <span> Profile Management</span></a></li>
+        <li class="active"><a href="../pharmacist/dashboard" target="_self"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li><a href=../pharmacist/prescriptionManagement><i class="fa fa-plus-square"></i> <span> Prescriptions Management </span></a></li>
+        <li><a href=../pharmacist/patientManagement><i class="fa fa-users"></i> <span> Patient Management </span></a></li>
+        <li><a href=../pharmacist/profileManagement><i class="fa fa-info"></i> <span> Profile Management</span></a></li>
         <li><a href=../pharmacist/reports><i class="fa fa-link"></i> <span> Reports </span></a></li>
       </ul>
     </section>
@@ -135,7 +135,7 @@
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="../pharmacist/prescriptionManagement" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a data-toggle="modal" data-target="#acceptModal" class="btn small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -148,7 +148,7 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="../pharmacist/prescriptionManagement" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a data-toggle="modal" data-target="#pendingModal" class="btn small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -266,9 +266,94 @@
 
               </form>
             </div>
+
             </div>
           </div>
         </div>
+
+        <div class="modal fade" id="acceptModal" role="dialog" aria-labelledby="myModalLabel2">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel2">Ward Information</h4>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <table class="table table-striped table-bordered">
+                    <tr>
+                      <th>Counter</th>
+                      <th>Date</th>
+                      <th>Patient Type</th>
+                      <th>Name</th>
+                      <th>Age</th>
+                      <th>Medications</th>
+                      <th>Status</th>
+                    </tr>
+                    <%for (var i = 0; i < confirmedprescriptionSQL.length; i++) {%>
+                      <tr>
+                        <td><%=i+1%></td>
+                        <td><%=confirmedprescriptionSQL[i].creation_stamp%></td>
+                        <td><%=confirmedprescriptionSQL[i].patient_type%></td>
+                        <td><%=confirmedprescriptionSQL[i].name%></td>
+                        <td><%=confirmedprescriptionSQL[i].age%></td>
+                        <td>
+                          <%var v = confirmedprescriptionSQL[i].medications.split('\n');
+                            for(var l=0; l < 4; l++){ %>
+                            <%=v[l]%><br>
+                          <%}%>
+                        </td>
+                        <td><span class="label label-success">Confirmed</span></td>
+                      </tr>
+                    <%}%>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="pendingModal" role="dialog" aria-labelledby="myModalLabel3">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel3">Pending Precriptions</h4>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <table class="table table-striped table-bordered">
+                    <tr>
+                      <th>Counter</th>
+                      <th>Date</th>
+                      <th>Patient Type</th>
+                      <th>Name</th>
+                      <th>Age</th>
+                      <th>Medications</th>
+                      <th>Action</th>
+                    </tr>
+                    <%for (var i = 0; i < prescriptionDetails.length; i++) { %>
+                      <tr>
+                        <td><%=i+1%></td>
+                        <td><%=prescriptionDetails[i].creation_stamp%></td>
+                        <td><%=prescriptionDetails[i].patient_type%></td>
+                        <td><%=prescriptionDetails[i].name%></td>
+                        <td><%=prescriptionDetails[i].age%></td>
+                        <td>
+                          <%var v = prescriptionDetails[i].medications.split('\n');
+                            for(var l=0; l < 4; l++){ %>
+                            <%=v[l]%><br>
+                          <%}%>
+                        </td>
+                      </tr>
+                    <%}%>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </section>
