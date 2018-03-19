@@ -44,9 +44,9 @@ desired effect
     <!-- Logo -->
     <a href="../dashboard" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b></span>
+      <span class="logo-mini"><b><%= username[0].account_type.charAt(0).toUpperCase()%></b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b><%= username[0].account_type.charAt(0).toUpperCase()%></b></span>
+      <span class="logo-lg"><b><%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%></b></span>
     </a>
 
     <!-- Header Navbar -->
@@ -58,6 +58,7 @@ desired effect
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
+          <!-- /.messages-menu -->
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -77,10 +78,10 @@ desired effect
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="../profileManagement" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href='../logout' class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -122,8 +123,10 @@ desired effect
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <!-- Optionally, you can add icons to the links -->
+      <ul class="sidebar-menu">
         <li><a href="dashboard" target="_self"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li class="active"><a href="patientmanagement"><i class="fa fa-users"></i> <span>Patient Management</span></a></li>
+        <li><a href="bedManagement"><i class="fa fa-bed"></i> <span>Bed Management</span></a></li>   
         <li><a href="userAccountsManagement"><i class="fa fa-user"></i> <span>User Accounts Management</span></a></li>
         <li><a href="profileManagement"><i class="fa fa-info"></i> <span>Profile Management</span></a></li>
       </ul>
