@@ -2,6 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <%include ../partials/header.ejs%>
+    <script src="/notif-lab.js"></script>
+
     <title>Prescription Management</title>
     <style media="screen">
       table {
@@ -51,7 +54,10 @@
           <td><%=pendingLabRequestSQL[i].remarks%></td>
           <td><%=pendingLabRequestSQL[i].lab_status%></td>
           <form action="/laboratorist/labRequestManagement?requestId=<%=pendingLabRequestSQL[i].request_id%>&labrequestPatientName=<%=pendingLabRequestSQL[i].name%>" method="post">
-            <td><button type="submit">confirm</button></td>
+            <td>
+              <button name="sub" value="confirm" type="submit">confirm</button>
+              <button name="sub" value="cancel" type="submit">cancel</button>
+            </td>
           </form>
         </tr>
       <%}%>

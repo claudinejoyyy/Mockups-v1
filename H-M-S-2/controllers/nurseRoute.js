@@ -37,7 +37,7 @@ var fhSQL       = "SELECT name FROM family_history;";
             if (err) {
               console.log(err);
             }
-            io.emit('type', {what:'assess',message:'Received Assessment for '+nameForEmit[1]+'.'});
+            io.emit('type', {what:'assess',message:'Received Assessment for '+nameForEmit[1]+', sent by Dr. <strong>'+req.session.name+'</strong>'});
           });
           res.redirect(req.get('referer'));
         } else if(data.sub == "add") {

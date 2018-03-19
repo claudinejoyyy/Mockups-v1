@@ -2,7 +2,7 @@ var socket = io();
 
 $(document).ready(function(){
   socket.on('type', function(value){
-    if (value.what == 'labReuqest') {
+    if (value.what == 'lab') {
       $.notify({
           title: '<strong>New Lab Request</strong><br>',
           message: value.message,

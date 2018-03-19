@@ -1,5 +1,7 @@
-module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList){
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,io){
 var user, Aid;
+var prescriptionSQL = 'SELECT CONCAT("medicine:",medicine,"\nquantity:",quantity,"\ndosage:", dosage,"\ntimeframe:", timeframe) AS medications, p.status as STATUS,creation_stamp,patient_type,name,age,prescription_id from prescription p inner join patient using(patient_id) where p.status = "pending";';
+var confirmedprescriptionSQL = 'SELECT CONCAT("medicine:",medicine,"\nquantity:",quantity,"\ndosage:", dosage,"\ntimeframe:", timeframe) AS medications, p.status as STATUS,creation_stamp,patient_type,name,age,prescription_id from prescription p inner join patient using(patient_id) where p.status = "confirmed";';
 
   app.get('/pharmacist/dashboard', function(req, res){
     if(req.session.email && req.session.sino == 'pharmacist'){
@@ -9,12 +11,12 @@ var user, Aid;
         var acceptedRequestSQL = 'SELECT * from prescription r inner join patient p using(patient_id) where r.status="confirmed";';
         var pendingRequestSQL  = 'SELECT * from prescription r inner join patient p using(patient_id) where r.status="pending";';
         var todoList           = "SELECT * from todo_list where account_id = "+Aid+";";
-        db.query(prescriptionSQL + acceptedRequestSQL + pendingRequestSQL + todoList + monthlyPatientCount + name, Aid, function(err, rows){
+        db.query(prescriptionSQL + acceptedRequestSQL + pendingRequestSQL + todoList + monthlyPatientCount + name + prescriptionSQL + confirmedprescriptionSQL, Aid, function(err, rows){
           if (err) {
             console.log(err);
           } else {
             user = rows[5];
-            res.render('pharmacist/dashboard', {prescriptionInfo:rows[0], accepted:rows[1], pending:rows[2], todoList:rows[3], monthlyPatientCount:rows[4], username:user});
+            res.render('pharmacist/dashboard', {prescriptionInfo:rows[0], accepted:rows[1], pending:rows[2], todoList:rows[3], monthlyPatientCount:rows[4], prescriptionDetails:rows[6], confirmedprescriptionSQL:rows[7], username:user});
           }
         });
       } else {
@@ -66,50 +68,10 @@ var user, Aid;
           res.redirect('../login');
       }
     });
-    //APPOINTMENT
-    app.get('/pharmacist/appointmentManagement', function(req, res){
-      if(req.session.email && req.session.sino == 'pharmacist'){
-        if(req.session.sino == 'pharmacist'){
-          var appointmentSQL = 'SELECT * from appointment a inner join patient using(patient_id) where doctor_id = '+Aid+';';
-
-          db.query(appointmentSQL, function(err, rows){
-            if (err) {
-              console.log(err);
-            } else {
-              res.render('pharmacist/appointmentManagement', {appointmentDetails:rows, username:user});
-            }
-          });
-        } else {
-          res.redirect(req.session.sino+'/dashboard');
-        }
-      } else {
-          res.redirect('../login');
-      }
-    });
-    app.post('/pharmacist/appointmentManagement', function(req, res){
-      if(req.session.email && req.session.sino == 'pharmacist'){
-        if(req.session.sino == 'pharmacist') {
-          var cancelAppointmentSQL = 'DELETE from appointment where appointment_id = '+req.query.appointmentId+';';
-          db.query(cancelAppointmentSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "cancelAppointment", "Canceled appointment with: '+req.query.appointmentPatientName+'");', function(err){
-            if(err){
-              console.log(err);
-            } else {
-              res.redirect(req.get('referer'));
-            }
-          });
-        } else {
-          res.redirect(req.session.sino+'/dashboard');
-        }
-      } else {
-        res.redirect('../login');
-      }
-    });
     //PRESCRIPTION
     app.get('/pharmacist/prescriptionManagement', function(req, res){
       if(req.session.email && req.session.sino == 'pharmacist'){
         if(req.session.sino == 'pharmacist'){
-          var prescriptionSQL = 'SELECT CONCAT("medicine:",medicine,"\nquantity:",quantity,"\ndosage:", dosage,"\ntimeframe:", timeframe) AS medications, p.status as STATUS,creation_stamp,patient_type,name,age,prescription_id from prescription p inner join patient using(patient_id) where p.status = "pending";';
-          var confirmedprescriptionSQL = 'SELECT CONCAT("medicine:",medicine,"\nquantity:",quantity,"\ndosage:", dosage,"\ntimeframe:", timeframe) AS medications, p.status as STATUS,creation_stamp,patient_type,name,age,prescription_id from prescription p inner join patient using(patient_id) where p.status = "confirmed";';
           db.query(prescriptionSQL + confirmedprescriptionSQL, function(err, rows){
             if (err) {
               console.log(err);
@@ -125,16 +87,31 @@ var user, Aid;
       }
     });
     app.post('/pharmacist/prescriptionManagement', function(req, res){
+      var data = req.body;
       if(req.session.email && req.session.sino == 'pharmacist'){
         if(req.session.sino == 'pharmacist') {
-          var confirmPrescriptionSQL = 'UPDATE prescription set status = "confirmed" where prescription_id = '+req.query.prescriptionId+';';
-          db.query(confirmPrescriptionSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "approvedPrescription", "Approved prescription for: '+req.query.prescriptionPatientName+'");', function(err){
-            if(err){
-              console.log(err);
-            } else {
-              res.redirect(req.get('referer'));
-            }
-          });
+          if (data.sub == 'confirm') {
+            var confirmPrescriptionSQL = 'UPDATE prescription set status = "confirmed" where prescription_id = '+req.query.prescriptionId+';';
+            db.query(confirmPrescriptionSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "approvedPrescription", "Approved prescription for: '+req.query.prescriptionPatientName+'");', function(err){
+              if(err){
+                console.log(err);
+              } else {
+                io.emit('type', {what:'confirmedPrescription',message:'Confirmed Prescription for <strong>'+req.query.prescriptionPatientName+'</strong>'});
+                res.redirect(req.get('referer'));
+              }
+            });
+          } else {
+            var cancelPrescriptionSQL = 'DELETE FROM prescription where prescription_id = '+req.query.prescriptionId+';';
+            db.query(cancelPrescriptionSQL + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+Aid+',"'+currentTime+'", "cancelPrescription", "Cancelled prescription for: '+req.query.prescriptionPatientName+'");', function(err){
+              if(err){
+                console.log(err);
+              } else {
+                io.emit('type', {what:'cancelPrescription',message:'Confirmed Lab Request for <strong>'+req.query.prescriptionPatientName+'</strong>'});
+                res.redirect(req.get('referer'));
+              }
+            });
+
+          }
         } else {
           res.redirect(req.session.sino+'/dashboard');
         }

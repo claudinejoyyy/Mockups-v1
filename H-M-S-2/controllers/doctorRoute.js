@@ -1,4 +1,4 @@
-module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,patientManagementSQL,bcrypt){
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,patientManagementSQL,bcrypt,io){
 var user, Aid, availableBedss, p;
 
   app.get('/doctor/dashboard', function(req, res){
@@ -102,6 +102,7 @@ var user, Aid, availableBedss, p;
               if (err) {
                 console.log(err);
               } else {
+                io.emit('type', {what:'prescribe',message:'Received Prescription for '+req.query.patient_name+', sent by Dr. <strong>'+req.session.name+'</strong>'});
                 res.redirect(req.get('referer'));
               }
             });
@@ -111,6 +112,7 @@ var user, Aid, availableBedss, p;
               if (err) {
                 console.log(err);
               } else {
+                io.emit('type', {what:'lab',message:'Received Lab Request for '+req.query.patient_name+', sent by Dr. <strong>'+req.session.name+'</strong>'});
                 res.redirect(req.get('referer'));
               }
             });
