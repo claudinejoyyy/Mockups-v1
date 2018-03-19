@@ -180,7 +180,13 @@ desired effect
                           <td><%=prescriptionDetails[i].patient_type%></td>
                           <td><%=prescriptionDetails[i].name%></td>
                           <td><%=prescriptionDetails[i].age%></td>
-                          <td><%=prescriptionDetails[i].medications%></td>
+                          <td>
+                              <%
+                          var vitals = prescriptionDetails[i].medications.split('\n');
+                          for(var l=0; l < 5; l++){ %>
+                            <%=vitals[l]%><br>
+                        <%}%>
+                            </td>
                           <td><%=prescriptionDetails[i].STATUS%></td>
                           <form action="/doctor/prescriptionManagement?prescriptionId=<%=prescriptionDetails[i].prescription_id%>&prescriptionPatientName=<%=prescriptionDetails[i].name%>" method="post">
                               <td align="left"><button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-remove"></i> Cancel</button> <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add New Prescription</button></td>
