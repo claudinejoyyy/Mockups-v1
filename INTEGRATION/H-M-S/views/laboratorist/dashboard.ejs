@@ -14,19 +14,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
-
   <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
       <!-- DataTables -->
   <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
-
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini fixed">
 <div class="wrapper">
   <header class="main-header">
     <a href="index2.html" class="logo">
-      <span class="logo-mini"><b>LAB</b></span>
-      <span class="logo-lg"><b>Laboratorist</b></span>
+      <span class="logo-mini"><b><%= username[0].account_type.charAt(0).toUpperCase()%></b></span>
+      <span class="logo-lg"><b><%= username[0].account_type.charAt(0).toUpperCase() + username[0].account_type.slice(1);%></b></span>
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -43,7 +41,7 @@
               <li class="user-header">
                 <img src="../dist/img/sample prof pic.jpg" class="img-circle" alt="User Image">
                 <p>
-                  <%= username[0].name%> - Laboratorist
+                  <%= username[0].name %> - <%= username[0].account_type %>
                   <small></small>
                 </p>
               <li class="user-footer">
@@ -72,7 +70,6 @@
           <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
         </div>
       </div>
-
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -91,21 +88,13 @@
   </aside>
 
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Dashboard
-        <small>Control panel</small>
-      </h1>
-    </section>
-
+    <section class="content-header"></section>
     <section class="content">
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3><%= diagnosisSQL.length%></h3>
-
               <p>Total Pending Diagnosis Tests</p>
             </div>
             <div class="icon">
@@ -114,13 +103,10 @@
             <a href="../laboratorist/labRequestManagement" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
               <h3><%= bloodChemistrySQL.length%></h3>
-
               <p>Blood Chemistry</p>
             </div>
             <div class="icon">
@@ -129,13 +115,10 @@
             <a onclick="showBloodChem()" class="small-box-footer" data-toggle="modal" data-target="#bloodChem">More info <i class="fa fa-arrow-circle-right"  data-target="#bloodChem"></i></a>
           </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3><%= hermatology.length%></h3>
-
               <p>Hematology</p>
             </div>
             <div class="icon">
@@ -144,13 +127,10 @@
             <a onclick="showHerma()" class="small-box-footer" data-toggle="modal" data-target="#herma">More info <i class="fa fa-arrow-circle-right" data-target="#herma"></i></a>
           </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
               <h3><%= microscopy.length%></h3>
-
               <p>Microscopy</p>
             </div>
             <div class="icon">
@@ -159,13 +139,10 @@
             <a onclick="showMicroscopy()" class="small-box-footer" data-toggle="modal" data-target="#micro">More info <i class="fa fa-arrow-circle-right" data-target="#micro"></i></a>
           </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
           <div class="small-box bg-orange">
             <div class="inner">
               <h3><%= parasitology.length%></h3>
-
               <p>Parasitology</p>
             </div>
             <div class="icon">
@@ -174,13 +151,10 @@
             <a onclick="showParasitology()" class="small-box-footer" data-toggle="modal" data-target="#para">More info <i class="fa fa-arrow-circle-right" data-target="#para"></i></a>
           </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
           <div class="small-box bg-gray">
             <div class="inner">
               <h3><%= serology.length%></h3>
-
               <p>Serology</p>
             </div>
             <div class="icon">
@@ -189,13 +163,10 @@
             <a onclick="showSerology()" class="small-box-footer" data-toggle="modal" data-target="#sero">More info <i class="fa fa-arrow-circle-right" data-target="#sero"></i></a>
           </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
           <div class="small-box bg-purple">
             <div class="inner">
               <h3><%= microbiology.length%></h3>
-
               <p>Microbiology</p>
             </div>
             <div class="icon">
@@ -204,14 +175,10 @@
             <a onclick="showMicrobiology()" class="small-box-footer" data-toggle="modal" data-target="#microBio">More info <i class="fa fa-arrow-circle-right" data-target="#microBio"></i></a>
           </div>
         </div>
-        <!-- ./col -->
-        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
               <h3><%= xRay.length%></h3>
-
               <p>X-Ray</p>
             </div>
             <div class="icon">
@@ -220,17 +187,14 @@
             <a onclick="showXray()" class="small-box-footer" data-toggle="modal" data-target="#xray">More info <i class="fa fa-arrow-circle-right" data-target="#xray"></i></a>
           </div>
         </div>
-        <!-- ./col -->
       </div>
 
       <div class="row">
-           <!-- TO DO List -->
+        <section class="col-lg-12 connectedSortable">
           <div class="box box-primary">
             <div class="box-header">
               <i class="ion ion-clipboard"></i>
-
               <h3 class="box-title">To Do List</h3>
-
               <div class="box-tools pull-right">
                 <ul class="pagination pagination-sm inline">
                   <li><a href="#">&laquo;</a></li>
@@ -241,41 +205,34 @@
                 </ul>
               </div>
             </div>
-
             <div class="box-body">
               <ul class="todo-list">
-              	<%for(var i=0; i < todoList.length; i++){%>
+                <%for(var i=0; i < todoList.length; i++){%>
+                  <%if(new Date() < new Date(todoList[i].date)) {%>
                 <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="">
+                  <span class="handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                  </span>
                   <span class="text"><%= todoList[i].description%>:</span>
-                  <small class="label label-success"><i class="fa fa-clock-o"></i><%= moment(todoList[i].date).format('MMM-DD-YYYY HH:mm')%></small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
+                  <%if(todoList[i].status == 'general'){%>
+                  <small class="label label-info"><i class="fa fa-clock-o"></i><%= moment(new Date(todoList[i].date)).format('YYYY-MM-DD HH:mm:ss')%></small>
+                  <%} else{%>
+                  <small class="label label-danger"><i class="fa fa-clock-o"></i><%= moment(new Date(todoList[i].date)).format('YYYY-MM-DD HH:mm:ss')%></small>
+                  <%}%>
+                  <form action="/nurse/dashboard?tId=<%= todoList[i].todo_id%>" method="POST">
+                    <button type="submit" name="sub" value="delToDo">Delete</button>
+                  </form>
                 </li>
                 <%}%>
+                <%}%>
               </ul>
-            </div>
-
             <div class="box-footer clearfix no-border">
-           	<button type="button" name="button" onclick="showTodo()" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-				        <form method="POST" name="parseDateNTime()">
-        					<div id="showTodo" style="display:none;">
-        						<textarea name="description" rows="8" cols="80"></textarea>
-        						<br>
-        						<input type="datetime-local" name="dateNtime">
-        						<button type="submit" name="sub" value="addTodo">Save</button>
-        					</div>
-				        </form>
+              <button type="button" name="button" onclick="showTodo()" class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal4"><i class="fa fa-plus" data-target="#myModal4"></i> Add item</button>
             </div>
           </div>
+          </div>
 
-          <!-- AREA CHART -->
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Patient Count</h3>
@@ -313,7 +270,6 @@
     <div class="control-sidebar-bg"></div>
 </div>
 
-
 <!---------------------------------------------------------------------------------------------- Modal for  Blood Chemistry ----------->
   <div class="modal fade" id="bloodChem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
      <div class="modal-dialog" role="document">
@@ -338,9 +294,7 @@
                <%}%>
          </table>
        </div>
-       <!-- /.box-body -->
      </div>
-     <!-- /.box -->
    </div>
   </div>
 
@@ -368,11 +322,8 @@
                  <%}%>
            </table>
          </div>
-         <!-- /.box-body -->
        </div>
-       <!-- /.box -->
      </div>
-     <!-- /.col -->
     </div>
 
     <!---------------------------------------------------------------------------------------------- Modal for  Microscopy ----------->
@@ -399,11 +350,8 @@
                    <%}%>
              </table>
            </div>
-           <!-- /.box-body -->
          </div>
-         <!-- /.box -->
        </div>
-       <!-- /.col -->
       </div>
 
       <!---------------------------------------------------------------------------------------------- Modal for  Parasitology ----------->
@@ -430,11 +378,8 @@
                      <%}%>
                </table>
              </div>
-             <!-- /.box-body -->
            </div>
-           <!-- /.box -->
          </div>
-         <!-- /.col -->
         </div>
 
         <!---------------------------------------------------------------------------------------------- Modal for  Serology ----------->
@@ -461,11 +406,8 @@
                        <%}%>
                  </table>
                </div>
-               <!-- /.box-body -->
              </div>
-             <!-- /.box -->
            </div>
-           <!-- /.col -->
           </div>
 
           <!---------------------------------------------------------------------------------------------- Modal for  Microbiology ----------->
@@ -492,11 +434,8 @@
                          <%}%>
                    </table>
                  </div>
-                 <!-- /.box-body -->
                </div>
-               <!-- /.box -->
              </div>
-             <!-- /.col -->
             </div>
 
             <!---------------------------------------------------------------------------------------------- Modal for  XRay ----------->
@@ -523,13 +462,57 @@
                            <%}%>
                      </table>
                    </div>
-                   <!-- /.box-body -->
                  </div>
-                 <!-- /.box -->
                </div>
-               <!-- /.col -->
               </div>
+              <!------------------------------------------------------------------------------------------ /Modal-->
 
+              <!---------------------------------------------------------------------------------------------- Modal of To Do List ----------->
+              <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel1">To Do List</h4>
+                    </div>
+
+                    <div class="modal-body">
+                      <form method="POST" onsubmit="parseDateNTime()" class="form-horizontal" id="showTodo">
+                          <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="description" name="description" data-parsley-required>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="todoStatus" class="col-sm-2 control-label">Status</label>
+                            <div class="col-sm-3">
+                              <select name="todoStatus" class="form-control">
+                                <option value="general">General</option>
+                                <option value="urgent">Urgent</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="dateNtime" class="col-sm-2 control-label">Date and Time</label>
+                            <div class="col-sm-5">
+                              <input type="datetime-local" name="dateNtime" class="form-control">
+                            </div>
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" name="sub" value="addTodo">Add</button>
+                          </div>
+
+                      </form>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!------------------------------------------------------------------------------------------ /Modal-->
 
     <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -567,27 +550,14 @@
     <script src="../dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="../dist/js/demo.js"></script>
-
     <script src="../plugins/chartjs/Chart.min.js"></script>
 
   </body>
 </html>
 <script>
 $(function () {
-    /* ChartJS
-     * -------
-     * Here we will create a few charts using ChartJS
-     */
-
-    //--------------
-    //- AREA CHART -
-    //--------------
-
-    // Get context with jQuery - using jQuery's .get() method.
     var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
-    // This will get the first returned node in the jQuery collection.
     var areaChart = new Chart(areaChartCanvas);
-
     var areaChartData = {
       labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September" ,"October", "November", "December"],
       datasets: [
