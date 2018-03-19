@@ -151,7 +151,7 @@
                     <%} else if (activityInfo[i].type == 'bedDischarge'){ %>
                       <i class="fa fa-sign-out bg-blue"></i>
                       <div class="timeline-item">
-                    <%} else if (activityInfo[i].type == 'approvedLabRequest'){ %>
+                    <%} else if (activityInfo[i].type == 'confirmedLabRequest'){ %>
                       <i class="fa fa-share bg-orange"></i>
                       <div class="timeline-item">
                     <%} else if (activityInfo[i].type == 'cancelLabRequest'){ %>
@@ -197,7 +197,7 @@
                 </ul>
                 <%}%>
               </div>
-              
+
               <div class="tab-pane" id="settings">
                 <form class="form-horizontal" method="POST" id="setting" style="display:none;">
                   <div class="form-group">
