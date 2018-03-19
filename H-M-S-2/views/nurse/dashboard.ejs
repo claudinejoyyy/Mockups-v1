@@ -93,20 +93,11 @@
     <button type="button" name="button" onclick="showTodo()">add item</button>
     <br>
     <%for(var i=0; i < todoList.length; i++){%>
-        <h3 style="display:inline-block;"><%= todoList[i].description%>:</h3>
-        <h5 style="display:inline-block; font-style:italic;"><%= todoList[i].date%></h5>
-        <form action="/nurse/dashboard?tId=<%= todoList[i].todo_id%>" method="POST">
-          <button type="submit" name="sub" value="delToDo">del</button>
-        </form>
+        <h3 style="display:inline-block;"><%= todoList[i].description%>:</h3> <h5 style="display:inline-block; font-style:italic;"><%= todoList[i].date%></h5>
         <br>
     <%}%>
     <form method="POST" onsubmit="parseDateNTime()">
       <div id="showTodo" style="display:none;">
-        <select name="todoStatus">
-          <option value="general">general</option>
-          <option value="urgent">urgent</option>
-        </select>
-        <br>
         <textarea name="description" rows="8" cols="80"></textarea>
         <br>
         <input type="datetime-local" name="dateNtime">

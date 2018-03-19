@@ -98,8 +98,7 @@
     <button type="button" name="button" onclick="showTodo()">add item</button>
     <br>
     <%for(var i=0; i < todoList.length; i++){%>
-        <h3 style="display:inline-block;"><%= todoList[i].description%>:</h3>
-        <h5 style="display:inline-block; font-style:italic;"><%= todoList[i].date%></h5>
+        <h3 style="display:inline-block;"><%= todoList[i].description%>:</h3> <h5 style="display:inline-block; font-style:italic;"><%= todoList[i].date%></h5>
         <br>
     <%}%>
     <form method="POST" name="parseDateNTime()">

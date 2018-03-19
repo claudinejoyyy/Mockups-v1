@@ -1,4 +1,4 @@
-module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,doctorList,patientManagementSQL,io,moment){
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,doctorList,patientManagementSQL,io){
 var user, Aid;
 var immuSQL     = "SELECT name FROM immunization;";
 var fhSQL       = "SELECT name FROM family_history;";
@@ -103,30 +103,17 @@ var fhSQL       = "SELECT name FROM family_history;";
               });
         } else if (data.sub == 'addTodo') {
               var splitDateNTime = data.dateNtime.split('T');
-              var parseDateNTime = splitDateNTime[0]+' '+splitDateNTime[1];
-              var todoLog = '';
-              console.log(parseDateNTime);
-              console.log(dateNtime);
-              if (data.todoStatus == 'urgent') {
-                todoLog = 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "urgentTodo", "Added to do urgent: '+data.description+'");';
-              } else if(data.todoStatus == 'general') {
-                todoLog = 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "generalTodo", "Added to do general: '+data.description+'");';
-              }
-              var addTodo  = 'INSERT into todo_list (description, status,date, account_id) VALUES("'+data.description+'","'+data.todoStatus+'","'+parseDateNTime+'",'+req.session.Aid+');';
-              db.query(addTodo + todoLog, function(err){
+              var parseDate      = splitDateNTime[0];
+              var parseTime      = splitDateNTime[1] + ':00';
+              var parseDateNTime = parseDate+' '+parseTime;
+
+              var addTodo  = 'INSERT into todo_list (description, date, account_id) VALUES("'+data.description+'","'+parseDateNTime+'",'+req.session.Aid+');';
+              db.query(addTodo + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+currentTime+'", "todo", "Added to To Do List the following: '+data.description+'");', function(err){
                 if (err) {
                   console.log(err);
                 }
               });
               res.redirect(req.get('referer'));
-        } else if (data.sub == 'delToDo') {
-          var delTodo = 'DELETE FROM todo_list where todo_id = '+req.query.tId+';';
-          db.query(delTodo + 'INSERT into activity_logs(account_id, time, type, remarks) VALUES ('+req.session.Aid+',"'+moment(new Date()).format('YYYY-MM-DD HH:mm:ss')+'", "delTodo", "Deleted data from todo List");', function(err){
-            if (err) {
-              console.log(err);
-            }
-          });
-          res.redirect(req.get('referer'))
         }
       } else {
         res.redirect(req.session.sino+'/dashboard');
@@ -230,9 +217,8 @@ var fhSQL       = "SELECT name FROM family_history;";
     if (req.session.email && req.session.sino == 'nurse') {
       if (req.session.sino == 'nurse') {
         var bedSQL = "SELECT b.bed_id, p.patient_type, p.name, b.status, b.allotment_timestamp from bed b LEFT JOIN patient p USING(patient_id); ";
-        var availPatient = 'SELECT * from patient where patient_id NOT IN (select patient_id from bed where status="occupied");';
-        db.query(bedSQL + availableBeds + availPatient, function(err, rows, fields){
-          res.render('nurse/bedManagement', {bedDetails:rows[0], availableBeds:rows[1], availPatient:rows[2], username:user});
+        db.query(bedSQL, function(err, rows, fields){
+          res.render('nurse/bedManagement', {bedDetails:rows, username:user});
         });
       } else {
         res.redirect(req.session.sino+'/dashboard');
@@ -245,25 +231,14 @@ var fhSQL       = "SELECT name FROM family_history;";
   app.post('/nurse/bedManagement', function(req, res){
     if(req.session.email && req.session.sino == 'nurse'){
       if(req.session.sino == 'nurse') {
-        if (data.sub == 'admit') {
-          var bedSQL = 'UPDATE bed set allotment_timestamp = "'+currentTime+'", patient_id = '+data.bedPatient+',status = "occupied" where bed_id = '+data.bedNumber+';';
-          db.query(bedSQL + 'INSERT into activity_logs(account_id, time, type, remarks, patient_id) VALUES ('+Aid+',"'+currentTime+'", "bed", "Alloted bed number: '+data.bedNumber+' to patient:'+req.query.name+'",'+data.bedPatient+');', function(err){
-            if (err) {
-              console.log(err);
-            } else {
-              res.redirect(req.get('referer'));
-            }
-          });
-        } else {
-          var dischargeSQL = "UPDATE bed SET status = 'Unoccupied', allotment_timestamp = NULL, patient_id = NULL where bed_id = "+req.query.bed+";";
-          var sql = db.query(dischargeSQL, function(err, rows, fields){
-            if(err){
-              console.log(err);
-            } else {
-              res.redirect(req.get('referer'));
-            }
-          });
-        }
+        var dischargeSQL = "UPDATE bed SET status = 'Unoccupied', allotment_timestamp = NULL, patient_id = NULL where bed_id = "+req.query.bed+";";
+        var sql = db.query(dischargeSQL, function(err, rows, fields){
+          if(err){
+            console.log(err);
+          } else {
+            res.redirect(req.get('referer'));
+          }
+        });
       } else {
         res.redirect(req.session.sino+'/dashboard');
       }
@@ -276,7 +251,7 @@ var fhSQL       = "SELECT name FROM family_history;";
     if(req.session.email && req.session.sino == 'nurse'){
       if (req.session.sino == 'nurse') {
         var profileInfoSQL  = 'SELECT * from user_accounts where account_id = '+req.session.Aid+';';
-        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc LIMIT 5;';
+        var activityLogsSQL = 'SELECT * from activity_logs where account_id = '+req.session.Aid+' ORDER by logs_id desc;';
         db.query(profileInfoSQL + activityLogsSQL, function(err, rows){
           if (err) {
             console.log(err);

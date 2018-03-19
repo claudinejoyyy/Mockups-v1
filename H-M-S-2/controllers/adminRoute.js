@@ -1,4 +1,4 @@
-module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,patientManagementSQL,bcrypt){
+module.exports = function(app,db,currentTime,name,counts,chart,whoCurrentlyAdmitted,whoOPD,whoWARD,monthlyPatientCount,patientList,availableBeds,bcrypt){
 var user, Aid;
 
 app.get('/admin/dashboard', function(req, res){
@@ -95,6 +95,7 @@ app.get('/admin/patientManagement', function(req, res){
             console.log(err);
           } else {
             res.redirect(req.get('referer'));
+            res.render('admin/dashboard');
           }
         });
       } else {
