@@ -95,7 +95,7 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3><%= diagnosisSQL.length%></h3>
-              <p>Total Pending Diagnosis Tests</p>
+              <p>Total Diagnosis Tests</p>
             </div>
             <div class="icon">
               <i class="ion ion-person"></i>
@@ -289,7 +289,14 @@
                <%for(var i = 0; i < bloodChemistrySQL.length; i++){%>
                  <tr>
                      <td><%= bloodChemistrySQL[i].name%></td>
-                     <td><%= bloodChemistrySQL[i].timestamp%></td>
+                     <%
+                     var DT = moment(bloodChemistrySQL[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
+                     console.log(DT);
+                     if(DT == 'Invalid date'){%>
+                     <td></td>
+                     <%} else {%>
+                     <td><%= DT%></td>
+                     <%}%>
                  </tr>
                <%}%>
          </table>
@@ -316,8 +323,15 @@
              <tbody>
                  <%for(var i = 0; i < hermatology.length; i++){%>
                    <tr>
-                     <td><%= hermatology[i].name%></td>
-                     <td><%= hermatology[i].timestamp%></td>
+                    <td><%= hermatology[i].name%></td>
+                    <%
+                    var DT = moment(hermatology[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
+                    console.log(DT);
+                    if(DT == 'Invalid date'){%>
+                    <td></td>
+                    <%} else {%>
+                    <td><%= DT%></td>
+                    <%}%>
                    </tr>
                  <%}%>
            </table>
@@ -345,7 +359,14 @@
                    <%for(var i = 0; i < microscopy.length; i++){%>
                      <tr>
                        <td><%= microscopy[i].name%></td>
-                       <td><%= microscopy[i].timestamp%></td>
+                       <%
+                       var DT = moment(microscopy[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
+                       console.log(DT);
+                       if(DT == 'Invalid date'){%>
+                       <td></td>
+                       <%} else {%>
+                       <td><%= DT%></td>
+                       <%}%>
                      </tr>
                    <%}%>
              </table>
@@ -373,7 +394,14 @@
                      <%for(var i = 0; i < parasitology.length; i++){%>
                        <tr>
                          <td><%= parasitology[i].name%></td>
-                         <td><%= parasitology[i].timestamp%></td>
+                         <%
+                         var DT = moment(parasitology[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
+                         console.log(DT);
+                         if(DT == 'Invalid date'){%>
+                         <td></td>
+                         <%} else {%>
+                         <td><%= DT%></td>
+                         <%}%>
                        </tr>
                      <%}%>
                </table>
@@ -401,7 +429,14 @@
                        <%for(var i = 0; i < serology.length; i++){%>
                          <tr>
                            <td><%= serology[i].name%></td>
-                           <td><%= serology[i].timestamp%></td>
+                           <%
+                           var DT = moment(serology[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
+                           console.log(DT);
+                           if(DT == 'Invalid date'){%>
+                           <td></td>
+                           <%} else {%>
+                           <td><%= DT%></td>
+                           <%}%>
                          </tr>
                        <%}%>
                  </table>
@@ -429,7 +464,14 @@
                          <%for(var i = 0; i < microbiology.length; i++){%>
                            <tr>
                              <td><%= microbiology[i].name%></td>
-                             <td><%= microbiology[i].timestamp%></td>
+                             <%
+                             var DT = moment(microbiology[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
+                             console.log(DT);
+                             if(DT == 'Invalid date'){%>
+                             <td></td>
+                             <%} else {%>
+                             <td><%= DT%></td>
+                             <%}%>
                            </tr>
                          <%}%>
                    </table>
@@ -457,7 +499,14 @@
                            <%for(var i = 0; i < xRay.length; i++){%>
                              <tr>
                                <td><%= xRay[i].name%></td>
-                               <td><%= xRay[i].timestamp%></td>
+                               <%
+                               var DT = moment(xRay[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
+                               console.log(DT);
+                               if(DT == 'Invalid date'){%>
+                               <td></td>
+                               <%} else {%>
+                               <td><%= DT%></td>
+                               <%}%>
                              </tr>
                            <%}%>
                      </table>
