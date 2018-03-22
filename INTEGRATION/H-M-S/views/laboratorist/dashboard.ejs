@@ -17,6 +17,12 @@
   <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
       <!-- DataTables -->
   <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
+  
+  <style>
+      .datepicker {
+        z-index: 1600 !important; /* has to be larger than 1050 */
+      }
+  </style>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini fixed">
@@ -272,248 +278,227 @@
 
 <!---------------------------------------------------------------------------------------------- Modal for  Blood Chemistry ----------->
   <div class="modal fade" id="bloodChem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
-     <div class="modal-dialog" role="document">
-       <div class="modal-content">
-       <div class="box-header">
-         <h3 class="box-title">Request for Blood Chemistry Test</h3>
-       </div>
-       <div class="box-body">
-         <table id="example1" class="table table-bordered table-striped">
-           <thead>
-               <tr>
-                 <th>Name</th>
-                 <th>Date and Time</th>
-               </tr>
-           </thead>
-           <tbody>
-               <%for(var i = 0; i < bloodChemistrySQL.length; i++){%>
-                 <tr>
-                     <td><%= bloodChemistrySQL[i].name%></td>
-                     <%
-                     var DT = moment(bloodChemistrySQL[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
-                     console.log(DT);
-                     if(DT == 'Invalid date'){%>
-                     <td></td>
-                     <%} else {%>
-                     <td><%= DT%></td>
-                     <%}%>
-                 </tr>
-               <%}%>
-         </table>
-       </div>
-     </div>
-   </div>
+    <div class="modal-dialog" role="document" style="overflow-y: initial !important;">
+      <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Request for Blood Chemistry Test (Jan - Mar)</h4>
+            </div>
+            <div class="modal-body" id="showBloodChem" style="display:none;max-height: calc(100vh - 200px);overflow-y: auto;">
+          <section class="content">
+            <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Date and Time of Admission</th>
+                <th>Patient Name</th>
+              </tr>
+            </thead>
+
+              <%for (var i = 0; i < bloodChemistrySQL.length; i++) { %>
+                <tr>
+                  <td><%= moment(new Date(bloodChemistrySQL[i].timestamp)).format('YYYY-MM-DD HH:mm:ss')%></td>
+                  <td><%= bloodChemistrySQL[i].name%></td>
+                </tr>
+              <%}%>
+            </table>
+          </section>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <!---------------------------------------------------------------------------------------------- Modal for  Hermatology ----------->
-    <div class="modal fade" id="herma" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-         <div class="box-header">
-           <h3 class="box-title">Request for Hematology Test</h3>
-         </div>
-         <div class="box-body">
-           <table id="example1" class="table table-bordered table-striped">
-             <thead>
-                 <tr>
-                   <th>Name</th>
-                   <th>Date and Time</th>
-                 </tr>
-             </thead>
-             <tbody>
-                 <%for(var i = 0; i < hermatology.length; i++){%>
-                   <tr>
-                    <td><%= hermatology[i].name%></td>
-                    <%
-                    var DT = moment(hermatology[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
-                    console.log(DT);
-                    if(DT == 'Invalid date'){%>
-                    <td></td>
-                    <%} else {%>
-                    <td><%= DT%></td>
-                    <%}%>
-                   </tr>
-                 <%}%>
-           </table>
-         </div>
-       </div>
-     </div>
-    </div>
+  <div class="modal fade" id="herma" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+    <div class="modal-dialog" role="document" style="overflow-y: initial !important;">
+      <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Request for Hematology Test (Jan - Mar)</h4>
+            </div>
+            <div class="modal-body" id="showHerma" style="display:none;max-height: calc(100vh - 200px);overflow-y: auto;">
+          <section class="content">
+            <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Date and Time of Admission</th>
+                <th>Patient Name</th>
+              </tr>
+            </thead>
 
-    <!---------------------------------------------------------------------------------------------- Modal for  Microscopy ----------->
-      <div class="modal fade" id="micro" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-           <div class="box-header">
-             <h3 class="box-title">Request for Microscopy Test</h3>
-           </div>
-           <div class="box-body">
-             <table id="example1" class="table table-bordered table-striped">
-               <thead>
-                   <tr>
-                     <th>Name</th>
-                     <th>Date and Time</th>
-                   </tr>
-               </thead>
-               <tbody>
-                   <%for(var i = 0; i < microscopy.length; i++){%>
-                     <tr>
-                       <td><%= microscopy[i].name%></td>
-                       <%
-                       var DT = moment(microscopy[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
-                       console.log(DT);
-                       if(DT == 'Invalid date'){%>
-                       <td></td>
-                       <%} else {%>
-                       <td><%= DT%></td>
-                       <%}%>
-                     </tr>
-                   <%}%>
-             </table>
-           </div>
-         </div>
-       </div>
-      </div>
-
-      <!---------------------------------------------------------------------------------------------- Modal for  Parasitology ----------->
-        <div class="modal fade" id="para" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-             <div class="box-header">
-               <h3 class="box-title">Request for Parasitology Test</h3>
-             </div>
-             <div class="box-body">
-               <table id="example1" class="table table-bordered table-striped">
-                 <thead>
-                     <tr>
-                       <th>Name</th>
-                       <th>Date and Time</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     <%for(var i = 0; i < parasitology.length; i++){%>
-                       <tr>
-                         <td><%= parasitology[i].name%></td>
-                         <%
-                         var DT = moment(parasitology[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
-                         console.log(DT);
-                         if(DT == 'Invalid date'){%>
-                         <td></td>
-                         <%} else {%>
-                         <td><%= DT%></td>
-                         <%}%>
-                       </tr>
-                     <%}%>
-               </table>
-             </div>
-           </div>
-         </div>
+              <%for (var i = 0; i < hermatology.length; i++) { %>
+                <tr>
+                  <td><%= moment(new Date(hermatology[i].timestamp)).format('YYYY-MM-DD HH:mm:ss')%></td>
+                  <td><%= hermatology[i].name%></td>
+                </tr>
+              <%}%>
+            </table>
+          </section>
         </div>
 
-        <!---------------------------------------------------------------------------------------------- Modal for  Serology ----------->
-          <div class="modal fade" id="sero" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-               <div class="box-header">
-                 <h3 class="box-title">Request for Parasitology Test</h3>
-               </div>
-               <div class="box-body">
-                 <table id="example1" class="table table-bordered table-striped">
-                   <thead>
-                       <tr>
-                         <th>Name</th>
-                         <th>Date and Time</th>
-                       </tr>
-                   </thead>
-                   <tbody>
-                       <%for(var i = 0; i < serology.length; i++){%>
-                         <tr>
-                           <td><%= serology[i].name%></td>
-                           <%
-                           var DT = moment(serology[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
-                           console.log(DT);
-                           if(DT == 'Invalid date'){%>
-                           <td></td>
-                           <%} else {%>
-                           <td><%= DT%></td>
-                           <%}%>
-                         </tr>
-                       <%}%>
-                 </table>
-               </div>
-             </div>
-           </div>
+      </div>
+    </div>
+  </div>
+
+    <!---------------------------------------------------------------------------------------------- Modal for  Microscopy ----------->
+    <div class="modal fade" id="micro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+      <div class="modal-dialog" role="document" style="overflow-y: initial !important;">
+        <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Request for Microscopy Test (Jan - Mar)</h4>
+              </div>
+              <div class="modal-body" id="showMicroscopy" style="display:none;max-height: calc(100vh - 200px);overflow-y: auto;">
+            <section class="content">
+              <table id="example1" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Date and Time of Admission</th>
+                  <th>Patient Name</th>
+                </tr>
+              </thead>
+
+                <%for (var i = 0; i < microscopy.length; i++) { %>
+                  <tr>
+                    <td><%= moment(new Date(microscopy[i].timestamp)).format('YYYY-MM-DD HH:mm:ss')%></td>
+                    <td><%= microscopy[i].name%></td>
+                  </tr>
+                <%}%>
+              </table>
+            </section>
           </div>
 
-          <!---------------------------------------------------------------------------------------------- Modal for  Microbiology ----------->
-            <div class="modal fade" id="microBio" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                 <div class="box-header">
-                   <h3 class="box-title">Request for Parasitology Test</h3>
-                 </div>
-                 <div class="box-body">
-                   <table id="example1" class="table table-bordered table-striped">
-                     <thead>
-                         <tr>
-                           <th>Name</th>
-                           <th>Date and Time</th>
-                         </tr>
-                     </thead>
-                     <tbody>
-                         <%for(var i = 0; i < microbiology.length; i++){%>
-                           <tr>
-                             <td><%= microbiology[i].name%></td>
-                             <%
-                             var DT = moment(microbiology[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
-                             console.log(DT);
-                             if(DT == 'Invalid date'){%>
-                             <td></td>
-                             <%} else {%>
-                             <td><%= DT%></td>
-                             <%}%>
-                           </tr>
-                         <%}%>
-                   </table>
-                 </div>
-               </div>
-             </div>
+        </div>
+      </div>
+    </div>
+
+      <!---------------------------------------------------------------------------------------------- Modal for  Parasitology ----------->
+      <div class="modal fade" id="para" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+        <div class="modal-dialog" role="document" style="overflow-y: initial !important;">
+          <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Request for Parasitology Test (Jan - Mar)</h4>
+                </div>
+                <div class="modal-body" id="showParasitology" style="display:none;max-height: calc(100vh - 200px);overflow-y: auto;">
+              <section class="content">
+                <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Date and Time of Admission</th>
+                    <th>Patient Name</th>
+                  </tr>
+                </thead>
+
+                  <%for (var i = 0; i < parasitology.length; i++) { %>
+                    <tr>
+                      <td><%= moment(new Date(parasitology[i].timestamp)).format('YYYY-MM-DD HH:mm:ss')%></td>
+                      <td><%= parasitology[i].name%></td>
+                    </tr>
+                  <%}%>
+                </table>
+              </section>
             </div>
 
-            <!---------------------------------------------------------------------------------------------- Modal for  XRay ----------->
-              <div class="modal fade" id="xray" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                   <div class="box-header">
-                     <h3 class="box-title">Request for Parasitology Test</h3>
-                   </div>
-                   <div class="box-body">
-                     <table id="example1" class="table table-bordered table-striped">
-                       <thead>
-                           <tr>
-                             <th>Name</th>
-                             <th>Date and Time</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <%for(var i = 0; i < xRay.length; i++){%>
-                             <tr>
-                               <td><%= xRay[i].name%></td>
-                               <%
-                               var DT = moment(xRay[i].timestamp).format('YYYY-MM-DD HH:mm:ss');
-                               console.log(DT);
-                               if(DT == 'Invalid date'){%>
-                               <td></td>
-                               <%} else {%>
-                               <td><%= DT%></td>
-                               <%}%>
-                             </tr>
-                           <%}%>
-                     </table>
-                   </div>
-                 </div>
-               </div>
+          </div>
+        </div>
+      </div>
+
+        <!---------------------------------------------------------------------------------------------- Modal for  Serology ----------->
+        <div class="modal fade" id="sero" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+          <div class="modal-dialog" role="document" style="overflow-y: initial !important;">
+            <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Request for Serology Test (Jan - Mar)</h4>
+                  </div>
+                  <div class="modal-body" id="showSerology" style="display:none;max-height: calc(100vh - 200px);overflow-y: auto;">
+                <section class="content">
+                  <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Date and Time of Admission</th>
+                      <th>Patient Name</th>
+                    </tr>
+                  </thead>
+
+                    <%for (var i = 0; i < serology.length; i++) { %>
+                      <tr>
+                        <td><%= moment(new Date(serology[i].timestamp)).format('YYYY-MM-DD HH:mm:ss')%></td>
+                        <td><%= serology[i].name%></td>
+                      </tr>
+                    <%}%>
+                  </table>
+                </section>
               </div>
+
+            </div>
+          </div>
+        </div>
+
+          <!---------------------------------------------------------------------------------------------- Modal for  Microbiology ----------->
+          <div class="modal fade" id="microBio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+            <div class="modal-dialog" role="document" style="overflow-y: initial !important;">
+              <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Request for Microbiology Test (Jan - Mar)</h4>
+                    </div>
+                    <div class="modal-body" id="showMicrobiology" style="display:none;max-height: calc(100vh - 200px);overflow-y: auto;">
+                  <section class="content">
+                    <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Date and Time of Admission</th>
+                        <th>Patient Name</th>
+                      </tr>
+                    </thead>
+
+                      <%for (var i = 0; i < microbiology.length; i++) { %>
+                        <tr>
+                          <td><%= moment(new Date(microbiology[i].timestamp)).format('YYYY-MM-DD HH:mm:ss')%></td>
+                          <td><%= microbiology[i].name%></td>
+                        </tr>
+                      <%}%>
+                    </table>
+                  </section>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+            <!---------------------------------------------------------------------------------------------- Modal for  XRay ----------->
+            <div class="modal fade" id="xray" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" style="overflow:hidden;">
+              <div class="modal-dialog" role="document" style="overflow-y: initial !important;">
+                <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Request for X-Ray Test (Jan - Mar)</h4>
+                      </div>
+                      <div class="modal-body" id="showXray" style="display:none;max-height: calc(100vh - 200px);overflow-y: auto;">
+                    <section class="content">
+                      <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Date and Time of Admission</th>
+                          <th>Patient Name</th>
+                        </tr>
+                      </thead>
+
+                        <%for (var i = 0; i < xRay.length; i++) { %>
+                          <tr>
+                            <td><%= moment(new Date(xRay[i].timestamp)).format('YYYY-MM-DD HH:mm:ss')%></td>
+                            <td><%= xRay[i].name%></td>
+                          </tr>
+                        <%}%>
+                      </table>
+                    </section>
+                  </div>
+
+                </div>
+              </div>
+            </div>
               <!------------------------------------------------------------------------------------------ /Modal-->
 
               <!---------------------------------------------------------------------------------------------- Modal of To Do List ----------->
