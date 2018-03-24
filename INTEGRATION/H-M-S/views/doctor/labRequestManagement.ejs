@@ -152,12 +152,14 @@
                               <td><%=i+1%></td>
                               <td><%=labrequestDetails[i].patient_type%></td>
                               <td><%=labrequestDetails[i].name%></td>
-                              <td><%=labrequestDetails[i].timestamp%></td>
+                              <td><%= moment(new Date(labrequestDetails[i].timestamp)).format('YYYY-MM-DD HH:mm:ss')%></td>
                               <td><%=labrequestDetails[i].age%></td>
                               <td><%=labrequestDetails[i].type%></td>
                               <td><%=labrequestDetails[i].remarks%></td>
                               <td><%=labrequestDetails[i].lab_status%></td>
-                              <td><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i> Cancel</button></td>
+                              <form action="/doctor/labRequestManagement?requestId=<%=labrequestDetails[i].request_id%>&labrequestPatientName=<%=labrequestDetails[i].name%>" method="post">
+                              <td><button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i> Cancel</button></td>
+                              </form>
                             </tr>
                           <%}%>
                        </tbody>
