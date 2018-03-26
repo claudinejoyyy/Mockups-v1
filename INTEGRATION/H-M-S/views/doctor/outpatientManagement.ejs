@@ -228,7 +228,7 @@ desired effect
 
                       <td>
                         <!-- VIEW -->
-                        <a href="../doctor/patientManagement?patient=<%=opdInfo[i].patient_id%>"><button class="btn btn-primary btn-sm" name="view">View</button></a>
+                        <button type="button" class="btn btn-primary btn-sm" name="button" data-toggle="modal" data-target="#showInputPassword" onclick="PasswordInput(<%= opdInfo[i].patient_id %>)">View</button>
                         <!-- LAB -->
                         <%
                         var labArr= '';
@@ -460,33 +460,40 @@ desired effect
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <div class="modal fade" id="showInputPassword" role="dialog" aria-labelledby="labRequestlabel">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="labRequestlabel"><%= username[0].name %>, please input your password.</h4>
+        </div>
+        <div class="modal-body">
+          <div class="modal-content">
+          <div id="PasswordInput" style="display:none">
+            <form id="dynamicActionPassword" method="post">
+              <input type="password" name="patientPassword" placeholder="PASSWORD">
+              <button type="submit" name="sub" class="btn btn-default" value="pass"><i class="fa fa-sign-in"></i> Enter</button>
+            </form>
+          </div>
+        </div>
+          </div>
+
+        </div>
+
+      </div>
+
+  <div class="control-sidebar-bg"></div>
+</div>
 
   <!-- Main Footer -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1
-    </div>
-    <strong>Copyright &copy; 2018.</strong> Philippine Military Academy | Fort Del Pilar Station Hospital | All rights reserved.
-  </footer>
+<% include ../partials/footer.ejs %>
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
 
-<!-- jQuery 2.2.3 -->
-<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/app.min.js"></script>
-<!-- DataTables -->
-<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="../plugins/fastclick/fastclick.js"></script>
+
 
 <script>
   $(function () {
@@ -545,6 +552,10 @@ desired effect
     document.getElementById('linkDiagnosis').action = '/doctor/outpatientManagement?patient_id='+i+'&patient_name='+o+'';
   }
 
+  function PasswordInput(id){
+    document.getElementById('PasswordInput').style.display = 'block';
+    document.getElementById('dynamicActionPassword').action = '/doctor/patientManagement?passPatient='+id+'';
+  }
 
 </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

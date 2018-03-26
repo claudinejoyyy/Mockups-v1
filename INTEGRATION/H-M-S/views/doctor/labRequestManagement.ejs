@@ -171,7 +171,45 @@
   </div>
   <!-- /.col -->
   </div>
-
+            <div class="row">
+             <div class="col-xs-12">
+               <div class="box">
+                 <div class="box-header">
+                 </div>
+                 <div class="box-body">
+                               <table id="example2" class="table table-bordered table-striped">
+                                    <thead>
+                                  <th>No.</th>
+                                  <th>Patient Type</th>
+                                  <th>Name</th>
+                                  <th>Date and Time</th>
+                                  <th>Age</th>
+                                  <th>Tests</th>
+                                  <th>Remarks</th>
+                                  <th>Status</th>
+                              </thead>
+                                  <tbody>
+                                  <%for (var i = 0; i < confirmedLabRequestSQL.length; i++) {%>
+                                    <tr>
+                                      <td><%=i+1%></td>
+                                      <td><%=confirmedLabRequestSQL[i].patient_type%></td>
+                                      <td><%=confirmedLabRequestSQL[i].name%></td>
+                                      <td><%= moment(new Date(confirmedLabRequestSQL[i].timestamp)).format('YYYY-MM-DD HH:mm:ss')%></td>
+                                      <td><%=confirmedLabRequestSQL[i].age%></td>
+                                      <td><%=confirmedLabRequestSQL[i].type%></td>
+                                      <td><%=confirmedLabRequestSQL[i].remarks%></td>
+                                      <td style="color:green; font-weight: bold;"><%=confirmedLabRequestSQL[i].lab_status%></td>
+                                    </tr>
+                                <%}%>
+                             </tbody>
+                            </table>
+                </div>
+  <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+  </div>
+  <!-- /.col -->
+  </div>
   </section>
   <!-- /.content -->
   </div>
